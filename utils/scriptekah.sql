@@ -205,9 +205,7 @@ FOREIGN KEY (id_jour) REFERENCES jour(id)
 CREATE TABLE utilisateur (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_utilisateur INT NOT NULL,
-fk_compte_utilisateur INT,
 id_type_etat_dispo INT,
-id_disponibilite INT,
 nom VARCHAR(40) NOT NULL,
 prenom VARCHAR(40) NOT NULL,
 telephone VARCHAR(15),
@@ -215,9 +213,7 @@ date_naissance date,
 date_inscription datetime NOT NULL,
 
 FOREIGN KEY (id_type_utilisateur) REFERENCES type_utilisateur(id),
-FOREIGN KEY (fk_compte_utilisateur) REFERENCES compte_utilisateur(fk_utilisateur),
-FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
-FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id)
+FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id)
 );
 
 ALTER TABLE compte_utilisateur
@@ -347,7 +343,7 @@ INSERT INTO type_groupe(id, type_groupe) VALUES (2, "groupe");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (1, "Client", "Le client");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "Un facilitateur");
 
-INSERT INTO utilisateur(id_type_utilisateur,  nom, prenom, date_inscription) VALUES (1, "Test", "Client", '2020-02-07');
+INSERT INTO utilisateur(id_type_utilisateur, nom, prenom, date_inscription) VALUES (1, "Test", "Client", NOW());
 
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test@client.ca", "abc123");
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "client", "client");
