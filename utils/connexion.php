@@ -4,7 +4,7 @@ class Connexion{
   private $dbHost = "localhost";
   private $dbUser = "root";
   private $dbPass = "";
-  private $dbName = "lab_app_media";
+  private $dbName = "ekah";
   function __construct() {
     $this->conn = mysqli_connect($this->dbHost, $this->dbUser, $this->dbPass, $this->dbName);
     if ($this->conn->connect_error){
