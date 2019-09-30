@@ -1,0 +1,221 @@
+/**
+ * CSS pour la page d'inscription
+ *
+ * Nom :         inscription.css
+ * Catégorie :   Style
+ * Auteur :      Karl Boutin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-09-30
+ */
+
+.inscription{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 8px 0 5px;
+}
+
+.logo-inscr{
+  display: block;
+  margin: 0 auto;
+  width: 210px;
+  margin-top: 10px;
+}
+
+.txt-inscr{
+  text-align: center;
+  font-size: 26px;
+  color: #034e54;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+.txt-bienv{
+  margin-top: 30px;
+  color: #034e54;
+}
+
+.input-inscr{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  border-bottom: 2px solid #9E9E9E;
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 2px;
+  font-size: 14px;
+}
+
+::placeholder{
+  color: #C8C8C8;
+  opacity: 1;
+}
+
+.input-inscr:focus{
+  outline: initial;
+  border-bottom-color: #f0592a;
+  -webkit-transition: border-bottom-color 0.4s;
+  -moz-transition: border-bottom-color 0.4s;
+  -o-transition: border-bottom-color 0.4s;
+  transition: border-bottom-color 0.4s;
+}
+
+.group-input-inscr{
+  margin-top: 20px; /*A verifier pour l'espacement*/
+}
+
+.input-date{
+  width: 32%;
+}
+
+.input-long{
+  width: 100%;
+}
+
+.select-inscr{
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  border: 0;
+  border-bottom: 2px solid #9E9E9E;
+  padding: 5px;
+  padding-bottom: 2px;
+  color: #C8C8C8;
+  font-size: 14px;
+}
+
+.box-select{
+  display: block;
+  position: relative;
+}
+
+.box-select:before{
+  content: '\f0dd';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  text-align: center;
+  color: #f0592a;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 38px;
+  pointer-events: none;
+}
+
+select::-ms-expand {
+    display: none; /* Hide the default arrow in Internet Explorer 10 and Internet Explorer 11 */
+}
+
+.select-inscr option{
+  color: #000000;
+}
+
+.select-inscr:focus{
+  outline: initial;
+  border-bottom-color: #f0592a;
+  color: #f0592a;
+  -webkit-transition: border-bottom-color 0.4s;
+  -moz-transition: border-bottom-color 0.4s;
+  -o-transition: border-bottom-color 0.4s;
+  transition: border-bottom-color 0.4s;
+  transition: color 0.4s;
+}
+
+.option-vide{
+  display: none;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: #f0592a;
+    -webkit-transition: border-bottom-color 0.4s;
+    -moz-transition: border-bottom-color 0.4s;
+    -o-transition: border-bottom-color 0.4s;
+    transition: border-bottom-color 0.4s;
+}
+
+input:focus:-moz-placeholder {
+    color: #f0592a;
+    -webkit-transition: color 0.4s;
+    -moz-transition: color 0.4s;
+    -o-transition: color 0.4s;
+    transition: color 0.4s;
+}
+
+.btn-confirmer{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #f0592a;
+  border: none;
+  padding: 0;
+  border-radius: 70px;
+  color: #FFF;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 5px;
+}
+
+.btn-confirmer:hover{
+  opacity: 0.8;
+}
+
+.btn-compte-existant{
+  background-color: #034e54;
+}
+
+.btn-espace{
+  margin-top: 10px;
+}
+
+#nom{
+  margin-top: 20px;
+}
+
+.m-long{
+  width: 100%;
+}
+
+.m-top{
+  margin-top: 20px;
+}
+
+/*****************Pour le responsive du site Web*********************/
+
+@media only screen and (min-width: 768px) {
+
+    .inscription{
+      width: 510px;
+    }
+
+    .input-inscr{
+      width: 240px;
+    }
+
+    .input-date{
+      width: 157px;
+    }
+
+    .input-long{
+      width: 490px;
+    }
+
+    .box-select{
+      display: inline-block;
+      position: relative;
+    }
+
+    .second-input{
+      margin-left: 5px;
+    }
+
+    .btn-espace{
+      margin-top: 0;
+    }
+
+    #nom{
+      margin-top: 0;
+    }
+
+    .m-top{
+      margin-top: 0;
+    }
+}
