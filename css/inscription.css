@@ -47,7 +47,7 @@
 }
 
 ::placeholder{
-  color: #C8C8C8;
+  color: var(--color,#C8C8C8);
   opacity: 1;
 }
 
@@ -178,7 +178,7 @@ input:focus:-moz-placeholder {
   margin-top: 20px;
 }
 
-/*****************Pour le responsive du site Web*********************/
+/*****************Pour le responsive de la page*********************/
 
 @media only screen and (min-width: 768px) {
 

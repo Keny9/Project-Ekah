@@ -35,7 +35,7 @@
          <div class="txt-bienv">
            <p>Nous désirons mieux vous connaître.</p>
          </div>
-         <form class="form-inscr" action="#" method="post">
+         <form class="form-inscr" action="" method="post">
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
@@ -54,18 +54,18 @@
              <div class="box-select m-top">
                <select class="select-inscr second-input input-date m-long" name="mois" id="mois" onchange="changeMois()">
                  <option class="option-vide" value="vide" selected="selected">Mois</option>
-                 <option value="Janvier">Janvier</option>
-                 <option value="Février">Février</option>
-                 <option value="Mars">Mars</option>
-                 <option value="Avril">Avril</option>
-                 <option value="Mai">Mai</option>
-                 <option value="Juin">Juin</option>
-                 <option value="Juillet">Juillet</option>
-                 <option value="Août">Août</option>
-                 <option value="Septembre">Septembre</option>
-                 <option value="Octobre">Octobre</option>
-                 <option value="Novembre">Novembre</option>
-                 <option value="Décembre">Décembre</option>
+                 <option value="1">Janvier</option>
+                 <option value="2">Février</option>
+                 <option value="3">Mars</option>
+                 <option value="4">Avril</option>
+                 <option value="5">Mai</option>
+                 <option value="6">Juin</option>
+                 <option value="7">Juillet</option>
+                 <option value="8">Août</option>
+                 <option value="9">Septembre</option>
+                 <option value="10">Octobre</option>
+                 <option value="11">Novembre</option>
+                 <option value="12">Décembre</option>
                </select>
              </div>
              <input type="text" name="annee" id="annee" class="input-inscr input-date second-input m-long m-top" placeholder="Année" value="">
@@ -85,10 +85,10 @@
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
            <div class="group-input-inscr">
-             <input type="text" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="">
+             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="">
            </div>
            <div class="group-input-inscr">
-             <button type="submit" name="btnInscription" id="btnInscription" class="btn-confirmer input-long">Créer un compte</button>
+             <button type="submit" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
            </div>
            <div class="group-input-inscr btn-espace">
              <button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button>
