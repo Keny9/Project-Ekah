@@ -17,6 +17,10 @@ window.onload = function(){
   courriel = document.getElementById("courriel");
   telephone = document.getElementById("telephone");
   motDePasse = document.getElementById("motDePasse");
+  codePostal = document.getElementById("codePostal");
+  jour = document.getElementById("jour");
+  mois = document.getElementById("mois"); //C'est un select
+  annee = document.getElementById("annee");
 
   prenom.addEventListener("focusout", function(){
     if(verifieNomPrenom(prenom)){
@@ -47,6 +51,30 @@ window.onload = function(){
       inputUnrequired(motDePasse, "Mot de passe");
     }
   });
+
+  jour.addEventListener("focusout", function(){
+    if(verifieJour(jour)){
+      inputUnrequired(jour, "Jour de naissance");
+    }
+  });
+
+  annee.addEventListener("focusout", function(){
+    if(verifieAnnee(annee)){
+      inputUnrequired(annee, "Jour de naissance");
+    }
+  });
+
+  mois.addEventListener("focusout", function(){
+    if(!siSelectVide(mois)){
+      inputUnrequired(mois, "Mois");
+    }
+  });
+
+  codePostal.addEventListener("focusout", function(){
+    if(!siVide(codePostal)){
+      inputUnrequired(codePostal, "Code postal");
+    }
+  });
 };
 
 //Fonction si input vide qui montre que le champ est requis
@@ -57,7 +85,7 @@ window.onload = function(){
 
 //Fonction qui remet les couleurs par défauts
  function inputUnrequired(e, placeholder){
-   e.style.borderBottomColor = "#9E9E9E";
+   e.style.borderBottomColor = "#9E9E9E"; //might need to find something else ca brise l'animation
    e.style.setProperty("--borderBottomColor", "#f0592a");
    e.style.setProperty("--color", "#C8C8C8");
    e.placeholder = placeholder;
@@ -85,23 +113,57 @@ window.onload = function(){
 
  //Fonction qui valide le formulaire avant de submit
  function validerFormInscription(){
+   groupDateEmpty = true; //Les dates ne sont pas rempli
+   codePostalEmpty = true;
 
+   //Verification des elements qui sont *required
    if(siVide(prenom) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(motDePasse)){
      indiqueChampVide();
      document.getElementById("error-blank").style.display = "block";
      return false;
    }
-   else{
-     document.getElementById("error-blank").style.display = "none";
+
+   //Si les 3 ne sont pas vides alors pas d'erreur que c'est vide
+   if((!siVide(jour) && !siSelectVide(mois) && !siVide(annee))){
+     groupDateEmpty = false;
    }
 
+   // si code postal pas vide
+   if(!siVide(codePostal)){
+     codePostalEmpty = false;
+   }
+
+   //Si un des 3 n'est pas vide les autres ne doivent pas etre vide egalement ou si les 3 sont pas vides alors correct
+   if((!siVide(jour) || !siSelectVide(mois) || !siVide(annee)) && groupDateEmpty == true){
+     indiqueTempsVide();
+     document.getElementById("error-blank").style.display = "block";
+     return false;
+   }
+
+   document.getElementById("error-blank").style.display = "none";
+
+   //Verification des input avec les regex qui sont *required
    if(!verifieNomPrenom(prenom) || !verifieNomPrenom(nom) || !verifieCourriel(courriel) || !verifieTelephone(telephone) || !verifieMotDePasse(motDePasse)){
      indiqueChampInvalide();
      return false;
    }
 
+   //Les dates sont remplis (les 3)
+   if(groupDateEmpty == false){
+     if(!verifieJour(jour) || !verifieAnnee(annee)){
+       indiqueChampDateInvalide();
+       return false;
+     }
+   }
 
-   return false;
+   //Le code postal est rempli
+   if(codePostalEmpty == false){
+     if(!verifieCodePostal(codePostal)){
+       indiqueChampCodeInvalide();
+     }
+   }
+
+   return true;
  }
 
  //Verifie que le nom de famille ou le prenom est valide (Regex)
@@ -171,6 +233,21 @@ window.onload = function(){
 
  }
 
+//Indique quels champs sont vide pour la date de naissance
+ function indiqueTempsVide(){
+   if(siVide(jour)){
+     inputRequired(jour);
+   }
+
+   if(siSelectVide(mois)){
+     inputRequired(mois);
+   }
+
+   if(siVide(annee)){
+     inputRequired(annee);
+   }
+ }
+
 //Indique quels champs sont invalides a l'utilisateur
  function indiqueChampInvalide(){
 
@@ -206,9 +283,39 @@ window.onload = function(){
    }
  }
 
+//Si les champs sont remplis, indique lesquels sont invalides
+ function indiqueChampDateInvalide(){
+   if(!verifieJour(jour)){
+     inputRequired(jour);
+     jour.value = null;
+     jour.placeholder = "Jour invalide *";
+   }
+
+   if(!verifieAnnee(annee)){
+     inputRequired(annee);
+     annee.value = null;
+     annee.placeholder = "Année invalide *";
+   }
+ }
+
+ //Si le champs du code postal est rempli, mais qu'il n'est pas valide
+ function indiqueChampCodeInvalide(){
+   inputRequired(codePostal);
+   codePostal.value = null;
+   codePostal.placeholder = "Code postal invalide *";
+ }
+
  //Verifie si le champ de l'element est vide
  function siVide(e){
    if(e.value == null || e.value == ""){
+     return true;
+   }
+   return false;
+ }
+
+//Verifie si la selection de la liste est vide
+ function siSelectVide(e){
+   if(e.options[e.selectedIndex].value == null || e.options[e.selectedIndex].value == "" || e.options[e.selectedIndex].value == "vide"){
      return true;
    }
    return false;
