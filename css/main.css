@@ -50,25 +50,107 @@ header{
 
 .tab{
   font-size: 15px;
-  padding: 8.25px 11px;
+
   vertical-align: middle;
   color: rgba(255,255,255,.9);
-  transition: 0.1s;
+
   font-weight: 700;
   line-height: 30px;
-
+}
+.tab:hover{
+  z-index:1;
 }
 
-.tab:hover{
+.tab a:hover{
   color:#f0592a;
+  cursor: pointer;
 }
 
 .tab a{
+  display:block;
   color: inherit;
+  text-decoration:none;
+  padding: 8.25px 11px;
+  transition: 0.1s;
+}
+
+.subTab{
+  z-index: -1;
+  position:absolute;
+  background-color: #034e54;
+
+  transition: .2s;
+}
+.tab:hover .subTab{
+  transform: translateY(100%);
+  z-index: -1;
+}
+
+
+.subTab a{
+ overflow:hidden;
+ color: rgba(255,255,255,.9);
+ padding: 0;
+
+ visibility:hidden;
+ opacity: 0;
+
+ transition-duration: .2s;
+ transition-delay: 0.18s;
+ transition: color .1s .1s, opacity .2s .18s;
+}
+
+.subTab a:hover{
+    transition: color .1s;
+    color:#f0592a;
+}
+
+.tab:hover .subTab a{
+  visibility:visible;
+  opacity: 1;
+}
+
+
+.subTab li{
+  list-style-type: none;
+}
+
+.subTab ul{
+  padding: 8.25px 11px;
+  margin : 0;
+}
+
+
+.subTab li:hover{
+  color:#f0592a;
+  cursor: pointer;
+}
+
+
+#logoHeader:hover{
+  cursor: pointer;
 }
 
 #contactNav{
   order: 0;
+  margin-left: 11px;
+  line-height: 30px;
+  padding-top:2px;
+  height: 36px;
+}
+
+#contactNav a{
+  border: 2px solid #fff;
+  border-radius: 100px;
+  color: #fff;
+  transition: .15s;
+  padding: 3px 15px;
+}
+
+
+#contactNav a:hover{
+    background-color: #fff;
+  color: #000;
 }
 #tab-1{order:1;}
 #tab-2{order:2;}
