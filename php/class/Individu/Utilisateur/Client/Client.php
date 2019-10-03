@@ -8,8 +8,8 @@
  * Nom :         Client
  * Catégorie :   Classe
  * Auteur :      Maxime Lussier
- * Version :     1.0
- * Date de la dernière modification : 2019-09-29
+ * Version :     1.1
+ * Date de la dernière modification : 2019-10-03
  */
 
  $path = $_SERVER['DOCUMENT_ROOT']."/project_ekah_git/Project-Ekah/php/class/Individu/Utilisateur/Utilisateur.php";

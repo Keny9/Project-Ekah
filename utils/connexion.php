@@ -18,6 +18,9 @@ class Connexion{
   public function getConnexion(){
     return $this->conn;
   }
+  public function do(){
+    return $this->conn;
+  }
   public function closeConnexion(){
     $this->conn->close();
   }
