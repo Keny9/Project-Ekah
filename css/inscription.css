@@ -35,6 +35,32 @@
   color: #034e54;
 }
 
+.error{
+  display: none;
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  background-color: #D92B1A;
+  border-radius: 10px;
+  opacity: 0.9;
+}
+
+.icon-error{
+  width: 20px;
+  display: inline-block;
+  height: 50px;
+  margin-left: 20px;
+  margin-top: 15px;
+  color: #fff;
+}
+
+.text-error{
+  display: inline-block;
+  margin-left: 5px;
+  color: #fff;
+  font-size: 12px;
+}
+
 .input-inscr{
   -webkit-appearance: none;
   -moz-appearance: none;

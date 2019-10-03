@@ -35,6 +35,14 @@
          <div class="txt-bienv">
            <p>Nous désirons mieux vous connaître.</p>
          </div>
+         <div class="error" id="error-blank">
+           <div class="icon-error">
+             <i class="fas fa-exclamation-circle"></i>
+           </div>
+           <div class="text-error">
+             Ces champs ne peuvent pas être vide.
+           </div>
+         </div>
          <form class="form-inscr" action="" method="post">
            <div class="group-input-inscr">
              <div class="box-select">
