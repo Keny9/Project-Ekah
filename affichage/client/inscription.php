@@ -43,7 +43,7 @@
              Ces champs ne peuvent pas être vide.
            </div>
          </div>
-         <form class="form-inscr" action="" method="post">
+         <form class="form-inscr" action="#" method="post" onsubmit="return false;">
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
@@ -58,7 +58,7 @@
              <input type="text" name="nom" id="nom" class="input-inscr second-input" placeholder="Nom de famille"value="">
            </div>
            <div class="group-input-inscr">
-             <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="">
+             <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">
              <div class="box-select m-top">
                <select class="select-inscr second-input input-date m-long" name="mois" id="mois" onchange="changeMois()">
                  <option class="option-vide" value="vide" selected="selected">Mois</option>
@@ -76,7 +76,7 @@
                  <option value="12">Décembre</option>
                </select>
              </div>
-             <input type="text" name="annee" id="annee" class="input-inscr input-date second-input m-long m-top" placeholder="Année" value="">
+             <input type="text" name="annee" id="annee" class="input-inscr input-date second-input m-long m-top" placeholder="Année" value="" maxlength="4">
            </div>
            <div class="group-input-inscr">
              <input type="text" name="codePostal" id="codePostal" value="" class="input-inscr input-long" placeholder="Code postal">
@@ -93,7 +93,12 @@
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
            <div class="group-input-inscr">
-             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="">
+             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
+             <div id="block-requis" class="block-requis-psw">
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 8 charactères.</p><br><br>
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 nombre et une lettre.</p><br><br>
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 lettre majuscule.</p><br><br>
+             </div>
            </div>
            <div class="group-input-inscr">
              <button type="submit" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
