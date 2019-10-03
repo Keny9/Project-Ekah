@@ -1,4 +1,15 @@
-*{
+/**
+ * CSS global
+ * Contient le css pour
+ * le header, footer et nav
+ *
+ * Nom :         main.css
+ * Catégorie :   css
+ * Auteur :      Maxime Lussier
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-03
+ */
+ *{
   box-sizing: border-box;
 }
 body{

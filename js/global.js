@@ -1,4 +1,14 @@
-
+/**
+ * JS global
+ * Contient les fonctions JS pour
+ * le header, footer et nav
+ *
+ * Nom :         global.js
+ * Catégorie :   JS
+ * Auteur :      Maxime Lussier
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-03
+ */
 $( document ).ready(function() {
   // ajuste la positions des sous-menus
   $('.tab .subTab').each(function(){
