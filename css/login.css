@@ -1,0 +1,56 @@
+/**
+ * CSS pour la page d'inscription
+ *
+ * Nom :         login.css
+ * Catégorie :   Style
+ * Auteur :      Karl Boutin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-03
+ */
+
+.input-inscr, .btn-confirmer{
+  display: block;
+  width: 360px;
+  margin: 0 auto;
+}
+
+.link-box{
+  display: block;
+  width: 240px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.link-inscr{
+  display: inline-block;
+  text-decoration: underline;
+  color: #034e54;
+}
+
+.link-inscr:active{
+  opacity: 0.70;
+}
+
+.link-inscr:visited{
+  color: #034e54;
+}
+
+.link-inscr:hover{
+  color: #f0592a;
+}
+
+.mt-less{
+  margin-top: 10px;
+}
+
+/*****************Pour le responsive de la page*********************/
+
+@media only screen and (max-width: 768px) {
+
+  .input-inscr, .btn-confirmer{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+}
