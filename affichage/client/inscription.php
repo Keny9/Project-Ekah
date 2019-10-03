@@ -43,7 +43,7 @@
              Ces champs ne peuvent pas être vide.
            </div>
          </div>
-         <form class="form-inscr" action="#" method="post" onsubmit="return false;">
+         <form class="form-inscr" action="../../php/script/submitInscription.php" method="post" onsubmit="return false;">
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
@@ -104,7 +104,7 @@
              <button type="submit" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
            </div>
            <div class="group-input-inscr btn-espace">
-             <button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button>
+            <a href="./login.php"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>
            </div>
          </form>
        </div>
