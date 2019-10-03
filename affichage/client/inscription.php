@@ -43,7 +43,7 @@
              Ces champs ne peuvent pas être vide.
            </div>
          </div>
-         <form class="form-inscr" action="../../php/script/submitInscription.php" method="post" onsubmit="return false;">
+         <form class="form-inscr" action="../../php/script/submitInscription.php" method="post">
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
@@ -82,7 +82,7 @@
              <input type="text" name="codePostal" id="codePostal" value="" class="input-inscr input-long" placeholder="Code postal">
            </div>
            <div class="group-input-inscr">
-             <input type="text" name="adresse" id="adresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
+             <input type="text" name="noAdresse" id="noAdresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
              <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
              <input type="text" name="ville" id="ville" value="" class="input-inscr input-date second-input" placeholder="Ville">
            </div>

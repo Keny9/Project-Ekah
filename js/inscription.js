@@ -9,9 +9,23 @@
  */
 
 //Lorsque le document est prêt
-var valide = true;
 
 window.onload = function(){
+  listInput = document.querySelectorAll("input");
+
+  listInput.forEach(function(e){
+    e.addEventListener("focusin", function(){
+      e.style.borderBottomColor = "#f0592a";
+      e.style.transition = "all 0.4s";
+    });
+  });
+
+  listInput.forEach(function(e){
+    e.addEventListener("focusout", function(){
+      e.style.borderBottomColor = "#9E9E9E";
+    });
+  });
+
   prenom = document.getElementById("prenom");
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
@@ -21,6 +35,9 @@ window.onload = function(){
   jour = document.getElementById("jour");
   mois = document.getElementById("mois"); //C'est un select
   annee = document.getElementById("annee");
+  adresse = document.getElementById("noAdresse");
+  rue = document.getElementById("rue");
+  ville = document.getElementById("ville");
 
   prenom.addEventListener("focusout", function(){
     if(verifieNomPrenom(prenom)){
@@ -71,8 +88,26 @@ window.onload = function(){
   });
 
   codePostal.addEventListener("focusout", function(){
-    if(!siVide(codePostal)){
+    if(verifieCodePostal(codePostal)){
       inputUnrequired(codePostal, "Code postal");
+    }
+  });
+
+  rue.addEventListener("focusout", function(){
+    if(verifieNomPrenom(rue)){
+      inputUnrequired(rue, "Rue");
+    }
+  });
+
+  noAdresse.addEventListener("focusout", function(){
+    if(verifieNoAdresse(noAdresse)){
+      inputUnrequired(noAdresse, "No. Adresse");
+    }
+  });
+
+  ville.addEventListener("focusout", function(){
+    if(verifieNomPrenom(ville)){
+      inputUnrequired(ville, "Code postal");
     }
   });
 };
@@ -85,7 +120,7 @@ window.onload = function(){
 
 //Fonction qui remet les couleurs par défauts
  function inputUnrequired(e, placeholder){
-   e.style.borderBottomColor = "#9E9E9E"; //might need to find something else ca brise l'animation
+   e.style.borderBottomColor = "#9E9E9E";
    e.style.setProperty("--borderBottomColor", "#f0592a");
    e.style.setProperty("--color", "#C8C8C8");
    e.placeholder = placeholder;
@@ -115,6 +150,7 @@ window.onload = function(){
  function validerFormInscription(){
    groupDateEmpty = true; //Les dates ne sont pas rempli
    codePostalEmpty = true;
+   groupAdressEmpty = true; //Adresse ne sont pas rempli
 
    //Verification des elements qui sont *required
    if(siVide(prenom) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(motDePasse)){
@@ -128,6 +164,11 @@ window.onload = function(){
      groupDateEmpty = false;
    }
 
+   //Si les 3 ne sont pas vides alors pas d'erreur que c'est vide
+   if(!siVide(noAdresse) && !siVide(rue) && !siVide(ville)){
+     groupAdressEmpty = false;
+   }
+
    // si code postal pas vide
    if(!siVide(codePostal)){
      codePostalEmpty = false;
@@ -136,6 +177,13 @@ window.onload = function(){
    //Si un des 3 n'est pas vide les autres ne doivent pas etre vide egalement ou si les 3 sont pas vides alors correct
    if((!siVide(jour) || !siSelectVide(mois) || !siVide(annee)) && groupDateEmpty == true){
      indiqueTempsVide();
+     document.getElementById("error-blank").style.display = "block";
+     return false;
+   }
+
+   //Si un des 3 n'est pas vide les autres ne doivent pas etre vide egalement ou si les 3 sont pas vides alors correct
+   if((!siVide(noAdresse) || !siVide(rue) || !siVide(ville)) && groupAdressEmpty == true){
+     indiqueAdresseVide();
      document.getElementById("error-blank").style.display = "block";
      return false;
    }
@@ -156,10 +204,19 @@ window.onload = function(){
      }
    }
 
+   //Les input d'adresse sont remplis
+   if(groupAdressEmpty == false){
+     if(!verifieNomPrenom(rue) || !verifieNomPrenom(ville) || !verifieNoAdresse(noAdresse)){
+       indiqueChampAdresseInvalide();
+       return false;
+     }
+   }
+
    //Le code postal est rempli
    if(codePostalEmpty == false){
      if(!verifieCodePostal(codePostal)){
        indiqueChampCodeInvalide();
+       return false;
      }
    }
 
@@ -208,6 +265,16 @@ window.onload = function(){
    return telephoneRegex.test(e.value);
  }
 
+ //Verifie si le numero d'adresse est un numero valide
+ function verifieNoAdresse(e){
+   if(Number.isInteger(parseInt(e.value))){
+    return true;
+  }
+  else{
+    return false;
+  }
+ }
+
 //Indique quels champs sont vides à l'utilisateur
  function indiqueChampVide(){
 
@@ -245,6 +312,21 @@ window.onload = function(){
 
    if(siVide(annee)){
      inputRequired(annee);
+   }
+ }
+
+//Indique quels champs sont vide pour l'adresse
+ function indiqueAdresseVide(){
+   if(siVide(noAdresse)){
+     inputRequired(noAdresse);
+   }
+
+   if(siVide(rue)){
+     inputRequired(rue);
+   }
+
+   if(siVide(ville)){
+     inputRequired(ville);
    }
  }
 
@@ -303,6 +385,28 @@ window.onload = function(){
    inputRequired(codePostal);
    codePostal.value = null;
    codePostal.placeholder = "Code postal invalide *";
+ }
+
+//Si les champs sont remplis, mais non valide
+ function indiqueChampAdresseInvalide(){
+
+   if(!verifieNoAdresse(noAdresse)){
+     inputRequired(noAdresse);
+     noAdresse.value = null;
+     noAdresse.placeholder = "No. invalide *";
+   }
+
+   if(!verifieNomPrenom(rue)){
+     inputRequired(rue);
+     rue.value = null;
+     rue.placeholder = "Rue invalide *";
+   }
+
+   if(!verifieNomPrenom(ville)){
+     inputRequired(ville);
+     ville.value = null;
+     ville.placeholder = "Rue invalide *";
+   }
  }
 
  //Verifie si le champ de l'element est vide
