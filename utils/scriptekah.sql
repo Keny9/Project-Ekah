@@ -131,7 +131,7 @@ description VARCHAR(300) NOT NULL
 
 CREATE TABLE compte_utilisateur (
 fk_utilisateur INT NOT NULL ,
-courriel VARCHAR(40) NOT NULL,
+courriel VARCHAR(40) NOT NULL UNIQUE,
 mot_de_passe VARCHAR(40) NOT NULL,
 PRIMARY KEY (fk_utilisateur)
 );
@@ -173,13 +173,12 @@ nom  VARCHAR(100) NOT NULL
 CREATE TABLE adresse (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_province INT,
-id_ville INT,
+ville VARCHAR(100),
 no_civique INT,
 rue VARCHAR(100),
 code_postal VARCHAR(10),
 pays VARCHAR(100),
-FOREIGN KEY (id_province) REFERENCES province(id),
-FOREIGN KEY (id_ville) REFERENCES ville(id)
+FOREIGN KEY (id_province) REFERENCES province(id)
 );
 
 
@@ -207,14 +206,16 @@ CREATE TABLE utilisateur (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_utilisateur INT NOT NULL,
 id_type_etat_dispo INT,
+fk_id_adresse INT,
 nom VARCHAR(40) NOT NULL,
 prenom VARCHAR(40) NOT NULL,
 telephone VARCHAR(15),
 date_naissance date,
-date_inscription datetime NOT NULL,
+date_inscription datetime default CURRENT_TIMESTAMP,
 
 FOREIGN KEY (id_type_utilisateur) REFERENCES type_utilisateur(id),
-FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id)
+FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
+FOREIGN KEY (fk_id_adresse) REFERENCES adresse(id)
 );
 
 ALTER TABLE compte_utilisateur
@@ -263,7 +264,7 @@ INSERT INTO ville(id, nom) VALUES (2, "Bromont");
 INSERT INTO ville(id, nom) VALUES (3, "Montréal");
 INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
-INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 1, 454, "Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 'Sherbrooke', 454, "Terril", "J1J 1J1", "Canada");
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
 
@@ -344,7 +345,7 @@ INSERT INTO type_groupe(id, type_groupe) VALUES (2, "groupe");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (1, "Client", "Le client");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "Un facilitateur");
 
-INSERT INTO utilisateur(id_type_utilisateur, nom, prenom, date_inscription) VALUES (1, "Test", "Client", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, 1, "Test", "Client", NOW());
 
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test@client.ca", "abc123");
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "client", "client");

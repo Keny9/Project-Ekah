@@ -12,7 +12,7 @@
  * Date de la dernière modification : 2019-09-29
  */
 
-$path = $_SERVER['DOCUMENT_ROOT']."/project_ekah_git/Project-Ekah/php/class/Individu/Individu.php";
+$path = $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Individu.php";
 include_once $path;
 
 // TODO: get set mot de passe

@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT']."/project_ekah_git/Project-Ekah/php/gestionnaire/Client/GestionClientAjout.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Client/GestionClientAjout.php";
 
 $gestionClientAjout = new GestionClientAjout();
 $courriel = "test@client.ca";
@@ -22,9 +22,10 @@ else{
 
 
 $client = new Client(2, "Test", "Client", "2019-01-03",
- "client@test.ca", "1996-09-01", 2341237869,
+ "client@test.cem", "1996-09-01", 2341237869,
 "Boukina", "j1n-2u5", "123", "Sherbrooke", "Québec", "1", "Canada");
+$motDePasse = "kokokiki";
 echo "<br>TEST ajouter()<br>";
-$gestionClientAjout->ajouter($client);
+$gestionClientAjout->ajouterClient($client, $motDePasse);
 
  ?>

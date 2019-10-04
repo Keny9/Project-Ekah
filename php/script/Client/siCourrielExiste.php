@@ -1,5 +1,6 @@
 <?php
 /**
+ * Fait appel à la méthode courrielExisteDeja de la classe GestionClientAjout.
  * Retourne vrai si $_POST['courriel'] existe dans la BD,
  * retourne faux sinon.
  *
@@ -9,12 +10,10 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-10-03
  */
-
-$path = $_SERVER['DOCUMENT_ROOT']."/project_ekah_git/Project-Ekah/php/gestionnaire/Client/GestionClientAjout.php";
-include_once $path;
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Client/GestionClientAjout.php";
 
 $gestion = new GestionClientAjout();
-$courriel = "test@client.ca";//$_POST['courriel'];
+$courriel = $_POST['courriel'];
 
 if($gestion->courrielExisteDeja($courriel)){
   echo "true";
