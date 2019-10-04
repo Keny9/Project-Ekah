@@ -62,6 +62,7 @@ class GestionClientAjout{
       // Variables pour Compte_utilisateur
       $utilisateurId;
       $courriel = $client->getCourriel();
+      $motDePasseHash = password_hash($motDePasse, PASSWORD_ARGON2ID);;
       try {
         $conn->do()->begin_transaction();
 
@@ -102,7 +103,7 @@ class GestionClientAjout{
             $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
               (fk_utilisateur, courriel, mot_de_passe)
               VALUES (?, ?, ?);");
-              $stmt->bind_param('iss', $utilisateurId, $courriel, $motDePasse);
+              $stmt->bind_param('iss', $utilisateurId, $courriel, $motDePasseHash);
               $stmt->execute();
 
           // Commit la transaction

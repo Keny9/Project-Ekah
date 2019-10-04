@@ -132,7 +132,7 @@ description VARCHAR(300) NOT NULL
 CREATE TABLE compte_utilisateur (
 fk_utilisateur INT NOT NULL ,
 courriel VARCHAR(40) NOT NULL UNIQUE,
-mot_de_passe VARCHAR(40) NOT NULL,
+mot_de_passe VARCHAR(100) NOT NULL,
 PRIMARY KEY (fk_utilisateur)
 );
 
