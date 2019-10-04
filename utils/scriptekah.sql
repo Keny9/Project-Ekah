@@ -172,11 +172,12 @@ nom  VARCHAR(100) NOT NULL
 
 CREATE TABLE adresse (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id_province INT NOT NULL,
-id_ville INT NOT NULL,
-no_civique INT NOT NULL,
-rue VARCHAR(100) NOT NULL,
-code_postal VARCHAR(10) NOT NULL,
+id_province INT,
+id_ville INT,
+no_civique INT,
+rue VARCHAR(100),
+code_postal VARCHAR(10),
+pays VARCHAR(100),
 FOREIGN KEY (id_province) REFERENCES province(id),
 FOREIGN KEY (id_ville) REFERENCES ville(id)
 );
@@ -262,7 +263,7 @@ INSERT INTO ville(id, nom) VALUES (2, "Bromont");
 INSERT INTO ville(id, nom) VALUES (3, "Montréal");
 INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
-INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal) VALUES (1, 1, 1, 454, "Terril", "J1J 1J1");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 1, 454, "Terril", "J1J 1J1", "Canada");
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
 
