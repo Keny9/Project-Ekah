@@ -57,4 +57,6 @@ $dateNaissanceString, $telephone, $rue, $codePostal, $numeroAdresse,
 $ville, NULL, NULL, $pays);
 
 $gestion->ajouterClient($client, $motDePasse);
+
+header('Location: ../../../affichage/client/login.php');
 ?>
