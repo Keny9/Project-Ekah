@@ -7,16 +7,16 @@
 * Nom :         GestionClientAjout
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
-* Version :     1.0
-* Date de la dernière modification : 2019-10-03
+* Version :     1.1
+* Date de la dernière modification : 2019-10-04
 */
 
-$path = $_SERVER['DOCUMENT_ROOT']."/project_ekah_git/Project-Ekah/utils/connexion.php";
-include_once $path;
-$path = $_SERVER['DOCUMENT_ROOT']."/project_ekah_git/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
-include_once $path;
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
 
 class GestionClientAjout{
+
+
   //Retourne vrai si le courriel en paramètre existe dans la BD
   public function courrielExisteDeja($courriel){
     $conn = new Connexion();
@@ -40,17 +40,82 @@ class GestionClientAjout{
       $stmt->close();
     }
 
-    public function ajouterClient($client){
+
+    // Ajoute le client à la BD
+    // TODO: hash le password
+    public function ajouterClient($client, $motDePasse){
       $conn = new Connexion();
 
-      $stmt = $conn->do()->prepare("INSERT INTO fk_utilisateur
-        FROM compte_utilisateur
-        WHERE courriel = ?");
-        $stmt->bind_param('s', $courriel);
+      // Variables pour Adresse
+      $noCivique = $client->getNoCivique();
+      $rue = $client->getRue();
+      $codePostal = $client->getCodePostal();
+      $pays = $client->getPays();
+      $ville = $client->getVille();
+      // Variables pour Utilisateur
+      $idTypeUtilisateur = 1;
+      $fkIdAdresse;
+      $nom = $client->getNom();
+      $prenom = $client->getPrenom();
+      $telephone = $client->getTelephone();
+      $dateNaissance = $client->getDateNaissance();
+      // Variables pour Compte_utilisateur
+      $utilisateurId;
+      $courriel = $client->getCourriel();
+      $motDePasseHash = password_hash($motDePasse, PASSWORD_ARGON2ID);;
+      try {
+        $conn->do()->begin_transaction();
+
+        // Crée un enregistrement de l'adresse du Client
+        // dans la BD.
+        $stmt = $conn->do()->prepare("INSERT INTO adresse
+          (no_civique, rue, code_postal, pays, ville)
+          VALUES (?, ?, ?, ?, ?);");
+          $stmt->bind_param('issss', $noCivique, $rue, $codePostal, $pays, $ville);
+          $stmt->execute();
+
+          // Va chercher le primary key de l'adresse précédement enregistrée
+          // dans la BD.
+          $adresseId = $conn->do()->insert_id;
+
+          // Crée un enregistrement dans la table Utilisateur de la BD
+          // pour le Client.
+          $stmt = $conn->do()->prepare("INSERT INTO utilisateur
+            (id_type_utilisateur, fk_id_adresse, nom, prenom, telephone, date_naissance)
+            VALUES (?, ?, ?, ?, ?, ?);");
+            $stmt->bind_param('iissss', $idTypeUtilisateur, $adresseId, $nom, $prenom, $telephone, $dateNaissance);
+            $stmt->execute();
+
+            // Va chercher le primary key de l'utilisateur précédement enregistrée
+            // dans la BD.
+            $utilisateurId = $conn->do()->insert_id;
+
+
+            // Vérifie si le courriel existe dans la BD.
+            // Si oui, lance une exception.
+            // TODO: Vérifier si cette vérification est nécessaire
+            if($this->courrielExisteDeja($courriel)){
+              throw new Exception('Le courriel existe déjà.');
+            }
+
+            // Crée un enregistrement dans la table Compte_utilisateur de la BD
+            // pour le Client.
+            $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
+              (fk_utilisateur, courriel, mot_de_passe)
+              VALUES (?, ?, ?);");
+              $stmt->bind_param('iss', $utilisateurId, $courriel, $motDePasseHash);
+              $stmt->execute();
+
+          // Commit la transaction
+          $conn->do()->commit();
+
+        } catch (Exception $e) {
+          // Rollback la transaction
+          $conn->do()->rollback();
+          echo "Erreur try-catch : ".$e."<br>";
+        }
+
+
+      }
     }
-
-
-
-
-  }
-  ?>
+    ?>
