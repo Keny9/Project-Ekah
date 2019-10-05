@@ -12,7 +12,7 @@
  * Date de la dernière modification : 2019-10-03
  */
 
- $path = $_SERVER['DOCUMENT_ROOT']."/project_ekah_git/Project-Ekah/php/class/Individu/Utilisateur/Utilisateur.php";
+ $path = $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Utilisateur.php";
  include_once $path;
 
  class Client extends Utilisateur{

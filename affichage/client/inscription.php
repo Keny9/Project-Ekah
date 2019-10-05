@@ -43,13 +43,13 @@
              Ces champs ne peuvent pas être vide.
            </div>
          </div>
-         <form class="form-inscr" action="../../php/script/submitInscription.php" method="post">
+         <form class="form-inscr" action="../../php/script/Client/ajouterClient.php" method="post">
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
                  <option class="option-vide" value="vide" selected="selected">Pays</option> <!-- Definir la facon d'inclure les pays principaux -->
-                 <option value="">Canada</option>
-                 <option value="">États-Unis</option>
+                 <option value="Canada">Canada</option>
+                 <option value="États-Unis">États-Unis</option>
                </select>
              </div>
            </div>
