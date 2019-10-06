@@ -220,12 +220,14 @@ window.onload = function(){
      }
    }
 
+   // Si le courriel existe déjà dans la BD
    if(courrielExiste()){
      alert("le courriel existe déjà");
      // TODO: gérer ce cas
      return false;
    }
 
+   // Change l'attribut Action du Formulaire
    $('#mickeymouse').attr('action', '../../php/script/Client/ajouterClient.php');
    return true;
  }
