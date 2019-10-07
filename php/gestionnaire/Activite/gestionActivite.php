@@ -1,28 +1,12 @@
 <?php
-/****************************************
-Fichier : gestionEmploye.php
-Auteur : Maxime Lussier
-Fonctionnalité : Gestionnaire de communication entre l'affichage et la base de donnée
-                 en ce qui concerne les employés
-Date : 2019-04-15
-Vérification :
-Date Nom Approuvé
-2019-05-03            Guillaume                  Approuvé
-2019-05-03            Karl                       Approuvé
-2019-05-03            William                    Approuvé
-=========================================================
-Historique de modifications :
-Date Nom Description
-=========================================================
-****************************************/
-include_once '../../../utils/connexion.php';
+include_once '../../utils/connexion.php';
 include_once '../../class/Activite/activite.php';
 include_once '../../class/Activite/type_activite.php';
-class GestionEmploye{
+class GestionActivite{
   /*
     Retourne l'employé dans la BD avec l'identifiant passé en paramètre
   */
-  public function getEmploye($identifiant){
+  /*public function getEmploye($identifiant){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
     $employe = null;
@@ -53,7 +37,7 @@ class GestionEmploye{
 
   }
   return $employe;
-}
+}*/
 
 /*
   Retourne un tableau contenant tous les activite contenus dans la BD
