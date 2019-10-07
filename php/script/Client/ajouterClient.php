@@ -23,7 +23,10 @@ $moisNaissance = $_POST['mois'];
 $anneeNaissance = $_POST['annee'];
 // Crée la date de naissance en format date
 $dateNaissance = date_create($anneeNaissance."-".$moisNaissance."-".$jourNaissance);
-$dateNaissanceString = $dateNaissance->format('Y-m-d');
+$dateNaissanceString = null;
+if($anneNaissance != NULL){
+  $dateNaissanceString = $dateNaissance->format('Y-m-d');
+}
 $codePostal = $_POST['codePostal'];
 $numeroAdresse = $_POST['noAdresse'];
 $rue = $_POST['rue'];
