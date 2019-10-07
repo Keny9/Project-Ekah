@@ -15,7 +15,7 @@ Historique de modifications :
 Date Nom Description
 =========================================================
 ****************************************/
-include_once '../Outils/connexion.php';
+include_once '../../../utils/connexion.php';
 include_once '../../class/Activite/activite.php';
 include_once '../../class/Activite/type_activite.php';
 class GestionEmploye{
@@ -56,20 +56,16 @@ class GestionEmploye{
 }
 
 /*
-  Retourne un tableau contenant tous les employés contenus dans la BD
+  Retourne un tableau contenant tous les activite contenus dans la BD
   Prend des critères de recherche en paramètres.
   Le paramètre doit être 'null' s'il ne contient pas de critère de recherche
 */
-  public function getAllEmploye( $column, $critere){
+  public function getAllActivite(){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
-    $employe = null;
+    $activite = null;
 
-    $requete= "SELECT * FROM employe";
-
-    if($critere != ""){
-      $requete .= " WHERE ".$column." LIKE '%{$critere}%';";
-    }
+    $requete= "SELECT * FROM activite";
 
     $result = $conn->query($requete);
     if(!$result){
@@ -78,24 +74,15 @@ class GestionEmploye{
 
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
-        $employe[] = new Employe( $row['identifiant'],
+        $activite[] = new Activite( $row['identifiant'],
+                                  $row['id_type_activite'],
                                   $row['nom'],
-                                  $row['prenom'],
-                                  $row['courriel'],
-                                  $row['date_naissance'],
-                                  $row['date_embauche'],
-                                  $row['telephone'],
-                                  $row['nas'],
-                                  $row['mot_passe'],
-                                  $row['ville'],
-                                  $row['nom_rue'],
-                                  $row['no_porte'],
-                                  $row['id_poste'],
-                                  $row['id_etat']);
+                                  $row['description_breve'],
+                                  $row['description_longue']);
       }
     }
 
-    return $employe;
+    return $activite;
   }
 
 /*
