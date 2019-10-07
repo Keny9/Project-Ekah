@@ -4,35 +4,36 @@
  * Nom :         login.js
  * Catégorie :   JavaScript
  * Auteur :      Maxime Lussier
- * Version :     1.0
- * Date de la dernière modification : 2019-10-06
+ * Version :     1.1
+ * Date de la dernière modification : 2019-10-07
  */
 
 $( document ).ready(function() {
-  courriel = document.getElementById("courriel");
-  motDePasse = document.getElementById("motDePasse");
-  div = document.createElement('div'); //New div erreur
-  p = document.createElement('p'); //p dans le div erreur
+ courriel = document.getElementById("courriel");
+ motDePasse = document.getElementById("motDePasse");
+ div = document.createElement('div'); //New div erreur
+ p = document.createElement('p'); //p dans le div erreur
 
-  div.id = "error-login";
-  div.className = "error-login";
+ div.id = "error-login";
+ div.className = "error-login";
 
-    $('#btnlogin').click(function(){
-      if(validerLogin()){
-        $('#formulaireLogin').attr('action', '_TEST_login.php');
-        $('#formulaireLogin').submit();
-      }
-      else{
-        return false;
-      }
-    });
+ // FORM SUBMIT
+ $('#btnlogin').click(function(){
+   if(validerLogin()){
+     $('#formulaireLogin').attr('action', '/Project-Ekah/php/script/Client/redirectPostLogin.php');
+     $('#formulaireLogin').submit();
+   }
+   else{
+     return false;
+   }
+ });
 });
 
 function validerLogin(){
   var bool = false;
 
   if(siVide(courriel) || siVide(motDePasse)){
-    p.innerHTML = "Vous ne devez pas laisser les champs vide.";
+    p.innerHTML = "Vous ne devez pas laisser les champs vide."; //MESSAGE À RÉSONANCE PLUS POSITIVE ,ex : Les deux champs doivent être remplis.
     document.getElementById("logo").parentNode.insertBefore(div, document.getElementById("logo").nextSibling);
     div.appendChild(p);
     return bool;
