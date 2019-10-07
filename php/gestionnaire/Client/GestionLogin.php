@@ -35,7 +35,7 @@ class GestionLogin{
 
     // Sinon (courriel n'existe pas)
     else{
-      return "Courriel n'existe pas";
+      return "Courriel existe pas";
     }
   }
 
@@ -43,7 +43,7 @@ class GestionLogin{
   public function getUserId($courriel){
     $connexion = new Connexion();
     $conn = $connexion->do();
-    
+
     $stmt = $conn->prepare("SELECT fk_utilisateur
     FROM compte_utilisateur
     WHERE courriel = ?");

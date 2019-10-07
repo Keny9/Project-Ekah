@@ -43,6 +43,12 @@
   margin-top: 10px;
 }
 
+.error-login{
+  color: #D92B1A;
+  font-size: 14px;
+  text-align: center;
+}
+
 /*****************Pour le responsive de la page*********************/
 
 @media only screen and (max-width: 768px) {
