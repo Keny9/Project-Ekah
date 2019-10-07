@@ -11,11 +11,15 @@ class Connexion{
       $this->closeConnexion();
       die("Connection failed: " . $this->conn->connect_error);
     }
+    $this->do()->set_charset("utf8");
   }
   function __destruct() {
     $this->closeConnexion();
   }
   public function getConnexion(){
+    return $this->conn;
+  }
+  public function do(){
     return $this->conn;
   }
   public function closeConnexion(){

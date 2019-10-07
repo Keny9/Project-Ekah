@@ -7,6 +7,9 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-09-30
  */
+main{
+  margin-bottom: 25px;
+}
 
 .inscription{
   display: block;
@@ -19,7 +22,7 @@
   display: block;
   margin: 0 auto;
   width: 210px;
-  margin-top: 10px;
+  margin-top: 40px;
 }
 
 .txt-inscr{
@@ -79,7 +82,7 @@
 
 .input-inscr:focus{
   outline: initial;
-  border-bottom-color: #f0592a;
+  border-bottom-color: var(--borderBottomColor,#f0592a);
   -webkit-transition: border-bottom-color 0.4s;
   -moz-transition: border-bottom-color 0.4s;
   -o-transition: border-bottom-color 0.4s;
@@ -202,6 +205,24 @@ input:focus:-moz-placeholder {
 
 .m-top{
   margin-top: 20px;
+}
+
+.block-requis-psw{
+  display: none;
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+  background-color: #034e54;
+  box-shadow: 0 0 4px 2px #000;
+  color: #fff;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.block-requis-psw p{
+  display: inline-block;
+  margin-left: 15px;
 }
 
 /*****************Pour le responsive de la page*********************/

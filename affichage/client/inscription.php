@@ -20,6 +20,7 @@
      <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
      <script type="text/javascript" src="../../js/inscription.js"></script>
+     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
      <title>Inscription</title>
    </head>
    <body>
@@ -43,13 +44,13 @@
              Ces champs ne peuvent pas être vide.
            </div>
          </div>
-         <form class="form-inscr" action="" method="post">
+         <form class="form-inscr" id="mickeymouse" action="bebechien" method="post">
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
                  <option class="option-vide" value="vide" selected="selected">Pays</option> <!-- Definir la facon d'inclure les pays principaux -->
-                 <option value="">Canada</option>
-                 <option value="">États-Unis</option>
+                 <option value="Canada">Canada</option>
+                 <option value="États-Unis">États-Unis</option>
                </select>
              </div>
            </div>
@@ -58,7 +59,7 @@
              <input type="text" name="nom" id="nom" class="input-inscr second-input" placeholder="Nom de famille"value="">
            </div>
            <div class="group-input-inscr">
-             <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="">
+             <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">
              <div class="box-select m-top">
                <select class="select-inscr second-input input-date m-long" name="mois" id="mois" onchange="changeMois()">
                  <option class="option-vide" value="vide" selected="selected">Mois</option>
@@ -76,13 +77,13 @@
                  <option value="12">Décembre</option>
                </select>
              </div>
-             <input type="text" name="annee" id="annee" class="input-inscr input-date second-input m-long m-top" placeholder="Année" value="">
+             <input type="text" name="annee" id="annee" class="input-inscr input-date second-input m-long m-top" placeholder="Année" value="" maxlength="4">
            </div>
            <div class="group-input-inscr">
              <input type="text" name="codePostal" id="codePostal" value="" class="input-inscr input-long" placeholder="Code postal">
            </div>
            <div class="group-input-inscr">
-             <input type="text" name="adresse" id="adresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
+             <input type="text" name="noAdresse" id="noAdresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
              <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
              <input type="text" name="ville" id="ville" value="" class="input-inscr input-date second-input" placeholder="Ville">
            </div>
@@ -93,13 +94,18 @@
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
            <div class="group-input-inscr">
-             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="">
+             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
+             <div id="block-requis" class="block-requis-psw">
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 8 charactères.</p><br><br>
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 nombre et une lettre.</p><br><br>
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 lettre majuscule.</p><br><br>
+             </div>
            </div>
            <div class="group-input-inscr">
              <button type="submit" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
            </div>
            <div class="group-input-inscr btn-espace">
-             <button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button>
+            <a href="./login.php"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>
            </div>
          </form>
        </div>
