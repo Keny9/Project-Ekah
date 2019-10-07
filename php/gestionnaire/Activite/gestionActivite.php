@@ -1,44 +1,11 @@
 <?php
 include_once '../../utils/connexion.php';
-include_once '../../class/Activite/activite.php';
-include_once '../../class/Activite/type_activite.php';
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/type_activite.php";
+//include_once '../../class/Activite/activite.php';
+//include_once '../../class/Activite/type_activite.php';
 class GestionActivite{
-  /*
-    Retourne l'employé dans la BD avec l'identifiant passé en paramètre
-  */
-  /*public function getEmploye($identifiant){
-    $tempconn = new Connexion();
-    $conn = $tempconn->getConnexion();
-    $employe = null;
-
-    $requete= "SELECT * FROM employe WHERE identifiant = '".$identifiant."';";
-    $result = $conn->query($requete);
-    if(!$result){
-      trigger_error($conn->error);
-    }
-
-    if($result->num_rows > 0){
-      $row = $result->fetch_assoc();
-      $employe = new Employe( $row['identifiant'],
-                                $row['nom'],
-                                $row['prenom'],
-                                $row['courriel'],
-                                $row['date_naissance'],
-                                $row['date_embauche'],
-                                $row['telephone'],
-                                $row['nas'],
-                                $row['mot_passe'],
-                                $row['ville'],
-                                $row['nom_rue'],
-                                $row['no_porte'],
-                                $row['id_poste'],
-                                $row['id_etat']);
-
-
-  }
-  return $employe;
-}*/
-
 /*
   Retourne un tableau contenant tous les activite contenus dans la BD
   Prend des critères de recherche en paramètres.
