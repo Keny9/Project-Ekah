@@ -41,7 +41,7 @@
           </div>
           <div class="group-input-inscr">
             <div class="link-box">
-              <a href="#" class="link-inscr">Créer un compte</a>
+              <a href="./inscription.php" class="link-inscr">Créer un compte</a>
             </div>
           </div>
           <div class="group-input-inscr mt-less">

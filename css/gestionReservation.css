@@ -1,0 +1,60 @@
+/**
+ * CSS pour la page d'inscription
+ *
+ * Nom :         gestionReservation.css
+ * Catégorie :   Style
+ * Auteur :      William Gonin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-09-30
+ */
+
+ .sectionActivite{
+  width:850px;
+  height:280px;
+  border:2px solid;
+  border-color:#FF9F07;
+  background-color:#fff;
+  margin-top:25px;
+ }
+
+/*****************Pour le responsive de la page*********************/
+
+@media only screen and (min-width: 768px) {
+
+    .inscription{
+      width: 510px;
+    }
+
+    .input-inscr{
+      width: 240px;
+    }
+
+    .input-date{
+      width: 157px;
+    }
+
+    .input-long{
+      width: 490px;
+    }
+
+    .box-select{
+      display: inline-block;
+      position: relative;
+    }
+
+    .second-input{
+      margin-left: 5px;
+    }
+
+    .btn-espace{
+      margin-top: 0;
+    }
+
+    #nom{
+      margin-top: 0;
+    }
+
+    .m-top{
+      margin-top: 0;
+    }
+}
