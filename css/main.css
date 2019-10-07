@@ -16,13 +16,10 @@
 	padding: 0;
 }
 
-html{
-  height: 100%;
-}
-
-body{
+html,body{
   height: 100%;
   margin: 0;
+  padding: 0;
   background-color: #FFFFFF;
   background-color: rgba(255,255,255,.9);
 }
@@ -179,6 +176,85 @@ header{
 #tab-3{order:3;}
 #tab-4{order:4;}
 
+.side-menu{
+  display: inline-block;
+  margin: 50px 0 0 50px;
+  width: 285px;
+  height: auto;
+  background-color: #02373B;
+}
+
+.list-menu > li{
+  display: inline-block;
+  width: 100%;
+  list-style: none;
+  color: #FFFFFF;
+}
+
+.hr-menu{
+  display: block;
+  height: 1px;
+  width: 85%;
+  margin: 0 auto;
+  border-color: #0696A1;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.link-menu{
+  font-size: 15px;
+  display: block;
+  padding: 15px 10px 15px 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.link-menu:hover{
+  background-color: #02AEE0;
+}
+
+.icon-menu{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  display: inline-block;
+  width: 50px;
+  color: #FFFFFF;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.text-menu{
+  display: inline-block;
+}
+
+#icon-compte:before{
+  content: '\f2bd';
+}
+
+#icon-rendezvous:before{
+  content: '\f2b5';
+}
+
+#icon-form:before{
+  content: '\f70e';
+}
+
+#icon-carte:before{
+  content: '\f09d';
+}
+
+#icon-groupe:before{
+  content: '\f0c0';
+}
+
+#icon-panier:before{
+  content: '\f07a';
+}
+
+#icon-direction:before{
+  content: '\f124';
+}
+
 .footer-main{
   display: block;
   width: 900px;
@@ -187,11 +263,10 @@ header{
 }
 
 footer{
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 0;
   width:100%;
-  height: 300px;
-  max-height: 600px;
+  height: 100px;
+  max-height: 300px;
   background-color: #034e54;
 }
