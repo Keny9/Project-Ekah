@@ -12,8 +12,10 @@
  * Date de la dernière modification : 2019-09-29
  */
 
-include_once "Client/Client.php";
-include_once "Facilitateur/Facilitateur.php";
+$path = $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Individu.php";
+include_once $path;
+
+// TODO: get set mot de passe
 
 class Utilisateur extends Individu{
   private $courriel;

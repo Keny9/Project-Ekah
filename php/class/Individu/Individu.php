@@ -12,8 +12,6 @@
  * Date de la dernière modification : 2019-09-29
  */
 
-include_once "Utilisateur/Utilisateur.php";
-
 class Individu{
   private $id;
   private $nom;
