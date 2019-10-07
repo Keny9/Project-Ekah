@@ -91,6 +91,9 @@
              <input type="text" name="telephone" id="telephone" class="input-inscr input-long" placeholder="Téléphone" value="">
            </div>
            <div class="group-input-inscr">
+             <div class="error-courriel" id="error-courriel">
+               <p>Cette adresse courriel est déjà utilisé.*</p>
+             </div>
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
            <div class="group-input-inscr">

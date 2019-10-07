@@ -26,7 +26,7 @@
 
     <main>
       <div class="inscription">
-        <div class="logo-inscr">
+        <div class="logo-inscr" id="logo">
           <img src="../../img/logo_ekah_header.png" alt="Ekah">
         </div>
         <form class="" id="formulaireLogin" action="" method="post">
@@ -41,7 +41,7 @@
           </div>
           <div class="group-input-inscr">
             <div class="link-box">
-              <a href="#" class="link-inscr">Créer un compte</a>
+              <a href="./inscription.php" class="link-inscr">Créer un compte</a>
             </div>
           </div>
           <div class="group-input-inscr mt-less">

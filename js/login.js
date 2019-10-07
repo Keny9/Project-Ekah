@@ -9,17 +9,35 @@
  */
 
 $( document ).ready(function() {
+  courriel = document.getElementById("courriel");
+  motDePasse = document.getElementById("motDePasse");
+  div = document.createElement('div'); //New div erreur
+  p = document.createElement('p'); //p dans le div erreur
+
+  div.id = "error-login";
+  div.className = "error-login";
+
     $('#btnlogin').click(function(){
       if(validerLogin()){
         $('#formulaireLogin').attr('action', '_TEST_login.php');
         $('#formulaireLogin').submit();
+      }
+      else{
+        return false;
       }
     });
 });
 
 function validerLogin(){
   var bool = false;
-  //alert($('#courriel').val());
+
+  if(siVide(courriel) || siVide(motDePasse)){
+    p.innerHTML = "Vous ne devez pas laisser les champs vide.";
+    document.getElementById("logo").parentNode.insertBefore(div, document.getElementById("logo").nextSibling);
+    div.appendChild(p);
+    return bool;
+  }
+
   $.ajax({
     type: "POST",
     async: false,
@@ -30,17 +48,23 @@ function validerLogin(){
       if(result == "Bon courriel bon mot de passe"){
         bool = true;
       }
-      alert(result);
-      /*else if(result == "Bon courriel mauvais mot de passe"){
-        alert(result);
+      else if(result == "Bon courriel mauvais mot de passe" || result == "Courriel existe pas"){
+        p.innerHTML = "Votre adresse courriel ou votre mot de passe est invalide.";
+        document.getElementById("logo").parentNode.insertBefore(div, document.getElementById("logo").nextSibling);
+        div.appendChild(p);
       }
-      else {
-        alert("erreur survenue : " + result);
-      }*/
     },
     error: function (jQXHR, textStatus, errorThrown) {
         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
     }
   });
   return bool;
+}
+
+//Verifie si le champ de l'element est vide
+function siVide(e){
+  if(e.value == null || e.value == ""){
+    return true;
+  }
+  return false;
 }

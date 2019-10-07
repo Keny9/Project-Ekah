@@ -34,7 +34,7 @@ class GestionLogin{
 
     // Sinon (courriel n'existe pas)
     else{
-      return "Courriel n'existe pas";
+      return "Courriel existe pas";
     }
   }
 
