@@ -12,10 +12,20 @@
   <script type="text/javascript" src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
 
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/calendar.js"></script>
-  <!-- <script type="text/javascript" src="js/test.js"></script> -->
+  <script type="text/javascript" src="../../utils/bootstrap-calendar/js/app.js"></script>
+
+  <script type="text/javascript" src="../../js/calendrier.js"></script>
 
 </head>
 <body>
+
+
+  <div class="">
+    <button type="button" id="day" name="button" data-calendar-view="day">Day</button>
+    <button type="button" name="button" id="month"  data-calendar-view="month">MONTH</button>
+  </div>
+
+
 
   <div id="calendar"></div>
 
@@ -23,6 +33,7 @@
     var calendar = $("#calendar").calendar(
       {
         tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+        weekbox: false,
         events_source: function () { return []; }
       });
   </script>
