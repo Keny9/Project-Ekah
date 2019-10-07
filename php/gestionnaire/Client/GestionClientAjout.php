@@ -7,8 +7,8 @@
 * Nom :         GestionClientAjout
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
-* Version :     1.1
-* Date de la dernière modification : 2019-10-04
+* Version :     1.2
+* Date de la dernière modification : 2019-10-05
 */
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
@@ -108,14 +108,13 @@ class GestionClientAjout{
 
           // Commit la transaction
           $conn->do()->commit();
-
+          return true;
         } catch (Exception $e) {
           // Rollback la transaction
           $conn->do()->rollback();
           echo "Erreur try-catch : ".$e."<br>";
+          return false;
         }
-
-
       }
     }
     ?>

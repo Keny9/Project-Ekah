@@ -1,7 +1,7 @@
 <?php
 /**
  * Fait appel à la méthode ajouterClient de la classe GestionClientAjout.
- * // TODO: retourne...
+ * Une fois l'ajout fait, REDIRECT vers la page de login.
  *
  *
  * Nom :         ajouterClient
@@ -59,7 +59,8 @@ $client = new Client(NULL, $nom, $prenom, NULL, $courriel,
 $dateNaissanceString, $telephone, $rue, $codePostal, $numeroAdresse,
 $ville, NULL, NULL, $pays);
 
-$gestion->ajouterClient($client, $motDePasse);
-
-header('Location: ../../../affichage/client/login.php');
+// Si l'ajout est un succès (si ajouterClient() retourne true)
+if($gestion->ajouterClient($client, $motDePasse)){
+  header('Location: ../../../affichage/client/login.php');
+}
 ?>
