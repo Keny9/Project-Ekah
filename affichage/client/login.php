@@ -26,7 +26,7 @@
 
     <main>
       <div class="inscription">
-        <div class="logo-inscr">
+        <div class="logo-inscr" id="logo">
           <img src="../../img/logo_ekah_header.png" alt="Ekah">
         </div>
         <form class="" id="formulaireLogin" action="" method="post">

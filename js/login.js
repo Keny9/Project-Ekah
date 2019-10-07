@@ -9,17 +9,25 @@
  */
 
 $( document ).ready(function() {
+  div = document.createElement('div');
+  p = document.createElement('p');
+  div.id = "error-login";
+  div.className = "error-login";
+  p.innerHTML = "Votre adresse courriel ou votre mot de passe est invalide.";
+
     $('#btnlogin').click(function(){
       if(validerLogin()){
         $('#formulaireLogin').attr('action', '_TEST_login.php');
         $('#formulaireLogin').submit();
+      }
+      else{
+        return false;
       }
     });
 });
 
 function validerLogin(){
   var bool = false;
-  //alert($('#courriel').val());
   $.ajax({
     type: "POST",
     async: false,
@@ -30,13 +38,10 @@ function validerLogin(){
       if(result == "Bon courriel bon mot de passe"){
         bool = true;
       }
-      alert(result);
-      /*else if(result == "Bon courriel mauvais mot de passe"){
-        alert(result);
+      else{
+        document.getElementById("logo").parentNode.insertBefore(div, document.getElementById("logo").nextSibling);
+        div.appendChild(p);
       }
-      else {
-        alert("erreur survenue : " + result);
-      }*/
     },
     error: function (jQXHR, textStatus, errorThrown) {
         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
