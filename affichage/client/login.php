@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/login.css">
+    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="../../js/login.js"></script>
     <title>Ekah Connexion</title>
   </head>
   <body>
@@ -27,7 +29,7 @@
         <div class="logo-inscr">
           <img src="../../img/logo_ekah_header.png" alt="Ekah">
         </div>
-        <form class="" action="" method="post">
+        <form class="" id="formulaireLogin" action="" method="post">
           <div class="group-input-inscr">
             <input type="text" name="courriel" id="courriel" class="input-inscr" placeholder="Courriel" value="">
           </div>
