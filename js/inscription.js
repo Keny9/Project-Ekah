@@ -220,6 +220,13 @@ window.onload = function(){
      }
    }
 
+   if(courrielExiste()){
+     alert("le courriel existe déjà");
+     // TODO: gérer ce cas
+     return false;
+   }
+
+   $('#mickeymouse').attr('action', '../../php/script/Client/ajouterClient.php');
    return true;
  }
 
@@ -428,4 +435,25 @@ window.onload = function(){
 //Affiche les exigences du mot de passe
  function afficheExigence(){
    document.getElementById("block-requis").style.display = "block";
+ }
+
+ // Retourne si le courriel entré existe déjà dans la BD
+ function courrielExiste(){
+   var bool = true;
+   alert($('#courriel').val());
+   $.ajax({
+     type: "POST",
+     async: false,
+     url: "../../php/script/Client/siCourrielExiste.php",
+     data: {"courriel": $('#courriel').val()},
+     success: function(result){
+       if(result == 'false'){
+         bool = false;
+       }
+     },
+     error: function (jQXHR, textStatus, errorThrown) {
+         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+     }
+   });
+   return bool;
  }
