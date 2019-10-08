@@ -2,7 +2,7 @@
 /**
 * Gestionnaire du login
 *
-* Nom :         Login
+* Nom :         GestionLogin
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
 * Version :     1.2
