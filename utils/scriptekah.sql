@@ -273,6 +273,10 @@ INSERT INTO ville(id, nom) VALUES (3, "Montréal");
 INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
 INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 'Sherbrooke', 454, "Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (2, 1, 'Magog', 454, "Magog St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (3, 1, 'Montreal', 454, "Boul Montreal", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (4, 1, 'Quebec', 454, "Quebec St", "J1J 1J1", "Canada");
+
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
 
@@ -353,7 +357,11 @@ INSERT INTO type_groupe(id, type_groupe) VALUES (2, "groupe");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (1, "Client", "Le client");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "Un facilitateur");
 
-INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, 1, "Test", "Client", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, "Test", "Facilitateur1", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 2, "Test2", "Facilitateur2", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 3, "Test3", "Facilitateur3", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, 4, "Test4", "Client4", NOW());
+
 
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test@client.ca", "abc123");
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "client", "client");
