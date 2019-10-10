@@ -18,8 +18,14 @@ class GestionReservation{
   *
   * Insert un enregistrement dans la table Reservation
   */
-  public function insertReservation(){
+  public function insertReservation($reservation){
+    $connexion = new Connexion();
+    $conn = $connexion->do();
 
+    // TODO: Vérifier si la réservation est conforme
+
+    //Insérer la Reservation
+    
   }
 
   /**
@@ -42,7 +48,8 @@ class GestionReservation{
     if($row = $result->fetch_assoc()){
       $reservation = new Reservation($row['id'], $row['id_paiement'],
                                      $row['id_emplacement'], $row['id_suivi'],
-                                     $row['id_activite'], $row['date_rendez_vous'],
+                                     $row['id_activite'], $row['id_groupe'],
+                                     $row['date_rendez_vous'],
                                      $row['heure_debut'], $row['heure_fin']);
     }
     return $reservation;

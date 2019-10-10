@@ -7,6 +7,4 @@ $motDePasse = "Qwertyu1";
 $courriel = "maxlussier.22@gmail.uu";
 
 echo $gestion->utilisateurExiste($courriel, $motDePasse);
-
-
  ?>

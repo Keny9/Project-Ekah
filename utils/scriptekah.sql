@@ -101,20 +101,7 @@ FOREIGN KEY (id_activite) REFERENCES activite(id)
 );
 
 
-CREATE TABLE reservation (
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id_paiement INT NOT NULL,
-id_emplacement INT NOT NULL,
-id_suivi INT NOT NULL,
-id_activite INT NOT NULL,
-date_rendez_vous DATE NOT NULL,
-heure_debut INT NOT NULL,
-heure_fin INT NOT NULL,
-FOREIGN KEY (id_paiement) REFERENCES paiement(id),
-FOREIGN KEY (id_emplacement) REFERENCES emplacement(id),
-FOREIGN KEY (id_suivi) REFERENCES suivi(id),
-FOREIGN KEY (id_activite) REFERENCES activite(id)
-);
+
 
 
 CREATE TABLE type_groupe (
@@ -218,15 +205,12 @@ FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
 FOREIGN KEY (fk_id_adresse) REFERENCES adresse(id)
 );
 
+
+
 ALTER TABLE compte_utilisateur
 ADD FOREIGN KEY (fk_utilisateur) REFERENCES utilisateur(id);
 
-CREATE TABLE inscription (
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id_utilisateur INT NOT NULL,
-date_inscription date NOT NULL,
-FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id)
-);
+
 
 CREATE TABLE specialite (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -244,13 +228,37 @@ FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id)
 CREATE TABLE groupe (
 no_groupe INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_groupe INT NOT NULL,
-id_inscription INT,
 nom_entreprise VARCHAR(100) NOT NULL,
 nom_organisateur VARCHAR(50) NOT NULL,
 nb_participant INT NOT NULL,
-FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id),
-FOREIGN KEY (id_inscription) REFERENCES inscription(id)
+FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id)
+);
 
+
+CREATE TABLE inscription (
+id_utilisateur INT NOT NULL,
+id_groupe INT NOT NULL,
+date_inscription date NOT NULL,
+PRIMARY KEY (id_utilisateur, id_groupe),
+FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id),
+FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
+);
+
+CREATE TABLE reservation (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_paiement INT,
+id_emplacement INT,
+id_suivi INT,
+id_activite INT,
+id_groupe INT,
+date_rendez_vous DATE NOT NULL,
+heure_debut INT NOT NULL,
+heure_fin INT NOT NULL,
+FOREIGN KEY (id_paiement) REFERENCES paiement(id),
+FOREIGN KEY (id_emplacement) REFERENCES emplacement(id),
+FOREIGN KEY (id_suivi) REFERENCES suivi(id),
+FOREIGN KEY (id_activite) REFERENCES activite(id),
+FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
 );
 
 CREATE TABLE ta_disponibilite_specialiste (
@@ -346,13 +354,9 @@ INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 1);
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 2);
 
 
-
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, '2019-12-12', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, '2020-02-02', 13, 14);
-
-INSERT INTO type_groupe(id, type_groupe) VALUES (1, "individuel");
-INSERT INTO type_groupe(id, type_groupe) VALUES (2, "groupe");
+INSERT INTO type_groupe(id, type_groupe) VALUES (1, "Réservation individuelle");
+INSERT INTO type_groupe(id, type_groupe) VALUES (2, "Rassemblateur");
+INSERT INTO type_groupe(id, type_groupe) VALUES (3, "Groupe");
 
 INSERT INTO type_utilisateur(id, nom, description) VALUES (1, "Client", "Le client");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "Un facilitateur");
@@ -392,14 +396,26 @@ INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, '20
 INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-11 17:00:00');
 
 
-INSERT INTO inscription(id, id_utilisateur, date_inscription) VALUES (1, 1, '2020-02-22');
 
 
 INSERT INTO specialite(id, nom) VALUES (1, "Meditation");
 
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, "APPLE", "Steve Jobs", 45);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (2, 1, "POMIER", "Steve Jobs", 45);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (3, 1, "BANANE", "Steve Jobs", 45);
+
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 2, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 1, '2020-02-22');
+
+
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, '2019-12-12', 8, 9);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, '2020-02-02', 13, 14);
+
+
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
 
-INSERT INTO groupe(no_groupe, id_type_groupe, id_inscription, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, 1, "APPLE", "Steve Jobs", 45);
+
 
 INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,1);
 INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,2);
