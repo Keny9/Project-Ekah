@@ -42,7 +42,7 @@
         onAfterViewLoad: function(view) {
     			$('.page-header h3').text(this.getTitle());
         },
-        events_source: "../../php/script/Horaire/ajouterHoraire.php"
+        events_source: "../../php/script/Facilitateur/afficherHoraires.php"
       });
   </script>
 
