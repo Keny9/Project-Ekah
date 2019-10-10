@@ -238,7 +238,9 @@ FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id)
 CREATE TABLE inscription (
 id_utilisateur INT NOT NULL,
 id_groupe INT NOT NULL,
-date_inscription date NOT NULL,
+
+date_inscription datetime default CURRENT_TIMESTAMP,
+
 PRIMARY KEY (id_utilisateur, id_groupe),
 FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id),
 FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
