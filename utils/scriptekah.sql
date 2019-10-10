@@ -196,8 +196,8 @@ nom VARCHAR(15) NOT NULL
 CREATE TABLE disponibilite (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_jour INT NOT NULL,
-heure_debut date NOT NULL,
-heure_fin date NOT NULL,
+heure_debut datetime NOT NULL,
+heure_fin datetime NOT NULL,
 FOREIGN KEY (id_jour) REFERENCES jour(id)
 );
 
@@ -251,6 +251,14 @@ nb_participant INT NOT NULL,
 FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id),
 FOREIGN KEY (id_inscription) REFERENCES inscription(id)
 
+);
+
+CREATE TABLE ta_disponibilite_specialiste (
+id_specialite INT NOT NULL,
+id_disponibilite INT NOT NULL,
+PRIMARY KEY (id_specialite, id_disponibilite),
+FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id),
+FOREIGN KEY (id_specialite) REFERENCES utilisateur(id)
 );
 
 
@@ -368,12 +376,12 @@ INSERT INTO jour(id, nom) VALUES (5, "Vendredi");
 INSERT INTO jour(id, nom) VALUES (6, "Samedi");
 INSERT INTO jour(id, nom) VALUES (7, "Dimanche");
 
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, 9,10);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, 13,14);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, 9,10);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, 19,20);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, 10,11);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, 12,13);
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, '2019-10-12 11:00:00','2019-10-11 13:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-11 11:30:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, '2019-10-13 08:30:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-11 17:00:00');
 
 
 INSERT INTO inscription(id, id_utilisateur, date_inscription) VALUES (1, 1, '2020-02-22');
@@ -385,3 +393,9 @@ INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 
 
 INSERT INTO groupe(no_groupe, id_type_groupe, id_inscription, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, 1, "APPLE", "Steve Jobs", 45);
 
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,1);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,2);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (2,3);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (2,4);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (3,5);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (3,6);
