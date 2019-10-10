@@ -13,30 +13,35 @@
 
 class GestionHoraire{
 
+  /*
+    Retourne un array contenant toutes les réservations contenus dans la BD
+    Prend des critères de recherche en paramètres.
+    Le paramètre doit être 'null' s'il ne contient pas de critère de recherche
+  */
+    public function getAllReservation(){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $activite = null;
 
-  //Retourne vrai si le courriel en paramètre existe dans la BD
-  // public function courrielExisteDeja($courriel){
-  //   $conn = new Connexion();
-  //
-  //   $stmt = $conn->do()->prepare("SELECT fk_utilisateur
-  //     FROM compte_utilisateur
-  //     WHERE courriel = ?");
-  //     $stmt->bind_param('s', $courriel);
-  //
-  //     $stmt->execute();
-  //     $result = $stmt->get_result();
-  //     if($result->num_rows > 0){
-  //       $stmt->close();
-  //       return true;
-  //     }
-  //     else{
-  //       $stmt->close();
-  //       return false;
-  //     }
-  //
-  //     $stmt->close();
-  //   }
+      $requete= "SELECT * FROM reservation";
 
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $activite[] = new Activite( $row['identifiant'],
+                                    $row['id_type_activite'],
+                                    $row['nom'],
+                                    $row['description_breve'],
+                                    $row['description_longue']);
+        }
+      }
+
+      return $activite;
+    }
 
 
 

@@ -196,8 +196,8 @@ nom VARCHAR(15) NOT NULL
 CREATE TABLE disponibilite (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_jour INT NOT NULL,
-heure_debut date NOT NULL,
-heure_fin date NOT NULL,
+heure_debut datetime NOT NULL,
+heure_fin datetime NOT NULL,
 FOREIGN KEY (id_jour) REFERENCES jour(id)
 );
 
@@ -368,12 +368,12 @@ INSERT INTO jour(id, nom) VALUES (5, "Vendredi");
 INSERT INTO jour(id, nom) VALUES (6, "Samedi");
 INSERT INTO jour(id, nom) VALUES (7, "Dimanche");
 
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, 9,10);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, 13,14);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, 9,10);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, 19,20);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, 10,11);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, 12,13);
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, '2019-10-12 11:00:00','2019-10-11 13:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-11 11:30:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, '2019-10-13 08:30:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-11 17:00:00');
 
 
 INSERT INTO inscription(id, id_utilisateur, date_inscription) VALUES (1, 1, '2020-02-22');
@@ -384,4 +384,3 @@ INSERT INTO specialite(id, nom) VALUES (1, "Meditation");
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
 
 INSERT INTO groupe(no_groupe, id_type_groupe, id_inscription, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, 1, "APPLE", "Steve Jobs", 45);
-
