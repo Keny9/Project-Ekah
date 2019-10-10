@@ -7,16 +7,65 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-09-30
  */
-
- .sectionActivite{
-  width:850px;
-  height:280px;
-  border:2px solid;
-  border-color:#FF9F07;
-  background-color:#fff;
-  margin-top:25px;
+ .reservationMain{
+   width:800px;
+   height:40px;
+   margin-left:400px;
  }
+ .reservationHeader{
+   background-color:#034E54;
+ }
+ .imgHeader{
+   width:100px;
+   height:40px;
+ }
+ .imgPrincipal{
+   width:800px;
+   height:250px;
+   float:left
+ }
+ .titreImg{
+   margin-bot:125px;
+   margin-left:350px;
+ }
+ .titreReservation{
+   margin-top:10px;
+   margin-left:10px;
+ }
+ .tableauActivite{
+   margin-left:60px;
+   margin-top:20px;
+   float:left;
+ }
+ .sectionActivite{
+  width:280px;
+  height:45px;
+  border:1px solid;
+  border-color:#808080;
+  background-color:#fff;
 
+ }
+ .titreActivite{
+   margin-left:3px;
+   margin-top: 12px;
+   float:left;
+ }
+ .boiteSelection{
+   width:20px;
+   height:20px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   float: right;
+   margin-right:25px;
+   margin-top:10px
+ }
+.selectionne{
+  background-color:#008000;
+}
+.reservationMain{
+
+}
 /*****************Pour le responsive de la page*********************/
 
 @media only screen and (min-width: 768px) {

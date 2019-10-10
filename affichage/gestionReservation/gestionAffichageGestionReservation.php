@@ -3,7 +3,7 @@
   {
     public function getAllActivite(){
        $ga = new GestionActivite();
-       $activite = $gp->getAllActivite();
+       $activite = $ga->getAllActivite();
 
        $html = "";
 
@@ -13,10 +13,10 @@
        else{
          for ($i = 0; $i < sizeof($activite); $i++){
            $html .= "
-               <div class=\"sectionActivite\" id='Activite-$i'>
+               <div class=\"sectionActivite\" >
                <div class=\"titreActivite\">".$activite[$i]->getNom()."</div>
+               <div onclick='selectionne($i);' class=\"boiteSelection\" id='Activite-$i'></div>
                </div>
-               </br>
                  ";
          }
        }
