@@ -56,12 +56,12 @@
      break;
      default: // Sinon (ne devrais pas se produire, mais doit quand même être géré)
      echo "Une erreur est survenue dans le switch.";
+     session_destroy();
      break;
    }
  }
  else{
+   session_destroy();
    echo $messageErreur;
  }
-
-
  ?>
