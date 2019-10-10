@@ -10,6 +10,7 @@
   <body>
     <?php include 'header_client.php' ?>
     <main>
+      <?php include 'side_menu.php' ?>
       oui
     </main>
     <?php include 'footer.php' ?>
