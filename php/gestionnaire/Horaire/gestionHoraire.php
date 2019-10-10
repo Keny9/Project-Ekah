@@ -18,7 +18,7 @@ class GestionHoraire{
     Prend des critères de recherche en paramètres.
     Le paramètre doit être 'null' s'il ne contient pas de critère de recherche
   */
-    public function getAllReservation(){
+    public function getDisponibiliteFacilitateur(){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
       $activite = null;

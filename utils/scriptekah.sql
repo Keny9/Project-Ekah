@@ -253,6 +253,14 @@ FOREIGN KEY (id_inscription) REFERENCES inscription(id)
 
 );
 
+CREATE TABLE ta_disponibilite_specialiste (
+id_specialite INT NOT NULL,
+id_disponibilite INT NOT NULL,
+PRIMARY KEY (id_specialite, id_disponibilite),
+FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id),
+FOREIGN KEY (id_specialite) REFERENCES utilisateur(id)
+);
+
 
 INSERT INTO province(id, nom) VALUES (1, "Québec");
 INSERT INTO province(id, nom) VALUES (2, "Ontario");
@@ -384,3 +392,10 @@ INSERT INTO specialite(id, nom) VALUES (1, "Meditation");
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
 
 INSERT INTO groupe(no_groupe, id_type_groupe, id_inscription, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, 1, "APPLE", "Steve Jobs", 45);
+
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,1);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,2);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (2,3);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (2,4);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (3,5);
+INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (3,6);
