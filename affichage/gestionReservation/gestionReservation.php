@@ -13,25 +13,29 @@
 
 <head>
   <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <link rel="stylesheet" href="../../css/gestionReservation.css">
   <link rel="stylesheet" href="../../css/main.css">
-  <link href="images/century.ttf" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="../../js/gestionReservation.js"></script>
+  <script type="text/javascript" src="../../js/gestionReservation.js"></script>
   <title>Gestion Reservation</title>
 </head>
 
 <body>
-  <div class="background">
-<main class="centré">
-    <div class="field_set_Promo">
+<main>
+
+  <h1 class="titreReservation">Gestion des Réservation</h1>
+    <div class="tableauActivite">
     <?php
-                   require '../../gestionnaire/Activite/gestionAffichageReservation.php';
+                   require 'gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllActivite();
                  ?>
     </div>
+    <div class="reservationMain">
+      <div class="reservationHeader"><img class="imgHeader"src="../../img/logo_ekah_header.png" alt="Ekah"></div>
+      <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg">Soins a domicile</div></div>
+
     </div>
 </main>
 </body>
