@@ -264,11 +264,11 @@ FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
 );
 
 CREATE TABLE ta_disponibilite_specialiste (
-id_specialite INT NOT NULL,
+id_specialiste INT NOT NULL,
 id_disponibilite INT NOT NULL,
-PRIMARY KEY (id_specialite, id_disponibilite),
+PRIMARY KEY (id_specialiste, id_disponibilite),
 FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id),
-FOREIGN KEY (id_specialite) REFERENCES utilisateur(id)
+FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id)
 );
 
 
@@ -392,10 +392,10 @@ INSERT INTO jour(id, nom) VALUES (7, "Dimanche");
 
 INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
 INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, '2019-10-12 11:00:00','2019-10-11 13:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-11 11:30:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, '2019-10-13 08:30:00','2019-10-11 12:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-11 17:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, '2019-10-12 11:00:00','2019-10-12 13:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, '2019-10-13 08:30:00','2019-10-13 12:00:00');
+INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-13 17:00:00');
 
 
 
@@ -419,9 +419,9 @@ INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 
 
 
 
-INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,1);
-INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (1,2);
-INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (2,3);
-INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (2,4);
-INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (3,5);
-INSERT INTO ta_disponibilite_specialiste(id_specialite, id_disponibilite) VALUES (3,6);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,3);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
