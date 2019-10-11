@@ -1,3 +1,13 @@
+/**
+ * CSS pour la page reservation
+ *
+ * Nom :         reservation.css
+ * Catégorie :   Style
+ * Auteur :      Karl Boutin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-11
+ */
+
 main{
   background-color: #FFFFFF;
   width: 100%;
@@ -106,6 +116,16 @@ main{
   resize: none;
   width: 100%;
   height: 150px;
+  padding: 5px;
+}
+
+textarea:focus{
+  outline: none;
+  border: 1px solid #f0592a;
+  -webkit-transition: border 0.4s;
+  -moz-transition: border 0.4s;
+  -o-transition: border 0.4s;
+  transition: border 0.4s;
 }
 
 @media only screen and (min-width: 768px){

@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Page de reservation generale pour choisir un service
+ *
+ * Nom :         reservation.php
+ * Catégorie :   Page
+ * Auteur :      Karl Boutin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-11
+ */
 
 ?>
 
@@ -14,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
+    <script type="text/javascript" src="../../js/reservation.js"></script>
     <title>Réservation</title>
   </head>
   <body>
@@ -23,7 +32,7 @@
       <div class="top-img">
         <img src="../../img/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
-        <p class="txt-centered">Mouvement Intuitif</p>
+        <p class="txt-centered">Réservation</p>
       </div>
 
       <div class="reservation">
@@ -88,8 +97,6 @@
         </form>
 
       </div>
-
-
 
     </main>
 

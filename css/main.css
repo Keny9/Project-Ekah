@@ -317,6 +317,7 @@ footer{
 }
 
 .media{
+  color: #000;
   display: inline-block;
   font-family: "Font Awesome 5 Brands";
   font-weight: 900;
@@ -332,6 +333,13 @@ footer{
 
 .media:hover:before{
   opacity: 1;
+  text-decoration: none;
+  color: #000;
+}
+
+.media:active:before{
+  text-decoration: none;
+  color: #000;
 }
 
 #instagram:before{
