@@ -1038,11 +1038,17 @@ if(!String.prototype.formatNum) {
 			self.options.day = $(this).data('cal-date');
 			self.view(view);
 		});
-		$('.cal-cell').dblclick(function() {
-			var view = $('[data-cal-date]', this).data('cal-view');
-			self.options.day = $('[data-cal-date]', this).data('cal-date');
-			self.view(view);
-		});
+    //Double click pour afficher view du jour
+		// $('.cal-cell').dblclick(function() {
+		// 	var view = $('[data-cal-date]', this).data('cal-view');
+		// 	self.options.day = $('[data-cal-date]', this).data('cal-date');
+		// 	self.view(view);
+		// });
+    $('.cal-cell').click(function() {
+      var view = $('[data-cal-date]', this).data('cal-view');
+      self.options.day = $('[data-cal-date]', this).data('cal-date');
+      self.view(view);
+    });
 
 		this['_update_' + this.options.view]();
 
@@ -1198,6 +1204,7 @@ if(!String.prototype.formatNum) {
 					return;
 				}
 				downbox.show().appendTo(this);
+        downbox.hide();
 			})
 			.on('mouseleave', function() {
 				downbox.hide();
@@ -1210,19 +1217,20 @@ if(!String.prototype.formatNum) {
 					return;
 				}
 				showEventsList(event, downbox, slider, self);
+        downbox.hide();
 			})
 		;
 
-		var slider = $(document.createElement('div')).attr('id', 'cal-slide-box');
-		slider.hide().click(function(event) {
-			event.stopPropagation();
-		});
+		// var slider = $(document.createElement('div')).attr('id', 'cal-slide-box');
+		// slider.hide().click(function(event) {
+		// 	event.stopPropagation();
+		// });
 
 		this._loadTemplate('events-list');
 
-		downbox.click(function(event) {
-			showEventsList(event, $(this), slider, self);
-		});
+		// downbox.click(function(event) {
+		// 	showEventsList(event, $(this), slider, self);
+		// });
 	};
 
 	Calendar.prototype.getEventsBetween = function(start, end) {
