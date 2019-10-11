@@ -291,6 +291,7 @@ footer{
 }
 
 .block-photo{
+  display: block;
   margin-top: 20px;
   padding: 15px;
 }
@@ -360,4 +361,57 @@ footer{
   margin-top: 38px;
   text-align: center;
   opacity: 0.4;
+}
+
+.photo-centre{
+  display: inline-block;
+}
+
+/*****************Pour le responsive de la page*********************/
+
+@media only screen and (max-width: 768px) { /*Cellulaire*/
+
+  footer{
+    height: auto;
+    max-height: none;
+  }
+
+  .footer-main{
+    width: 100%;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .block-photo{
+    width: 295px;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .photo{
+    width: 130px;
+    height: 130px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){ /*tablette*/
+  footer{
+    height: auto;
+    max-height: none;
+  }
+
+  .block-photo{
+    width: 610px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .photo{
+    width: 130px;
+    height: 130px;
+  }
 }
