@@ -1,7 +1,7 @@
 <footer>
   <div class="footer-main">
     <div class="contact-link">
-      <a href="#">CONTACTEZ-NOUS</a>
+      <a href="https://ekah.co/contact-1" target="_blank">CONTACTEZ-NOUS</a>
     </div>
     <div class="block-photo">
       <div class="photo">

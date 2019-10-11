@@ -25,8 +25,68 @@
         <div class="shade"></div>
         <p class="txt-centered">Mouvement Intuitif</p>
       </div>
+
       <div class="reservation">
         <div class="txt-reservation txt-bienv">Réservez dès maintenant</div>
+
+        <form class="form-reservation" id="form-reservation" action="" method="post">
+          <div class="group-input-inscr">
+            <label class="label-reservation label-col" for="service">Choisir un service</label>
+            <div class="box-select">
+              <select class="select-inscr input-long" name="service" id="service" onchange="changePays()">
+                <option class="option-vide" value="vide" selected="selected">Service</option>
+                <option value="Canada">Mouvement Intuitif</option>
+                <option value="États-Unis">Ennéagramme</option>
+              </select>
+            </div>
+          </div>
+          <div class="group-input-inscr">
+            <label class="label-reservation label-col" for="durree">Durée</label>
+            <div class="box-select">
+              <select class="select-inscr input-long" name="duree" id="duree" onchange="changePays()">
+                <option class="option-vide" value="vide" selected="selected">Durée</option>
+                <option value="30">30 minutes</option>
+                <option value="60">60 minutes</option>
+                <option value="90">90 minutes</option>
+              </select>
+            </div>
+          </div>
+          <div class="group-input-inscr">
+            <label class="label-reservation label-prix" for="prix">Prix</label>
+            <p id="prix">120$</p>
+          </div>
+          <div class="group-input-inscr">
+            <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>
+            <input type="checkbox" name="facilitateur" id="facilitateur" value="">
+          </div>
+          <div class="group-input-inscr">
+            <div class="block-photo-facilitateur">
+              <div class="photo-facilitateur"></div>
+              <div class="photo-facilitateur"></div>
+              <div class="photo-facilitateur"></div>
+            </div>
+            <div class="block-photo-nom">
+              <div class="photo-nom">Antoine</div>
+              <div class="photo-nom">Alejandro</div>
+              <div class="photo-nom">Philippe</div>
+            </div>
+          </div>
+          <div class="group-input-inscr">
+            <label class="label-reservation label-long">Sélectionner la date et l'heure désiré</label>
+            <img id="calendrier" src="../../img/calendar.JPG" alt="Calendrier">
+          </div>
+          <div class="group-input-inscr">
+            <label for="commentaire" class="label-reservation">Commentaire</label>
+            <textarea name="commentaire" id="commentaire"></textarea>
+          </div>
+          <div class="group-input-inscr">
+            <button type="submit" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>
+          </div>
+          <div class="group-input-inscr btn-espace">
+           <a href="#"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>
+          </div>
+        </form>
+
       </div>
 
 
