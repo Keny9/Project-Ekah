@@ -4,23 +4,46 @@ include_once 'GestionReservation.php';
 
 
 $gestionReservation = new GestionReservation();
+//$reservation = $gestionReservation->selectReservation(1);
 
-$reservation = $gestionReservation->selectReservation(1);
-if(isset($reservation)){
+$no_groupe = null;
+$id_type_groupe = 1;
+$nom_entreprise = "Sherweb";
+$nom_organisateur = "Monsieur kokokiki";
+$nb_participant = 2;
+
+$groupe = new Groupe(null, $id_type_groupe, $nom_entreprise,
+                     $nom_organisateur, $nb_participant);
+
+$heure_debut = 13;
+$heure_fin = 12;
+$date_rendez_vous = "2019-01-01";
+
+$reservation = new Reservation(null, null, null, null, null, null, $date_rendez_vous, $heure_debut, $heure_fin);
+/*if(isset($reservation)){
   $reservation->print();
 }
 else{
   echo "\$reservaton is not set";
-}
+}*/
 
 /*
   TEST insert reservation individuelle
 */
-$client = new Client(2, "Test", "Client", "2019-01-03",
+$client = new Client(1, "Test", "Client", "2019-01-03",
  "client@test.ca", "1996-09-01", 2341237869,
 "Boukina", "j1n-2u5", "123", "Sherbrooke", "Québec", "1", "Canada");
 $emplacement = new Emplacement(null, 1, "4000 rue MickeyBOOM");
 
-$gestionReservation->insertReservationIndividuelle($reservation, $client, $emplacement);
+$gestionReservation->insertReservationIndividuelle($groupe, $reservation, $client, $emplacement);
+
+//$gestionReservation->groupeSelectAll();
+
+/*$tous_les_groupes = $gestionReservation->groupeSelectAll();
+
+foreach ($tous_les_groupes as $groupe){
+  $groupe->print();
+  echo "<br>";
+}*/
 
  ?>
