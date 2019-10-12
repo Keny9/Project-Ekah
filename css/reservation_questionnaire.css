@@ -9,6 +9,7 @@
  */
 
 .txt-question{
+  width: 100%;
   text-align: left;
 }
 
@@ -17,6 +18,7 @@
 }
 
 .txt-explication{
+  width: 100%;
   text-align: left;
   font-size: 15px;
   color: #034e54;
@@ -37,6 +39,7 @@
 }
 
 .input-question{
+  width: 100%;
   margin-top: 5px;
 }
 
@@ -75,8 +78,22 @@
   margin-top: 50px;
 }
 
-@media only screen and (min-width: 768px){
-  .input-long{
+#commentaire{
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 910px){
+  .input-question{
     width: 900px;
+  }
+}
+
+@media only screen and (max-width: 910px){
+  .reservation{
+    width: 100%;
+  }
+  
+  #confirmerQuestion{
+    margin-right: 5px;
   }
 }
