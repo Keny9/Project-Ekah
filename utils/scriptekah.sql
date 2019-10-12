@@ -46,7 +46,7 @@ CREATE TABLE question (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_question INT NOT NULL,
 question VARCHAR(100) NOT NULL,
-nb_ligne INT NOT NULL,
+nb_ligne INT,
 FOREIGN KEY (id_type_question) REFERENCES type_question(id)
 );
 
@@ -305,10 +305,49 @@ INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Aujourd'hui, nous avons fai
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
 
-INSERT INTO question(id, id_type_question, question, nb_ligne) VALUES (1, 2, "Cocher cette case si vous avez deja fait du Yoga",1 );
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Autres informations pertinentes en préparation au rendez-vous", 6);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Souffrez-vous de problèmes de santé ou des maladies? Si oui, lesquelles?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Prenez-vous des médicaments? Si oui, lesquels et pour quelles raisons?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous actuellement des douleurs ou des blessures? Si oui, lesquelles?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous des antécédants de douleurs ou de blessures? Si oui, lesquels?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Faites-vous affaires avec d'autres professionnels de la santé? Si oui, lesquels? (nom, coordonnées)", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Quels sont vos objectifs d’entraînement?", 4);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Combien de fois par semaine pratiquez-vous de l’activité physique?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "En moyenne, combien de temps par séance?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous des allergies (alimentaires, médicaments, autres) ? Si oui, lesquelles?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Quels sont vos objectifs de changement d’habitudes?", 4);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Combien d’heures en moyenne passez-vous en position assise par jour? (travail, transport, ordinateur, lecture, etc.)", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Combien d’heures en moyenne passez-vous en nature par semaine?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Combien de repas mangez-vous par jour?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Consommez-vous du tabac ou de l’alcool?", 2);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous de la difficulté à dormir, vous endormir, récupérer suite aux nuits de sommeil?", 2);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous déjà pratiqué la méditation et/ou diverses postures de yoga?", 1);
 
-INSERT INTO questionnaire_reservation(id, nom_questionnaire) VALUES (1, "Questionnaire médical");
-INSERT INTO questionnaire_reservation(id, nom_questionnaire) VALUES (2, "Questionnaire Entrainement en équipe");
+
+INSERT INTO questionnaire_reservation(nom_questionnaire) VALUES ("Questionnaire médical");
+INSERT INTO questionnaire_reservation(nom_questionnaire) VALUES ("Soins à domicile");
+INSERT INTO questionnaire_reservation(nom_questionnaire) VALUES ("Entraînement à domicile");
+INSERT INTO questionnaire_reservation(nom_questionnaire) VALUES ("Habitudes de vie à domicile");
+INSERT INTO questionnaire_reservation(nom_questionnaire) VALUES ("Yoga et méditation à domicile");
+INSERT INTO questionnaire_reservation(nom_questionnaire) VALUES ("Programme d'entraînement (en ligne)");
+
 
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question) VALUES (1, 1);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question) VALUES (2, 1);
@@ -342,7 +381,12 @@ INSERT INTO activite(id, id_type_activite, nom, description_breve, description_l
 INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (18, 4, "ENTRAÎNEMENTS EN ÉQUIPE", "Nos entraînements de groupe permettent de cultiver la dynamique d’équipe dans une atmosphère ludique et énergisante. Séances  privés au bureau et en plein-air..", "LONGUE");
 
 
-INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (1, 1);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (1, 2);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (2, 3);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (3, 4);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (4, 5);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (14, 6);
+
 
 INSERT INTO duree(id, temps) VALUES (1, 1);
 INSERT INTO duree(id, temps) VALUES (2, 2);

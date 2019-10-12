@@ -8,8 +8,8 @@
  * Nom :         Reservation
  * Catégorie :   Classe
  * Auteur :      Maxime Lussier
- * Version :     1.0
- * Date de la dernière modification : 2019-10-08
+ * Version :     1.1
+ * Date de la dernière modification : 2019-10-12
  */
 
 class Reservation{
@@ -56,31 +56,31 @@ class Reservation{
   /*
   * SETTEUR
   */
-  private function setId($id){
+  public function setId($id){
     $this->id = $id;
   }
-  private function setIdPaiement($val){
+  public function setIdPaiement($val){
     $this->id_paiement = $val;
   }
-  private function setIdEmplacement($val){
+  public function setIdEmplacement($val){
     $this->id_emplacement = $val;
   }
-  private function setIdSuivi($val){
+  public function setIdSuivi($val){
     $this->id_suivi = $val;
   }
-  private function setIdActivite($val){
+  public function setIdActivite($val){
     $this->id_activite = $val;
   }
-  private function setDateRendezVous($val){
+  public function setDateRendezVous($val){
     $this->date_rendez_vous = $val;
   }
-  private function setHeureDebut($val){
+  public function setHeureDebut($val){
     $this->heure_debut = $val;
   }
-  private function setHeureFin($val){
+  public function setHeureFin($val){
     $this->heure_fin = $val;
   }
-  private function setIdGroupe($val){
+  public function setIdGroupe($val){
     $this->id_groupe = $val;
   }
   /*
