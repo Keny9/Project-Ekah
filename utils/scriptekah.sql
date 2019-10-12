@@ -46,7 +46,7 @@ CREATE TABLE question (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_question INT NOT NULL,
 question VARCHAR(100) NOT NULL,
-nb_ligne INT NOT NULL,
+nb_ligne INT,
 FOREIGN KEY (id_type_question) REFERENCES type_question(id)
 );
 
@@ -305,7 +305,37 @@ INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Aujourd'hui, nous avons fai
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
 
-INSERT INTO question(id, id_type_question, question, nb_ligne) VALUES (1, 2, "Cocher cette case si vous avez deja fait du Yoga",1 );
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Autres informations pertinentes en préparation au rendez-vous", 6);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Souffrez-vous de problèmes de santé ou des maladies? Si oui, lesquelles?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Prenez-vous des médicaments? Si oui, lesquels et pour quelles raisons?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous actuellement des douleurs ou des blessures? Si oui, lesquelles?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous des antécédants de douleurs ou de blessures? Si oui, lesquels?", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Faites-vous affaires avec d'autres professionnels de la santé? Si oui, lesquels? (nom, coordonnées)", 3);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Quels sont vos objectifs d’entraînement?", 4);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Combien de fois par semaine pratiquez-vous de l’activité physique?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "En moyenne, combien de temps par séance?", 1);
+
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "Avez-vous des allergies (alimentaires, médicaments, autres) ? Si oui, lesquelles?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "8.	En moyenne, combien de temps par séance?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "8.	En moyenne, combien de temps par séance?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "8.	En moyenne, combien de temps par séance?", 1);
+INSERT INTO question(id_type_question, question, nb_ligne) 
+VALUES (1, "8.	En moyenne, combien de temps par séance?", 1);
+
+
 
 INSERT INTO questionnaire_reservation(id, nom_questionnaire) VALUES (1, "Questionnaire médical");
 INSERT INTO questionnaire_reservation(id, nom_questionnaire) VALUES (2, "Questionnaire Entrainement en équipe");

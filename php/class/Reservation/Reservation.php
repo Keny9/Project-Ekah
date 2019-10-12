@@ -8,8 +8,8 @@
  * Nom :         Reservation
  * Catégorie :   Classe
  * Auteur :      Maxime Lussier
- * Version :     1.0
- * Date de la dernière modification : 2019-10-08
+ * Version :     1.1
+ * Date de la dernière modification : 2019-10-12
  */
 
 class Reservation{

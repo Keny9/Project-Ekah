@@ -5,8 +5,8 @@
 * Nom :         GestionReservation
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
-* Version :     1.1
-* Date de la dernière modification : 2019-10-07
+* Version :     1.2
+* Date de la dernière modification : 2019-10-12
 */
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
@@ -15,6 +15,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.ph
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Inscription/Inscription.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Emplacement/Emplacement.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
 
 class GestionReservation{
 
@@ -241,6 +242,24 @@ class GestionReservation{
                                      $row['heure_debut'], $row['heure_fin']);
     }
     return $reservation;
+  }
+
+  /**
+  * Selectionne toutes les questiosn dans la bd
+  * Retourne un array de question
+  */
+  public function questionSelectAll(){
+    $conn = ($connexion = new Connexion())->do();
+
+    $stmt = $conn->prepare("SELECT * FROM question;");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $array = array();
+    while($row = $result->fetch_assoc()){
+      $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne']);
+      array_push($array, $questionTemp);
+    }
+    return $array;
   }
 }
  ?>

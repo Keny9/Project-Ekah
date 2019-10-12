@@ -25,6 +25,18 @@
 
     }
 
+    /*
+    * Méthode print
+    * echo le contenu des variables de la classe
+    */
+    public function print(){
+      echo "
+      identifiant : ".$this->getIdentifiant()."<br>
+      id_type_question : ".$this->getId_Type()."<br>
+      question : ".$this->getQuestion()."<br>
+      nb_ligne : ".$this->getNb_ligne()."<br>";
+    }
+
     public function getIdentifiant(){
       return $this->identifiant;
     }
