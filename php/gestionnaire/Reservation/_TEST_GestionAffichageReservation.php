@@ -7,7 +7,7 @@ $gReservation = new GestionReservation();
 $gAffichage = new GestionAffichageReservation();
 
 $arrayQuestion = $gReservation->questionSelectAllWithQuestionnaireId(2);
-$gAffichage->printQuestionArray($arrayQuestion);
+$stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
 
-
+echo $stringQuestions;
  ?>

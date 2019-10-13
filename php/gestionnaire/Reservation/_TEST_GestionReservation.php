@@ -46,7 +46,7 @@ foreach ($tous_les_groupes as $groupe){
   echo "<br>";
 }*/
 
-$questions = $gestionReservation->questionSelectAll();
+/*$questions = $gestionReservation->questionSelectAll();
 
 $questions = $gestionReservation->questionSelectAllWithQuestionnaireId(2);
 
@@ -54,6 +54,16 @@ $questions = $gestionReservation->questionSelectAllWithQuestionnaireId(2);
 foreach ($questions as $question){
   $question->print();
   echo "<br>";
+}*/
+
+$questionnaires = $gestionReservation->questionnaireSelectAllWithActiviteId(13);
+
+if($questionnaires == null){
+  echo "Aucun questionnaire";
+}
+
+foreach ($questionnaires as $questionnaire){
+  $questionnaire->print();
 }
 
  ?>

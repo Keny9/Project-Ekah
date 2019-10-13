@@ -15,22 +15,24 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/questio
 class GestionAffichageReservation{
 
   /**
-  * Print un array de question dans des balises html
+  * Retourne un String contenant les questions en language html
   *
   */
   public function printQuestionArray($array){
+    $string = "";
     foreach ($array as $question){
-      $this->printQuestion($question);
+      $string .= $this->printQuestion($question);
     }
+    return $string;
   }
 
   /**
-  * Print une question dans des balises html
+  * Retourne un string contenant une question en langauge html
   *
   */
   public function printQuestion($question){
     $id_input = "Q-".$question->getOrdre();
-    echo
+    return
     "
     <div class=\"group-input-inscr\">
       <label class=\"label-question\" for=\"".$id_input."\">".$question->getQuestion()."</label>
