@@ -18,7 +18,7 @@
     private $ordre;
 
 
-    function __construct( $identifiant,$idType,$question,$nbLigne, $ordre){
+    function __construct( $identifiant,$idType,$question,$nbLigne, $ordre = null){
       $this->setIdentifiant($identifiant);
       $this->setId_type($idType);
       $this->setQuestion($question);
