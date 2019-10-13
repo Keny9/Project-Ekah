@@ -15,14 +15,15 @@
     private $idType;
     private $question;
     private $nbLigne;
+    private $ordre;
 
 
-    function __construct( $identifiant,$idType,$question,$nbLigne){
+    function __construct( $identifiant,$idType,$question,$nbLigne, $ordre = null){
       $this->setIdentifiant($identifiant);
       $this->setId_type($idType);
       $this->setQuestion($question);
       $this->setNb_ligne($nbLigne);
-
+      $this->setOrdre($ordre);
     }
 
     /*
@@ -34,7 +35,8 @@
       identifiant : ".$this->getIdentifiant()."<br>
       id_type_question : ".$this->getId_Type()."<br>
       question : ".$this->getQuestion()."<br>
-      nb_ligne : ".$this->getNb_ligne()."<br>";
+      nb_ligne : ".$this->getNb_ligne()."<br>
+      ordre : ".$this->getOrdre()."<br>";
     }
 
     public function getIdentifiant(){
@@ -67,6 +69,13 @@
 
     public function setNb_ligne($nbLigne){
       $this->nbLigne = $nbLigne;
+    }
+
+    public function setOrdre($val){
+      $this->ordre = $val;
+    }
+    public function getOrdre(){
+      return $this->ordre;
     }
   }
  ?>

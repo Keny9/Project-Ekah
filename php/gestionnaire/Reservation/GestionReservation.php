@@ -5,8 +5,8 @@
 * Nom :         GestionReservation
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
-* Version :     1.2
-* Date de la dernière modification : 2019-10-12
+* Version :     1.4
+* Date de la dernière modification : 2019-10-13
 */
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
@@ -16,6 +16,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Inscription/Insc
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Emplacement/Emplacement.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php";
 
 class GestionReservation{
 
@@ -256,8 +257,54 @@ class GestionReservation{
     $result = $stmt->get_result();
     $array = array();
     while($row = $result->fetch_assoc()){
-      $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne']);
+      $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne'], null);
       array_push($array, $questionTemp);
+    }
+    return $array;
+  }
+
+  /**
+  * Selection les questions en lien avec le questionnaire
+  * Retourne un array de questions, ou NULL
+  * order by ordre
+  */
+  public function questionSelectAllWithQuestionnaireId($id_du_questionnaire){
+    $conn = ($connexion = new Connexion())->do();
+
+    $stmt = $conn->prepare("SELECT q.id, q. id_type_question, q.question, q.nb_ligne, ta.ordre FROM question AS q
+      INNER JOIN ta_questionnaire_reservation_question AS ta ON ta.id_question = q.id
+      INNER JOIN questionnaire_reservation AS qr ON qr.id = ta.id_questionnaire_res
+      WHERE qr.id = ?
+      ORDER BY ta.ordre;");
+    $stmt->bind_param('i', $id_du_questionnaire);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $array = array();
+    while ($row = $result->fetch_assoc()){
+      $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne'], $row['ordre']);
+      array_push($array, $questionTemp);
+    }
+    return $array;
+  }
+
+  /**
+  * Selectionne les ID de questionnaire lié à l'id de l'activité en paramètre
+  * Retourne un array de questionnaire, ou NULL
+  */
+  public function questionnaireSelectAllWithActiviteId($id_activite){
+    $conn = ($connexion = new Connexion())->do();
+    $array = array();
+
+    $stmt = $conn->prepare("SELECT qr.id AS id_questionnaire, qr.nom_questionnaire, ta.id_activite FROM questionnaire_reservation AS qr
+      INNER JOIN ta_activite_questionnaire_reservation AS ta ON ta.id_questionnaire_res = qr.id
+      WHERE ta.id_activite = ?;");
+    $stmt->bind_param('i', $id_activite);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()){
+      $questionnaireTemp = new Questionnaire($row['id_questionnaire'], $row['nom_questionnaire']);
+      array_push($array, $questionnaireTemp);
     }
     return $array;
   }
