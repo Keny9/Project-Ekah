@@ -42,17 +42,17 @@
           <div class="group-input-inscr">
             <label class="label-reservation label-col" for="service">Choisir un service</label>
             <div class="box-select">
-              <select class="select-inscr input-long" name="service" id="service" onchange="changePays()">
+              <select class="select-inscr input-long" name="service" id="service">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
-                <option value="Canada">Mouvement Intuitif</option>
-                <option value="États-Unis">Ennéagramme</option>
+                <option value="Mouvement Intuitif">Mouvement Intuitif</option>
+                <option value="Enneagramme">Ennéagramme</option>
               </select>
             </div>
           </div>
           <div class="group-input-inscr">
             <label class="label-reservation label-col" for="durree">Durée</label>
             <div class="box-select">
-              <select class="select-inscr input-long" name="duree" id="duree" onchange="changePays()">
+              <select class="select-inscr input-long" name="duree" id="duree">
                 <option class="option-vide" value="vide" selected="selected">Durée</option>
                 <option value="30">30 minutes</option>
                 <option value="60">60 minutes</option>
