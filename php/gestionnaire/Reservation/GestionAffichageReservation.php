@@ -19,7 +19,9 @@ class GestionAffichageReservation{
   *
   */
   public function printQuestionArray($array){
-
+    foreach ($array as $question){
+      $this->printQuestion($question);
+    }
   }
 
   /**
@@ -27,7 +29,14 @@ class GestionAffichageReservation{
   *
   */
   public function printQuestion($question){
-    
+    $id_input = "Q-".$question->getOrdre();
+    echo
+    "
+    <div class=\"group-input-inscr\">
+      <label class=\"label-question\" for=\"".$id_input."\">".$question->getQuestion()."</label>
+      <input type=\"text\" name=\"".$id_input."\" id=\"".$id_input."\" value=\"\" class=\"input-inscr input-long input-question\"
+    </div>
+    ";
   }
 
 
