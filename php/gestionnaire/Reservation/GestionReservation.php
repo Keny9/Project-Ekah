@@ -5,8 +5,8 @@
 * Nom :         GestionReservation
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
-* Version :     1.2
-* Date de la dernière modification : 2019-10-12
+* Version :     1.3
+* Date de la dernière modification : 2019-10-13
 */
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
@@ -256,7 +256,31 @@ class GestionReservation{
     $result = $stmt->get_result();
     $array = array();
     while($row = $result->fetch_assoc()){
-      $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne']);
+      $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne'], null);
+      array_push($array, $questionTemp);
+    }
+    return $array;
+  }
+
+  /**
+  * Selection les questions en lien avec le questionnaire
+  * Retourne un array de questions, ou NULL
+  * order by ordre
+  */
+  public function questionSelectAllWithQuestionnaireId($id_du_questionnaire){
+    $conn = ($connexion = new Connexion())->do();
+
+    $stmt = $conn->prepare("SELECT q.id, q. id_type_question, q.question, q.nb_ligne, ta.ordre FROM question AS q
+      INNER JOIN ta_questionnaire_reservation_question AS ta ON ta.id_question = q.id
+      INNER JOIN questionnaire_reservation AS qr ON qr.id = ta.id_questionnaire_res
+      WHERE qr.id = ?
+      ORDER BY ta.ordre;");
+    $stmt->bind_param('i', $id_du_questionnaire);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $array = array();
+    while ($row = $result->fetch_assoc()){
+      $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne'], $row['ordre']);
       array_push($array, $questionTemp);
     }
     return $array;

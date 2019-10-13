@@ -48,6 +48,9 @@ foreach ($tous_les_groupes as $groupe){
 
 $questions = $gestionReservation->questionSelectAll();
 
+$questions = $gestionReservation->questionSelectAllWithQuestionnaireId(2);
+
+
 foreach ($questions as $question){
   $question->print();
   echo "<br>";
