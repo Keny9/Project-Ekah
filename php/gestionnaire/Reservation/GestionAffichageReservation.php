@@ -54,7 +54,7 @@ class GestionAffichageReservation{
       <label class=\"label-question\" for=\"".$id_input."\">".$question->getQuestion()."</label>";
 
     if($question->getIdentifiant() == 1){
-      $string .= "<textarea name=\"commentaire\" id=\"commentaire\"></textarea>";
+      $string .= "<textarea name=\"commentaire\" id=\"commentaire\" class=\"commentaire\"></textarea>";
     }
     else{
       $string .="<input type=\"text\" name=\"".$id_input."\" id=\"".$id_input."\" value=\"\" class=\"input-inscr input-long input-question\">";
