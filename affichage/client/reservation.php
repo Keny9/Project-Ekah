@@ -48,7 +48,7 @@ $activites = $gActivite->getAllActivite();
           <div class="group-input-inscr">
             <label class="label-reservation label-col" for="service">Choisir un service</label>
             <div class="box-select">
-              <select class="select-inscr input-long" name="service" id="service">
+              <select class="select-inscr input-long" name="service" id="service" onchange="changeListe(this);">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
                 <?php
                 $separator = 1;
@@ -71,7 +71,7 @@ $activites = $gActivite->getAllActivite();
           <div class="group-input-inscr">
             <label class="label-reservation label-col" for="durree">Durée</label>
             <div class="box-select">
-              <select class="select-inscr input-long" name="duree" id="duree">
+              <select class="select-inscr input-long" name="duree" id="duree" onchange="changeListe(this);">
                 <option class="option-vide" value="vide" selected="selected">Durée</option>
                 <option value="30">30 minutes</option>
                 <option value="60">60 minutes</option>
@@ -105,7 +105,7 @@ $activites = $gActivite->getAllActivite();
           </div>
           <div class="group-input-inscr">
             <label for="commentaire" class="label-reservation">Commentaire</label>
-            <textarea name="commentaire" id="commentaire"></textarea>
+            <textarea name="commentaire" class="commentaire" id="commentaire"></textarea>
           </div>
           <div class="group-input-inscr">
             <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>

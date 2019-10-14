@@ -72,14 +72,11 @@
 #confirmerQuestion{
   position: absolute;
   right: 0;
+  margin-right: 8px;
 }
 
 .btn-ques{
   margin-top: 50px;
-}
-
-#commentaire{
-  margin-top: 20px;
 }
 
 @media only screen and (min-width: 910px){
