@@ -32,7 +32,7 @@
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllActivite();
                  ?>
-                 <input type="button" class="submitSupprimer" onclick="ajOuMod();" value="Supprimer" />
+                 <input type="button" class="submitSupprimer" onclick="supprime();" value="Supprimer" />
                  <input type="button" class="submitAjout" onclick="ajOuMod();" value="Ajouter" /></br>
                  <input type="button" class="submitModifier" onclick="ajOuMod();" value="Modifier" />
     </div>
