@@ -51,13 +51,20 @@ $activites = $gActivite->getAllActivite();
               <select class="select-inscr input-long" name="service" id="service">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
                 <?php
-                  foreach ($activites as $activite){
-                    echo
-                    "
-                      <option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>
-                    ";
+                $separator = 1;
+                echo "<option disabled style=\"font-weight: bold;\">EN ATELIER</option>";
+                foreach ($activites as $activite){
+                  if ($activite->getId_type() == 4) break;
+
+                  if ($activite->getId_type() != $separator){
+                    $separator = $activite->getId_type();
+                    if($separator == 2) echo "<option disabled style=\"font-weight: bold;\">À DOMICILE</option>";
+                    elseif($separator == 3) echo "<option disabled style=\"font-weight: bold;\">EN LIGNE</option>";
                   }
-                 ?>
+
+                  echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
+                }
+                ?>
               </select>
             </div>
           </div>
