@@ -15,4 +15,14 @@ $(document).ready(function() {
       return false;
     }
   });
+
+  // FORM SUBMIT
+  $('#btnSuivant').click(function(){
+    clickSuivant();
+  });
 });
+
+function clickSuivant(){
+  $('#form-reservation').attr('action', '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php');
+  $('#form-reservation').submit();
+}
