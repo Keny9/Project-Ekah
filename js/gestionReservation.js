@@ -8,7 +8,7 @@
  * Date de la dernière modification : 2019-09-30
  */
  function selectionne(x){
-   for (i = 0; i < 18; i++){
+   for (i = 0; i <= 18; i++){
    //  let divTitre = document.getElementById("Titre-"+i);
    //  let divRabais = document.getElementById("Rabais-"+i);
      let divSelection = document.getElementById("Activite-"+i);
@@ -25,4 +25,13 @@
 
    //document.getElementById('nom').value = divTitre.innerHTML;
   //document.getElementById('rabais').value = divRabais.innerHTML;
+ }
+ function selectionneDuree(x){
+   let divSelection = document.getElementById("Duree-"+x);
+   if(divSelection.classList.contains("selectionne")){
+     divSelection.classList.remove("selectionne");
+   }
+   else{
+     divSelection.classList.add("selectionne");
+   }
  }

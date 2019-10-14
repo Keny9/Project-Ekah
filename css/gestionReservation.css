@@ -28,6 +28,45 @@
  .reservez{
    margin-top:10px;
  }
+ .submitAjout{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#FF697E;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:20px;
+  margin-top:5px;
+}
+.submitSupprimer{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#EC592A;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:10px;
+  margin-top:5px;
+}
+.submitModifier{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#034E54;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:80px;
+  margin-top:10px;
+}
  .prix{
    margin-top:50px;
  }
