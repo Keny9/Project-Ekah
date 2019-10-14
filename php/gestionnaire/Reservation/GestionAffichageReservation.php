@@ -49,15 +49,19 @@ class GestionAffichageReservation{
       $question->setQuestion($str);
     }
 
-    $string = "
-    <div class=\"group-input-inscr\">
-      <label class=\"label-question\" for=\"".$id_input."\">".$question->getQuestion()."</label>";
+
 
     if($question->getIdentifiant() == 1){
-      $string .= "<textarea name=\"commentaire\" id=\"commentaire\"></textarea>";
+      $string = "
+      <div class=\"group-input-inscr\">
+        <label class=\"label-question\" for=\"".$id_input."\">".$question->getQuestion()."</label>
+      <textarea name=\"commentaire\" id=\"commentaire\"></textarea>";
     }
     else{
-      $string .="<input type=\"text\" name=\"".$id_input."\" id=\"".$id_input."\" value=\"\" class=\"input-inscr input-long input-question\">";
+      $string = "
+      <div class=\"group-input-inscr\">
+        <label class=\"label-question\" for=\"".$id_input."\">".$question->getOrdre().".".str_repeat('&nbsp;', 5).$question->getQuestion()."</label>
+      <input type=\"text\" name=\"".$id_input."\" id=\"".$id_input."\" value=\"\" class=\"input-inscr input-long input-question\">";
     }
     $string .="</div>";
 

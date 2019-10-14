@@ -58,7 +58,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
       <div class="top-img">
         <img src="../../img/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
-        <p class="txt-centered">Mouvement Intuitif</p>
+        <p class="txt-centered"><?php echo $questionnaire_nom ?></p>
       </div>
 
       <div class="reservation">
@@ -81,7 +81,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
             </div>
             <div class="group-input-inscr btn-ques">
               <button type="button" name="retourQuestion" id="retourQuestion" class="bouton-re-que">RETOUR</button>
-              <button type="submit" name="confirmerQuestion" id="confirmerQuestion" class="bouton-re-que">CONFIRMER</button>
+              <button type="button" name="confirmerQuestion" id="confirmerQuestion" class="bouton-re-que">CONFIRMER</button>
             </div>
           </div>
         </form>
