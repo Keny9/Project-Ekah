@@ -56,6 +56,12 @@ $(document).ready(function() {
   });
 });
 
+
+function clickSuivant(){
+  $('#form-reservation').attr('action', '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php');
+  $('#form-reservation').submit();
+}
+
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
     e.style.borderBottomColor = "#ff0000";
@@ -154,8 +160,3 @@ function siVide(e){
      e.style.color = "#000000";
    }
  }
-
-function clickSuivant(){
-  $('#form-reservation').attr('action', '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php');
-  $('#form-reservation').submit();
-}
