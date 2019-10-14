@@ -9,6 +9,12 @@
  * Date de la dernière modification : 2019-10-11
  */
 
+
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
+
+$gActivite = new GestionActivite();
+$activites = $gActivite->getAllActivite();
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +50,21 @@
             <div class="box-select">
               <select class="select-inscr input-long" name="service" id="service">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
-                <option value="Mouvement Intuitif">Mouvement Intuitif</option>
-                <option value="Enneagramme">Ennéagramme</option>
+                <?php
+                $separator = 1;
+                echo "<option disabled style=\"font-weight: bold;\">EN ATELIER</option>";
+                foreach ($activites as $activite){
+                  if ($activite->getId_type() == 4) break;
+
+                  if ($activite->getId_type() != $separator){
+                    $separator = $activite->getId_type();
+                    if($separator == 2) echo "<option disabled style=\"font-weight: bold;\">À DOMICILE</option>";
+                    elseif($separator == 3) echo "<option disabled style=\"font-weight: bold;\">EN LIGNE</option>";
+                  }
+
+                  echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
+                }
+                ?>
               </select>
             </div>
           </div>
@@ -89,7 +108,7 @@
             <textarea name="commentaire" id="commentaire"></textarea>
           </div>
           <div class="group-input-inscr">
-            <button type="submit" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>
+            <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>
           </div>
           <div class="group-input-inscr btn-espace">
            <a href="#"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>

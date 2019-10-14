@@ -399,9 +399,9 @@ INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_quest
 
 
 
-INSERT INTO type_activite(id, nom) VALUES (1, "En Atelier");
+INSERT INTO type_activite(id, nom) VALUES (1, "En atelier");
 INSERT INTO type_activite(id, nom) VALUES (2, "Services à domicile");
-INSERT INTO type_activite(id, nom) VALUES (3, "En En ligne");
+INSERT INTO type_activite(id, nom) VALUES (3, "En ligne");
 INSERT INTO type_activite(id, nom) VALUES (4, "En groupe");
 
 
