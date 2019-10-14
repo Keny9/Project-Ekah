@@ -85,9 +85,9 @@ $activites = $gActivite->getAllActivite();
           </div>
           <div class="group-input-inscr">
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>
-            <input type="checkbox" name="facilitateur" id="facilitateur" value="">
+            <input type="checkbox" name="facilitateur" id="facilitateur" onclick="check()" value="">
           </div>
-          <div class="group-input-inscr">
+          <div id="photo-facilitateur" class="group-input-inscr">
             <div class="block-photo-facilitateur">
               <div class="photo-facilitateur"></div>
               <div class="photo-facilitateur"></div>

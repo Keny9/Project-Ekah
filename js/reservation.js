@@ -160,3 +160,13 @@ function siVide(e){
      e.style.color = "#000000";
    }
  }
+
+ //Check si on veut choisir un specialiste ou pas du tout
+ function check(){
+   if(document.getElementById("facilitateur").checked == true){
+     document.getElementById("photo-facilitateur").style.display = "block";
+   }
+   else{
+     document.getElementById("photo-facilitateur").style.display = "none";
+   }
+ }

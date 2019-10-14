@@ -77,6 +77,10 @@ main{
   font-size: 15px;
 }
 
+#photo-facilitateur{
+  display: none;
+}
+
 .block-photo-facilitateur{
   width: 279px;
   margin: 0 auto;
@@ -88,6 +92,7 @@ main{
   width: 75px;
   height: 75px;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 .block-photo-nom{
