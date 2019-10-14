@@ -32,7 +32,12 @@
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllActivite();
                  ?>
+                 <input type="button" class="submitSupprimer" onclick="supprime();" value="Supprimer" />
+                 <input type="button" class="submitAjout" onclick="ajOuMod();" value="Ajouter" /></br>
+                 <input type="button" class="submitModifier" onclick="ajOuMod();" value="Modifier" />
     </div>
+
+
     <div class="reservationMain">
       <div class="reservationHeader"><img class="imgHeader"src="../../img/logo_ekah_header.png" alt="Ekah"></div>
       <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg">Soins a domicile</div></div>
@@ -55,6 +60,7 @@
       <option value="Duree">1 heures</option>
     </select>
     <h6 class="prix texteEkha">Prix:</h6>
+    <input class="boxDuree" type="number" name="prix" min="0">
 </main>
 </body>
 
