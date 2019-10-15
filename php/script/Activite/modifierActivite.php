@@ -20,6 +20,6 @@ $activite = new Activite( $_POST['id'],
                         $_POST['idType'],
                         $_POST['nom'],
                         $_POST['descriptionC'],
-                        $_POST['descriptionL'],);
+                        $_POST['descriptionL']);
 $ga->modifierActivite($activite, $_POST['id'])
  ?>

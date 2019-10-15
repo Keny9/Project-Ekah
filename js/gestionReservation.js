@@ -19,9 +19,40 @@
  }
 
 function remplir(x){
+  var id = x+1;
+  myData={id:id};
+  var url="../../php/script/Activite/remplirActivite.php";
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                  url: url,
+                  type:"POST",
+                  async: false,
+                  data: myData,
+                  success: function(data) {
+                    console.log(resolve(remplirCase(data.idType,data.nom,data.descriptionC)));
+                    console.log(data);
+                    console.log(data.idType);
 
+                    //remplirCase(data.idType,data.nom,data.descriptionC)
+
+                  } ,
+                  error: function() {
+                    reject(alert('Error occured'));
+                  }
+                });
+              });
 }
 
+function remplirCase(type,nom,description){
+  let divTitre = document.getElementById("titre");
+  let divNom = document.getElementById("nom");
+  let divType = document.getElementById("type");
+  let divDescriptionC = document.getElementById("descriptionC");
+  divTitre.innerHTML=nom;
+  divNom.innerHTML=nom;
+  divType.value=type;
+  divDescriptionC.innerHTML=description;
+}
  function selectionneDuree(x){
    let divSelection = document.getElementById("Duree-"+x);
    if(divSelection.classList.contains("selectionne")){
