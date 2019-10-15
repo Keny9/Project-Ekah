@@ -25,6 +25,26 @@ require $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/autoload.php';
 
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
+$mail->charSet = 'utf-8';
+$mail->Encoding = 'base64';
+
+$sujet = "Demande de groupe";
+$service = $_POST['service'];
+$entreprise = $_POST['entreprise'];
+$nom = $_POST['nom'];
+$courriel = $_POST['courriel'];
+$telephone = $_POST['telephone'];
+$poste = $_POST['poste'];
+$vous = $_POST['vous'];
+$message = $_POST['message'];
+
+//Message dans le email
+$txt = utf8_encode("Une demande de groupe a été effectué pour le service suivant : ".$service."<br>"
+."Entreprise : ".$entreprise."<br>"
+."Nom du responsable : ".$nom."<br>"
+."Téléphone : ".$telephone."<br>". " Poste : ".$poste."<br><br>"
+."Parlez-nous de vous : ".$vous."<br><br>"
+."Message/Demande : ".$message."<br>");
 
 try {
     //Server settings
@@ -38,18 +58,19 @@ try {
     $mail->Port       = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('elec19981109@hotmail.ca', 'George');
+    $mail->setFrom($courriel, $nom);
     $mail->addAddress('popa2000@hotmail.ca', 'Joe');     // Le recipient
                                                         // Nom optionnel
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Test Email';
-    $body = "<p>Hey this is a message.</p>";
-    $mail->Body    = $body;
+    $mail->Subject = $sujet;
+    $body = $txt;
+    $mail->Body = $body;
     $mail->AltBody = strip_tags($body);
 
     $mail->send();
     echo 'Message has been sent';
+    header("Location: ../../affichage/client/reservation_groupe.php?mailsend");
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
