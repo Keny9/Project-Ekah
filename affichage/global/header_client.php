@@ -35,6 +35,10 @@
               </ul>
           </div>
         </div>
+
+        <div id="seConnecter" class="tab">
+          <a href="/Project-Ekah/affichage/client/login.php">ESPACE CLIENT</a>
+        </div>
         <div id="contactNav" class="tab">
           <a href="https://ekah.co/contact-1">CONTACT </a>
         </div>

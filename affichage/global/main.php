@@ -11,8 +11,7 @@
   <body>
     <?php include 'header_client.php' ?>
     <main>
-      <?php include 'side_menu.php' ?>
-      oui
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </main>
     <?php include 'footer.php' ?>
   </body>

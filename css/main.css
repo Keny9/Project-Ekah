@@ -171,10 +171,30 @@ header{
     background-color: #fff;
   color: #000;
 }
+#seConnecter{
+  order: 0;
+  margin-left: 11px;
+  line-height: 30px;
+  padding-top:2px;
+  height: 36px;
+}
+
+#seConnecter a{
+  border: 2px solid #fff;
+  border-radius: 100px;
+  color: #fff;
+  transition: .15s;
+  padding: 3px 15px;
+}
+#seConnecter a:hover{
+    background-color: #fff;
+  color: #000;
+}
 #tab-1{order:1;}
 #tab-2{order:2;}
 #tab-3{order:3;}
 #tab-4{order:4;}
+
 
 .side-menu{
   display: inline-block;
