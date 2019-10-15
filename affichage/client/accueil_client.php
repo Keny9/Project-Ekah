@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <?php
 // Accueil du client
+
+session_start();
+
+//Si un client n'est pas connecté,
+if($_SESSION['userTypeId'] != 1){
+  header('Location: /Project-Ekah/affichage/global/main.php');
+}
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -12,11 +19,11 @@
     <script type="text/javascript" src="../../js/global.js"></script>
   </head>
   <body>
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header_client.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 
     <main>
       <nav>
-        <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/side_menu.php' ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/nav_client.php' ?>
       </nav>
       <article class="">
         Accueil du client

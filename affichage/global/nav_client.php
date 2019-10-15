@@ -40,7 +40,7 @@
     </li>
     <hr class="hr-menu">
     <li>
-      <a class="link-menu" href="#">
+      <a class="link-menu" href="/Project-Ekah/affichage/client/reservation.php">
         <span id="icon-direction" class="icon-menu"></span>
         <span class="text-menu"><p>Faire une réservation</p></span>
       </a>
