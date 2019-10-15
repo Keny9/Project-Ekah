@@ -11,7 +11,6 @@
 $(document).ready(function() {
   listInput = document.querySelectorAll("input, textarea");
 
-
   listInput.forEach(function(e){
     e.addEventListener("focusin", function(){
       if(e.tagName == "TEXTAREA" || e.tagName == "textarea"){
@@ -40,6 +39,7 @@ $(document).ready(function() {
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
   telephone = document.getElementById("telephone");
+  poste = document.getElementById("poste");
   vous = document.getElementById("vous");
   message = document.getElementById("message");
 
@@ -85,14 +85,16 @@ function sendEmail(){
     url: '../../php/script/Reservation/demandeGroupe.php',
     method: 'POST',
     dataType: 'json',
+    contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
-      service: service.options[service.selectedIndex].value,
-      entreprise: entreprise.value,
-      nom: nom.value,
-      courriel: courriel.value,
-      telephone: telephone.value,
-      vous: vous.value,
-      message: message.value
+      'service': service.options[service.selectedIndex].value,
+      'entreprise': entreprise.value,
+      'nom': nom.value,
+      'courriel': courriel.value,
+      'telephone': telephone.value,
+      'poste': poste.value,
+      'vous': vous.value,
+      'message': message.value
     }, success: function(response){
       console.log("Success");
       console.log(response);
@@ -101,8 +103,6 @@ function sendEmail(){
       console.log(response);
     }
   });
-  console.log("What happened...");
-  return false;
 }
 
 //Indique quels champs sont vides à l'utilisateur

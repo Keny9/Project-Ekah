@@ -25,12 +25,10 @@
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
     <script type="text/javascript" src="../../js/reservation.js"></script>
-    <script type="text/javascript">
-
-    </script>
     <title>Réservation Groupe</title>
   </head>
   <body>
+    <?php include "../global/header_client.php"; ?>
     <main>
       <div class="top-img">
         <img src="../../img/relaxe.jpg" alt="Atelier et facilitation">
