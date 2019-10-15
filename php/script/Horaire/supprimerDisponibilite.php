@@ -2,11 +2,11 @@
   /**
    * Fait appel à la méthode getDisponibiliteFacilitateur
    *
-   * Nom :         ajouterDisponibilite
+   * Nom :         supprimerDisponibilite
    * Catégorie :   scriptPhp
    * Auteur :      Guillaume Côté
    * Version :     1.0
-   * Date de la dernière modification : 2019-10-14
+   * Date de la dernière modification : 2019-10-15
    */
 
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";

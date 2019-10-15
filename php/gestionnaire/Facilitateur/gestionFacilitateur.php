@@ -177,7 +177,7 @@ class GestionFacilitateur{
       // Crée un enregistrement de la disponibilite
       // dans la BD.
       $stmt = $conn->do()->prepare("INSERT INTO disponibilite
-        (id_jour, heure_debut, heure_fin)
+        (id_jour, heure_debut, heure_fin, id_etat)
         VALUES (?, ?, ?);");
         $stmt->bind_param('iss', $jour, $heure_debut, $heure_fin);    //Mettre le bon jour
         $stmt->execute();
@@ -202,10 +202,64 @@ class GestionFacilitateur{
         echo "Erreur try-catch : ".$e."<br>";
         return false;
       }
-
-
     }
 
+
+    //Ajoute la disponibilite d'un facilitateur dans la BD
+      public function supprimerHoraire($facilitateur, $disponibilite){
+
+        $tempconn = new Connexion();
+        $conn = $tempconn->getConnexion();
+
+        $requete= "DELETE FROM ta_disponibilite_specialiste
+                  WHERE id = '$idActivite';";
+        $result = $conn->query($requete);
+        if(!$result){
+          trigger_error($conn->error);
+        }
+
+
+        $conn = new Connexion();
+
+        $heure_debut = $disponibilite->getHeureDebut();
+        $heure_fin = $disponibilite->getHeureFin();
+
+        $idFacilitateur = $facilitateur->getId();
+
+        $jour = 1;
+
+        try {
+          $conn->do()->begin_transaction();
+
+          // Crée un enregistrement de la disponibilite
+          // dans la BD.
+          $stmt = $conn->do()->prepare("INSERT INTO disponibilite
+            (id_jour, heure_debut, heure_fin)
+            VALUES (?, ?, ?);");
+            $stmt->bind_param('iss', $jour, $heure_debut, $heure_fin);    //Mettre le bon jour
+            $stmt->execute();
+
+            // Va chercher le primary key de la disponibilite précédement enregistrée
+            // dans la BD.
+            $disponibiliteId = $conn->do()->insert_id;
+
+            // Crée un enregistrement dans la table ta_disponibilite_specialiste de la BD
+            $stmt = $conn->do()->prepare("INSERT INTO ta_disponibilite_specialiste
+              (id_specialiste, id_disponibilite)
+              VALUES (?, ?);");
+              $stmt->bind_param('ii', $idFacilitateur, $disponibiliteId);
+              $stmt->execute();
+
+            // Commit la transaction
+            $conn->do()->commit();
+            return true;
+          } catch (Exception $e) {
+            // Rollback la transaction
+            $conn->do()->rollback();
+            echo "Erreur try-catch : ".$e."<br>";
+            return false;
+          }
+        }
   }
 
  ?>
