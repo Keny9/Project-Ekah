@@ -456,23 +456,120 @@ if(!String.prototype.formatNum) {
 		}
 
 		data.start = new Date(this.options.position.start.getTime());
+
 		data.lang = this.locale;
 
 		this.context.append(this.options.templates[this.options.view](data));
 
-    //Tentative
+
+    //Mettre les horaires en vert
     $.each($('.cal-day-hour-part'), function(index, $event){
       var $this = $(this);
 
+      var date = $(".h3").text();
+      var heure = $this.find("b").text();
+
+      var dates = date.split(" ");
+      var jour = dates[1];
+      var annee = dates[3];
+      var mois = convertirMois(dates[2]);
+
+      //Pour avoir l'heure + 30 minutes
+      var heures = heure.split(":");
+      var moment = new Date(data.start.getYear(), data.start.getMonth(), data.start.getDay(), heures[0], heures[1]);
+      moment = new Date(moment.getTime() + 30*60000);
+
+      // console.log(moment);
+
+      var heure_debut = heure;
+
+      var momentMinute = moment.getMinutes();
+      momentMinute = momentMinute + "";
+      var splitMinute = momentMinute.split("");
+
+      if(splitMinute.length == 1){
+        momentMinute = moment.getMinutes() + "0";
+      }
+
+      var heure_fin = "" + moment.getHours() + ":" + momentMinute;
+
+      // console.log("fin :" + heure_fin)
+
+
       // console.log(data.events);
 
-      if(data.start){
-        // $this.css("background-color", "green");
-      }
+      data.events.forEach(function(entry){
+
+        // console.log(entry.end_hour + "  :  " + heure_fin);
+
+        //Split les heures (12:00) en deux variable (une pour minute et l'Autre pour heure)
+        //Split début
+        let entry_date_debut = entry.start_hour.split(":");
+        let date_debut = heure_debut.split(":");
+        //Split fin
+        let entry_date_fin = entry.end_hour.split(":");
+        let date_fin = heure_fin.split(":");
+
+
+        //Additionne les heures et minutes(string) (7 + 30 = 730 = 7h30)
+        let entry_heure_debut = entry_date_debut[0] + entry_date_debut[1];
+        let heure_debut_split = date_debut[0] + date_debut[1];
+
+        let entry_heure_fin = entry_date_fin[0] + entry_date_fin[1];
+        let heure_fin_split = date_fin[0] + date_fin[1];
+
+        //Heures converties en INT pour les comparer
+        let entry_heure_debut_int = parseInt(entry_heure_debut, 10);
+        let heure_debut_int = parseInt(heure_debut_split, 10);
+
+        let entry_heure_fin_int = parseInt(entry_heure_fin, 10);
+        let heure_fin_int = parseInt(heure_fin_split, 10);
+
+
+        // console.log(entry_heure_debut_int + " " + heure_debut_int);
+
+        if(entry_heure_debut_int <= heure_debut_int && entry_heure_fin_int >= heure_fin_int){
+          // console.log("debut : " + heure_debut_int + " fin : " + heure_fin_int);
+           $this.css("background-color", "green");
+        }
+
+      });
+
     });
 
 		this._update();
 	};
+
+
+  function convertirMois(mois){
+    switch(mois) {
+    case "January,":
+      return "01";
+    case "February,":
+      return "02";
+    case "March,":
+      return "03";
+    case "April,":
+      return "04";
+    case "May,":
+      return "05";
+    case "June,":
+      return "06";
+    case "July,":
+      return "07";
+    case "August,":
+      return "08";
+    case "September,":
+      return "09";
+    case "October,":
+      return "10";
+    case "November,":
+      return "11";
+    case "December,":
+      return "12";
+    }
+  }
+
 
 	Calendar.prototype._format_hour = function(str_hour, leadingZero) {
 		var hour_split = str_hour.split(":");
