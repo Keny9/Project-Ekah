@@ -25,6 +25,21 @@
    border-color:#000;
    background-color:#D3D3D3;
  }
+ .boxType{
+   width:250px;
+   height:18px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
+ .boxDescription{
+   width:250px;
+   height:100px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
  .reservez{
    margin-top:10px;
  }
@@ -70,6 +85,9 @@
  .prix{
    margin-top:50px;
  }
+ .descriptionC{
+   margin-top:30px;
+ }
  .choisirServ{
    margin-top:10px;
    float:left;
@@ -78,6 +96,9 @@
    margin-top:10px;
    margin-right:200px;
    float:right;
+ }
+ .choisirType{
+   margin-top:30px;
  }
  .reservationMain{
    width:800px;
@@ -105,7 +126,7 @@
    margin-left:10px;
  }
  .duree{
-   margin-top:70px;
+   margin-top:30px;
  }
  .tableauActivite{
    margin-left:60px;
