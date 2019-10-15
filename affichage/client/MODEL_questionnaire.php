@@ -63,7 +63,7 @@
           </div>
           <div class="group-input-inscr">
             <label for="commentaire" class="label-question">Autres informations pertinentes en préparation au rendez-vous</label>
-            <textarea name="commentaire" id="commentaire"></textarea>
+            <textarea name="commentaire" class="commentaire" id="commentaire"></textarea>
           </div>
           <div class="group-input-inscr">
             <p class="label-question">Signez et datez la déclaration</p>

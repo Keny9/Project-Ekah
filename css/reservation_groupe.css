@@ -6,9 +6,25 @@
   width: 100%;
 }
 
+#telephone{
+  width: 45%;
+}
+
 .input-tele{
-  width: 50%;
   margin-left: 5px;
+}
+
+#poste{
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
+  width: 20%;
+}
+
+#confirmerDemandeGroupe{
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
 }
 
 
@@ -19,5 +35,13 @@
 
   .label-tele{
     width: auto;
+  }
+
+  #telephone{
+    width: 63%;
+  }
+
+  #poste{
+    width: 15%;
   }
 }

@@ -55,7 +55,7 @@ class GestionAffichageReservation{
       $string = "
       <div class=\"group-input-inscr\">
         <label class=\"label-question\" for=\"".$id_input."\">".$question->getQuestion()."</label>
-      <textarea name=\"commentaire\" id=\"commentaire\"></textarea>";
+      <textarea name=\"commentaire\" id=\"commentaire\" class=\"commentaire\"></textarea>";
     }
     else{
       $string = "

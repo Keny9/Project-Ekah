@@ -20,9 +20,9 @@
     <div class="block-media">
       <div class="media-center">
         <a href="https://www.instagram.com/ekah_co/" target="_blank"><span class="media" id="instagram"></span></a>
-        <a href="https://www.facebook.com/ekahco/"><span class="media" id="facebook"></span></a>
-        <a href="https://open.spotify.com/user/2227gwovubmf7laj7oxdx4oua"><span class="media" id="spotify"></span></a>
-        <a href="mailto:info@ekah.co"><span class="media" id="email"><i class="far fa-envelope"></i></span></a>
+        <a href="https://www.facebook.com/ekahco/" target="_blank"><span class="media" id="facebook"></span></a>
+        <a href="https://open.spotify.com/user/2227gwovubmf7laj7oxdx4oua" target="_blank"><span class="media" id="spotify"></span></a>
+        <a href="mailto:info@ekah.co" target="_blank"><span class="media" id="email"><i class="far fa-envelope"></i></span></a>
       </div>
     </div>
     <div class="ekah-txt">

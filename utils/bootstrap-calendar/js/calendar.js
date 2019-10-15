@@ -459,6 +459,18 @@ if(!String.prototype.formatNum) {
 		data.lang = this.locale;
 
 		this.context.append(this.options.templates[this.options.view](data));
+
+    //Tentative
+    $.each($('.cal-day-hour-part'), function(index, $event){
+      var $this = $(this);
+
+      // console.log(data.events);
+
+      if(data.start){
+        // $this.css("background-color", "green");
+      }
+    });
+
 		this._update();
 	};
 
@@ -1216,8 +1228,8 @@ if(!String.prototype.formatNum) {
 				if($(this).children('[data-cal-date]').text() == self.activecell) {
 					return;
 				}
-				showEventsList(event, downbox, slider, self);
-        downbox.hide();
+				// showEventsList(event, downbox, slider, self);
+        // downbox.hide();
 			})
 		;
 

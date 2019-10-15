@@ -7,6 +7,78 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-09-30
  */
+ .texteEkha{
+   color:#034E53;
+ }
+ .boxService{
+   width:250px;
+   height:18px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
+ .boxDuree{
+   width:250px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
+ .reservez{
+   margin-top:10px;
+ }
+ .submitAjout{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#FF697E;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:20px;
+  margin-top:5px;
+}
+.submitSupprimer{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#EC592A;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:10px;
+  margin-top:5px;
+}
+.submitModifier{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#034E54;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:80px;
+  margin-top:10px;
+}
+ .prix{
+   margin-top:50px;
+ }
+ .choisirServ{
+   margin-top:10px;
+   float:left;
+ }
+ .choisirDuree{
+   margin-top:10px;
+   margin-right:200px;
+   float:right;
+ }
  .reservationMain{
    width:800px;
    height:40px;
@@ -32,10 +104,18 @@
    margin-top:10px;
    margin-left:10px;
  }
+ .duree{
+   margin-top:70px;
+ }
  .tableauActivite{
    margin-left:60px;
    margin-top:20px;
    float:left;
+ }
+ .tableauDuree{
+   margin-right:140px;
+   margin-top:20px;
+   float:right;
  }
  .sectionActivite{
   width:280px;
@@ -43,7 +123,13 @@
   border:1px solid;
   border-color:#808080;
   background-color:#fff;
-
+ }
+ .sectionDuree{
+  width:220px;
+  height:45px;
+  border:1px solid;
+  border-color:#808080;
+  background-color:#fff;
  }
  .titreActivite{
    margin-left:3px;

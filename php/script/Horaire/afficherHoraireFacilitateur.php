@@ -10,27 +10,36 @@
  */
 
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
 
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
+$id = 1;
 
-$gestionHoraire = new GestionHoraire();
-$disponibilite = $gestionHoraire->getDisponibiliteFacilitateur($facilitateur);
+$gestionFacilitateur = new GestionFacilitateur();
+
+$facilitateur = $gestionFacilitateur->getFacilitateur($id);
+// print_r($facilitateur->getDisponibilite());
 
 
 date_default_timezone_set('America/Toronto');
 
+$disponibilite = $facilitateur->getDisponibilite();
 
 foreach ($disponibilite as $row) {
-  $start = date("Y-m-d H:i:s", strtotime($row->getHeureDebut()));
-  $end = date("Y-m-d H:i:s", strtotime($row->getHeureFin()));
 
-  $out[] = array(
-    'id' => $row->getId(),
-    'title' => $row->getId(),
-    'url' => "URL",
-    'start' => strtotime($start) . '000',
-    'end' => strtotime($end) .'000'
-  );
+  for ($i=0; $i < sizeof($row); $i++) {
+    $start = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureDebut()));
+    $end = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureFin()));
+
+    $out[] = array(
+      'id' => $row[$i]->getId(),
+      'title' => $row[$i]->getId(),
+      'url' => "URL",
+      'start' => strtotime($start) . '000',
+      'end' => strtotime($end) .'000'
+    );
+  }
 }
 
 echo json_encode(array('success' => 1, 'result' => $out));
