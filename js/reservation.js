@@ -73,6 +73,11 @@ function clickSuivant(){
    e.style.borderColor = "#ff0000";
  }
 
+//Valider le formulaire de réservation
+ function valideReservation(){
+   
+ }
+
 //Lors de l'envoi d'une demande pour une reservation de groupe.
 function sendEmail(){
 
@@ -87,14 +92,14 @@ function sendEmail(){
     dataType: 'json',
     contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
-      'service': service.options[service.selectedIndex].value,
-      'entreprise': entreprise.value,
-      'nom': nom.value,
-      'courriel': courriel.value,
-      'telephone': telephone.value,
-      'poste': poste.value,
-      'vous': vous.value,
-      'message': message.value
+      service: service.options[service.selectedIndex].value,
+      entreprise: entreprise.value,
+      nom: nom.value,
+      courriel: courriel.value,
+      telephone: telephone.value,
+      poste: poste.value,
+      vous: vous.value,
+      message: message.value
     }, success: function(response){
       console.log("Success");
       console.log(response);

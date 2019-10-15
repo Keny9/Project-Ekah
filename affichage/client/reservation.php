@@ -114,7 +114,7 @@ $activites = $gActivite->getAllActivite();
             <textarea name="commentaire" class="commentaire" id="commentaire"></textarea>
           </div>
           <div class="group-input-inscr">
-            <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>
+            <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long" onclick="return valideReservation();">SUIVANT</button>
           </div>
           <div class="group-input-inscr btn-espace">
            <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>

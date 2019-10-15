@@ -23,7 +23,7 @@ if($_SESSION['userTypeId'] != 2){
 
     <main>
       <nav>
-        <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/nav_client.php' ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/nav_admin.php' ?>
       </nav>
       <article class="">
         Accueil de l'admin
