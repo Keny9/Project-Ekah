@@ -9,6 +9,12 @@
  * Date de la dernière modification : 2019-10-11
  */
 
+session_start();
+
+ if($_SESSION['userTypeId'] != 1){
+   header('Location: /Project-Ekah/affichage/global/erreur.html');
+ }
+
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
 
@@ -100,7 +106,8 @@ $activites = $gActivite->getAllActivite();
           </div>
           <div class="group-input-inscr">
             <label class="label-reservation label-long">Sélectionner la date et l'heure désiré</label>
-            <img id="calendrier" src="../../img/calendar.JPG" alt="Calendrier">
+            <!--<img id="calendrier" src="../../img/calendar.JPG" alt="Calendrier">-->
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php' ?>
           </div>
           <div class="group-input-inscr">
             <label for="commentaire" class="label-reservation">Commentaire</label>
