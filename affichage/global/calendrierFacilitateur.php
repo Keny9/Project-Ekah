@@ -44,9 +44,6 @@
           onAfterViewLoad: function(view) {
       			$('.page-header h3').text(this.getTitle());
 
-            toutVert();
-
-
             // if day view, fix calendar width bug
             if(view == "day"){
                 var $previousEvent = null;
