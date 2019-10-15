@@ -34,6 +34,27 @@ class GestionActivite{
 
     return $activite;
   }
+  public function getAllTypeActivite(){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+    $activite = null;
+
+    $requete= "SELECT * FROM type_activite";
+
+    $result = $conn->query($requete);
+    if(!$result){
+      trigger_error($conn->error);
+    }
+
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $type_activite[] = new Type_activite( $row['id'],
+                                  $row['nom'],);
+      }
+    }
+
+    return $type_activite;
+  }
 
 /*
 Ajoute un employe à la BD ainsi que son adresse
@@ -63,18 +84,22 @@ Ajoute un employe à la BD ainsi que son adresse
   public function modifierActivite($activite, $oldId){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
+      //$requete1="SET FOREIGN_KEY_CHECKS=0";
+      //$result1 = $conn->query($requete1);
 
       $requete= "UPDATE activite
-                SET identifiant = '".$activite->getIdentifiant()."',
+                SET id = '".$activite->getIdentifiant()."',
                 id_type_activite = '".$activite->getId_type()."',
                 nom = '".$activite->getNom()."',
                 description_breve = '".$activite->getDescriptionC()."',
                 description_longue = '".$activite->getDescriptionL()."'
-                WHERE identifiant = '$oldId';";
+                WHERE id = '$oldId';";
       $result = $conn->query($requete);
       if(!$result){
         trigger_error($conn->error);
       }
+      //$requete2="SET FOREIGN_KEY_CHECKS=1";
+      //$result2 = $conn->query($requete2);
 
   }
 
