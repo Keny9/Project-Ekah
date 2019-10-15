@@ -54,14 +54,90 @@ function remplirCase(type,nom,description){
   divDescriptionC.innerHTML=description;
 }
  function selectionneDuree(x){
+
    let divSelection = document.getElementById("Duree-"+x);
+
    if(divSelection.classList.contains("selectionne")){
      divSelection.classList.remove("selectionne");
+     console.log("GO GO GO");
+     enleveDuree(x);
    }
    else{
      divSelection.classList.add("selectionne");
+     ajoutDuree(x);
    }
  }
+function ajoutDuree(x){
+  // Create our XMLHttpRequest object
+  var hr = new XMLHttpRequest();
+  // Create some variables we need to send to our PHP file
+  var url="../../php/script/Activite/ajouterActiviteDuree.php";
+  for (i = 0; i <= 18; i++){
+    let divSelection = document.getElementById("Activite-"+i);
+    if(divSelection.classList.contains("selectionne")){
+      var id = i+1;
+    }
+  }
+  var idDuree=x+1;
+
+  $(function($) {
+      $.ajax({
+        url: url,
+        type:"POST",
+        async: false,
+        data: {idActivite:id,idDuree: idDuree},
+        success: function(data) {
+          console.log(data);
+          if(!data){
+              //alert("La modification s'est effectuée avec succès!");
+          }
+          else{
+            //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+              console.log(data);
+          }
+        } ,
+        error: function() {
+          alert('Error occured');
+        }
+      });
+    });
+}
+ function enleveDuree(x){
+   // Create our XMLHttpRequest object
+   var hr = new XMLHttpRequest();
+   // Create some variables we need to send to our PHP file
+   var url="../../php/script/Activite/supprimerActiviteDuree.php";
+   for (i = 0; i <= 19; i++){
+     let divSelection = document.getElementById("Activite-"+i);
+     if(divSelection.classList.contains("selectionne")){
+       var id = i+1;
+     }
+   }
+   var idDuree=x+1;
+   console.log(idDuree);
+
+   $(function($) {
+       $.ajax({
+         url: url,
+         type:"POST",
+         async: false,
+         data: {idActivite: id, idDuree:idDuree},
+         success: function(data) {
+           if(!data){
+               //alert("La modification s'est effectuée avec succès!");
+           }
+           else{
+             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+               console.log(data);
+           }
+         } ,
+         error: function() {
+           alert('Error occured');
+         }
+       });
+     });
+   }
+
 
  function ajouter(){
    // Create our XMLHttpRequest object
