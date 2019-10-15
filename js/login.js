@@ -33,7 +33,7 @@ function validerLogin(){
   var bool = false;
 
   if(siVide(courriel) || siVide(motDePasse)){
-    p.innerHTML = "Vous ne devez pas laisser les champs vide."; //MESSAGE À RÉSONANCE PLUS POSITIVE ,ex : Les deux champs doivent être remplis.
+    p.innerHTML = "Les deux champs doivent être remplis.";
     document.getElementById("logo").parentNode.insertBefore(div, document.getElementById("logo").nextSibling);
     div.appendChild(p);
     return bool;

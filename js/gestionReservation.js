@@ -1,92 +1,71 @@
 /**
- * Page JS pour inscription
+ * Page JS pour la gestion de Reservation
  *
- * Nom :         inscription.js
+ * Nom :         gestionReservation.js
  * Catégorie :   JavaScript
- * Auteur :      Karl Boutin
+ * Auteur :      William Gonin
  * Version :     1.0
  * Date de la dernière modification : 2019-09-30
  */
-
-//Lorsque le document est prêt
-var valide = true;
-
-window.onload = function(){
-  prenom = document.getElementById("prenom");
-  nom = document.getElementById("nom");
-  courriel = document.getElementById("courriel");
-  telephone = document.getElementById("telephone");
-  motDePasse = document.getElementById("motDePasse");
-};
-
-//Fonction si input vide qui montre que le champ est requis
- function inputRequired(e){
-    e.style.borderBottomColor = "#ff0000";
-    e.style.setProperty("--color", "#ff0000");
- }
-
- //Change la couleur du texte lorsqu'on sélectionne un élément de la liste mois
- function changeMois(){
-   var list = document.getElementById("mois");
-   var selectedValue = list.options[list.selectedIndex].value;
-
-   if(selectedValue != "vide"){
-     list.style.color = "#000000";
+ function selectionne(x){
+   for (i = 0; i <= 18; i++){
+   //  let divTitre = document.getElementById("Titre-"+i);
+   //  let divRabais = document.getElementById("Rabais-"+i);
+     let divSelection = document.getElementById("Activite-"+i);
+   //  divTitre.classList.remove("selectionne");
+   //  divRabais.classList.remove("selectionne");
+     divSelection.classList.remove("selectionne");
    }
+   let divSelection = document.getElementById("Activite-"+x);
+   //let divTitre = document.getElementById("Titre-"+x);
+  // let divRabais = document.getElementById("Rabais-"+x);
+       divSelection.classList.add("selectionne");
+     //  divTitre.classList.add("selectionne");
+     //  divRabais.classList.add("selectionne");
+
+   //document.getElementById('nom').value = divTitre.innerHTML;
+  //document.getElementById('rabais').value = divRabais.innerHTML;
  }
-
-//Change la couleur du texte lorsqu'on sélectionne un élément de la liste pays
- function changePays(){
-   var list = document.getElementById("pays");
-   var selectedValue = list.options[list.selectedIndex].value;
-
-   if(selectedValue != "vide"){
-     list.style.color = "#000000";
+ function selectionneDuree(x){
+   let divSelection = document.getElementById("Duree-"+x);
+   if(divSelection.classList.contains("selectionne")){
+     divSelection.classList.remove("selectionne");
+   }
+   else{
+     divSelection.classList.add("selectionne");
    }
  }
-
- //Fonction qui valide le formulaire avant de submit
- function validerFormInscription(){
-
-   if(siVide(prenom) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(motDePasse)){
-     indiqueChampVide();
-     document.getElementById("error-blank").style.display = "block";
-     return false;
+ function supprime(){
+   // Create our XMLHttpRequest object
+   var hr = new XMLHttpRequest();
+   // Create some variables we need to send to our PHP file
+   var url="../../php/script/Activite/supprimerActivite.php";
+   for (i = 0; i <= 19; i++){
+     let divSelection = document.getElementById("Activite-"+i);
+     if(divSelection.classList.contains("selectionne")){
+       var id = i+1;
+     }
    }
 
-
-   return true;
- }
-
-//Indique quels champs sont vides à l'utilisateur
- function indiqueChampVide(){
-
-   if(siVide(prenom)){
-     inputRequired(prenom);
-   }
-
-   if(siVide(nom)){
-     inputRequired(nom);
-   }
-
-   if(siVide(courriel)){
-     inputRequired(courriel);
-   }
-
-   if(siVide(telephone)){
-     inputRequired(telephone);
-   }
-
-   if(siVide(motDePasse)){
-     inputRequired(motDePasse);
-   }
-
- }
-
- //Verifie si le champ de l'element est vide
- function siVide(e){
-   if(e.value == null || e.value == ""){
-     return true;
-   }
-   return false;
- }
+   $(function($) {
+       $.ajax({
+         url: url,
+         type:"POST",
+         async: false,
+         data: {id: id},
+         success: function(data) {
+           console.log(data);
+           if(!data){
+               alert("La modification s'est effectuée avec succès!");
+           }
+           else{
+             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+               console.log(data);
+           }
+         } ,
+         error: function() {
+           alert('Error occured');
+         }
+       });
+     });
+}

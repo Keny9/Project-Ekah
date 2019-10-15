@@ -1,0 +1,47 @@
+.label-reservation{
+  margin-bottom: 0;
+}
+
+.input-inscr{
+  width: 100%;
+}
+
+#telephone{
+  width: 45%;
+}
+
+.input-tele{
+  margin-left: 5px;
+}
+
+#poste{
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
+  width: 20%;
+}
+
+#confirmerDemandeGroupe{
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
+}
+
+
+@media only screen and (min-width: 768px){
+  .label-reservation{
+    width: 170px;
+  }
+
+  .label-tele{
+    width: auto;
+  }
+
+  #telephone{
+    width: 63%;
+  }
+
+  #poste{
+    width: 15%;
+  }
+}

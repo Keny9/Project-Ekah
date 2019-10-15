@@ -23,6 +23,17 @@
 
     }
 
+
+    /*
+    * Méthode print
+    * echo le contenu des variables de la classe
+    */
+    public function print(){
+      echo "
+      identifiant : ".$this->getIdentifiant()."<br>
+      nom_questionnaire : ".$this->getNomQuestionnaire()."<br>";
+    }
+
     public function getIdentifiant(){
       return $this->identifiant;
     }

@@ -1,6 +1,5 @@
 <?php
-include_once '../../utils/connexion.php';
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/type_activite.php";
 //include_once '../../class/Activite/activite.php';
@@ -25,7 +24,7 @@ class GestionActivite{
 
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
-        $activite[] = new Activite( $row['identifiant'],
+        $activite[] = new Activite( $row['id'],
                                   $row['id_type_activite'],
                                   $row['nom'],
                                   $row['description_breve'],
