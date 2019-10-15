@@ -111,7 +111,7 @@ $activites = $gActivite->getAllActivite();
             <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>
           </div>
           <div class="group-input-inscr btn-espace">
-           <a href="#"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>
+           <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>
           </div>
         </form>
 

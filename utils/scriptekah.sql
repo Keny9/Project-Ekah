@@ -460,7 +460,11 @@ INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_in
 INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, 4, "Test4", "Client4", NOW());
 
 
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test@client.ca", "abc123");
+/*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
+
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "test2@admin.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (3, "test3@admin.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4, "test4@client.ca", "abc123");*/
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "client", "client");
 */
 INSERT INTO fichier_perso(id, fichier, description) VALUES (1, "abc123", "Fichier");
