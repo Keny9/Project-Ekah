@@ -91,6 +91,7 @@ $ville, NULL, NULL, $pays);
 // TODO on dirait que la méthode ajouterClient ne fonctionne pas correctement.
     // retourne TRUE même si les inserts fail
 if($gestion->ajouterClient($client, $motDePasse)){
+  //Afficher que l'inscription fut un succès, ensuite va à la page login
   header('Location: ../../../affichage/client/login.php');
 }
 ?>

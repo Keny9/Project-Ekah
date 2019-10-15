@@ -10,8 +10,20 @@
  */
 
 $(document).ready(function() {
-  // Prévenir un rafraichissement de page
-  /*$(window).on('beforeunload', function(){
-    return confirm("Les données ne seront pas sauvegardées?");
-  });*/
+
+  $('#confirmerQuestion').click(function(){
+    // TODO: valider le form
+    // TODO: ajouter la réservation avec ajax
+    redirect();
+  });
 });
+
+function submitForm(){
+  // TODO: Affiche un message de confirmation de la réservation
+
+}
+
+// Redirect le client après avoir fait sa réservation
+function redirect(){
+  window.location = "/Project-Ekah/affichage/client/accueil_client.php";
+}
