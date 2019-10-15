@@ -125,6 +125,18 @@ main{
   margin-top: 20px;
 }
 
+label{
+  cursor: auto !important;
+}
+
+.select-section{
+  font-weight: bold;
+}
+
+option:disabled{
+  color: #000 !important;
+}
+
 textarea:focus{
   outline: none;
   border: 1px solid #f0592a;

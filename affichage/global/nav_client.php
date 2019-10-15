@@ -20,7 +20,7 @@
       </a>
     </li>
     <li>
-      <a class="link-menu" href="#">
+      <a class="link-menu" href="/Project-Ekah/affichage/client/reservation_groupe.php">
         <span id="icon-groupe" class="icon-menu"></span>
         <span class="text-menu"><p>Demande de groupe</p></span>
       </a>
