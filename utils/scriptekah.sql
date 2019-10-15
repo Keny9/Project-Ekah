@@ -480,12 +480,12 @@ INSERT INTO etat_disponible(id, nom) VALUES (1, "Actif");
 INSERT INTO etat_disponible(id, nom) VALUES (2, "Reserve");
 INSERT INTO etat_disponible(id, nom) VALUES (3, "Annule");
 
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, '2019-10-12 11:00:00','2019-10-12 13:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, '2019-10-13 08:30:00','2019-10-13 12:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-13 17:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (3, 1, '2019-10-12 11:00:00','2019-10-12 13:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (5, 2, '2019-10-13 08:30:00','2019-10-13 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-13 17:00:00');
 
 
 
