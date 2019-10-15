@@ -59,7 +59,6 @@ function remplirCase(type,nom,description){
 
    if(divSelection.classList.contains("selectionne")){
      divSelection.classList.remove("selectionne");
-     console.log("GO GO GO");
      enleveDuree(x);
    }
    else{
@@ -114,7 +113,6 @@ function ajoutDuree(x){
      }
    }
    var idDuree=x+1;
-   console.log(idDuree);
 
    $(function($) {
        $.ajax({
@@ -138,7 +136,38 @@ function ajoutDuree(x){
      });
    }
 
+function ajouterQuestion(){
+  var id = document.getElementById('idQuestion').value;
+  var question = document.getElementById('question').value;
+  var idType = document.getElementById('typeQuestion').value;
+  var nbLigne = document.getElementById('nbLigne').value;
+  // Create our XMLHttpRequest object
+  var hr = new XMLHttpRequest();
+  // Create some variables we need to send to our PHP file
+  var url="../../php/script/Question/ajouterQuestion.php";
 
+  $(function($) {
+      $.ajax({
+        url: url,
+        type:"POST",
+        async: false,
+        data: {id:id,idType:idType, question:question, nbLigne: nbLigne},
+        success: function(data) {
+          console.log(data);
+          if(!data){
+              alert("La modification s'est effectuée avec succès!");
+          }
+          else{
+            //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+              console.log(data);
+          }
+        } ,
+        error: function() {
+          alert('Error occured');
+        }
+      });
+    });
+}
  function ajouter(){
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
