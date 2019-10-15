@@ -63,9 +63,9 @@ class GestionHoraire{
         $requete= "SELECT * FROM utilisateur
                      INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
                      INNER JOIN disponibilite ON disponibilite.id = id_disponibilite
-                   WHERE id_specialiste = ."$facilitateur->getId()
+                   WHERE id_specialiste = 1
                   ";
-
+//."$facilitateur->getId()"
         $result = $conn->query($requete);
         if(!$result){
           trigger_error($conn->error);

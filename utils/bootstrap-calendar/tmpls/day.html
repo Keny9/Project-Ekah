@@ -34,10 +34,16 @@
 	<% }; %>
 	<div id="cal-day-panel" class="clearfix">
 		<div id="cal-day-panel-hour">
+			<p hidden>
+				<%= id = 0%>
+			</p>
 			<% for(i = 0; i < hours; i++){ %>
 				<div class="cal-day-hour">
 					<% for(l = 0; l < cal._hour_min(i); l++){ %>
-						<div class="row-fluid cal-day-hour-part">
+						<p hidden>
+							<%= id++ %>
+						</p>
+						<div id="<%= id %>" class="row-fluid cal-day-hour-part">
 							<div class="span1 col-xs-1"><b><%= cal._hour(i, l) %></b></div>
 							<div class="span11 col-xs-11"></div>
 						</div>
@@ -45,7 +51,7 @@
 				</div>
 			<% }; %>
 		</div>
-		
+
 		<% _.each(by_hour, function(event){ %>
 			<div class="pull-left day-event day-highlight dh-<%= event['class'] %>" style="margin-top: <%= (event.top * 30) %>px; height: <%= (event.lines * 30) %>px">
 				<span class="cal-hours"><%= event.start_hour %> - <%= event.end_hour %></span>
