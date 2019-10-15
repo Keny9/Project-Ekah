@@ -52,7 +52,7 @@
   echo $date_fin;
 
   //Créer la disponibilité et l'ajouter dans la BD
-  $disponibilite = new Disponibilite(null, $date_debut, $date_fin);
+  $disponibilite = new Disponibilite(null, $date_debut, $date_fin, 1);
 
   echo "<br />";
 

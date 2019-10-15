@@ -278,6 +278,9 @@
   position: relative;
   max-width: 200px;
   overflow: hidden;
+
+  /* Pour ne pas afficher les rectangles (events de base) */
+  visibility: hidden;
 }
 #cal-day-box .day-highlight {
   line-height: 30px;
