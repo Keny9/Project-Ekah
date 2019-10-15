@@ -67,7 +67,7 @@
       <option value="Duree">1 heures</option>
     </select>
     <h6 class="prix texteEkha">Prix:</h6>
-    <input class="boxDuree" type="number" name="prix" min="0">
+    <input class="boxDuree" type="text" name="prix" min="0" value="Non fonctionelle scrum 1"></input>
     <h6 class="descriptionC texteEkha">Description de l'atelier:</h6>
     <textarea class="boxDescription" type="text" name="descriptionC" cols="40" rows="5" id="descriptionC"></textarea>
 </main>

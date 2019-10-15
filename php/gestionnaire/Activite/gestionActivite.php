@@ -34,6 +34,24 @@ class GestionActivite{
 
     return $activite;
   }
+  public function getActivite($id){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+    $activite = null;
+
+    $requete= "SELECT * FROM activite WHERE id = '$id';";
+
+    $result = $conn->query($requete);
+    if(!$result){
+      trigger_error($conn->error);
+    }
+
+    if($result->num_rows > 0){
+      $row = $result->fetch_assoc();
+      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue']);
+    }
+    return $activite;
+  }
   public function getAllTypeActivite(){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
