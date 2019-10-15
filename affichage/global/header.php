@@ -7,7 +7,7 @@ $seConnecterRedirect;
 
 // Si pas connecté
 if (!isset($_SESSION['userId'])){
-  $seConnecterRedirect = "/Project-Ekah/affichage/client/login.php";
+  $seConnecterRedirect = "/Project-Ekah/affichage/global/login.php";
 }
 else{
   if($_SESSION['userTypeId'] == 1){ // client

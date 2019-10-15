@@ -92,6 +92,6 @@ $ville, NULL, NULL, $pays);
     // retourne TRUE même si les inserts fail
 if($gestion->ajouterClient($client, $motDePasse)){
   //Afficher que l'inscription fut un succès, ensuite va à la page login
-  header('Location: ../../../affichage/client/login.php');
+  header('Location: /Project-Ekah/affichage/global/login.php');
 }
 ?>
