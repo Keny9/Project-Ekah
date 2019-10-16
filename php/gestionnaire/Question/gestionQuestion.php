@@ -9,9 +9,9 @@
  * Version :     1.1
  * Date de la dernière modification : 2019-10-03
  */
-include_once '../Outils/connexion.php';
-include_once '../../class/Question/question.php';
-include_once '../../class/Question/type_question.php';
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/type_question.php";
 class GestionQuestion{
 
 /*
@@ -63,7 +63,8 @@ Ajoute un employe à la BD ainsi que son adresse
   public function ajouterQuestion($question){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
-
+      $requete1="SET FOREIGN_KEY_CHECKS=0";
+      $result1 = $conn->query($requete1);
       //Crée l'employé
       $requete= "INSERT INTO question VALUES(
                   '".$question->getIdentifiant()."',
@@ -71,11 +72,14 @@ Ajoute un employe à la BD ainsi que son adresse
                   '".$question->getQuestion()."',
                   '".$question->getNb_ligne()."');";
       $result = $conn->query($requete);
+
+      $requete2="SET FOREIGN_KEY_CHECKS=1";
+      $result2 = $conn->query($requete2);
       if(!$result){
         trigger_error($conn->error);
       }
     }
-  }
+
 
   /*
       Modifie un employe dans la BD

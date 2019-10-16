@@ -9,10 +9,9 @@
     <script type="text/javascript" src="../../js/global.js"></script>
   </head>
   <body>
-    <?php include 'header_client.php' ?>
+    <?php include 'header.php' ?>
     <main>
-      <?php include 'side_menu.php' ?>
-      oui
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </main>
     <?php include 'footer.php' ?>
   </body>

@@ -1,3 +1,27 @@
+<?php
+if(!isset($_SESSION)){
+  session_start();
+}
+
+$seConnecterRedirect;
+
+// Si pas connecté
+if (!isset($_SESSION['userId'])){
+  $seConnecterRedirect = "/Project-Ekah/affichage/global/login.php";
+}
+else{
+  if($_SESSION['userTypeId'] == 1){ // client
+    $seConnecterRedirect = "/Project-Ekah/affichage/client/accueil_client.php";
+  }
+  else if($_SESSION['userTypeId'] == 2){ // admin
+    $seConnecterRedirect = "/Project-Ekah/affichage/admin/accueil_admin.php";
+  }
+}
+
+
+
+ ?>
+
 <header>
   <div class="header_inner">
     <div id="logoWrapper" class="wrapper">
@@ -34,6 +58,10 @@
                 <li> <a href="https://ekah.co/equipe">ÉQUIPE</a> </li>
               </ul>
           </div>
+        </div>
+
+        <div id="seConnecter" class="tab">
+          <a href="<?php echo $seConnecterRedirect ?>">ESPACE CLIENT</a>
         </div>
         <div id="contactNav" class="tab">
           <a href="https://ekah.co/contact-1">CONTACT </a>
