@@ -222,8 +222,8 @@ window.onload = function(){
 
    // Si le courriel existe déjà dans la BD
    if(courrielExiste()){
-     alert("le courriel existe déjà");
-     // TODO: gérer ce cas
+     inputRequired(courriel);
+     document.getElementById("error-courriel").style.display = "block";
      return false;
    }
 
@@ -442,7 +442,6 @@ window.onload = function(){
  // Retourne si le courriel entré existe déjà dans la BD
  function courrielExiste(){
    var bool = true;
-   alert($('#courriel').val());
    $.ajax({
      type: "POST",
      async: false,

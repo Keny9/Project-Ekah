@@ -7,8 +7,8 @@
 * Nom :         GestionClientAjout
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
-* Version :     1.1
-* Date de la dernière modification : 2019-10-04
+* Version :     1.3
+* Date de la dernière modification : 2019-10-07
 */
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
@@ -42,7 +42,7 @@ class GestionClientAjout{
 
 
     // Ajoute le client à la BD
-    // TODO: hash le password
+    // TODO: Est-ce que la transaction fonctionne?
     public function ajouterClient($client, $motDePasse){
       $conn = new Connexion();
 
@@ -108,14 +108,13 @@ class GestionClientAjout{
 
           // Commit la transaction
           $conn->do()->commit();
-
+          return true;
         } catch (Exception $e) {
           // Rollback la transaction
           $conn->do()->rollback();
           echo "Erreur try-catch : ".$e."<br>";
+          return false;
         }
-
-
       }
     }
     ?>

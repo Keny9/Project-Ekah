@@ -90,7 +90,7 @@ main{
 }
 
 .group-input-inscr{
-  margin-top: 20px; /*A verifier pour l'espacement*/
+  margin-top: 20px;
 }
 
 .input-date{
@@ -223,6 +223,13 @@ input:focus:-moz-placeholder {
 .block-requis-psw p{
   display: inline-block;
   margin-left: 15px;
+}
+
+.error-courriel{
+  display: none;
+  font-size: 12px;
+  padding-left: 5px;
+  color: #D92B1A;
 }
 
 /*****************Pour le responsive de la page*********************/

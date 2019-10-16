@@ -16,8 +16,10 @@
 	padding: 0;
 }
 
-body{
+html,body{
+  height: 100%;
   margin: 0;
+  padding: 0;
   background-color: #FFFFFF;
   background-color: rgba(255,255,255,.9);
 }
@@ -32,7 +34,6 @@ header{
   background-color: #034e54;
   height:83px;
   max-height: 83px;
-
   width:100%;
   padding: 0 20px;
 }
@@ -170,7 +171,301 @@ header{
     background-color: #fff;
   color: #000;
 }
+#seConnecter{
+  order: 0;
+  margin-left: 11px;
+  line-height: 30px;
+  padding-top:2px;
+  height: 36px;
+}
+
+#seConnecter a{
+  border: 2px solid #fff;
+  border-radius: 100px;
+  color: #fff;
+  transition: .15s;
+  padding: 3px 15px;
+}
+#seConnecter a:hover{
+    background-color: #fff;
+  color: #000;
+}
 #tab-1{order:1;}
 #tab-2{order:2;}
 #tab-3{order:3;}
 #tab-4{order:4;}
+
+/*Menu navigation*/
+.side-menu{
+  display: inline-block;
+  margin: 50px 0 0 50px;
+  width: 285px;
+  height: auto;
+  background-color: #02373B;
+}
+
+.list-menu > li{
+  display: inline-block;
+  width: 100%;
+  list-style: none;
+  color: #FFFFFF;
+}
+
+.hr-menu{
+  display: block;
+  height: 1px;
+  width: 85%;
+  margin: 0 auto;
+  border-color: #0696A1;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.link-menu{
+  font-size: 15px;
+  display: block;
+  padding: 15px 10px 15px 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.link-menu:hover{
+  background-color: #02AEE0;
+}
+
+.icon-menu{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  display: inline-block;
+  width: 50px;
+  color: #FFFFFF;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.text-menu{
+  display: inline-block;
+}
+
+#icon-compte:before{
+  content: '\f2bd';
+}
+
+#icon-rendezvous:before{
+  content: '\f2b5';
+}
+
+#icon-form:before{
+  content: '\f70e';
+}
+
+#icon-carte:before{
+  content: '\f09d';
+}
+
+#icon-groupe:before{
+  content: '\f0c0';
+}
+
+#icon-panier:before{
+  content: '\f07a';
+}
+
+#icon-direction:before{
+  content: '\f124';
+}
+
+#icon-user:before{
+  content: '\f007';
+}
+
+.footer-main{
+  display: block;
+  width: 1050px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 64px 32px 64px 32px;
+}
+
+
+/*Footer */
+footer{
+  clear: both;
+  position: relative;
+  bottom: 0;
+  width:100%;
+  height: 602px;
+  max-height: 602px;
+  background-color: #034e54;
+}
+
+.contact-link{
+  margin-top: 1.5em;
+  text-align: center;
+  padding: 20px;
+}
+
+.contact-link a{
+  opacity: 1;
+  font-size: 15px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.contact-link a:hover{
+  opacity: 0.8;
+}
+
+.block-photo{
+  display: block;
+  margin-top: 20px;
+  padding: 15px;
+}
+
+.photo{
+  display: inline-block;
+  background-color: orange;
+  margin-left: 10px;
+  width: 225px;
+  height: 225px;
+  cursor: pointer;
+}
+
+.photo a img{
+  width: 225px;
+  height: 225px;
+}
+
+.block-media{
+  margin-top: 30px;
+}
+
+.media-center{
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.media{
+  color: #000;
+  display: inline-block;
+  font-family: "Font Awesome 5 Brands";
+  font-weight: 900;
+  display: inline-block;
+  width: 35px;
+}
+
+.media:before{
+  font-size: 21px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.media:hover:before{
+  opacity: 1;
+  text-decoration: none;
+  color: #000;
+}
+
+.media:active:before{
+  text-decoration: none;
+  color: #000;
+}
+
+#instagram:before{
+  content: '\f16d';
+}
+
+#facebook:before{
+  content: '\f39e';
+}
+
+#spotify:before{
+  content: '\f1bc';
+}
+
+#email i{
+  font-size: 21px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+#email i:hover{
+  opacity: 1;
+}
+
+.ekah-txt{
+  font-size: 14px;
+  color: #FFFFFF;
+  margin-top: 38px;
+  text-align: center;
+  opacity: 0.4;
+}
+
+.photo-centre{
+  display: inline-block;
+}
+
+/*****************Pour le responsive de la page*********************/
+
+@media only screen and (max-width: 768px) { /*Cellulaire*/
+
+  footer{
+    height: auto;
+    max-height: none;
+  }
+
+  .footer-main{
+    width: 100%;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .block-photo{
+    width: 295px;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .photo{
+    width: 130px;
+    height: 130px;
+    margin-bottom: 10px;
+  }
+
+  .photo a img{
+    width: 130px;
+    height: 130px;
+  }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1100px){ /*tablette*/
+  footer{
+    height: auto;
+    max-height: none;
+  }
+
+  .footer-main{
+    width: 100%;
+  }
+
+  .block-photo{
+    width: 610px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .photo{
+    width: 130px;
+    height: 130px;
+  }
+
+  .photo a img{
+    width: 130px;
+    height: 130px;
+  }
+}

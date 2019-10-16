@@ -8,6 +8,8 @@
    * Version :     1.0
    * Date de la dernière modification : 2019-10-03
    */
+   session_start();
+   session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +28,7 @@
 
     <main>
       <div class="inscription">
-        <div class="logo-inscr">
+        <div class="logo-inscr" id="logo">
           <img src="../../img/logo_ekah_header.png" alt="Ekah">
         </div>
         <form class="" id="formulaireLogin" action="" method="post">

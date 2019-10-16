@@ -46,7 +46,7 @@ CREATE TABLE question (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_question INT NOT NULL,
 question VARCHAR(100) NOT NULL,
-nb_ligne INT NOT NULL,
+nb_ligne INT,
 FOREIGN KEY (id_type_question) REFERENCES type_question(id)
 );
 
@@ -58,6 +58,7 @@ nom_questionnaire  VARCHAR(100) NOT NULL
 CREATE TABLE ta_questionnaire_reservation_question (
 id_questionnaire_res INT NOT NULL,
 id_question INT NOT NULL,
+ordre INT NOT NULL,
 
 PRIMARY KEY (id_questionnaire_res, id_question),
 FOREIGN KEY (id_questionnaire_res) REFERENCES questionnaire_reservation(id),
@@ -101,20 +102,7 @@ FOREIGN KEY (id_activite) REFERENCES activite(id)
 );
 
 
-CREATE TABLE reservation (
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id_paiement INT NOT NULL,
-id_emplacement INT NOT NULL,
-id_suivi INT NOT NULL,
-id_activite INT NOT NULL,
-date_rendez_vous DATE NOT NULL,
-heure_debut INT NOT NULL,
-heure_fin INT NOT NULL,
-FOREIGN KEY (id_paiement) REFERENCES paiement(id),
-FOREIGN KEY (id_emplacement) REFERENCES emplacement(id),
-FOREIGN KEY (id_suivi) REFERENCES suivi(id),
-FOREIGN KEY (id_activite) REFERENCES activite(id)
-);
+
 
 
 CREATE TABLE type_groupe (
@@ -173,12 +161,13 @@ nom  VARCHAR(100) NOT NULL
 CREATE TABLE adresse (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_province INT,
-ville VARCHAR(100),
+id_ville INT,
 no_civique INT,
 rue VARCHAR(100),
 code_postal VARCHAR(10),
 pays VARCHAR(100),
-FOREIGN KEY (id_province) REFERENCES province(id)
+FOREIGN KEY (id_province) REFERENCES province(id),
+FOREIGN KEY (id_ville) REFERENCES ville(id)
 );
 
 
@@ -188,17 +177,17 @@ etat_disponible VARCHAR(10) NOT NULL
 );
 
 
-CREATE TABLE jour (
+CREATE TABLE etat_disponible (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nom VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE disponibilite (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id_jour INT NOT NULL,
-heure_debut date NOT NULL,
-heure_fin date NOT NULL,
-FOREIGN KEY (id_jour) REFERENCES jour(id)
+id_etat INT NOT NULL,
+heure_debut datetime NOT NULL,
+heure_fin datetime NOT NULL,
+FOREIGN KEY (id_etat) REFERENCES etat_disponible(id)
 );
 
 
@@ -218,15 +207,12 @@ FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
 FOREIGN KEY (fk_id_adresse) REFERENCES adresse(id)
 );
 
+
+
 ALTER TABLE compte_utilisateur
 ADD FOREIGN KEY (fk_utilisateur) REFERENCES utilisateur(id);
 
-CREATE TABLE inscription (
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id_utilisateur INT NOT NULL,
-date_inscription date NOT NULL,
-FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id)
-);
+
 
 CREATE TABLE specialite (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -244,13 +230,47 @@ FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id)
 CREATE TABLE groupe (
 no_groupe INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_groupe INT NOT NULL,
-id_inscription INT,
 nom_entreprise VARCHAR(100) NOT NULL,
 nom_organisateur VARCHAR(50) NOT NULL,
 nb_participant INT NOT NULL,
-FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id),
-FOREIGN KEY (id_inscription) REFERENCES inscription(id)
+FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id)
+);
 
+
+CREATE TABLE inscription (
+id_utilisateur INT NOT NULL,
+id_groupe INT NOT NULL,
+
+date_inscription datetime default CURRENT_TIMESTAMP,
+
+PRIMARY KEY (id_utilisateur, id_groupe),
+FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id),
+FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
+);
+
+CREATE TABLE reservation (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_paiement INT,
+id_emplacement INT,
+id_suivi INT,
+id_activite INT,
+id_groupe INT,
+date_rendez_vous DATE NOT NULL,
+heure_debut INT NOT NULL,
+heure_fin INT NOT NULL,
+FOREIGN KEY (id_paiement) REFERENCES paiement(id),
+FOREIGN KEY (id_emplacement) REFERENCES emplacement(id),
+FOREIGN KEY (id_suivi) REFERENCES suivi(id),
+FOREIGN KEY (id_activite) REFERENCES activite(id),
+FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
+);
+
+CREATE TABLE ta_disponibilite_specialiste (
+id_specialiste INT NOT NULL,
+id_disponibilite INT NOT NULL,
+PRIMARY KEY (id_specialiste, id_disponibilite),
+FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id),
+FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id)
 );
 
 
@@ -264,7 +284,11 @@ INSERT INTO ville(id, nom) VALUES (2, "Bromont");
 INSERT INTO ville(id, nom) VALUES (3, "Montréal");
 INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 'Sherbrooke', 454, "Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 1, 454, "Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (2, 1, 1, 454, "Magog St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (3, 1, 2, 454, "Boul Montreal", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (4, 1, 3, 454, "Quebec St", "J1J 1J1", "Canada");
+
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
 
@@ -283,17 +307,102 @@ INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Aujourd'hui, nous avons fai
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
 
-INSERT INTO question(id, id_type_question, question, nb_ligne) VALUES (1, 2, "Cocher cette case si vous avez deja fait du Yoga",1 );
+INSERT INTO question(id, id_type_question, question, nb_ligne)
+VALUES (1,1, "Autres informations pertinentes en préparation au rendez-vous", 6);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (2,1, "Souffrez-vous de problèmes de santé ou des maladies? Si oui, lesquelles?", 3);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (3,1, "Prenez-vous des médicaments? Si oui, lesquels et pour quelles raisons?", 3);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (4,1, "Avez-vous actuellement des douleurs ou des blessures? Si oui, lesquelles?", 3);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (5,1, "Avez-vous des antécédants de douleurs ou de blessures? Si oui, lesquels?", 3);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (6,1, "Faites-vous affaires avec d'autres professionnels de la santé? Si oui, lesquels? (nom, coordonnées)", 3);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (7,1, "Quels sont vos objectifs d’entraînement?", 4);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (8,1, "Combien de fois par semaine pratiquez-vous de l’activité physique?", 1);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (9,1, "En moyenne, combien de temps par séance?", 1);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (10,1, "Avez-vous des allergies (alimentaires, médicaments, autres) ? Si oui, lesquelles?", 3);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (11,1, "Quels sont vos objectifs de changement d’habitudes?", 4);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (12,1, "Combien d’heures en moyenne passez-vous en position assise par jour? (travail, transport, ordinateur, lecture, etc.)", 1);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (13,1, "Combien d’heures en moyenne passez-vous en nature par semaine?", 1);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (14,1, "Combien de repas mangez-vous par jour?", 1);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (15,1, "Consommez-vous du tabac ou de l’alcool?", 2);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (16,1, "Avez-vous de la difficulté à dormir, vous endormir, récupérer suite aux nuits de sommeil?", 2);
+INSERT INTO question(id,id_type_question, question, nb_ligne)
+VALUES (17,1, "Avez-vous déjà pratiqué la méditation et/ou diverses postures de yoga?", 1);
 
-INSERT INTO questionnaire_reservation(id, nom_questionnaire) VALUES (1, "Questionnaire médical");
-INSERT INTO questionnaire_reservation(id, nom_questionnaire) VALUES (2, "Questionnaire Entrainement en équipe");
+INSERT INTO questionnaire_reservation(id,nom_questionnaire) VALUES (1,"Questionnaire médical");
+INSERT INTO questionnaire_reservation(id,nom_questionnaire) VALUES (2,"Soins à domicile");
+INSERT INTO questionnaire_reservation(id,nom_questionnaire) VALUES (3,"Entraînement à domicile");
+INSERT INTO questionnaire_reservation(id,nom_questionnaire) VALUES (4,"Habitudes de vie à domicile");
+INSERT INTO questionnaire_reservation(id,nom_questionnaire) VALUES (5,"Yoga et méditation à domicile");
+INSERT INTO questionnaire_reservation(id,nom_questionnaire) VALUES (6,"Programme d'entraînement (en ligne)");
 
-INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question) VALUES (1, 1);
-INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question) VALUES (2, 1);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 2, 1);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 3, 2);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 4, 3);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 5, 4);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 6, 5);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 1, 6);
 
-INSERT INTO type_activite(id, nom) VALUES (1, "En Atelier");
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 2,1);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 3,2);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 4,3);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 5,4);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 6, 5);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 7, 6);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 8, 7);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 9, 8);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 1, 9);
+
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 2, 1);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 3, 2);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 10, 3);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 6, 4);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 11, 5);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 8, 6);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 9, 7);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 12, 8);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 13, 9);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 14, 10);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 15, 11);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 16, 12);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 1, 13);
+
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 2, 1);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 3, 2);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 4, 3);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 5, 4);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 6, 5);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 17, 6);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 1, 7);
+
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 2, 1);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 3, 2);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 4, 3);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 5, 4);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 6, 5);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 7, 6);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 8, 7);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 9, 8);
+INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 1, 9);
+
+
+
+INSERT INTO type_activite(id, nom) VALUES (1, "En atelier");
 INSERT INTO type_activite(id, nom) VALUES (2, "Services à domicile");
-INSERT INTO type_activite(id, nom) VALUES (3, "En En ligne");
+INSERT INTO type_activite(id, nom) VALUES (3, "En ligne");
 INSERT INTO type_activite(id, nom) VALUES (4, "En groupe");
 
 
@@ -320,7 +429,12 @@ INSERT INTO activite(id, id_type_activite, nom, description_breve, description_l
 INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (18, 4, "ENTRAÎNEMENTS EN ÉQUIPE", "Nos entraînements de groupe permettent de cultiver la dynamique d’équipe dans une atmosphère ludique et énergisante. Séances  privés au bureau et en plein-air..", "LONGUE");
 
 
-INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (1, 1);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (1, 2);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (2, 3);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (3, 4);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (4, 5);
+INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (14, 6);
+
 
 INSERT INTO duree(id, temps) VALUES (1, 1);
 INSERT INTO duree(id, temps) VALUES (2, 2);
@@ -334,20 +448,24 @@ INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 1);
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 2);
 
 
-
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, '2019-12-12', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, '2020-02-02', 13, 14);
-
-INSERT INTO type_groupe(id, type_groupe) VALUES (1, "individuel");
-INSERT INTO type_groupe(id, type_groupe) VALUES (2, "groupe");
+INSERT INTO type_groupe(id, type_groupe) VALUES (1, "Réservation individuelle");
+INSERT INTO type_groupe(id, type_groupe) VALUES (2, "Rassemblateur");
+INSERT INTO type_groupe(id, type_groupe) VALUES (3, "Groupe");
 
 INSERT INTO type_utilisateur(id, nom, description) VALUES (1, "Client", "Le client");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "Un facilitateur");
 
-INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, 1, "Test", "Client", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, "Test", "Facilitateur1", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 2, "Test2", "Facilitateur2", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 3, "Test3", "Facilitateur3", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, 4, "Test4", "Client4", NOW());
 
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test@client.ca", "abc123");
+
+/*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
+
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "test2@admin.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (3, "test3@admin.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4, "test4@client.ca", "abc123");*/
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "client", "client");
 */
 INSERT INTO fichier_perso(id, fichier, description) VALUES (1, "abc123", "Fichier");
@@ -357,31 +475,42 @@ INSERT INTO questionnaire_remplit(id, fichier, description) VALUES (1, "abc123",
 INSERT INTO profil(id, id_questionnaire_remplit, id_fichier_perso, test_psychometrique, parlez_nous_de_vous) VALUES (1, 1, 1, "BLOB", "Je suis quelqu'un de tr;s actif.");
 
 
-INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (1, "Disponible");
-INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (2, "Non Disponible");
+INSERT INTO etat_disponible(id, nom) VALUES (1, "Actif");
+INSERT INTO etat_disponible(id, nom) VALUES (2, "Reserve");
+INSERT INTO etat_disponible(id, nom) VALUES (3, "Annule");
 
-INSERT INTO jour(id, nom) VALUES (1, "Lundi");
-INSERT INTO jour(id, nom) VALUES (2, "Mardi");
-INSERT INTO jour(id, nom) VALUES (3, "Mercredi");
-INSERT INTO jour(id, nom) VALUES (4, "Jeudi");
-INSERT INTO jour(id, nom) VALUES (5, "Vendredi");
-INSERT INTO jour(id, nom) VALUES (6, "Samedi");
-INSERT INTO jour(id, nom) VALUES (7, "Dimanche");
-
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, 9,10);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, 13,14);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, 9,10);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, 19,20);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, 10,11);
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, 12,13);
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (3, 1, '2019-10-12 11:00:00','2019-10-12 13:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (5, 2, '2019-10-13 08:30:00','2019-10-13 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-13 17:00:00');
 
 
-INSERT INTO inscription(id, id_utilisateur, date_inscription) VALUES (1, 1, '2020-02-22');
 
 
 INSERT INTO specialite(id, nom) VALUES (1, "Meditation");
 
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, "APPLE", "Steve Jobs", 45);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (2, 1, "POMIER", "Steve Jobs", 45);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (3, 1, "BANANE", "Steve Jobs", 45);
+
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 2, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 1, '2020-02-22');
+
+
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, '2019-12-12', 8, 9);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, '2020-02-02', 13, 14);
+
+
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
 
-INSERT INTO groupe(no_groupe, id_type_groupe, id_inscription, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, 1, "APPLE", "Steve Jobs", 45);
 
+
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,3);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
