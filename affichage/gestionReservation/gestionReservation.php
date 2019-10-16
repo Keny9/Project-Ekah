@@ -39,7 +39,7 @@
 
     <div class="reservationMain">
       <div class="reservationHeader"><img class="imgHeader"src="../../img/logo_ekah_header.png" alt="Ekah"></div>
-      <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg" id="titre">Soins a domicile</div></div>
+      <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <h1 class="titreImg" id="titre">Soins a domicile</h1></div>
       <h2 class="reservez texteEkha">Réservez dès maintenant</h2></br>
       <h6 class="choisirServ texteEkha">Choisir un service:</h6>
       <h6 class="choisirDuree texteEkha">Quelles durées sont acceptées:</h6></br></br>
