@@ -22,37 +22,40 @@ function remplir(x){
   var id = x+1;
   myData={id:id};
   var url="../../php/script/Activite/remplirActivite.php";
-            return new Promise((resolve, reject) => {
+              $(function($) {
                 $.ajax({
                   url: url,
                   type:"POST",
                   async: false,
                   data: myData,
                   success: function(data) {
-                    console.log(resolve(remplirCase(data.idType,data.nom,data.descriptionC)));
+
                     console.log(data);
-                    console.log(data.idType);
+                    document.getElementById("titre").innerHTML=data;
+                    document.getElementById("nom").innerHTML=data;
+                    document.getElementById("type").value=data.idType;
+                    document.getElementById("descriptionC").innerHTML=data.descriptionC;
 
                     //remplirCase(data.idType,data.nom,data.descriptionC)
 
                   } ,
                   error: function() {
-                    reject(alert('Error occured'));
+                    alert('Error occured');
                   }
                 });
               });
 }
 
-function remplirCase(type,nom,description){
-  let divTitre = document.getElementById("titre");
-  let divNom = document.getElementById("nom");
-  let divType = document.getElementById("type");
-  let divDescriptionC = document.getElementById("descriptionC");
-  divTitre.innerHTML=nom;
-  divNom.innerHTML=nom;
-  divType.value=type;
-  divDescriptionC.innerHTML=description;
-}
+//function remplirCase(type,nom,description){
+  //document.getElementById("titre").innerHTML=nom;
+  //document.getElementById("nom").innerHTML=nom;
+  //document.getElementById("type").value=type;
+  //document.getElementById("descriptionC").innerHTML=description;
+  //divTitre.innerHTML=nom;
+  //divNom.innerHTML=nom;
+  //divType.value=type;
+  //divDescriptionC.innerHTML=description;
+//}
  function selectionneDuree(x){
 
    let divSelection = document.getElementById("Duree-"+x);
