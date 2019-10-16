@@ -33,8 +33,8 @@ function remplir(x){
                     console.log(data);
                     document.getElementById("titre").innerHTML=data;
                     document.getElementById("nom").innerHTML=data;
-                    document.getElementById("type").value=data.idType;
-                    document.getElementById("descriptionC").innerHTML=data.descriptionC;
+                    document.getElementById("type").value=data;
+                    document.getElementById("descriptionC").innerHTML=data;
 
                     //remplirCase(data.idType,data.nom,data.descriptionC)
 
