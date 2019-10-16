@@ -161,13 +161,12 @@ nom  VARCHAR(100) NOT NULL
 CREATE TABLE adresse (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_province INT,
-id_ville INT,
+ville varchar(100),
 no_civique INT,
 rue VARCHAR(100),
 code_postal VARCHAR(10),
 pays VARCHAR(100),
 FOREIGN KEY (id_province) REFERENCES province(id),
-FOREIGN KEY (id_ville) REFERENCES ville(id)
 );
 
 
@@ -279,15 +278,15 @@ INSERT INTO province(id, nom) VALUES (2, "Ontario");
 INSERT INTO province(id, nom) VALUES (3, "Nouvelle Écosse");
 INSERT INTO province(id, nom) VALUES (4, "Nouveau Brunswick");
 
-INSERT INTO ville(id, nom) VALUES (1, "Sherbrooke");
-INSERT INTO ville(id, nom) VALUES (2, "Bromont");
-INSERT INTO ville(id, nom) VALUES (3, "Montréal");
-INSERT INTO ville(id, nom) VALUES (4, "Québec");
+-- INSERT INTO ville(id, nom) VALUES (1, "Sherbrooke");
+-- INSERT INTO ville(id, nom) VALUES (2, "Bromont");
+-- INSERT INTO ville(id, nom) VALUES (3, "Montréal");
+-- INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
-INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 1, 454, "Terril", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (2, 1, 1, 454, "Magog St", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (3, 1, 2, 454, "Boul Montreal", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (4, 1, 3, 454, "Quebec St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, "Sherbrooke", 454, "Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (2, 1, "Magog", 454, "Magog St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (3, 1, "Montreal", 454, "Boul Montreal", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (4, 1, "Québec", 454, "Quebec St", "J1J 1J1", "Canada");
 
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
