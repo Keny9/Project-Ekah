@@ -19,11 +19,14 @@ class Disponibilite{
   private $id;
   private $heure_debut;
   private $heure_fin;
+  private $etat;
 
-  function __construct($id, $heure_debut, $heure_fin){
+  function __construct($id, $heure_debut, $heure_fin, $etat){
     $this->setId($id);
     $this->setHeureDebut($heure_debut);
     $this->setHeureFin($heure_fin);
+    $this->setEtat($etat);
+
   }
 
   /*
@@ -38,6 +41,9 @@ class Disponibilite{
   public function setHeureFin($heure_fin){
     $this->heure_fin = $heure_fin;
   }
+  public function setEtat($etat){
+    $this->etat = $etat;
+  }
 
 /*
 * GETTEUR
@@ -50,6 +56,9 @@ class Disponibilite{
   }
   public function getHeureFin(){
     return $this->heure_fin;
+  }
+  public function getEtat(){
+    return $this->etat;
   }
 }
  ?>

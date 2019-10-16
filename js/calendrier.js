@@ -45,24 +45,14 @@ $(document).ready(function() {
         envoyeDispo(heure, date);
       }else{
         $this.css("background-color", "rgba(0, 0, 0, 0)");
+
+        supprimerDispo(heure, date);
       }
 
    }
   );
 
 });
-
-
-function toutVert(){
-  $.each($('.cal-day-hour-part'), function(index, $event){
-    // var $this = $(this);
-    // $this.css("background-color", "green");
-
-  });
-
-
-}
-
 
 
 
@@ -105,6 +95,49 @@ function envoyeDispo(heure, date){
   });
   return bool;
 }
+
+function supprimerDispo(heure, date){
+
+  var dates = date.split(" ");
+  var jour = dates[1];
+  var annee = dates[3];
+  var mois = convertirMois(dates[2]);
+
+  //Pour avoir l'heure + 30 minutes
+  var heures = heure.split(":");
+  var moment = new Date(annee, mois, jour, heures[0], heures[1]);
+  moment = new Date(moment.getTime() + 30*60000);
+
+  // console.log(moment);
+
+  var heure_debut = heure;
+  var heure_fin = "" + moment.getHours() + ":" + moment.getMinutes();
+
+   // console.log(annee + " " + mois + " " + jour + " " + heure_debut + " " + heure_fin);
+
+
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "../../php/script/Horaire/supprimerDisponibilite.php",
+    data: {"annee": annee,
+           "mois": mois,
+           "jour": jour,
+           "heure_debut": heure_debut,
+           "heure_fin": heure_fin
+         },
+    success: function(result){
+        bool = true;
+    },
+    error: function (jQXHR, textStatus, errorThrown) {
+        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+    }
+  });
+  return bool;
+}
+
+
+
 
 
 function convertirMois(mois){

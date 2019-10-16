@@ -48,12 +48,12 @@ $txt = utf8_encode("Une demande de groupe a été effectué pour le service suiv
 
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
     $mail->isSMTP();                                            // Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'karlboutin98@gmail.com';               // SMTP username
-    $mail->Password   = '???';                       // SMTP password
+    $mail->Username   = 'ekahinfo@gmail.com';                   // SMTP username
+    $mail->Password   = 'Facilitateur2019';                     // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
     $mail->Port       = 587;                                    // TCP port to connect to
 
@@ -69,9 +69,13 @@ try {
     $mail->AltBody = strip_tags($body);
 
     $mail->send();
-    echo 'Message has been sent';
-    header("Location: ../../affichage/client/reservation_groupe.php?mailsend");
+    $status = "success";
+    $response = 'Message has been sent';
+    exit(json_encode(array("status" => $status, "response" => $response)));
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    $status = "failed";
+    $response = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    exit(json_encode(array("status" => $status, "response" => $response)));
 }
+
 ?>

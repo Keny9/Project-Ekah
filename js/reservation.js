@@ -9,7 +9,7 @@
  */
 
 $(document).ready(function() {
-  listInput = document.querySelectorAll("input, textarea");
+  listInput = document.querySelectorAll("input, textarea, select");
 
   listInput.forEach(function(e){
     e.addEventListener("focusin", function(){
@@ -34,7 +34,12 @@ $(document).ready(function() {
     });
   });
 
-  service = document.getElementById("service-groupe");
+  //Input de la page reservation
+  service = document.getElementById("service");
+  duree = document.getElementById("duree");
+
+  //Input de la page reservation groupe
+  serviceGroupe = document.getElementById("service-groupe");
   entreprise = document.getElementById("entreprise");
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
@@ -52,8 +57,18 @@ $(document).ready(function() {
 
   // FORM SUBMIT
   $('#btnSuivant').click(function(){
-    clickSuivant();
+    if(valideReservation()){
+        clickSuivant();
+    }
+    return;
   });
+
+  //Fermer la fenetre modale
+  $('#close-demande').click(function(){
+    $(this).css("display", "none");
+    window.location.href = "/Project-Ekah/affichage/client/accueil_client.php";
+  });
+
 });
 
 
@@ -73,13 +88,27 @@ function clickSuivant(){
    e.style.borderColor = "#ff0000";
  }
 
+//Valider le formulaire de réservation
+ function valideReservation(){
+   if(siSelectVide(service) || siSelectVide(duree)){
+     indiqueChampVideReservation();
+     return false;
+   }
+   return true;
+ }
+
 //Lors de l'envoi d'une demande pour une reservation de groupe.
 function sendEmail(){
 
-  if(siSelectVide(service) && siVide(entreprise) && siVide(nom) && siVide(courriel) && siVide(telephone) && siVide(vous) && siVide(message)){
+  if(siSelectVide(serviceGroupe) || siVide(entreprise) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(vous) || siVide(message)){
     indiqueChampVideGroupe();
     return false;
   }
+
+  document.getElementById("confirmerDemandeGroupe").disabled = true;
+  window.scrollTo(0,-300);
+  $("#loader").css("display", "block");
+  $("#form-reservation-groupe").css("display", "none");
 
   $.ajax({
     url: '../../php/script/Reservation/demandeGroupe.php',
@@ -87,20 +116,27 @@ function sendEmail(){
     dataType: 'json',
     contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
-      'service': service.options[service.selectedIndex].value,
-      'entreprise': entreprise.value,
-      'nom': nom.value,
-      'courriel': courriel.value,
-      'telephone': telephone.value,
-      'poste': poste.value,
-      'vous': vous.value,
-      'message': message.value
+      service: serviceGroupe.options[serviceGroupe.selectedIndex].value,
+      entreprise: entreprise.value,
+      nom: nom.value,
+      courriel: courriel.value,
+      telephone: telephone.value,
+      poste: poste.value,
+      vous: vous.value,
+      message: message.value
     }, success: function(response){
-      console.log("Success");
       console.log(response);
+      if(response.status == "success"){
+        $("#loader").css("display", "none");
+        $('#modal-demande').css("display", "block");
+        $("#form-reservation-groupe").css("display", "block");
+      }
     }, error: function(response){
-      console.log("Error :");
       console.log(response);
+      $("#loader").css("display", "none");
+      alert("Il y a eu un problème lors de l'envoi du courriel.");
+      document.getElementById("confirmerDemandeGroupe").disabled = false;
+      $("#form-reservation-groupe").css("display", "block");
     }
   });
 }
@@ -108,8 +144,8 @@ function sendEmail(){
 //Indique quels champs sont vides à l'utilisateur
  function indiqueChampVideGroupe(){
 
-   if(siSelectVide(service)){
-    inputRequired(service);
+   if(siSelectVide(serviceGroupe)){
+    inputRequired(serviceGroupe);
    }
 
    if(siVide(entreprise)){
@@ -135,8 +171,14 @@ function sendEmail(){
    if(siVide(message)){
      textAreaRequired(message);
    }
-
  }
+
+//Indique les champos invalide dans la page de reservation
+function indiqueChampVideReservation(){
+  if(siSelectVide(service)){inputRequired(service);}
+  if(siSelectVide(duree)){inputRequired(duree);}
+}
+
 //Verifie si le champ de l'element est vide
 function siVide(e){
   if(e.value == null || e.value == ""){
@@ -153,11 +195,16 @@ function siVide(e){
    return false;
  }
 
+//Lorsque l'item de la liste change
  function changeListe(e){
    var selectedValue = e.options[e.selectedIndex].value;
+   var option = document.getElementsByClassName("select-section");
 
    if(selectedValue != "vide"){
      e.style.color = "#000000";
+     for(i = 0;i < option.length; i++){
+       option[i].style.color = "#000000";
+     }
    }
  }
 

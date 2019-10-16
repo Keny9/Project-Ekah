@@ -25,6 +25,46 @@
    border-color:#000;
    background-color:#D3D3D3;
  }
+ .inputQuestion{
+   width:250px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
+ .inputNb{
+   width:250px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
+ .inputType{
+   width:120px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
+ .inputId{
+   width:40px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
  .boxType{
    width:250px;
    height:18px;
@@ -55,6 +95,18 @@
   float:left;
   margin-left:20px;
   margin-top:5px;
+}
+.submitAjoutQuestion{
+ font-size: 15px;
+ width:70px;
+ height:40px;
+ color:#FFF;
+ background-color:#FF697E;
+ background-size: 90px 35px;
+ border:none;
+ border-radius: 20px;
+ margin-right:45px;
+ float:right;
 }
 .submitSupprimer{
   font-size: 15px;

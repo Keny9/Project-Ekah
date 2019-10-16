@@ -161,12 +161,13 @@ nom  VARCHAR(100) NOT NULL
 CREATE TABLE adresse (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_province INT,
-ville VARCHAR(100),
+id_ville INT,
 no_civique INT,
 rue VARCHAR(100),
 code_postal VARCHAR(10),
 pays VARCHAR(100),
-FOREIGN KEY (id_province) REFERENCES province(id)
+FOREIGN KEY (id_province) REFERENCES province(id),
+FOREIGN KEY (id_ville) REFERENCES ville(id)
 );
 
 
@@ -176,17 +177,17 @@ etat_disponible VARCHAR(10) NOT NULL
 );
 
 
-CREATE TABLE jour (
+CREATE TABLE etat_disponible (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nom VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE disponibilite (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-id_jour INT NOT NULL,
+id_etat INT NOT NULL,
 heure_debut datetime NOT NULL,
 heure_fin datetime NOT NULL,
-FOREIGN KEY (id_jour) REFERENCES jour(id)
+FOREIGN KEY (id_etat) REFERENCES etat_disponible(id)
 );
 
 
@@ -283,10 +284,10 @@ INSERT INTO ville(id, nom) VALUES (2, "Bromont");
 INSERT INTO ville(id, nom) VALUES (3, "Montréal");
 INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 'Sherbrooke', 454, "Terril", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (2, 1, 'Magog', 454, "Magog St", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (3, 1, 'Montreal', 454, "Boul Montreal", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (4, 1, 'Quebec', 454, "Quebec St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (1, 1, 1, 454, "Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (2, 1, 1, 454, "Magog St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (3, 1, 2, 454, "Boul Montreal", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, id_ville, no_civique, rue, code_postal, pays) VALUES (4, 1, 3, 454, "Quebec St", "J1J 1J1", "Canada");
 
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
@@ -306,39 +307,39 @@ INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Aujourd'hui, nous avons fai
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
 
-INSERT INTO question(id, id_type_question, question, nb_ligne) 
+INSERT INTO question(id, id_type_question, question, nb_ligne)
 VALUES (1,1, "Autres informations pertinentes en préparation au rendez-vous", 6);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (2,1, "Souffrez-vous de problèmes de santé ou des maladies? Si oui, lesquelles?", 3);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (3,1, "Prenez-vous des médicaments? Si oui, lesquels et pour quelles raisons?", 3);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (4,1, "Avez-vous actuellement des douleurs ou des blessures? Si oui, lesquelles?", 3);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (5,1, "Avez-vous des antécédants de douleurs ou de blessures? Si oui, lesquels?", 3);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (6,1, "Faites-vous affaires avec d'autres professionnels de la santé? Si oui, lesquels? (nom, coordonnées)", 3);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (7,1, "Quels sont vos objectifs d’entraînement?", 4);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (8,1, "Combien de fois par semaine pratiquez-vous de l’activité physique?", 1);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (9,1, "En moyenne, combien de temps par séance?", 1);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (10,1, "Avez-vous des allergies (alimentaires, médicaments, autres) ? Si oui, lesquelles?", 3);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (11,1, "Quels sont vos objectifs de changement d’habitudes?", 4);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (12,1, "Combien d’heures en moyenne passez-vous en position assise par jour? (travail, transport, ordinateur, lecture, etc.)", 1);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (13,1, "Combien d’heures en moyenne passez-vous en nature par semaine?", 1);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (14,1, "Combien de repas mangez-vous par jour?", 1);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (15,1, "Consommez-vous du tabac ou de l’alcool?", 2);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (16,1, "Avez-vous de la difficulté à dormir, vous endormir, récupérer suite aux nuits de sommeil?", 2);
-INSERT INTO question(id,id_type_question, question, nb_ligne) 
+INSERT INTO question(id,id_type_question, question, nb_ligne)
 VALUES (17,1, "Avez-vous déjà pratiqué la méditation et/ou diverses postures de yoga?", 1);
 
 INSERT INTO questionnaire_reservation(id,nom_questionnaire) VALUES (1,"Questionnaire médical");
@@ -474,23 +475,16 @@ INSERT INTO questionnaire_remplit(id, fichier, description) VALUES (1, "abc123",
 INSERT INTO profil(id, id_questionnaire_remplit, id_fichier_perso, test_psychometrique, parlez_nous_de_vous) VALUES (1, 1, 1, "BLOB", "Je suis quelqu'un de tr;s actif.");
 
 
-INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (1, "Disponible");
-INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (2, "Non Disponible");
+INSERT INTO etat_disponible(id, nom) VALUES (1, "Actif");
+INSERT INTO etat_disponible(id, nom) VALUES (2, "Reserve");
+INSERT INTO etat_disponible(id, nom) VALUES (3, "Annule");
 
-INSERT INTO jour(id, nom) VALUES (1, "Lundi");
-INSERT INTO jour(id, nom) VALUES (2, "Mardi");
-INSERT INTO jour(id, nom) VALUES (3, "Mercredi");
-INSERT INTO jour(id, nom) VALUES (4, "Jeudi");
-INSERT INTO jour(id, nom) VALUES (5, "Vendredi");
-INSERT INTO jour(id, nom) VALUES (6, "Samedi");
-INSERT INTO jour(id, nom) VALUES (7, "Dimanche");
-
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (3, 2, '2019-10-12 11:00:00','2019-10-12 13:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (5, 3, '2019-10-13 08:30:00','2019-10-13 12:00:00');
-INSERT INTO disponibilite(id, id_jour, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-13 17:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (3, 1, '2019-10-12 11:00:00','2019-10-12 13:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (5, 2, '2019-10-13 08:30:00','2019-10-13 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-13 17:00:00');
 
 
 

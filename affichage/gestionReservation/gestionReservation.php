@@ -67,9 +67,16 @@
       <option value="Duree">1 heures</option>
     </select>
     <h6 class="prix texteEkha">Prix:</h6>
-    <input class="boxDuree" type="number" name="prix" min="0">
+    <input class="boxDuree" type="text" name="prix" min="0" value="Non fonctionelle scrum 1"></input>
     <h6 class="descriptionC texteEkha">Description de l'atelier:</h6>
     <textarea class="boxDescription" type="text" name="descriptionC" cols="40" rows="5" id="descriptionC"></textarea>
+    <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h6>
+      <input class="inputId" type="text"  placeholder="Id" id="idQuestion"></input>
+      <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
+      <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
+      <input class="inputType" type="text"  placeholder="Type de la question" id="typeQuestion"></input>
+      <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestion();" value="Ajouter" />
+
 </main>
 </body>
 

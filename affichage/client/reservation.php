@@ -57,14 +57,14 @@ $activites = $gActivite->getAllActivite();
                 <option class="option-vide" value="vide" selected="selected">Service</option>
                 <?php
                 $separator = 1;
-                echo "<option disabled style=\"font-weight: bold;\">EN ATELIER</option>";
+                echo "<option disabled class=\"select-section\">EN ATELIER</option>";
                 foreach ($activites as $activite){
                   if ($activite->getId_type() == 4) break;
 
                   if ($activite->getId_type() != $separator){
                     $separator = $activite->getId_type();
-                    if($separator == 2) echo "<option disabled style=\"font-weight: bold;\">À DOMICILE</option>";
-                    elseif($separator == 3) echo "<option disabled style=\"font-weight: bold;\">EN LIGNE</option>";
+                    if($separator == 2) echo "<option disabled class=\"select-section\">À DOMICILE</option>";
+                    elseif($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
                   }
 
                   echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
@@ -107,7 +107,7 @@ $activites = $gActivite->getAllActivite();
           <div class="group-input-inscr">
             <label class="label-reservation label-long">Sélectionner la date et l'heure désiré</label>
             <!--<img id="calendrier" src="../../img/calendar.JPG" alt="Calendrier">-->
-            <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php' ?>
+            <?php //include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php' ?>
           </div>
           <div class="group-input-inscr">
             <label for="commentaire" class="label-reservation">Commentaire</label>

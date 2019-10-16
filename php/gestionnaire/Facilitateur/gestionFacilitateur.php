@@ -43,7 +43,8 @@ class GestionFacilitateur{
           $disponibilite[] = new Disponibilite(
                                     $row['id_disponibilite'],
                                     $row['heure_debut'],
-                                    $row['heure_fin']);
+                                    $row['heure_fin'],
+                                  $row['id_etat']);
         }
       }
       return $disponibilite;
@@ -60,7 +61,7 @@ class GestionFacilitateur{
         $requete= "SELECT * FROM utilisateur
                      INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
                      INNER JOIN disponibilite ON disponibilite.id = id_disponibilite
-                   WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = ".$id."
+                   WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = ".$id." AND id_etat = 1
                   ";
 
         $result = $conn->query($requete);
@@ -73,7 +74,8 @@ class GestionFacilitateur{
             $disponibilite[] = new Disponibilite(
                                       $row['id_disponibilite'],
                                       $row['heure_debut'],
-                                      $row['heure_fin']);
+                                      $row['heure_fin'],
+                                      $row['id_etat']);
           }
         }
         return $disponibilite;
@@ -166,10 +168,9 @@ class GestionFacilitateur{
 
     $heure_debut = $disponibilite->getHeureDebut();
     $heure_fin = $disponibilite->getHeureFin();
+    $etat = $disponibilite->getEtat();
 
     $idFacilitateur = $facilitateur->getId();
-
-    $jour = 1;
 
     try {
       $conn->do()->begin_transaction();
@@ -177,9 +178,9 @@ class GestionFacilitateur{
       // Crée un enregistrement de la disponibilite
       // dans la BD.
       $stmt = $conn->do()->prepare("INSERT INTO disponibilite
-        (id_jour, heure_debut, heure_fin)
+        (heure_debut, heure_fin, id_etat)
         VALUES (?, ?, ?);");
-        $stmt->bind_param('iss', $jour, $heure_debut, $heure_fin);    //Mettre le bon jour
+        $stmt->bind_param('ssi',$heure_debut, $heure_fin, $etat);    //Mettre le bon jour
         $stmt->execute();
 
         // Va chercher le primary key de la disponibilite précédement enregistrée
@@ -202,10 +203,55 @@ class GestionFacilitateur{
         echo "Erreur try-catch : ".$e."<br>";
         return false;
       }
-
-
     }
 
+
+//recevoir l'id d'une disponibilité avec le facilitateur et la disponibilité sans id
+  public function getIdDisponibilite($facilitateur, $disponibilite){
+
+    $connexion = new Connexion();
+    $conn = $connexion->do();
+    $out = NULL;
+    $idFacilitateur = $facilitateur->getId();
+    $heure_debut = $disponibilite->getHeureDebut();
+    $heure_fin = $disponibilite->getHeureFin();
+    $id_etat = $disponibilite->getEtat();
+
+
+    $stmt = $conn->prepare("SELECT disponibilite.id FROM disponibilite
+                              INNER JOIN ta_disponibilite_specialiste ON id_disponibilite = disponibilite.id
+                              INNER JOIN utilisateur ON utilisateur.id = id_specialiste
+                            WHERE utilisateur.id = ? AND heure_debut =?");
+    $stmt->bind_param('is', $idFacilitateur, $heure_debut);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($row = $result->fetch_assoc()){
+      $out = new Disponibilite($row['id'],
+                              $heure_debut,
+                              $heure_fin,
+                              $id_etat);
+                            }
+    return $out;
+  }
+
+
+  //Supprimer une disponibilité d'un utilisateur
+    public function supprimerDisponibilite($disponibilite){
+      $id = $disponibilite->getId();
+
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+
+      $requete= "UPDATE disponibilite
+                  SET id_etat = 3
+                 WHERE id = ".$id.";";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+    }
   }
 
  ?>

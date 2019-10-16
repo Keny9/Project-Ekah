@@ -55,6 +55,8 @@
         return $html;
       }
 
+
+
      public function getAllDuree(){
         $gd = new GestionDuree();
         $duree = $gd->getAllDuree();
@@ -68,7 +70,7 @@
           for ($i = 0; $i < sizeof($duree); $i++){
             $html .= "
                 <div class=\"sectionDuree\" >
-                <div class=\"titreActivite\">".$duree[$i]->getTemps()." heures</div>
+                <div class=\"titreActivite\">".$duree[$i]->getTemps()." minutes</div>
                 <div onclick='selectionneDuree($i);' class=\"boiteSelection\" id='Duree-$i'></div>
                 </div>
                   ";

@@ -26,7 +26,7 @@ if($_SESSION['userTypeId'] != 1){
         <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/nav_client.php' ?>
       </nav>
       <article class="">
-        Accueil du client
+        
       </article>
     </main>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/footer.php' ?>
