@@ -166,7 +166,7 @@ no_civique INT,
 rue VARCHAR(100),
 code_postal VARCHAR(10),
 pays VARCHAR(100),
-FOREIGN KEY (id_province) REFERENCES province(id),
+FOREIGN KEY (id_province) REFERENCES province(id)
 );
 
 
