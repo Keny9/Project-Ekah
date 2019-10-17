@@ -39,7 +39,7 @@ $activites = $gActivite->getAllActivite();
     <title>Réservation</title>
   </head>
   <body>
-    <?php //include "../global/header_client.php"; ?>
+    <?php include "../global/header.php"; ?>
 
     <main>
       <div class="top-img">

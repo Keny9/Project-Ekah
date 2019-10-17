@@ -28,11 +28,8 @@ select{
   opacity: 0.8 !important;
 }
 
-*{
-  font-family: 'Montserrat', sans-serif !important;
-}
-
 html,body{
+  font-family: 'Montserrat', sans-serif !important;
   height: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
