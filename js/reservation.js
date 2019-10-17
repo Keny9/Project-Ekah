@@ -92,6 +92,7 @@ function clickSuivant(){
  function valideReservation(){
    if(siSelectVide(service) || siSelectVide(duree)){
      indiqueChampVideReservation();
+     window.scrollTo({ top: 0, behavior: 'smooth' });
      return false;
    }
    return true;

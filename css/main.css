@@ -195,10 +195,14 @@ header{
 #tab-3{order:3;}
 #tab-4{order:4;}
 
-/*Menu navigation*/
+/*---------Menu navigation------------*/
+nav{
+  display: inline-block;
+}
+
 .side-menu{
   display: inline-block;
-  margin: 50px 0 0 50px;
+  margin: 50px 0 50px 50px;
   width: 285px;
   height: auto;
   background-color: #02373B;
@@ -288,7 +292,7 @@ header{
 }
 
 
-/*Footer */
+/*--------------------Footer -------------------------------*/
 footer{
   clear: both;
   position: relative;
@@ -324,7 +328,6 @@ footer{
 
 .photo{
   display: inline-block;
-  background-color: orange;
   margin-left: 10px;
   width: 225px;
   height: 225px;
