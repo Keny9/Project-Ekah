@@ -22,7 +22,8 @@
 
 // Vérifie si l'activité contient un questionnaire
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
-   echo "Réservation complète";
+   echo "Il n'y a pas de questionnaire pour cette activité\n";
+   echo "Réservation complétée";
    // TODO: redirect vers page appropriée
    exit();
  }

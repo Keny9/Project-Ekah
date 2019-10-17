@@ -14,6 +14,7 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <link rel="stylesheet" href="../../css/gestionReservation.css">
   <link rel="stylesheet" href="../../css/main.css">
