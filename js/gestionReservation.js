@@ -76,21 +76,25 @@ function remplirType(x){
                   async: false,
                   data: myData,
                   success: function(data) {
-                    console.log(data);
+
                     if(data=="1")
                     {
+                        console.log(data);
                       document.getElementById("type").value="En Atelier";
                     }
                     else if(data=="2")
                     {
+                        console.log(data);
                       document.getElementById("type").value="Services à Domicile";
                     }
                     else if(data=="3")
                     {
+                        console.log(data);
                       document.getElementById("type").value="En ligne";
                     }
                     else if(data=="4")
                     {
+                        console.log(data);
                       document.getElementById("type").value="En Groupe";
                     }
 
@@ -150,9 +154,7 @@ function ajoutDuree(x){
     });
 }
  function enleveDuree(x){
-   // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
-   // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/supprimerActiviteDuree.php";
    for (i = 0; i <= 19; i++){
      let divSelection = document.getElementById("Activite-"+i);

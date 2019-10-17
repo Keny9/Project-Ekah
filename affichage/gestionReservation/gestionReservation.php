@@ -24,6 +24,7 @@
 
 <body>
 <main>
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 
   <h1 class="titreReservation">Gestion des Réservation</h1>
     <div class="tableauActivite">
@@ -78,6 +79,7 @@
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestion();" value="Ajouter" />
 
 </main>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/footer.php' ?>
 </body>
 
 </html>
