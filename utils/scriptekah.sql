@@ -454,10 +454,13 @@ INSERT INTO type_groupe(id, type_groupe) VALUES (3, "Groupe");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (1, "Client", "Le client");
 INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "Un facilitateur");
 
-INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, "Test", "Facilitateur1", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 2, "Test2", "Facilitateur2", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 3, "Test3", "Facilitateur3", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, 4, "Test4", "Client4", NOW());
+INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (1, "Disponible");
+INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (2, "Non Disponible");
+
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 1, "Test", "Facilitateur1", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 2, "Test2", "Facilitateur2", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 3, "Test3", "Facilitateur3", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Test4", "Client4", NOW());
 
 
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
