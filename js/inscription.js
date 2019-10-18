@@ -228,6 +228,7 @@ window.onload = function(){
    }
 
    // Change l'attribut Action du Formulaire
+   $("#modal-inscription").css("display", "block");
    $('#mickeymouse').attr('action', '../../php/script/Client/ajouterClient.php');
    return true;
  }
