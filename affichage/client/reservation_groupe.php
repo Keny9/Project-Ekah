@@ -46,7 +46,7 @@
     <?php include "../global/header.php"; ?>
     <main>
       <div class="top-img">
-        <img src="../../img/relaxe.jpg" alt="Atelier et facilitation">
+        <img src="../../img/activite/relaxe.jpg" alt="Atelier et facilitation">
         <div class="shade"></div>
         <p class="txt-centered">Réservation de groupe</p>
       </div>

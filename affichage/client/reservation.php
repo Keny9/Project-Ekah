@@ -43,7 +43,7 @@ $activites = $gActivite->getAllActivite();
 
     <main>
       <div class="top-img">
-        <img src="../../img/mouvement_intuitif.png" alt="Mouvement Intuitif">
+        <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
         <p class="txt-centered">Réservation</p>
       </div>
