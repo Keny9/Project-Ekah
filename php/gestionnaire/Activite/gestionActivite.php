@@ -3,8 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/type_activite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/ta_duree_activite.php";
-//include_once '../../class/Activite/activite.php';
-//include_once '../../class/Activite/type_activite.php';
+
 class GestionActivite{
 /*
   Retourne un tableau contenant tous les activite contenus dans la BD
@@ -75,9 +74,6 @@ class GestionActivite{
     return $type_activite;
   }
 
-/*
-Ajoute un employe à la BD ainsi que son adresse
-*/
   public function ajouterActivite($activite){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
@@ -135,9 +131,6 @@ Ajoute un employe à la BD ainsi que son adresse
 
   }
 
-/*
-  Supprime un activite dans la BD en prenant son identifiant en paramètre
-*/
   public function supprimerActivite($idActivite){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
