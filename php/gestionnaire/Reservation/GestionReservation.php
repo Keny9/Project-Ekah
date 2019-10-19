@@ -16,6 +16,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Inscription/Insc
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Emplacement/Emplacement.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php";
 
 class GestionReservation{
@@ -176,6 +177,52 @@ class GestionReservation{
   }
 
   /**
+  * Select un emplacement selon son ID
+  * Retourne un Emplacement
+  */
+  private function emplacementSelect($conn, $id){
+    $emplacement = null;
+
+    $stmt = $conn->prepare("SELECT * FROM emplacement WHERE id = ?;");
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()){
+      $emplacement = new Emplacement($row['id'], $row['id_type_emplacement'], $row['nom_lieu']); // get l'id du groupe
+    }
+
+    if($conn->error){
+      echo "emplacementSelectId : ".$conn->error;
+    }
+
+    return $emplacement;
+  }
+
+  /**
+  * Select une activite selon son ID
+  * Retourne une Activite
+  */
+  private function activiteSelect($conn, $id){
+    $activite = null;
+
+    $stmt = $conn->prepare("SELECT * FROM activite WHERE id = ?;");
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()){
+      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue']); // get l'id du groupe
+    }
+    if($conn->error){
+      echo "activiteSelect : ".$conn->error;
+    }
+
+    return $activite;
+  }
+
+
+  /**
   * Insert une reservation dans la BD
   * Retourne un bool si erreur
   */
@@ -246,7 +293,7 @@ class GestionReservation{
   }
 
   /**
-  * Selectionne toutes les questiosn dans la bd
+  * Selectionne toutes les questions dans la bd
   * Retourne un array de question
   */
   public function questionSelectAll(){
@@ -305,6 +352,40 @@ class GestionReservation{
     while ($row = $result->fetch_assoc()){
       $questionnaireTemp = new Questionnaire($row['id_questionnaire'], $row['nom_questionnaire']);
       array_push($array, $questionnaireTemp);
+    }
+    return $array;
+  }
+
+
+  /**
+  * Selectionne toutes les réservations dans la bd
+  * Retourne un array de réservation ainsi que d'autres attributs pour l'affichage dans le tableau
+  * Prend des paramètres de recherche.
+  */
+public function selectAll(/*$client_id, $facilitateur_id, $activite_id, $order*/){
+    $conn = ($connexion = new Connexion())->do();
+    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.date_rendez_vous, r.heure_debut, r.heure_fin FROM reservation AS r;";
+
+    $stmt = $conn->prepare($requete);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $array = array();
+    while($row = $result->fetch_assoc()){
+      // Créer la réservation
+      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin']);
+      // Créer l'emplacement
+      $emp = $this->emplacementSelect($conn, $row['id_emplacement']);
+      //Créer l'activité
+      $act = $this->activiteSelect($conn, $row['id_activite']);
+      $row_content = [
+        'reservation' => $res,
+        'emplacement' => $emp,
+        'activite' => $act,
+      ];
+
+      array_push($array, $row_content);
+    //array_push($array, 'reservation' => new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin']));
+
     }
     return $array;
   }

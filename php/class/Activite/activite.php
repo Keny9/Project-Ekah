@@ -25,6 +25,19 @@
       $this->setDescriptionL($descriptionL);
     }
 
+    /*
+    * Méthode print
+    * echo le contenu des variables de la classe
+    */
+    public function print(){
+      echo "
+      Id :               ".$this->getIdentifiant()."<br>
+      id_type_activite : ".$this->getId_type()."<br>
+      nom_lieu :   ".$this->getNom()."<br>
+      description_breve : ".$this->getDescriptionC()."<br>
+      description_longue : ".$this->getDescriptionL()."<br>";
+    }
+
     public function getIdentifiant(){
       return $this->identifiant;
     }
