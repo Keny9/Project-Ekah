@@ -64,7 +64,7 @@
                 <tr>
                     <td>Row 2 Data 1</td>
                     <td>Row 2 Data 2</td>
-                    <td>Data</td>
+                    <td>Abitibi-Témiscamingue</td>
                     <td>Data</td>
                     <td>Data</td>
                 </tr>
