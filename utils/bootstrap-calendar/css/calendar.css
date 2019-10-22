@@ -516,3 +516,23 @@ a.cal-event-week {
 .badge-important {
   background-color: #b94a48;
 }
+
+.bouton-re-que{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 90px;
+  height: 35px;
+  background-color: #000;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-size: 14px;
+  text-align: center;
+  font-weight: lighter;
+}
+
+.btnsCalandrier{
+  float: right;
+}
