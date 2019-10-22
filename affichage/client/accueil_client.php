@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <?php
 // Accueil du client
-
 session_start();
 
 //Si un client n'est pas connecté,
 if($_SESSION['userTypeId'] != 1){
   header('Location: /Project-Ekah/affichage/global/erreur.html');
 }
- ?>
+?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
