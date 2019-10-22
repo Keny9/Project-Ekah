@@ -35,6 +35,30 @@ function remplirNom(x){
                     console.log(data);
                     document.getElementById("titre").innerHTML=data;
                     document.getElementById("nom").innerHTML=data;
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/"/g, '');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e9/g, 'é');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/\\/g, '');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u2019/g, '\'');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ea/g, 'ê');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e7/g, 'ç');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e0/g, 'à');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e2/g, 'â');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ee/g, 'î');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e8/g, 'è');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00c9/g, 'É');
+
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/"/g, '');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e9/g, 'é');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/\\/g, '');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u2019/g, '\'');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ea/g, 'ê');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e7/g, 'ç');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e0/g, 'à');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e2/g, 'â');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ee/g, 'î');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e8/g, 'è');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00c9/g, 'É');
+
 
                   } ,
                   error: function() {
@@ -57,6 +81,17 @@ function remplirDescription(x){
 
                     console.log(data);
                     document.getElementById("descriptionC").innerHTML=data;
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/"/g, '');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e9/g, 'é');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/\\/g, '');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u2019/g, '\'');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00ea/g, 'ê');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e7/g, 'ç');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e0/g, 'à');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e2/g, 'â');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00ee/g, 'î');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e8/g, 'è');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00c9/g, 'É');
 
                   } ,
                   error: function() {
