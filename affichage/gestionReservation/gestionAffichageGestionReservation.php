@@ -46,7 +46,7 @@
             $j=$i+1;
 
             $html .= "
-              <option value=\"$j\" >".$type_activite[$i]->getNom()."</option>
+              <option id='Type-$i' value=\"$j\" >".$type_activite[$i]->getNom()."</option>
             ";
 
           }
