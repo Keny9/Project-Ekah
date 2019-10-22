@@ -77,6 +77,7 @@ id_type_activite INT NOT NULL,
 nom VARCHAR(100) NOT NULL,
 description_breve VARCHAR(500) NOT NULL,
 description_longue VARCHAR(1500) NOT NULL,
+cout DECIMAL(6,2),
 FOREIGN KEY (id_type_activite) REFERENCES type_activite(id)
 );
 
@@ -254,14 +255,16 @@ id_emplacement INT,
 id_suivi INT,
 id_activite INT,
 id_groupe INT,
-date_rendez_vous DATE NOT NULL,
+id_facilitateur INT,
+date_rendez_vous DATETIME NOT NULL,
 heure_debut INT NOT NULL,
 heure_fin INT NOT NULL,
 FOREIGN KEY (id_paiement) REFERENCES paiement(id),
 FOREIGN KEY (id_emplacement) REFERENCES emplacement(id),
 FOREIGN KEY (id_suivi) REFERENCES suivi(id),
 FOREIGN KEY (id_activite) REFERENCES activite(id),
-FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
+FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe),
+FOREIGN KEY (id_facilitateur) REFERENCES utilisateur(id)
 );
 
 CREATE TABLE ta_disponibilite_specialiste (
@@ -405,10 +408,10 @@ INSERT INTO type_activite(id, nom) VALUES (3, "En ligne");
 INSERT INTO type_activite(id, nom) VALUES (4, "En groupe");
 
 
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (1, 1, "Soins à domicile", "Pour apprendre à se détendre, respirer, prendre soin de soi, écouter son corps, guérir ses blessures et améliorer sa posture, nous offrons des services à domicile en kinésiologie-kinésithérapie, ostéopathie, orthothérapie massothérapie et aromathérapie.", "LONGUE");
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (2, 1, "Entraînement à domicile", "Pour prendre en main sa santé, cultiver un mode de vie sain, préparer son corps pour une discipline ou adopter une pratique adaptée à ses besoins, nous offrons des services d’accompagnement, de préparation physique et d’entraînement à domicile.", "LONGUE");
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (3, 1, "Habitudes de vies à domicile", "Pour être accompagné dans l’adoption d’un mode de vie adapté à ses besoins, être aligné avec notre alimentation, apprendre à manger et cuisiner sainement, nous offrons des services d’orientation des habitudes de vie et de création culinaires personnalisés à domicile.", "LONGUE");
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (4, 1, "Yoga et méditation à domicile", "Pour vivre des séances sur mesure, être accompagné dans l’intégration des asanas et de la méditation dans sa vie, développer une pratique sécuritaire et adaptée à ses besoins ou approfondir son expérience du yoga, nous offrons des séances individuelles et en groupe à domicile.", "LONGUE");
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue, cout) VALUES (1, 1, "Soins à domicile", "Pour apprendre à se détendre, respirer, prendre soin de soi, écouter son corps, guérir ses blessures et améliorer sa posture, nous offrons des services à domicile en kinésiologie-kinésithérapie, ostéopathie, orthothérapie massothérapie et aromathérapie.", "LONGUE", 100);
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue, cout) VALUES (2, 1, "Entraînement à domicile", "Pour prendre en main sa santé, cultiver un mode de vie sain, préparer son corps pour une discipline ou adopter une pratique adaptée à ses besoins, nous offrons des services d’accompagnement, de préparation physique et d’entraînement à domicile.", "LONGUE", 100.99);
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue, cout) VALUES (3, 1, "Habitudes de vies à domicile", "Pour être accompagné dans l’adoption d’un mode de vie adapté à ses besoins, être aligné avec notre alimentation, apprendre à manger et cuisiner sainement, nous offrons des services d’orientation des habitudes de vie et de création culinaires personnalisés à domicile.", "LONGUE", 25);
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue, cout) VALUES (4, 1, "Yoga et méditation à domicile", "Pour vivre des séances sur mesure, être accompagné dans l’intégration des asanas et de la méditation dans sa vie, développer une pratique sécuritaire et adaptée à ses besoins ou approfondir son expérience du yoga, nous offrons des séances individuelles et en groupe à domicile.", "LONGUE", 19.99);
 
 INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (5, 2, "L’Ennéagramme", "Pour prendre pleine possession de ses forces, mieux aborder ses défis, connaître la structure de sa \"personnalité\", mieux connaître la nature humaine, découvrir ses différentes intelligences, filtres de perception, motivations profondes, comportements typiques, mécanismes réactionnels. Nous offrons un atelier d’introduction d’une journée sur les différents types d'humains et de leur \"personnalité\".", "LONGUE");
 INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (6, 2, "Réflexion créative: Flow design", "Pour réellement s'aligner et s’engager vers la version la plus enrichissante de nous-même, pour renouveler sa façon d’évoluer, pour transcender des limitations qui nous empêchent d’avancer, pour utiliser tout son potentiel afin d’orienter sa propre vie, dans notre cursus de formation à l’Ennéagramme, nous offrons des séances individuelles et des ateliers d’une journée en groupe de flow design.", "LONGUE");
@@ -501,11 +504,11 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 1, '2020-02-22');
 
 
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, '2019-12-12', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 3, 2, 1, 2, 3, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 3, 2, 1, 3, 3, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12 19:00:00', 8, 9);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, 3, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 3, 2, 1, 2, 3, 1, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 3, 2, 1, 3, 3, 2, '2020-02-02', 13, 14);
 
 
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
