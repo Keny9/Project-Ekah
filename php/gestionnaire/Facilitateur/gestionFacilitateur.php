@@ -125,6 +125,48 @@ class GestionFacilitateur{
     }
 
     /*
+      Retourne une liste de tous les facilitateurs qui sont actifs
+    */
+      public function getAllFacilitateurActifAvecDispo(){
+
+        $tempconn = new Connexion();
+        $conn = $tempconn->getConnexion();
+
+        $requete= "SELECT * FROM `utilisateur`
+                    INNER JOIN ta_disponibilite_specialiste ON id_specialiste = utilisateur.id
+                    INNER JOIN disponibilite ON id_disponibilite = disponibilite.id
+                    INNER JOIN compte_utilisateur ON fk_utilisateur = utilisateur.id
+
+                    WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1
+                  ";
+
+        $result = $conn->query($requete);
+        if(!$result){
+          trigger_error($conn->error);
+        }
+
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            $disponibilite = $this->getAllDisponibiliteActive($id);
+            $facilitateur[] = new Facilitateur(
+                                      $id,
+                                      $row['nom'],
+                                      $row['prenom'],
+                                      $row['date_inscription'],
+                                      $row['date_naissance'],
+                                      $row['telephone'],
+                                      "actif",
+                                      $row['telephone'],
+                                      $disponibilite
+                                    );
+          }
+        }
+        return $facilitateur;
+
+      }
+
+    /*
       Retourne une liste de tous les facilitateurs
     */
       public function getFacilitateur($id){
