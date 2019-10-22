@@ -5,16 +5,16 @@
     </div>
     <div class="block-photo">
       <div class="photo">
-        <a ><img src="../../img/ig-1.jpeg" alt="Photo IG"></a>
+        <a ><img src="../../img/instagram/ig-1.jpeg" alt="Photo IG"></a>
       </div>
       <div class="photo">
-        <a ><img src="../../img/ig-2.jpeg" alt="Photo IG"></a>
+        <a ><img src="../../img/instagram/ig-2.jpeg" alt="Photo IG"></a>
       </div>
       <div class="photo">
-        <a ><img src="../../img/ig-3.jpeg" alt="Photo IG"></a>
+        <a ><img src="../../img/instagram/ig-3.jpeg" alt="Photo IG"></a>
       </div>
       <div class="photo">
-        <a ><img src="../../img/ig-4.jpeg" alt="Photo IG"></a>
+        <a ><img src="../../img/instagram/ig-4.jpeg" alt="Photo IG"></a>
       </div>
     </div>
     <div class="block-media">

@@ -56,7 +56,7 @@ foreach ($questions as $question){
   echo "<br>";
 }*/
 
-$questionnaires = $gestionReservation->questionnaireSelectAllWithActiviteId(13);
+/*$questionnaires = $gestionReservation->questionnaireSelectAllWithActiviteId(13);
 
 if($questionnaires == null){
   echo "Aucun questionnaire";
@@ -64,6 +64,15 @@ if($questionnaires == null){
 
 foreach ($questionnaires as $questionnaire){
   $questionnaire->print();
-}
+}*/
 
+
+$reservations = $gestionReservation->selectAll(/*null, null, null, null, null*/);
+
+foreach ($reservations as $res){
+  $res['reservation']->print();
+  if($res['emplacement']) $res['emplacement']->print();
+  $res['activite']->print();
+  echo "<br>";
+}
  ?>
