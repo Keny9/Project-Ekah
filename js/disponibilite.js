@@ -4,6 +4,10 @@ $(document).ready(function() {
     var $this = $(this);
     calendar.view($this.data('calendar-view'));
   });
+  $( "#day" ).click(function() {
+    var $this = $(this);
+    calendar.view($this.data('calendar-view'));
+  });
 
   $( "#next" ).click(function() {
     var $this = $(this);
@@ -16,29 +20,37 @@ $(document).ready(function() {
   });
 
   var i = 0;
-  $.each($('.cal-cell'), function(index, $event){
+  $.each($('.cal-day-hour-part'), function(index, $event){
     var $this = $(this);
+    console.log("ID");
     $this.attr('id', i);
-    $this.prop("onclick", null).off("click");
     i++;
   });
 
 
-  //Enlever le CSS inutile pour la réservation
-    var $today = $(".cal-day-today");
-    $today.css("background-color", "#FFFFFF");
+  $(document).on('click','.cal-day-hour-part', function(){
+      var $this = $(this);
+      var heureElm = $this.find("b");
 
-    var $todayTxt = $today.find("span");
-    $todayTxt.css("color", "#333333");
-    $todayTxt.css("font-size", "1.2em");
+      var heure = heureElm.text();
+      var date = $(".h3").text();
 
+      console.log(heure);
+      console.log(date);
 
+      var couleur = $this.css("background-color");
 
-  $.each($('.pull-right'), function(index, $event){
-    var $this = $(this);
-    $this.prop("onclick", null).off("click");
-  });
+      if(couleur == "rgba(0, 0, 0, 0)"){
+        $this.css("background-color", "green");
+        envoyeDispo(heure, date);
+      }else{
+        $this.css("background-color", "rgba(0, 0, 0, 0)");
 
+        supprimerDispo(heure, date);
+      }
+
+   }
+  );
 
 });
 
@@ -67,7 +79,7 @@ function envoyeDispo(heure, date){
   $.ajax({
     type: "POST",
     async: false,
-    url: "../../php/script/Horaire/ajouterReservation.php",
+    url: "../../php/script/Horaire/ajouterDisponibilite.php",
     data: {"annee": annee,
            "mois": mois,
            "jour": jour,
@@ -107,18 +119,22 @@ function supprimerDispo(heure, date){
   $.ajax({
     type: "POST",
     async: false,
-    url: "../../php/script/Horaire/supprimerReservation.php",
+    url: "../../php/script/Horaire/supprimerDisponibilite.php",
+    dataType: "text",
     data: {"annee": annee,
            "mois": mois,
            "jour": jour,
            "heure_debut": heure_debut,
            "heure_fin": heure_fin
          },
-    success: function(result){
+    success: function(data){
         bool = true;
+        console.log("Suppression");
+        console.log(data);
     },
     error: function (jQXHR, textStatus, errorThrown) {
-        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+      bool = false;
+      alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
     }
   });
   return bool;

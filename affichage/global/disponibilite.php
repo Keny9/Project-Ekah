@@ -14,7 +14,7 @@
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/calendar.js"></script>
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/app.js"></script>
 
-  <script type="text/javascript" src="../../js/calendrier.js"></script>
+  <script type="text/javascript" src="../../js/disponibilite.js"></script>
 
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
@@ -51,37 +51,6 @@
 
             onAfterViewLoad: function(view) {
         			$('.page-header h3').text(this.getTitle());
-
-              // if day view, fix calendar width bug
-              if(view == "day"){
-                  var $previousEvent = null;
-                  var offsetToRemove = 0;
-                  $.each($('.day-event'), function(index, $event){
-                      $event = $($event);
-                      console.log($event.offset().left);
-
-                      if($previousEvent == null){
-                          $previousEvent = $event;
-                          return;
-                      }
-
-                      // check if $event is further left than $previousEvent
-                      // if it is, set offsetToRemove to the amount of top margin
-                      // to remove for each following event
-                      if( $event.offset().left < $previousEvent.offset().left ){
-                          offsetToRemove = parseInt($previousEvent.css('margin-top')) + offsetToRemove;
-                      }
-
-                      // remove offsetToRemove form the top margin of this event
-                      if(offsetToRemove != null && offsetToRemove > 0){
-                          var currentMargin = parseInt($event.css('margin-top'));
-                          var correctedMargin = (currentMargin - offsetToRemove) + "px";
-                          $event.css('margin-top', correctedMargin);
-                      }
-
-                      $previousEvent = $event;
-                  });
-              }
             }
           });
         </script>
