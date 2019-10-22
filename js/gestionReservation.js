@@ -14,14 +14,16 @@
    }
    let divSelection = document.getElementById("Activite-"+x);
        divSelection.classList.add("selectionne");
-       remplir(x);
+       remplirNom(x);
+       remplirDescription(x);
+       remplirType(x);
 
  }
 
-function remplir(x){
+function remplirNom(x){
   var id = x+1;
   myData={id:id};
-  var url="../../php/script/Activite/remplirActivite.php";
+  var url="../../php/script/Activite/remplirActiviteNom.php";
               $(function($) {
                 $.ajax({
                   url: url,
@@ -33,10 +35,6 @@ function remplir(x){
                     console.log(data);
                     document.getElementById("titre").innerHTML=data;
                     document.getElementById("nom").innerHTML=data;
-                    document.getElementById("type").value=data;
-                    document.getElementById("descriptionC").innerHTML=data;
-
-                    //remplirCase(data.idType,data.nom,data.descriptionC)
 
                   } ,
                   error: function() {
@@ -45,17 +43,68 @@ function remplir(x){
                 });
               });
 }
+function remplirDescription(x){
+  var id = x+1;
+  myData={id:id};
+  var url="../../php/script/Activite/remplirActiviteDescription.php";
+              $(function($) {
+                $.ajax({
+                  url: url,
+                  type:"POST",
+                  async: false,
+                  data: myData,
+                  success: function(data) {
 
-//function remplirCase(type,nom,description){
-  //document.getElementById("titre").innerHTML=nom;
-  //document.getElementById("nom").innerHTML=nom;
-  //document.getElementById("type").value=type;
-  //document.getElementById("descriptionC").innerHTML=description;
-  //divTitre.innerHTML=nom;
-  //divNom.innerHTML=nom;
-  //divType.value=type;
-  //divDescriptionC.innerHTML=description;
-//}
+                    console.log(data);
+                    document.getElementById("descriptionC").innerHTML=data;
+
+                  } ,
+                  error: function() {
+                    alert('Error occured');
+                  }
+                });
+              });
+}
+function remplirType(x){
+  var id = x+1;
+  myData={id:id};
+  var url="../../php/script/Activite/remplirActiviteType.php";
+              $(function($) {
+                $.ajax({
+                  url: url,
+                  type:"POST",
+                  async: false,
+                  data: myData,
+                  success: function(data) {
+
+                    if(data=="1")
+                    {
+                        console.log(data);
+                      document.getElementById("type").value="En Atelier";
+                    }
+                    else if(data=="2")
+                    {
+                        console.log(data);
+                      document.getElementById("type").value="Services à Domicile";
+                    }
+                    else if(data=="3")
+                    {
+                        console.log(data);
+                      document.getElementById("type").value="En ligne";
+                    }
+                    else if(data=="4")
+                    {
+                        console.log(data);
+                      document.getElementById("type").value="En Groupe";
+                    }
+
+                  } ,
+                  error: function() {
+                    alert('Error occured');
+                  }
+                });
+              });
+}
  function selectionneDuree(x){
 
    let divSelection = document.getElementById("Duree-"+x);
@@ -105,9 +154,7 @@ function ajoutDuree(x){
     });
 }
  function enleveDuree(x){
-   // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
-   // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/supprimerActiviteDuree.php";
    for (i = 0; i <= 19; i++){
      let divSelection = document.getElementById("Activite-"+i);

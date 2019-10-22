@@ -40,6 +40,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/inscription.css">
@@ -56,7 +57,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
 
     <main>
       <div class="top-img">
-        <img src="../../img/mouvement_intuitif.png" alt="Mouvement Intuitif">
+        <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
         <p class="txt-centered"><?php echo $questionnaire_nom ?></p>
       </div>
@@ -77,7 +78,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
             </div>
             <div class="group-input-inscr">
               <label for="date" class="label-dec">Date</label>
-              <p id="date" value="" class="input-inscr input-question-dec">2019-10-11</p>
+              <p id="date" value="" class="input-inscr input-question-dec"><?php date_default_timezone_set("America/New_York"); echo date("Y-m-d"); ?></p>
             </div>
             <div class="group-input-inscr btn-ques">
               <button type="button" name="retourQuestion" id="retourQuestion" class="bouton-re-que">RETOUR</button>

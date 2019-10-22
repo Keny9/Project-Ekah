@@ -16,6 +16,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/reservation_questionnaire.css">
@@ -34,10 +35,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <span id="close-demande" class="close">&times;</span>
-          <h2>Demande envoyé avec succès !</h2>
+          <h2>Demande envoyée avec succès !</h2>
         </div>
         <div class="modal-body">
-          <p>Nous annalyserons votre demande et nous vous recontacterons très bientôt !</p>
+          <p>Nous analyserons votre demande et nous vous recontacterons très bientôt !</p>
         </div>
       </div>
   </div>
@@ -45,7 +46,7 @@
     <?php include "../global/header.php"; ?>
     <main>
       <div class="top-img">
-        <img src="../../img/relaxe.jpg" alt="Atelier et facilitation">
+        <img src="../../img/activite/relaxe.jpg" alt="Atelier et facilitation">
         <div class="shade"></div>
         <p class="txt-centered">Réservation de groupe</p>
       </div>

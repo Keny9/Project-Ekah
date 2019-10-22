@@ -125,16 +125,8 @@ main{
   margin-top: 20px;
 }
 
-label{
-  cursor: auto !important;
-}
-
 .select-section{
   font-weight: bold;
-}
-
-option:disabled{
-  color: #000 !important;
 }
 
 textarea:focus{
