@@ -52,7 +52,6 @@
   // echo $date_fin;
   // echo "<br />";
 
-  //Créer la disponibilité et l'ajouter dans la BD
   $disponibilite = new Disponibilite(null, $date_debut, $date_fin, 1);
 
   $disponibilite = $gestionFacilitateur->getIdDisponibilite($facilitateur, $disponibilite);
@@ -61,7 +60,8 @@
   // print_r($id[0]);
   // echo "<br />";
 
-
   $gestionFacilitateur->supprimerDisponibilite($disponibilite);
+
+  // echo $disponibilite->getID();
 
  ?>
