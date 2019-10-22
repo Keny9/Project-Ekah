@@ -256,7 +256,7 @@ id_suivi INT,
 id_activite INT,
 id_groupe INT,
 id_facilitateur INT,
-date_rendez_vous DATE NOT NULL,
+date_rendez_vous DATETIME NOT NULL,
 heure_debut INT NOT NULL,
 heure_fin INT NOT NULL,
 FOREIGN KEY (id_paiement) REFERENCES paiement(id),
@@ -504,7 +504,7 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 1, '2020-02-22');
 
 
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12', 8, 9);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12 19:00:00', 8, 9);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, 2, '2020-02-02', 13, 14);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, 3, '2020-02-02', 13, 14);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 3, 2, 1, 2, 3, 1, '2020-02-02', 13, 14);
