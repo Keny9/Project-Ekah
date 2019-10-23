@@ -70,7 +70,7 @@
     </select>
     <h6 class="prix texteEkha">Prix:</h6>
     <input class="boxDuree" type="text" name="prix" min="0" value="Non fonctionelle scrum 1"></input>
-    <h6 class="descriptionC texteEkha">Description de l'atelier:</h6>
+    <h6 class="descriptionC texteEkha">Description du service:</h6>
     <textarea class="boxDescription" type="text" name="descriptionC" cols="40" rows="5" id="descriptionC"></textarea>
     <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h6>
       <input class="inputId" type="text"  placeholder="Id" id="idQuestion"></input>

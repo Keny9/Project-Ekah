@@ -26,10 +26,10 @@
  }
 
  function clearFields(){
-document.getElementById('nom').value = "";
+document.getElementById('nom').innerHTML = "";
 document.getElementById('titre').innerHTML = "Nom du Service";
 //document.getElementById("Type-"+2).attr('selected','selected');
-document.getElementById('descriptionC').value = "";
+document.getElementById('descriptionC').innerHTML = "";
 document.getElementById('nom').focus();
 }
 
@@ -45,7 +45,7 @@ function remplirNom(x){
                   data: myData,
                   success: function(data) {
 
-                    console.log(data);
+                    //console.log(data);
                     document.getElementById("titre").innerHTML=data;
                     document.getElementById("nom").innerHTML=data;
                     document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/"/g, '');
