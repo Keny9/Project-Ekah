@@ -14,11 +14,24 @@
    }
    let divSelection = document.getElementById("Activite-"+x);
        divSelection.classList.add("selectionne");
+   if (x==18)
+   {
+     clearFields();
+   }
+   else{
        remplirNom(x);
        remplirDescription(x);
        remplirType(x);
-
+        }
  }
+
+ function clearFields(){
+document.getElementById('nom').innerHTML = "";
+document.getElementById('titre').innerHTML = "Nom du Service";
+//document.getElementById("Type-"+2).attr('selected','selected');
+document.getElementById('descriptionC').innerHTML = "";
+document.getElementById('nom').focus();
+}
 
 function remplirNom(x){
   var id = x+1;
@@ -32,7 +45,7 @@ function remplirNom(x){
                   data: myData,
                   success: function(data) {
 
-                    console.log(data);
+                    //console.log(data);
                     document.getElementById("titre").innerHTML=data;
                     document.getElementById("nom").innerHTML=data;
                     document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/"/g, '');
@@ -111,26 +124,27 @@ function remplirType(x){
                   async: false,
                   data: myData,
                   success: function(data) {
+                    console.log(data);
 
-                    if(data=="1")
+                    if(data==1)
                     {
                         console.log(data);
-                      document.getElementById("type").value="En Atelier";
+                      document.getElementById("Type-"+0).attr('selected','selected');
                     }
-                    else if(data=="2")
+                    else if(data==2)
                     {
                         console.log(data);
-                      document.getElementById("type").value="Services à Domicile";
+                      document.getElementById("Type-"+1).attr('selected','selected');
                     }
-                    else if(data=="3")
+                    else if(data==3)
                     {
                         console.log(data);
-                      document.getElementById("type").value="En ligne";
+                      document.getElementById("Type-"+2).attr('selected','selected');
                     }
-                    else if(data=="4")
+                    else if(data==4)
                     {
                         console.log(data);
-                      document.getElementById("type").value="En Groupe";
+                      document.getElementById("Type-"+3).attr('selected','selected');
                     }
 
                   } ,
