@@ -14,6 +14,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Rese
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Inscription/Inscription.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Emplacement/Emplacement.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
@@ -212,7 +213,7 @@ class GestionReservation{
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()){
-      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue']); // get l'id du groupe
+      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue'], $row['cout']); // get l'id du groupe
     }
     if($conn->error){
       echo "activiteSelect : ".$conn->error;
@@ -362,9 +363,18 @@ class GestionReservation{
   * Retourne un array de réservation ainsi que d'autres attributs pour l'affichage dans le tableau
   * Prend des paramètres de recherche.
   */
-public function selectAll(/*$client_id, $facilitateur_id, $activite_id, $order*/){
+public function selectAll($user_id = null){
     $conn = ($connexion = new Connexion())->do();
-    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.date_rendez_vous, r.heure_debut, r.heure_fin FROM reservation AS r;";
+    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.id_facilitateur, r.date_rendez_vous, r.heure_debut, r.heure_fin, r.id_facilitateur FROM reservation AS r";
+
+
+    if ($user_id != null){
+      $requete .= "
+      INNER JOIN inscription AS i ON i.id_groupe = r.id_groupe
+      INNER JOIN utilisateur AS u ON u.id = i.id_utilisateur
+      WHERE u.id = $user_id";
+    }
+
 
     $stmt = $conn->prepare($requete);
     $stmt->execute();
@@ -372,22 +382,44 @@ public function selectAll(/*$client_id, $facilitateur_id, $activite_id, $order*/
     $array = array();
     while($row = $result->fetch_assoc()){
       // Créer la réservation
-      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin']);
+      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin'], $row['id_facilitateur']);
       // Créer l'emplacement
       $emp = $this->emplacementSelect($conn, $row['id_emplacement']);
       //Créer l'activité
       $act = $this->activiteSelect($conn, $row['id_activite']);
+      //Créer facilitateur
+      $fac =  $this->facilitateurSelectWithId($conn, $row['id_facilitateur']);
       $row_content = [
         'reservation' => $res,
         'emplacement' => $emp,
         'activite' => $act,
+        'facilitateur' => $fac,
       ];
 
       array_push($array, $row_content);
-    //array_push($array, 'reservation' => new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin']));
-
     }
     return $array;
+  }
+
+  /**
+  * Selectionne dans la BD le facilitateur avec l'ID en paramètre.
+  * Retourne un objet facilitateur
+  */
+  private function facilitateurSelectWithId($conn, $facilitateur_id){
+    $requete = "SELECT * FROM utilisateur
+                INNER JOIN compte_utilisateur ON compte_utilisateur.fk_utilisateur = utilisateur.id
+                WHERE utilisateur.id = ?";
+
+    $stmt = $conn->prepare($requete);
+    $stmt->bind_param('i', $facilitateur_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $facilitateur = null;
+    if ($row = $result->fetch_assoc()){
+      $facilitateur = new Facilitateur($row['id'], $row['nom'], $row['prenom'], $row['date_inscription'], $row['courriel'], $row['date_naissance'], $row['telephone'], null, null);
+    }
+
+    return $facilitateur;
   }
 }
  ?>

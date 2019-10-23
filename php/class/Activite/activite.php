@@ -16,13 +16,15 @@
     private $nom;
     private $descriptionC;
     private $descriptionL;
+    private $cout;
 
-    function __construct( $identifiant,$idType,$nom,$descriptionC,$descriptionL){
+    function __construct( $identifiant,$idType,$nom,$descriptionC,$descriptionL, $cout=null){
       $this->setIdentifiant($identifiant);
       $this->setId_type($idType);
       $this->setNom($nom);
       $this->setDescriptionC($descriptionC);
       $this->setDescriptionL($descriptionL);
+      $this->setCout($cout);
     }
 
     /*
@@ -76,6 +78,12 @@
 
     public function setDescriptionL($descriptionL){
       $this->descriptionL = $descriptionL;
+    }
+    public function setCout($val){
+      $this->cout = $val;
+    }
+    public function getCout(){
+      return $this->cout;
     }
 
   }
