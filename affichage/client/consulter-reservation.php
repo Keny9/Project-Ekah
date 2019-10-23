@@ -10,7 +10,6 @@
  */
 
 session_start();
-
  $_SESSION['userId'] = null;
  ?>
 
@@ -35,7 +34,7 @@ session_start();
     <script type="text/javascript" src="../../js/global.js"></script>
 
   </head>
-  <body onload="<?php echo "getReservations(".$_SESSION['userId'].")"; ?>">
+  <body onload="<?php //echo "getReservations(".$_SESSION['userId'].")"; ?>">
 
     <main>
       <div class="top-img">
@@ -58,7 +57,7 @@ session_start();
                 </tr>
             </thead>
             <tbody id="tbody">
-
+              <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/getReservations.php" ?>
             </tbody>
         </table>
         </div>

@@ -5,9 +5,12 @@ $(document).ready( function () {
     "language":{
       "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
     },
+    /*"ajax": {
+      "url": "/Project-Ekah/php/script/Reservation/getReservations.php"
+    },*/
+  //  ajax: '/Project-Ekah/php/script/Reservation/getReservations.php',
     responsive: true
   });
-
 
 } );
 
@@ -41,4 +44,5 @@ function getReservations(user_id){
       }
     });
   });
+  //$('#temp-tr').remove();
 }
