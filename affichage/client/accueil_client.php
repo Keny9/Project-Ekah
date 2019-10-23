@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 // Accueil du client
+
 session_start();
 
 //Si un client n'est pas connecté,

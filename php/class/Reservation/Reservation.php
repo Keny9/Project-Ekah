@@ -19,12 +19,13 @@ class Reservation{
   private $id_suivi;
   private $id_activite;
   private $id_groupe;
+  private $id_facilitateur;
   private $date_rendez_vous;
   private $heure_debut;
   private $heure_fin;
 
   function __construct($id, $id_paiement, $id_emplacement, $id_suivi,
-                       $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin){
+                       $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur = null){
     $this->setId($id);
     $this->setIdPaiement($id_paiement);
     $this->setIdEmplacement($id_emplacement);
@@ -83,6 +84,10 @@ class Reservation{
   public function setIdGroupe($val){
     $this->id_groupe = $val;
   }
+  public function setIdFacilitateur($val){
+    $this->id_facilitateur = $val;
+  }
+
   /*
   * GETTEUR
   */
@@ -112,6 +117,9 @@ class Reservation{
   }
   public function getIdGroupe(){
     return $this->id_groupe;
+  }
+  public function getIdFacilitateur(){
+    return $this->id_facilitateur;
   }
 }
 

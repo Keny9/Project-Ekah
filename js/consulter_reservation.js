@@ -1,32 +1,44 @@
 $(document).ready( function () {
-    $('#table_reservation').DataTable({
-      "language":{
-        "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
-      },
-      responsive: true
-    });
+//  getReservations();
+
+  $('#table_reservation').DataTable({
+    "language":{
+      "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
+    },
+    responsive: true
+  });
+
+
 } );
 
-// TODO: laisser en stand by
-/*
-$(function($) {
+function getReservations(user_id){
+  $(function($) {
     $.ajax({
-      url: "../../php/script/Reservation/getReservations.php",
+      url: "/Project-Ekah/php/script/Reservation/getReservations.php",
       type:"POST",
-      async: false,
-      data: {id: 1},
+      async: true,
+      data: {user_id : user_id},
       dataType: 'json',
       success: function(data) {
         //data est un array
         data.forEach(function(e) {
-          var output = "Réservation " + e['reservation_id'] + ": " + e['activite_nom'] + "<br>";
-          $('#demo').append(output);
+          console.log(e);
+
+          var html =
+          "<tr>" +
+              "<td>" + e['activite_nom'] + "</td>" +
+              "<td>" + e['reservation_datetime'] + "</td>" +
+              "<td>" + e['emplacement_nomlieu'] + "</td>" +
+              "<td>" + e['activite_cout'] + "</td>" +
+              "<td>" + e['facilitateur_prenom'] + " " + e['facilitateur_nom'] + "</td>" +
+          "</tr>";
+
+          $('#tbody').append(html)
         });
       } ,
-      error: function() {
-        alert('Error occured');
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus); alert("Error: " + XMLHttpRequest.responseText);
       }
     });
   });
-
-*/
+}

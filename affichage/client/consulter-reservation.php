@@ -9,6 +9,9 @@
  * Date de la dernière modification : 2019-10-18
  */
 
+session_start();
+
+ $_SESSION['userId'] = null;
  ?>
 
 <!DOCTYPE html>
@@ -25,13 +28,14 @@
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="../../js/consulter_reservation.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https:////cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
-    <script type="text/javascript" src="../../js/consulter_reservation.js"></script>
+
   </head>
-  <body>
+  <body onload="<?php echo "getReservations(".$_SESSION['userId'].")"; ?>">
 
     <main>
       <div class="top-img">
@@ -50,101 +54,11 @@
                     <th>Date/Heure</th>
                     <th>Lieu</th>
                     <th>Coût</th>
-                    <th>Spécialiste</th>
+                    <th>Facilitateur</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>ALlo</td>
-                    <td>Bonjour</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Abitibi-Témiscamingue</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Datadatadatadat</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                    <td>Data</td>
-                </tr>
+            <tbody id="tbody">
+
             </tbody>
         </table>
         </div>
