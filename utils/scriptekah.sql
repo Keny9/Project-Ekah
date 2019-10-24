@@ -230,9 +230,9 @@ FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id)
 CREATE TABLE groupe (
 no_groupe INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_type_groupe INT NOT NULL,
-nom_entreprise VARCHAR(100) NOT NULL,
-nom_organisateur VARCHAR(50) NOT NULL,
-nb_participant INT NOT NULL,
+nom_entreprise VARCHAR(100),
+nom_organisateur VARCHAR(50),
+nb_participant INT,
 FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id)
 );
 
@@ -297,6 +297,8 @@ INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (1, 1, 45.25, '2019-01-01');
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (2, 1, 50.00, '2019-05-13');
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (3, 1, 25.00, '2019-06-21');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (4, 1, 28.00, '2019-06-26');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (5, 1, 35.00, '2019-06-28');
 
 INSERT INTO type_emplacement(id, type_emplacement) VALUES (1, "Café");
 INSERT INTO type_emplacement(id, type_emplacement) VALUES (2, "Maison");
@@ -463,7 +465,7 @@ INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (2, "Non Disponible");
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 1, "Test", "Facilitateur1", NOW());
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 2, "Test2", "Facilitateur2", NOW());
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 3, "Test3", "Facilitateur3", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Test4", "Client4", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Lampron", "Mario", NOW());
 
 
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
@@ -499,16 +501,20 @@ INSERT INTO specialite(id, nom) VALUES (1, "Meditation");
 INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, "APPLE", "Steve Jobs", 45);
 INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (2, 1, "POMIER", "Steve Jobs", 45);
 INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (3, 1, "BANANE", "Steve Jobs", 45);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (4, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (5, 1, null, null, null);
 
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 2, '2020-02-22');
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (1, 1, '2020-02-22');
-
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 2, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 1, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 3, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 4, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 5, '2020-02-22');
 
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12 19:00:00', 8, 9);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, 2, '2020-02-02', 13, 14);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, 3, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 3, 2, 1, 2, 3, 1, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 3, 2, 1, 3, 3, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 2, 1, 2, 4, 1, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 2, 1, 3, 5, 2, '2020-02-02', 13, 14);
 
 
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
@@ -521,3 +527,7 @@ INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUE
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
+
+
+
+

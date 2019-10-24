@@ -38,6 +38,8 @@ class GestionActivite{
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
     $activite = null;
+    $requete1="SET NAMES 'utf8';";
+    $result1 = $conn->query($requete1);
 
     $requete= "SELECT * FROM activite WHERE id = '$id';";
 

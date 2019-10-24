@@ -421,5 +421,34 @@ public function selectAll($user_id = null){
 
     return $facilitateur;
   }
+
+//Obtenir toutes la liste des reservations sous forme de donnees
+  public function getAllReservationData(){
+    $conn = ($connexion = new Connexion())->do();
+
+    $requete = "SELECT a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS 'id_suivi', g.no_groupe, i.date_inscription, CONCAT(u.prenom,' ', u.nom) AS client, CONCAT(f.prenom, ' ', f.nom) AS facilitateur FROM reservation r
+                LEFT JOIN utilisateur f ON r.id_facilitateur = f.id
+                LEFT JOIN activite a ON r.id_activite = a.id
+                LEFT JOIN emplacement e ON r.id_emplacement = e.id
+                LEFT JOIN paiement p ON r.id_paiement = p.id
+                LEFT JOIN suivi s ON r.id_suivi = s.id
+                LEFT JOIN groupe g ON r.id_groupe = g.no_groupe
+                LEFT JOIN inscription i ON g.no_groupe = i.id_groupe
+                LEFT JOIN utilisateur u ON i.id_utilisateur = u.id";
+
+    $stmt = $conn->prepare($requete);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows == 0){
+        $arrReservation = null;
+        return $arrReservation;
+      }
+
+    while($row = $result->fetch_assoc()){
+      $arrReservation[] = $row;
+    }
+    return $arrReservation;
+  }
 }
  ?>

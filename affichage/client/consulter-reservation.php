@@ -29,7 +29,7 @@ session_start();
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../js/consulter_reservation.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https:////cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
 

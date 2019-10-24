@@ -14,11 +14,24 @@
    }
    let divSelection = document.getElementById("Activite-"+x);
        divSelection.classList.add("selectionne");
+   if (x==18)
+   {
+     clearFields();
+   }
+   else{
        remplirNom(x);
        remplirDescription(x);
        remplirType(x);
-
+        }
  }
+
+ function clearFields(){
+document.getElementById('nom').innerHTML = "";
+document.getElementById('titre').innerHTML = "Nom du Service";
+//document.getElementById("Type-"+2).attr('selected','selected');
+document.getElementById('descriptionC').innerHTML = "";
+document.getElementById('nom').focus();
+}
 
 function remplirNom(x){
   var id = x+1;
@@ -32,9 +45,33 @@ function remplirNom(x){
                   data: myData,
                   success: function(data) {
 
-                    console.log(data);
+                    //console.log(data);
                     document.getElementById("titre").innerHTML=data;
                     document.getElementById("nom").innerHTML=data;
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/"/g, '');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e9/g, 'é');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/\\/g, '');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u2019/g, '\'');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ea/g, 'ê');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e7/g, 'ç');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e0/g, 'à');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e2/g, 'â');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ee/g, 'î');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e8/g, 'è');
+                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00c9/g, 'É');
+
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/"/g, '');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e9/g, 'é');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/\\/g, '');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u2019/g, '\'');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ea/g, 'ê');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e7/g, 'ç');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e0/g, 'à');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e2/g, 'â');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ee/g, 'î');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e8/g, 'è');
+                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00c9/g, 'É');
+
 
                   } ,
                   error: function() {
@@ -57,6 +94,17 @@ function remplirDescription(x){
 
                     console.log(data);
                     document.getElementById("descriptionC").innerHTML=data;
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/"/g, '');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e9/g, 'é');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/\\/g, '');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u2019/g, '\'');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00ea/g, 'ê');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e7/g, 'ç');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e0/g, 'à');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e2/g, 'â');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00ee/g, 'î');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e8/g, 'è');
+                    document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00c9/g, 'É');
 
                   } ,
                   error: function() {
@@ -76,26 +124,27 @@ function remplirType(x){
                   async: false,
                   data: myData,
                   success: function(data) {
+                    console.log(data);
 
-                    if(data=="1")
+                    if(data==1)
                     {
                         console.log(data);
-                      document.getElementById("type").value="En Atelier";
+                      document.getElementById("Type-"+0).attr('selected','selected');
                     }
-                    else if(data=="2")
+                    else if(data==2)
                     {
                         console.log(data);
-                      document.getElementById("type").value="Services à Domicile";
+                      document.getElementById("Type-"+1).attr('selected','selected');
                     }
-                    else if(data=="3")
+                    else if(data==3)
                     {
                         console.log(data);
-                      document.getElementById("type").value="En ligne";
+                      document.getElementById("Type-"+2).attr('selected','selected');
                     }
-                    else if(data=="4")
+                    else if(data==4)
                     {
                         console.log(data);
-                      document.getElementById("type").value="En Groupe";
+                      document.getElementById("Type-"+3).attr('selected','selected');
                     }
 
                   } ,
