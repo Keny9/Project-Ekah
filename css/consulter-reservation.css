@@ -36,39 +36,16 @@ th{
   font-size: 26px;
 }
 
-/*.tbl-reservation{
-  display: block;
-  width: 100%;
-  margin-top: 20px;
-  border-right: 1px solid #f0592a;
-}
-
-.tbl-header,.tbl-line{
-  display: table;
-  width: 100%;
-  background-color: rgb(229,222,212); /* Fallback color */
-/*  background-color: rgba(0, 131, 251, 0.05); /*With opacity*/
-  /*height: 30px;
-  border-bottom: 1px solid #f0592a;
-}
-
-.tbl-content{
-  display: table-cell;
-  width: 18%;
-  height: 100%;
+.label-consulter{
+  display: inline-block;
+  font-size: 15px;
   color: #034E53;
-  border-left: 1px solid #f0592a;
-  text-align: center;
-  vertical-align: middle;
+  margin-left: 5px;
 }
 
-.tbl-line{
-  background-color: #FFFFFF;
-}*/
-
-
-
-
+.suivi{
+  display: none;
+}
 
 @media only screen and (min-width: 768px){
   .reservation {
@@ -77,5 +54,10 @@ th{
 
   .top-img{
     font-size: 64px;
+  }
+
+  .btn-confirmer{
+    display: block;
+    margin: 0 auto;
   }
 }
