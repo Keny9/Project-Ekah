@@ -1,12 +1,7 @@
 <?php
   session_start();
-
   require_once("../../php/gestionnaire/Activite/gestionActivite.php");
   require_once("../../php/gestionnaire/Duree/gestionDuree.php");
-
-  //if(!isset($_SESSION["admin"]) || !isset($_SESSION["user"])){
-  //  header("location: page_connexion.php");
-  //}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +19,7 @@
 </head>
 
 <body>
-<main>
+<main class="mainRes">
   <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 
   <h1 class="titreReservation">Gestion des Réservation</h1>
@@ -65,9 +60,12 @@
                  ?>
 
     <h6 class="duree texteEkha">Duree:</h6>
-    <select class="boxDuree" name="service">
-      <option value="Duree">1 heures</option>
-    </select>
+    <?php
+                   require_once 'gestionAffichageGestionReservation.php';
+                   $gagr = new GestionAffichageGestionReservation();
+                   echo $gagr->getDureeActivite();
+                 ?>
+
     <h6 class="prix texteEkha">Prix:</h6>
     <input class="boxDuree" type="text" name="prix" min="0" value="Non fonctionelle scrum 1"></input>
     <h6 class="descriptionC texteEkha">Description du service:</h6>

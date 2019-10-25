@@ -22,6 +22,7 @@
        remplirNom(x);
        remplirDescription(x);
        remplirType(x);
+       remplirDuree(x);
         }
  }
 
@@ -113,6 +114,48 @@ function remplirDescription(x){
                 });
               });
 }
+function remplirDuree(x){
+  var id = x+1;
+  myData={id:id};
+  var url="../../php/script/Activite/remplirActiviteDuree.php";
+              $(function($) {
+                $.ajax({
+                  url: url,
+                  type:"POST",
+                  async: false,
+                  data: myData,
+                  success: function(data) {
+                    console.log(data);
+
+                    if(data==1)
+                    {
+                        console.log(data);
+                      document.getElementById("Type-"+0).attr('selected','selected');
+                    }
+                    else if(data==2)
+                    {
+                        console.log(data);
+                      document.getElementById("Type-"+1).attr('selected','selected');
+                    }
+                    else if(data==3)
+                    {
+                        console.log(data);
+                      document.getElementById("Type-"+2).attr('selected','selected');
+                    }
+                    else if(data==4)
+                    {
+                        console.log(data);
+                      document.getElementById("Type-"+3).attr('selected','selected');
+                    }
+
+                  } ,
+                  error: function() {
+                    alert('Error occured');
+                  }
+                });
+              });
+}
+
 function remplirType(x){
   var id = x+1;
   myData={id:id};
@@ -205,8 +248,10 @@ function ajoutDuree(x){
  function enleveDuree(x){
    var hr = new XMLHttpRequest();
    var url="../../php/script/Activite/supprimerActiviteDuree.php";
-   for (i = 0; i <= 19; i++){
+   console.log("allo");
+   for (i = 0; i <= 18; i++){
      let divSelection = document.getElementById("Activite-"+i);
+
      if(divSelection.classList.contains("selectionne")){
        var id = i+1;
      }
