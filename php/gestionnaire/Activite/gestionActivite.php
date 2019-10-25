@@ -7,8 +7,6 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/ta_dure
 class GestionActivite{
 /*
   Retourne un tableau contenant tous les activite contenus dans la BD
-  Prend des critères de recherche en paramètres.
-  Le paramètre doit être 'null' s'il ne contient pas de critère de recherche
 */
   public function getAllActivite(){
     $tempconn = new Connexion();
@@ -76,6 +74,7 @@ class GestionActivite{
     return $type_activite;
   }
 
+
   public function ajouterActivite($activite){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
@@ -108,14 +107,12 @@ class GestionActivite{
 
   /*
       Modifie un activite dans la BD
-      Le paramètre oldId contient l'identifiant de l'employe avant la modification,
+      Le paramètre oldId contient l'identifiant de l'activite avant la modification,
       puisque l'identifiant peut être modifié et qu'il est la clé primaire
   */
   public function modifierActivite($activite, $oldId){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
-      //$requete1="SET FOREIGN_KEY_CHECKS=0";
-      //$result1 = $conn->query($requete1);
 
       $requete= "UPDATE activite
                 SET id = '".$activite->getIdentifiant()."',
@@ -128,9 +125,6 @@ class GestionActivite{
       if(!$result){
         trigger_error($conn->error);
       }
-      //$requete2="SET FOREIGN_KEY_CHECKS=1";
-      //$result2 = $conn->query($requete2);
-
   }
 
   public function supprimerActivite($idActivite){
@@ -156,5 +150,6 @@ class GestionActivite{
       trigger_error($conn->error);
     }
   }
+
 }
 ?>
