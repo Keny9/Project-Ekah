@@ -16,17 +16,17 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/gestionReservation.css">
   <link rel="stylesheet" href="../../css/main.css">
-  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+  <script type="text/javascript" src="../../js/global.js"></script>
   <script type="text/javascript" src="../../js/gestionReservation.js"></script>
   <title>Gestion Reservation</title>
 </head>
 
 <body>
-<main>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
-
+<main>
   <h1 class="titreReservation">Gestion des Réservation</h1>
     <div class="tableauActivite">
     <?php
