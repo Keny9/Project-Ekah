@@ -45,12 +45,12 @@
           <table id="table_reservation" class="cell-border hover row-border">
             <thead>
               <tr>
-                <th id="th-1">Activité</th>
-                <th>Client</th>
-                <th>Lieu</th>
-                <th>Date/Heure</th>
-                <th>Coût</th>
-                <th>Facilitateur</th>
+                <th id="th-1" class="all">Activité</th>
+                <th class="all">Client</th>
+                <th class="min-desktop">Lieu</th>
+                <th class="min-desktop">Date/Heure</th>
+                <th class="min-desktop">Coût</th>
+                <th class="all">Facilitateur</th>
               </tr>
             </thead>
             <tbody>

@@ -12,12 +12,14 @@ $(document).ready(function(){
       {"data": "nom_lieu"},
       {"data": "date_rendez_vous"},
       {"data": "montant"},
-      {"data": "facilitateur"},
+      {"data": "facilitateur"}
     ],
     "language":{
       "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
     },
-    responsive: true
+    responsive: {
+      details: false
+    }
   });
 
   $('#table_reservation tbody').on('click', 'tr', function (){ //Lors du click sur une ligne du tableau
