@@ -77,5 +77,23 @@ class GestionLogin{
     return password_verify($motDePasseEntree, $motDePasseBd);
   }
 
+  // Retourne le user_type_id
+  public function getTypeId($user_id){
+    $connexion = new Connexion();
+    $conn = $connexion->do();
+
+    $stmt = $conn->prepare("SELECT id_type_utilisateur
+                            FROM utilisateur
+                            WHERE id = ?");
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $user_type_id = null;
+    if($row = $result->fetch_assoc()){
+      $user_type_id = $row['id_type_utilisateur'];
+    }
+    return $user_type_id;
+  }
 }
  ?>

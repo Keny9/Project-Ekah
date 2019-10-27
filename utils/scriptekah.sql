@@ -510,6 +510,7 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 4, '2020-02-22');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 5, '2020-02-22');
 
+
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12 19:00:00', 8, 9);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, 2, '2020-02-02', 13, 14);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, 3, '2020-02-02', 13, 14);

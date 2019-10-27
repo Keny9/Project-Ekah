@@ -6,14 +6,14 @@ if(!isset($_SESSION)){
 $seConnecterRedirect;
 
 // Si pas connecté
-if (!isset($_SESSION['userId'])){
+if (!isset($_SESSION['logged_in_user_id'])){
   $seConnecterRedirect = "/Project-Ekah/affichage/global/login.php";
 }
 else{
-  if($_SESSION['userTypeId'] == 1){ // client
+  if($_SESSION['logged_in_user_type_id'] == 1){ // client
     $seConnecterRedirect = "/Project-Ekah/affichage/client/accueil_client.php";
   }
-  else if($_SESSION['userTypeId'] == 2){ // admin
+  else if($_SESSION['logged_in_user_type_id'] == 2){ // admin
     $seConnecterRedirect = "/Project-Ekah/affichage/admin/accueil_admin.php";
   }
 }

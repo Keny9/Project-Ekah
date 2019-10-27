@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <?php
 // Accueil du client
+$page_type=2;
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
-session_start();
 
-//Si un admin n'est pas connecté,
-if($_SESSION['userTypeId'] != 2){
-  header('Location: /Project-Ekah/affichage/global/erreur.html');
-}
  ?>
 <html lang="en" dir="ltr">
   <head>

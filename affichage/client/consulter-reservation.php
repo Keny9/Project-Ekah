@@ -9,8 +9,9 @@
  * Date de la dernière modification : 2019-10-18
  */
 
-session_start();
- $_SESSION['userId'] = null;
+
+ $page_type=1;
+ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
  ?>
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@ session_start();
     <script type="text/javascript" src="../../js/global.js"></script>
 
   </head>
-  <body onload="<?php //echo "getReservations(".$_SESSION['userId'].")"; ?>">
+  <body>
 
     <main>
       <div class="top-img">
@@ -57,7 +58,7 @@ session_start();
                 </tr>
             </thead>
             <tbody id="tbody">
-              <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/getReservations.php" ?>
+            
             </tbody>
         </table>
         </div>
