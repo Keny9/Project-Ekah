@@ -35,6 +35,7 @@ class Reservation{
     $this->setDateRendezVous($date_rendez_vous);
     $this->setHeureDebut($heure_debut);
     $this->setHeureFin($heure_fin);
+    $this->setIdFacilitateur($id_facilitateur);
   }
 
   /*

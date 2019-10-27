@@ -1,20 +1,27 @@
 $(document).ready( function () {
 //  getReservations();
 
-  $('#table_reservation').DataTable({
-    "language":{
-      "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
-    },
-    /*"ajax": {
-      "url": "/Project-Ekah/php/script/Reservation/getReservations.php"
-    },*/
-  //  ajax: '/Project-Ekah/php/script/Reservation/getReservations.php',
-    responsive: true
-  });
+$('#table_reservation').DataTable({
+  "ajax":{
+    "url": "../../php/script/Reservation/dataReservationClient.php",
+    "dataSrc": ""
+  },
+  "columns" : [
+    {"data": "nom"},
+    {"data": "date_rendez_vous"},
+    {"data": "nom_lieu"},
+    {"data": "montant"},
+    {"data": "facilitateur"},
+  ],
+  "language":{
+    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
+  },
+  responsive: true
+});
 
 } );
 
-function getReservations(user_id){
+/*function getReservations(user_id){
   $(function($) {
     $.ajax({
       url: "/Project-Ekah/php/script/Reservation/getReservations.php",
@@ -45,4 +52,4 @@ function getReservations(user_id){
     });
   });
   //$('#temp-tr').remove();
-}
+}*/
