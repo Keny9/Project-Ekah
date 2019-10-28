@@ -24,7 +24,7 @@ $facilitateur = $gestionFacilitateur->getFacilitateur($id);
 
 date_default_timezone_set('America/Toronto');
 
-$disponibilite = $facilitateur->getDisponibilite();
+$disponibilite[] = $facilitateur->getDisponibilite();
 
 foreach ($disponibilite as $row) {
 

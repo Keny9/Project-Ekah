@@ -131,6 +131,7 @@ class GestionFacilitateur{
 
         $tempconn = new Connexion();
         $conn = $tempconn->getConnexion();
+        $disponibilite[] = null;
 
         $requete= "SELECT * FROM `utilisateur`
                     INNER JOIN ta_disponibilite_specialiste ON id_specialiste = utilisateur.id

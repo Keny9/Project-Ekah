@@ -55,7 +55,7 @@ $(document).ready(function() {
 });
 
 
-
+//Ajouter une nouvelle disponibilite à la base de données
 function envoyeDispo(heure, date){
 
   var dates = date.split(" ");
@@ -96,6 +96,7 @@ function envoyeDispo(heure, date){
   return bool;
 }
 
+//Supprimer une disponibilite en cliquant sur la dispo (day view only)
 function supprimerDispo(heure, date){
 
   var dates = date.split(" ");
