@@ -1189,6 +1189,8 @@ if(!String.prototype.formatNum) {
 				});
 		}
 
+    //Coucou
+
 		$('a[data-event-id]', this.context).on('click', function(event) {
 			event.preventDefault();
 			event.stopPropagation();
@@ -1369,6 +1371,7 @@ if(!String.prototype.formatNum) {
 
 		slider.slideUp('fast', function() {
 			var event_list = $('.events-list', cell);
+
 			slider.html(self.options.templates['events-list']({
 				cal: self,
 				events: self.getEventsBetween(parseInt(event_list.data('cal-start')), parseInt(event_list.data('cal-end')))
