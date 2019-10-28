@@ -267,9 +267,16 @@ FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe),
 FOREIGN KEY (id_facilitateur) REFERENCES utilisateur(id)
 );
 
+CREATE TABLE region (
+id INT NOT NULL,
+nom varchar(30),
+PRIMARY KEY (id)
+);
+
 CREATE TABLE ta_disponibilite_specialiste (
 id_specialiste INT NOT NULL,
 id_disponibilite INT NOT NULL,
+id_region INT,
 PRIMARY KEY (id_specialiste, id_disponibilite),
 FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id),
 FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id)
