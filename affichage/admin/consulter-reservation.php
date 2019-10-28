@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/dataTable.css"/>
     <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
@@ -44,19 +45,36 @@
           <table id="table_reservation" class="cell-border hover row-border">
             <thead>
               <tr>
-                <th id="th-1">Activité</th>
-                <th>Client</th>
-                <th>Lieu</th>
-                <th>Date/Heure</th>
-                <th>Coût</th>
-                <th>Facilitateur</th>
+                <th id="th-1" class="all">Activité</th>
+                <th class="all">Client</th>
+                <th class="min-desktop">Lieu</th>
+                <th class="min-desktop">Date/Heure</th>
+                <th class="min-desktop">Coût</th>
+                <th class="all">Facilitateur</th>
               </tr>
             </thead>
             <tbody>
-
             </tbody>
           </table>
         </div>
+
+        <div class="suivi" id="suivi">
+          <div class="group-input-inscr">
+            <label for="commentaire" class="label-consulter">Qu'est-ce qui a été effectué :</label>
+            <textarea name="fait" class="commentaire" id="fait"></textarea>
+          </div>
+
+          <div class="group-input-inscr">
+            <label for="commentaire" class="label-consulter">Suggestions pour la prochaine rencontre :</label>
+            <textarea name="suggestion" class="commentaire" id="suggestion"></textarea>
+          </div>
+
+          <div class="group-input-inscr">
+            <button type="button" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
+          </div>
+        </div>
+
+
 
     </main>
 

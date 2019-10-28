@@ -14,52 +14,6 @@
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/type_question.php";
 class GestionQuestion{
 
-/*
-  Retourne un tableau contenant tous les employés contenus dans la BD
-  Prend des critères de recherche en paramètres.
-  Le paramètre doit être 'null' s'il ne contient pas de critère de recherche
-*/
-  /*public function getAllEmploye( $column, $critere){
-    $tempconn = new Connexion();
-    $conn = $tempconn->getConnexion();
-    $employe = null;
-
-    $requete= "SELECT * FROM employe";
-
-    if($critere != ""){
-      $requete .= " WHERE ".$column." LIKE '%{$critere}%';";
-    }
-
-    $result = $conn->query($requete);
-    if(!$result){
-      trigger_error($conn->error);
-    }
-
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $employe[] = new Employe( $row['identifiant'],
-                                  $row['nom'],
-                                  $row['prenom'],
-                                  $row['courriel'],
-                                  $row['date_naissance'],
-                                  $row['date_embauche'],
-                                  $row['telephone'],
-                                  $row['nas'],
-                                  $row['mot_passe'],
-                                  $row['ville'],
-                                  $row['nom_rue'],
-                                  $row['no_porte'],
-                                  $row['id_poste'],
-                                  $row['id_etat']);
-      }
-    }
-
-    return $employe;
-  }*/
-
-/*
-Ajoute un employe à la BD ainsi que son adresse
-*/
   public function ajouterQuestion($question){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
@@ -79,45 +33,6 @@ Ajoute un employe à la BD ainsi que son adresse
         trigger_error($conn->error);
       }
     }
-
-
-  /*
-      Modifie un employe dans la BD
-      Le paramètre oldId contient l'identifiant de l'employe avant la modification,
-      puisque l'identifiant peut être modifié et qu'il est la clé primaire
-  */
-  /*public function modifierEmploye($employe, $oldId){
-    if (!is_a($employe, 'Employe')){
-      echo "L'objet en paramètre doit être un employé";
-      return;
-    }
-    else{
-      $tempconn = new Connexion();
-      $conn = $tempconn->getConnexion();
-
-      $requete= "UPDATE employe
-                SET identifiant = '".$employe->getIdentifiant()."',
-                nom = '".$employe->getNom()."',
-                prenom = '".$employe->getPrenom()."',
-                courriel = '".$employe->getCourriel()."',
-                date_naissance = '".$employe->getDateNaissance()."',
-                date_embauche = '".$employe->getDateEmbauche()."',
-                telephone = '".$employe->getTelephone()."',
-                nas = '".$employe->getNas()."',
-                mot_passe = '".$employe->getMotDePasse()."',
-                ville = '".$employe->getVille()."',
-                nom_rue = '".$employe->getRue()."',
-                no_porte = '".$employe->getNo()."',
-                id_poste = '".$employe->getPoste()."',
-                id_etat = '".$employe->getEtat()."'
-                WHERE identifiant = '$oldId';";
-      $result = $conn->query($requete);
-      if(!$result){
-        trigger_error($conn->error);
-      }
-    }
-  }*/
-
 /*
   Supprime une question dans la BD en prenant son identifiant en paramètre
 */
@@ -132,28 +47,5 @@ Ajoute un employe à la BD ainsi que son adresse
       trigger_error($conn->error);
     }
   }
-
-/*
-  Retourne un tableau de tous les postes d'employé
-*/
-  /*public function getAllPoste(){
-    $tempconn = new Connexion();
-    $conn = $tempconn->getConnexion();
-    $poste = null;
-
-    $requete= "SELECT * FROM poste_employe;";
-    $result = $conn->query($requete);
-    if(!$result){
-      trigger_error($conn->error);
-    }
-    else{
-      if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-          $poste[] = new Poste($row['id'], $row['nom'], $row['description']);
-        }
-      }
-    }
-    return $poste;
-  }*/
 }
 ?>
