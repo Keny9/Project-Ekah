@@ -1,12 +1,11 @@
 <?php
 /****************************************
-Fichier : scriptSupprimerClient.php
-Auteur : Guillaume Côt.
-Fonctionnalité : Script php pour supprimer un client
-Date : 2019-04-24
+Fichier : modifierActivite.php
+Auteur : William Gonin
+Fonctionnalité : Script php pour modifier un activite
+Date : 2019-10-03
 Vérification :
 Date Nom Approuvé
-2019-05-02        William Gonin              Approuvé
 =========================================================
 Historique de modifications :
 Date Nom Description

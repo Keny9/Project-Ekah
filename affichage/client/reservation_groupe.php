@@ -9,6 +9,9 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-10-12
  */
+
+ $page_type=1;
+ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 ?>
 
 <!DOCTYPE html>

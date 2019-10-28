@@ -6,12 +6,14 @@
  * Nom :         redirectPostLogin.php
  * Catégorie :   scriptPhp
  * Auteur :      Maxime Lussier
- * Version :     1.1
- * Date de la dernière modification : 2019-10-07
+ * Version :     1.2
+ * Date de la dernière modification : 2019-10-27
  */
 
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Client/GestionLogin.php";
- session_start();
+ if (session_status() == PHP_SESSION_NONE) {
+     session_start();
+ }
 
  $gestionLogin = new GestionLogin();
  $messageErreur = "";
@@ -43,13 +45,13 @@
  // Si aucune erreur,
  // Set userId et userTypeId dans la $_SESSION
  if (empty($messageErreur)){
-   $_SESSION['userId'] = $userId;
-   $_SESSION['userTypeId'] = $userTypeId;
+   $_SESSION['logged_in_user_id'] = $userId;
+   $_SESSION['logged_in_user_type_id'] = $userTypeId;
 
    //Vérification du type d'utilisateur et redirect
    switch ($userTypeId) {
      case '1': // Si c'est un client
-     header("Location: /Project-Ekah/affichage/client/accueil_client.php");
+     header("Location: /Project-Ekah/affichage/client/accueil_client.php?");
      break;
      case '2': // Si c'est un admin
      header("Location: /Project-Ekah/affichage/admin/accueil_admin.php");

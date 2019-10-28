@@ -135,7 +135,7 @@
   margin-top:10px;
 }
  .prix{
-   margin-top:50px;
+   margin-top:30px;
  }
  .descriptionC{
    margin-top:30px;
@@ -156,6 +156,7 @@
    width:800px;
    height:40px;
    margin-left:400px;
+   margin-bottom:1000px;
  }
  .reservationHeader{
    background-color:#034E54;
@@ -170,11 +171,12 @@
    float:left
  }
  .titreImg{
-   margin-bot:125px;
-   margin-left:350px;
+   margin-left:420px;
+   font-size:40px;
+   color:#fff;
+   transform: translate(-50%, -50%);
  }
  .titreReservation{
-   margin-top:10px;
    margin-left:10px;
  }
  .duree{

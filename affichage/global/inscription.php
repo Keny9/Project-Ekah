@@ -15,9 +15,8 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
-     <link rel="stylesheet" href="../../css/main.css">
      <link rel="stylesheet" href="../../css/inscription.css">
+     <link rel="stylesheet" href="../../css/main.css">
      <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
      <script type="text/javascript" src="../../js/inscription.js"></script>
@@ -25,24 +24,6 @@
      <title>Inscription</title>
    </head>
    <body>
-    <form class="form-inscr" id="mickeymouse" action="bebechien" method="post">
-
-     <div id="modal-inscription" class="modal-inscription">
-       <div class="modal-content">
-         <div class="modal-align-middle img-conf-insc">
-            <img src="../../img/crochet.png" alt="Confirmation inscription">
-         </div>
-         <div class="modal-align-middle txt-bravo">
-           <p>Félicitations !</p>
-         </div>
-         <div class="modal-align-middle txt-modal-bienv">
-           <p>Bienvenue dans la famille Ekah !</p>
-         </div>
-         <div class="modal-align-middle btn-modal-insc">
-           <button type="submit" class="btn-confirmer input-court" name="button">Se connecter</button>
-         </div>
-       </div>
-     </div>
 
      <main>
        <div class="inscription">
@@ -63,6 +44,7 @@
              Ces champs ne peuvent pas être vide.
            </div>
          </div>
+         <form class="form-inscr" id="mickeymouse" action="bebechien" method="post">
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
@@ -123,15 +105,15 @@
              </div>
            </div>
            <div class="group-input-inscr">
-             <button type="button" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
+             <button type="submit" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
            </div>
            <div class="group-input-inscr btn-espace">
             <a href="./login.php"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>
            </div>
-
+         </form>
        </div>
 
      </main>
-    </form>
+
    </body>
  </html>

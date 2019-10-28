@@ -37,5 +37,28 @@ class GestionDuree{
     }
     return $duree;
   }
-}
+
+  public function getDureesOfActivite($idActivite){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+
+      $requete = "SELECT tda.id_activite, d.id, d.temps FROM ta_duree_activite AS tda
+                INNER JOIN activite AS a ON tda.id_activite = a.id
+                INNER JOIN duree AS d ON tda.id_duree = d.id
+                WHERE tda.id_activite = $idActivite;";
+
+      $result = $conn->query($requete);
+
+      if(!$result){
+          trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $duree[] = new Duree( $row['id'],$row['temps']);
+        }
+      }
+      return $duree;
+    }
+  }
 ?>

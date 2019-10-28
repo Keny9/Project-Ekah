@@ -46,16 +46,36 @@
             $j=$i+1;
 
             $html .= "
-              <option value=\"$j\" >".$type_activite[$i]->getNom()."</option>
+              <option id='Type-$i' value=\"$j\" >".$type_activite[$i]->getNom()."</option>
             ";
-
           }
           $html .= "</select>";
         }
         return $html;
       }
 
+      public function getDureeActivite(){
+         $gd = new GestionDuree();
+         $duree_activite = $gd->getDureesOfActivite(13);
 
+         $html = "";
+
+          if (!is_array($duree_activite)){
+           $html .= "Aucun resultat trouvé.";
+         }
+         else{
+           $html .= "<select class=\"boxDuree\" name=\"service\" id=\"duree\">";
+           for ($i = 0; $i < sizeof($duree_activite);$i++){
+             $j=$i+1;
+
+             $html .= "
+               <option id='Duree-$i' value=\"$j\" >".$duree_activite[$i]->getTemps()." minutes</option>
+             ";
+           }
+           $html .= "</select>";
+         }
+         return $html;
+       }
 
      public function getAllDuree(){
         $gd = new GestionDuree();
