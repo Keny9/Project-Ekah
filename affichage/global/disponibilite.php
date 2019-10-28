@@ -43,6 +43,7 @@
       <div id="calendar"></div>
 
       <script type="text/javascript">
+
         var calendar = $("#calendar").calendar(
           {
             tmpl_path: "../../utils/bootstrap-calendar/tmpls/",

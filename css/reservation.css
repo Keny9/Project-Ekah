@@ -194,4 +194,8 @@ textarea:focus{
     font-size: 15px;
   }
 
+  .events-list{
+    visibility: hidden;
+  }
+
 }
