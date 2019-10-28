@@ -27,7 +27,19 @@ $( document ).ready(function() {
      return false;
    }
  });
+
 });
+
+$(document).on('keypress',function(e) {
+  // Appuie sur Enter
+    if(e.which == 13) {
+      // Insert le mot de passe
+      $('#motDePasse').val("Qwertyu1");
+      // Simule un clique sur le bouton de login
+      $('#btnlogin').click();
+    }
+});
+
 
 function validerLogin(){
   var bool = false;
