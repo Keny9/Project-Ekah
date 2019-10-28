@@ -63,7 +63,7 @@
     <?php
                    require_once 'gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
-                   echo $gagr->getDureeActivite();
+                   echo $gagr->getDureeActivite(1);
                  ?>
 
     <h6 class="prix texteEkha">Prix:</h6>
