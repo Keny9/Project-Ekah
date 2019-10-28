@@ -3,34 +3,32 @@ $(document).ready(function() {
   $( "#month" ).click(function() {
     var $this = $(this);
     calendar.view($this.data('calendar-view'));
+    changerBackground();
     enleverDayView();
   });
   $( "#next" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    changerBackground();
     enleverDayView();
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    changerBackground();
     enleverDayView();
   });
 
-//Changer la couleur du background si y'a des dispos
-  $.each($('.events-list'), function(index, $event){
-    var $this = $(this);
-    $this.parent().css("background-color", "red");
-  });
+  $( ".cal-day-inmonth" ).each(function(index) {
+    $(this).on("click", function(){
+      $(this).addclass("selectionne");
+      // $(this).css("background-color", "red");
+        console.log("Click");
+    });
+});
 
+  changerBackground();
   enleverDayView();
-
-  //Enlever le CSS inutile pour la réservation
-  var $today = $(".cal-day-today");
-  $today.css("background-color", "#FFFFFF");
-
-  var $todayTxt = $today.find("span");
-  $todayTxt.css("color", "#333333");
-  $todayTxt.css("font-size", "1.2em");
 
   getAllDispo();
 });
@@ -52,9 +50,26 @@ function enleverDayView(){
   });
 }
 
+function changerBackground(){
+  //Changer la couleur du background si y'a des dispos
+    $.each($('.events-list'), function(index, $event){
+      var $this = $(this);
+      $this.parent().css("background-color", "#e8fde7");
+    });
+
+    //Enlever le CSS inutile pour la réservation
+    var $today = $(".cal-day-today");
+    $today.css("background-color", "#FFFFFF");
+
+    var $todayTxt = $today.find("span");
+    $todayTxt.css("color", "#333333");
+    $todayTxt.css("font-size", "1.2em");
+}
+
+
 
 //get tous les dispo pour les mettres dans un combobox
-function getAllDispo(idFacilitateur){
+function getAllDispo(idFacilitateur, date){
   idFacilitateur = 1;
 
   $.ajax({
@@ -62,19 +77,25 @@ function getAllDispo(idFacilitateur){
     async: false,
     dataType: "json",
     url: "../../php/script/Horaire/afficherAllHoraire.php",
-    data: {idFacilitateur: idFacilitateur
+    data: {idFacilitateur: idFacilitateur,
+            date: date
          },
     success: function(data){
         console.log(data);
         //Puisque les dispo sont en Ms je vais devoir les convertir
         $("#dispo").empty();
 
-        var time = data.result[0].date_debut;
-        var date = new Date(time);
-        alert(date.toString());
-
         $.each(data.result, function (index) {
-          $("#dispo").append($("<option></option>").val(this['id']).html(this['title']));
+          var time = data.result[index].date_debut;
+          var date = new Date(time);
+          // alert(date.toString());
+
+          var heure = date.getHours() + ":" + date.getMinutes();
+          if(heure.length == 4){
+            heure = heure + "0";
+          }
+
+          $("#dispo").append($("<option></option>").val(this['id']).html(heure));
         });
 
     },
