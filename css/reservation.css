@@ -65,7 +65,6 @@ main{
   display: inline-block;
   font-size: 15px;
   color: #034E53;
-  margin-bottom: 5px;
   margin-left: 5px;
 }
 
@@ -123,6 +122,7 @@ main{
   height: 150px;
   padding: 5px;
   margin-top: 20px;
+  font-size: 18px;
 }
 
 .select-section{
@@ -192,6 +192,10 @@ textarea:focus{
   .photo-nom{
     width: 125px;
     font-size: 15px;
+  }
+
+  .events-list{
+    visibility: hidden;
   }
 
 }

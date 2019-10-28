@@ -9,37 +9,44 @@
  * Date de la dernière modification : 2019-10-10
  */
 
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
-
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
+// $idFacilitateur = $_POST['idFacilitateur'];
 
 $gestionFacilitateur = new GestionFacilitateur();
 
-$facilitateur = $gestionFacilitateur->getAllFacilitateurActif();
-// print_r($facilitateur[0]->getDisponibilite());   -> fonctionne
+
+
+$facilitateur = $gestionFacilitateur->getAllFacilitateurActifAvecDispo();
+// print_r($facilitateur[1]->getNom());
 
 
 date_default_timezone_set('America/Toronto');
 
-// $disponibilite = $facilitateur->getDisponibilite();
-// print_r($disponibilite);
+$out = null;
 
-//Je dois faire 2 boucles, une pour les disponibilité (deja fait) et une pour les
-//facilitateurs (pas encore fais)
-foreach ($disponibilite as $row) {
-  $start = date("Y-m-d H:i:s", strtotime($row->getHeureDebut()));
-  $end = date("Y-m-d H:i:s", strtotime($row->getHeureFin()));
+for ($i=0; $i < sizeof($facilitateur); $i++) {
+  $dispo = $facilitateur[$i]->getDisponibilite();
 
-  $out[] = array(
-    'id' => $row->getId(),
-    'title' => $row->getId(),
-    'url' => "URL",
-    'start' => strtotime($start) . '000',
-    'end' => strtotime($end) .'000'
-  );
+  if (isset($dispo)) {
+    for ($j=0; $j < sizeof($facilitateur[$i]->getDisponibilite()); $j++) {
+      $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
+      $end = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureFin()));
+
+      $out[] = array(
+        'id' => $dispo[$j]->getId(),
+        'title' => $dispo[$j]->getId(),
+        'url' => "URL",
+        'start' => strtotime($start) . '000',
+        'end' => strtotime($end) .'000',
+        'date_debut' => $dispo[$j]->getHeureDebut(),
+        'date_fin' => $dispo[$j]->getHeureFin()
+      );
+    }
+  }
 }
+
 
 echo json_encode(array('success' => 1, 'result' => $out));
 exit;

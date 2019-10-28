@@ -34,7 +34,7 @@ class Facilitateur extends Utilisateur{
     $this->etat = $val;
   }
   public function setDisponibilite($val){
-    $this->disponibilite[] = $val;
+    $this->disponibilite = $val;
   }
 
 

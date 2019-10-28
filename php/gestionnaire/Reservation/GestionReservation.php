@@ -14,6 +14,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Rese
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Inscription/Inscription.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Emplacement/Emplacement.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
@@ -26,10 +27,10 @@ class GestionReservation{
   * Insert un enregistrement dans la table Reservation
   * pour une réservation individuelle
   */
-  public function insertReservationIndividuelle($groupe, $reservation, $client, $emplacement){
+public function insertReservationIndividuelle($groupe, $reservation, $client_id/*, $emplacement*/){
     $connexion = new Connexion();
     $conn = $connexion->do();
-    $id_utilisateur = $client->getId();
+    $id_utilisateur = $client_id;
 
     // TODO: Vérifier si la réservation est conforme
 
@@ -41,6 +42,7 @@ class GestionReservation{
     // Rollback is erreur
     if ($id_groupe == null){
       $conn->rollback();
+      echo "shit";
       exit();
     }
 
@@ -54,7 +56,7 @@ class GestionReservation{
     }
 
     // Insert emplacement, rollback si erreur
-    if($this->emplacementInsert($conn, $emplacement) == false){
+  /*  if($this->emplacementInsert($conn, $emplacement) == false){
       $conn->rollback();
       exit();
     }
@@ -65,7 +67,8 @@ class GestionReservation{
     if($id_emplacement == null){
       $conn->rollback();
       exit();
-    }
+    }*/
+    $id_emplacement = 1;
 
     // Créer la réservation
     $reservation->setIdGroupe($id_groupe);
@@ -90,6 +93,10 @@ class GestionReservation{
     $nom_entreprise = $groupe->getNomEntreprise();
     $nom_organisateur = $groupe->getNomOrganisateur();
     $nb_participant = $groupe->getNbParticipant();
+    if($nb_participant == null) $nb_participant = "NULL";
+    if($nom_entreprise == null) $nom_entreprise = "NULL";
+    if($nom_organisateur == null) $nom_organisateur = "NULL";
+
 
     // Créer le groupe
     $stmt = $conn->prepare("INSERT INTO groupe (id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (?, ?, ?, ?);");
@@ -212,7 +219,7 @@ class GestionReservation{
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()){
-      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue']); // get l'id du groupe
+      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue'], $row['cout']); // get l'id du groupe
     }
     if($conn->error){
       echo "activiteSelect : ".$conn->error;
@@ -235,9 +242,10 @@ class GestionReservation{
     $date_rendez_vous = $reservation->getDateRendezVous();
     $heure_debut = $reservation->getHeureDebut();
     $heure_fin = $reservation->getHeureFin();
+    $id_facilitateur = $reservation->getIdFacilitateur();
 
-    $stmt = $conn->prepare("INSERT INTO Reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin) VALUES (?,?,?,?,?,?,?,?);");
-    $stmt->bind_param('iiiiisii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin);
+    $stmt = $conn->prepare("INSERT INTO Reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin, id_facilitateur) VALUES (?,?,?,?,?,?,?,?,?);");
+    $stmt->bind_param('iiiiisiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur);
     $stmt->execute();
 
     if($conn->error){
@@ -362,9 +370,18 @@ class GestionReservation{
   * Retourne un array de réservation ainsi que d'autres attributs pour l'affichage dans le tableau
   * Prend des paramètres de recherche.
   */
-public function selectAll(/*$client_id, $facilitateur_id, $activite_id, $order*/){
+public function selectAll($user_id = null){
     $conn = ($connexion = new Connexion())->do();
-    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.date_rendez_vous, r.heure_debut, r.heure_fin FROM reservation AS r;";
+    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.id_facilitateur, r.date_rendez_vous, r.heure_debut, r.heure_fin, r.id_facilitateur FROM reservation AS r";
+
+
+    if ($user_id != null){
+      $requete .= "
+      INNER JOIN inscription AS i ON i.id_groupe = r.id_groupe
+      INNER JOIN utilisateur AS u ON u.id = i.id_utilisateur
+      WHERE u.id = $user_id";
+    }
+
 
     $stmt = $conn->prepare($requete);
     $stmt->execute();
@@ -372,22 +389,82 @@ public function selectAll(/*$client_id, $facilitateur_id, $activite_id, $order*/
     $array = array();
     while($row = $result->fetch_assoc()){
       // Créer la réservation
-      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin']);
+      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin'], $row['id_facilitateur']);
       // Créer l'emplacement
       $emp = $this->emplacementSelect($conn, $row['id_emplacement']);
       //Créer l'activité
       $act = $this->activiteSelect($conn, $row['id_activite']);
+      //Créer facilitateur
+      $fac =  $this->facilitateurSelectWithId($conn, $row['id_facilitateur']);
       $row_content = [
         'reservation' => $res,
         'emplacement' => $emp,
         'activite' => $act,
+        'facilitateur' => $fac,
       ];
 
       array_push($array, $row_content);
-    //array_push($array, 'reservation' => new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin']));
-
     }
     return $array;
+  }
+
+  /**
+  * Selectionne dans la BD le facilitateur avec l'ID en paramètre.
+  * Retourne un objet facilitateur
+  */
+  private function facilitateurSelectWithId($conn, $facilitateur_id){
+    $requete = "SELECT * FROM utilisateur
+                INNER JOIN compte_utilisateur ON compte_utilisateur.fk_utilisateur = utilisateur.id
+                WHERE utilisateur.id = ?";
+
+    $stmt = $conn->prepare($requete);
+    $stmt->bind_param('i', $facilitateur_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $facilitateur = null;
+    if ($row = $result->fetch_assoc()){
+      $facilitateur = new Facilitateur($row['id'], $row['nom'], $row['prenom'], $row['date_inscription'], $row['courriel'], $row['date_naissance'], $row['telephone'], null, null);
+    }
+
+    return $facilitateur;
+  }
+
+//Obtenir toutes la liste des reservations sous forme de donnees
+  public function getAllReservationData($id_client = null){
+    $conn = ($connexion = new Connexion())->do();
+
+    $requete = "SELECT a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS 'id_suivi', g.no_groupe, i.date_inscription, CONCAT(u.prenom,' ', u.nom) AS client, CONCAT(f.prenom, ' ', f.nom) AS facilitateur FROM reservation r
+                LEFT JOIN utilisateur f ON r.id_facilitateur = f.id
+                LEFT JOIN activite a ON r.id_activite = a.id
+                LEFT JOIN emplacement e ON r.id_emplacement = e.id
+                LEFT JOIN paiement p ON r.id_paiement = p.id
+                LEFT JOIN suivi s ON r.id_suivi = s.id
+                LEFT JOIN groupe g ON r.id_groupe = g.no_groupe
+                LEFT JOIN inscription i ON g.no_groupe = i.id_groupe
+                LEFT JOIN utilisateur u ON i.id_utilisateur = u.id";
+
+    if($id_client){
+      $requete .= " WHERE u.id = $id_client;";
+    }
+
+    $stmt = $conn->prepare($requete);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows == 0){
+        $arrReservation = [];
+        return $arrReservation;
+      }
+
+    while($row = $result->fetch_assoc()){
+      $montant = $row['montant'];
+    $montant = str_pad($montant, 20/*, " ", STR_PAD_RIGHT*/);
+      $montantFormat = sprintf("%s%s", $montant, "$");
+      $row['montant'] = $montantFormat;
+      $arrReservation[] = $row;
+
+    }
+    return $arrReservation;
   }
 }
  ?>

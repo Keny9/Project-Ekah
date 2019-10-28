@@ -9,14 +9,11 @@
  * Date de la dernière modification : 2019-10-11
  */
 
-session_start();
+ $page_type=1;
+ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
- if($_SESSION['userTypeId'] != 1){
-   header('Location: /Project-Ekah/affichage/global/erreur.html');
- }
-
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
 
 $gActivite = new GestionActivite();
 $activites = $gActivite->getAllActivite();

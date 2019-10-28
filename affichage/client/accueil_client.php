@@ -2,13 +2,11 @@
 <?php
 // Accueil du client
 
-session_start();
+$page_type=1;
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
-//Si un client n'est pas connecté,
-if($_SESSION['userTypeId'] != 1){
-  header('Location: /Project-Ekah/affichage/global/erreur.html');
-}
- ?>
+?>
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
