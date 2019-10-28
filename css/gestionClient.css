@@ -1,3 +1,11 @@
+.input-profil{
+  width: 100%;
+}
+
+.label-consulter{
+  width: 100%;
+}
+
 .txt-consulter{
   margin-top: 30px;
   color: #034e54;
@@ -43,8 +51,13 @@ th{
   margin-left: 5px;
 }
 
-.suivi{
+.profil{
   display: none;
+}
+
+.info-profil{
+  width: 500px;
+  margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px){

@@ -198,4 +198,8 @@ textarea:focus{
     visibility: hidden;
   }
 
+  .selectionne{
+    background-color: red;
+  }
+
 }
