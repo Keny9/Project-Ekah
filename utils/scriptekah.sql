@@ -315,6 +315,10 @@ INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (1, "1", "Le b
 INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (2, "2", "Maison du client");
 
 INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (2, "Ce fut un plaisir, \nÀ la prochaine.", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (3, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (4, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (5, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
 
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
@@ -520,10 +524,10 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 
 
 
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12 19:00:00', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, 2, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, 3, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 2, 1, 2, 4, 1, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 2, 1, 3, 5, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 2, 1, 2, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 3, 1, 3, 3, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 2, 4, 2, 4, 1, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 2, 5, 3, 5, 2, '2020-02-02', 13, 14);
 
 
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);

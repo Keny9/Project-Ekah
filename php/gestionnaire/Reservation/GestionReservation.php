@@ -429,7 +429,10 @@ public function selectAll($user_id = null){
     return $facilitateur;
   }
 
-//Obtenir toutes la liste des reservations sous forme de donnees
+/**
+* Obtenir toutes la liste des reservations sous forme de donnees
+*
+*/
   public function getAllReservationData($id_client = null){
     $conn = ($connexion = new Connexion())->do();
 
@@ -466,5 +469,7 @@ public function selectAll($user_id = null){
     }
     return $arrReservation;
   }
+
+
 }
  ?>
