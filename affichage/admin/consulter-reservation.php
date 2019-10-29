@@ -66,11 +66,11 @@
 
           <div class="group-input-inscr">
             <label for="commentaire" class="label-consulter">Suggestions pour la prochaine rencontre :</label>
-            <textarea name="suggestion" class="commentaire" id="suggestion"></textarea>
+            <textarea name="suggestion" class="commentaire" id="commentaire"></textarea>
           </div>
 
           <div class="group-input-inscr">
-            <button type="button" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
+            <button type="button" onclick="sauvegarder()" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
           </div>
         </div>
 
