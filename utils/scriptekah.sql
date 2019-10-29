@@ -542,9 +542,3 @@ INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUE
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
-
-
-SELECT u.id, u.nom, u.prenom, u.telephone, u.date_inscription, c.courriel FROM utilisateur u
-LEFT JOIN compte_utilisateur c ON u.id = c.fk_utilisateur
-WHERE id_type_utilisateur = 1;
-
