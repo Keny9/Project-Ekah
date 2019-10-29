@@ -1,8 +1,8 @@
 <?php
 /**
- * Page pour qu'un admin puisse voir toutes les reservations
+ * Page pour consulter les réservations d'un client
  *
- * Nom :         consulter-reservation.php
+ * Nom :         consulter-reservation-client.php
  * Catégorie :   Page
  * Auteur :      Karl Boutin
  * Version :     1.0
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-    <script type="text/javascript" src="../../js/consulter_reservation_admin.js"></script>
+    <script type="text/javascript" src="../../js/consulter_reservation_client.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
@@ -44,7 +44,7 @@
         <div class="txt-consulter">Listes des réservations <br> </div>
 
         <div class="block-tbl">
-          <table id="table_reservation" class="cell-border hover row-border">
+          <table id="table_reservation_client" class="cell-border hover row-border">
             <thead>
               <tr>
                 <th id="th-1" class="all">Activité</th>

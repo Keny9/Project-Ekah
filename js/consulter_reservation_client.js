@@ -1,7 +1,7 @@
 $(document).ready(function(){
   selectedLine = null; //La ligne sélectionné
 
-  $('#table_reservation').DataTable({
+  $('#table_reservation_client').DataTable({
     "ajax":{
       "url": "../../php/script/Reservation/dataReservationClient.php",
       "dataSrc": ""
@@ -21,7 +21,7 @@ $(document).ready(function(){
   });
   jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
 
-  $('#table_reservation tbody').on('click', 'tr', function (){ //Lors du click sur une ligne du tableau
+  $('#table_reservation_client tbody').on('click', 'tr', function (){ //Lors du click sur une ligne du tableau
     $("#suivi").slideDown("slow"); //Afficher le block dui suivi avec une animation
 
     if(selectedLine != null){
