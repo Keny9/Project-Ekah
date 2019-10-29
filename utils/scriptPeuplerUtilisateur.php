@@ -8,7 +8,7 @@ $conn = new Connexion();
 
 
 $utilisateurId = 1;
-$courriel = "test1@admin.ca";
+$courriel = "admin1@ekah.ca";
 $motDePasseHash = password_hash("Qwertyu1", PASSWORD_ARGON2ID);
 $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
   (fk_utilisateur, courriel, mot_de_passe)
@@ -17,7 +17,7 @@ $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
   $stmt->execute();
 
 $utilisateurId = 2;
-$courriel = "test2@admin.ca";
+$courriel = "admin2@ekah.ca";
 $motDePasseHash = password_hash("Qwertyu1", PASSWORD_ARGON2ID);
 $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
   (fk_utilisateur, courriel, mot_de_passe)
@@ -26,7 +26,7 @@ $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
   $stmt->execute();
 
 $utilisateurId = 3;
-$courriel = "test3@admin.ca";
+$courriel = "client1@ekah.ca";
 $motDePasseHash = password_hash("Qwertyu1", PASSWORD_ARGON2ID);
 $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
   (fk_utilisateur, courriel, mot_de_passe)
@@ -35,7 +35,7 @@ $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
   $stmt->execute();
 
 $utilisateurId = 4;
-$courriel = "test4@client.ca";
+$courriel = "client2@ekah.ca";
 $motDePasseHash = password_hash("Qwertyu1", PASSWORD_ARGON2ID);
 $stmt = $conn->do()->prepare("INSERT INTO compte_utilisateur
   (fk_utilisateur, courriel, mot_de_passe)

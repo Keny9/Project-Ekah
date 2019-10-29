@@ -30,10 +30,13 @@ $( document ).ready(function() {
 
 });
 
+// SEULEMENT POUR LES TESTS
 $(document).on('keypress',function(e) {
   // Appuie sur Enter
     if(e.which == 13) {
-      // Insert le mot de passe
+      // Insert le mot de passe et le courriel
+      $('#courriel').val(function() {
+        return this.value + "@ekah.ca"});
       $('#motDePasse').val("Qwertyu1");
       // Simule un clique sur le bouton de login
       $('#btnlogin').click();
