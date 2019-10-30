@@ -37,10 +37,10 @@ function selectionnerJour(){
         // console.log("click");
         if($(this).hasClass("selectionne")){
           $(this).toggleClass("selectionne");
+          getAllDispo();
         }else{
           $('.selectionne').toggleClass("selectionne");
           $(this).toggleClass("selectionne");
-
           getAllDispo();
         }
       });
