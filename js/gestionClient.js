@@ -60,3 +60,23 @@ $('#table_client').DataTable({
   });
 
 });
+
+//Change la couleur du texte lorsqu'on sélectionne un élément de la liste mois
+function changeMois(){
+  var list = document.getElementById("mois");
+  var selectedValue = list.options[list.selectedIndex].value;
+
+  if(selectedValue != "vide"){
+    list.style.color = "#000000";
+  }
+}
+
+//Change la couleur du texte lorsqu'on sélectionne un élément de la liste pays
+function changePays(){
+  var list = document.getElementById("pays");
+  var selectedValue = list.options[list.selectedIndex].value;
+
+  if(selectedValue != "vide"){
+    list.style.color = "#000000";
+  }
+}
