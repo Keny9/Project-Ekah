@@ -170,6 +170,9 @@
    height:250px;
    float:left
  }
+ .cacher{
+   display:none;
+ }
  .titreImg{
    margin-left:420px;
    font-size:40px;
