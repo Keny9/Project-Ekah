@@ -31,7 +31,7 @@ class GestionFacilitateur{
       $requete= "SELECT * FROM utilisateur
                    INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
                    INNER JOIN disponibilite ON disponibilite.id = id_disponibilite
-                 WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND id_etat = 1 AND utilisateur.id = ".$id."
+                 WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND id_etat = 1 AND utilisateur.id = ".$id." AND heure_debut >= now()
                  ORDER BY heure_debut ASC
                 ";
 
@@ -113,10 +113,10 @@ class GestionFacilitateur{
                                     $row['nom'],
                                     $row['prenom'],
                                     $row['date_inscription'],
+                                    $row['courriel'],
                                     $row['date_naissance'],
                                     $row['telephone'],
                                     "actif",
-                                    $row['telephone'],
                                     $disponibilite
                                   );
         }
@@ -126,20 +126,115 @@ class GestionFacilitateur{
     }
 
     /*
-      Retourne une liste de tous les facilitateurs qui sont actifs
+      Retourne une liste de tous les facilitateurs qui sont actifs et qui ont des dispos
     */
       public function getAllFacilitateurActifAvecDispo(){
+
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $disponibilite[] = null;
+
+      $requete= "SELECT * FROM `utilisateur`
+                  INNER JOIN ta_disponibilite_specialiste ON id_specialiste = utilisateur.id
+                  INNER JOIN disponibilite ON id_disponibilite = disponibilite.id
+                  INNER JOIN compte_utilisateur ON fk_utilisateur = utilisateur.id
+
+                  WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1
+                ";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $id = $row['id'];
+          $disponibilite = $this->getAllDisponibiliteActive($id);
+          $facilitateur[] = new Facilitateur(
+                                    $id,
+                                    $row['nom'],
+                                    $row['prenom'],
+                                    $row['date_inscription'],
+                                    $row['courriel'],
+                                    $row['date_naissance'],
+                                    $row['telephone'],
+                                    "actif",
+                                    $disponibilite
+                                  );
+        }
+      }
+      return $facilitateur;
+
+    }
+
+  /*
+    Retourne une liste de tous les facilitateurs groupé par id qui sont actifs et qui ont des dispos
+  */
+    public function getAllFacilitateurActifAvecDispoGroup(){
+
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $disponibilite[] = null;
+
+      $requete= "SELECT utilisateur.id, nom, prenom, date_inscription, date_naissance, telephone, courriel, photo FROM `utilisateur`
+                  INNER JOIN ta_disponibilite_specialiste ON id_specialiste = utilisateur.id
+                  INNER JOIN disponibilite ON id_disponibilite = disponibilite.id
+                  INNER JOIN compte_utilisateur ON fk_utilisateur = utilisateur.id
+                  WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1
+                  GROUP BY utilisateur.id
+                ";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        $i = 0;
+        while($row = $result->fetch_assoc()) {
+          $id = $row['id'];
+
+          // echo $row['id'] . "<br />";
+
+          $disponibilite = $this->getAllDisponibiliteActive($id);
+
+          if(sizeof($disponibilite) > 0){
+            $facilitateur[] = new Facilitateur(
+                                      $id,
+                                      $row['nom'],
+                                      $row['prenom'],
+                                      $row['date_inscription'],
+                                      $row['courriel'],
+                                      $row['date_naissance'],
+                                      $row['telephone'],
+                                      "actif",
+                                      $disponibilite
+                                    );
+            $facilitateur[$i]->setPhoto($row['photo']);
+          }
+            $i++;
+        }
+      }
+      return $facilitateur;
+    }
+
+
+    /*
+      Retourne un facilitateur selon l'id qui as des dispo
+    */
+      public function getFacilitateurActifAvecDispoGroup($idFacilitateur){
 
         $tempconn = new Connexion();
         $conn = $tempconn->getConnexion();
         $disponibilite[] = null;
 
-        $requete= "SELECT * FROM `utilisateur`
+        $requete= "SELECT utilisateur.id, nom, prenom, date_inscription, date_naissance, telephone, courriel, photo FROM `utilisateur`
                     INNER JOIN ta_disponibilite_specialiste ON id_specialiste = utilisateur.id
                     INNER JOIN disponibilite ON id_disponibilite = disponibilite.id
                     INNER JOIN compte_utilisateur ON fk_utilisateur = utilisateur.id
-
-                    WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1
+                    WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = ".$idFacilitateur."
+                    GROUP BY utilisateur.id
                   ";
 
         $result = $conn->query($requete);
@@ -150,23 +245,28 @@ class GestionFacilitateur{
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             $id = $row['id'];
+
             $disponibilite = $this->getAllDisponibiliteActive($id);
-            $facilitateur[] = new Facilitateur(
-                                      $id,
-                                      $row['nom'],
-                                      $row['prenom'],
-                                      $row['date_inscription'],
-                                      $row['date_naissance'],
-                                      $row['telephone'],
-                                      "actif",
-                                      $row['telephone'],
-                                      $disponibilite
-                                    );
+
+            if(sizeof($disponibilite) > 0){
+              $facilitateur[] = new Facilitateur(
+                                        $id,
+                                        $row['nom'],
+                                        $row['prenom'],
+                                        $row['date_inscription'],
+                                        $row['courriel'],
+                                        $row['date_naissance'],
+                                        $row['telephone'],
+                                        "actif",
+                                        $disponibilite
+                                      );
+              $facilitateur[0]->setPhoto($row['photo']);
+            }
           }
         }
         return $facilitateur;
-
       }
+
 
     /*
       Retourne une liste de tous les facilitateurs
@@ -192,14 +292,14 @@ class GestionFacilitateur{
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             $facilitateur = new Facilitateur(
-                                  $row['id'],
+                                  $id,
                                   $row['nom'],
                                   $row['prenom'],
                                   $row['date_inscription'],
+                                  $row['courriel'],
                                   $row['date_naissance'],
                                   $row['telephone'],
                                   "actif",
-                                  $row['telephone'],
                                   $disponibilite
                                 );
           }
