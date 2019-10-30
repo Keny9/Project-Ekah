@@ -32,6 +32,7 @@ class GestionFacilitateur{
                    INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
                    INNER JOIN disponibilite ON disponibilite.id = id_disponibilite
                  WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND id_etat = 1 AND utilisateur.id = ".$id."
+                 ORDER BY heure_debut ASC
                 ";
 
       $result = $conn->query($requete);
