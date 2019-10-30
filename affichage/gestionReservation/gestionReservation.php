@@ -59,6 +59,10 @@
                    echo $gagr->getAllTypeActivite();
                  ?>
 
+
+    <div id="typeSelect" class="cacher">
+      yo
+    </div>
     <h6 class="duree texteEkha">Duree:</h6>
     <?php
                    require_once 'gestionAffichageGestionReservation.php';
