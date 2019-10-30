@@ -54,9 +54,9 @@
         return $html;
       }
 
-      public function getDureeActivite(){
+      public function getDureeActivite($idActivite){
          $gd = new GestionDuree();
-         $duree_activite = $gd->getDureesOfActivite(13);
+         $duree_activite = $gd->getDureesOfActivite($idActivite);
 
          $html = "";
 

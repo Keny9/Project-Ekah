@@ -1,3 +1,7 @@
+.input-profil{
+  width: 100%;
+}
+
 .txt-consulter{
   margin-top: 30px;
   color: #034e54;
@@ -37,19 +41,52 @@ th{
 }
 
 .label-consulter{
+  width: 100%;
   display: inline-block;
-  font-size: 15px;
+  font-size: 20px;
   color: #034E53;
   margin-left: 5px;
 }
 
-.suivi{
+.profil{
   display: none;
+  width: 100%;
+  margin: auto;
+}
+
+.calendar{
+  color: #66a1ff;
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  width: 35px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.calendar:before{
+  font-size: 21px;
+  cursor: pointer;
+  content: '\f073';
 }
 
 @media only screen and (min-width: 768px){
   .reservation {
-      width: 700px;
+    width: 700px;
+  }
+
+  .input-inscr{
+    display: inline-block;
+  }
+
+  .profil{
+    width: 510px;
+    margin: 0 auto;
+  }
+
+  .label-consulter{
+    width: 100%;
+    vertical-align: middle;
   }
 
   .top-img{

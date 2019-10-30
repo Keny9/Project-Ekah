@@ -31,6 +31,7 @@ document.getElementById('nom').innerHTML = "";
 document.getElementById('titre').innerHTML = "Nom du Service";
 //document.getElementById("Type-"+2).attr('selected','selected');
 document.getElementById('descriptionC').innerHTML = "";
+document.getElementById('duree').innerHTML = "";
 document.getElementById('nom').focus();
 }
 
@@ -46,7 +47,7 @@ function remplirNom(x){
                   data: myData,
                   success: function(data) {
 
-                    //console.log(data);
+
                     document.getElementById("titre").innerHTML=data;
                     document.getElementById("nom").innerHTML=data;
                     document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/"/g, '');
@@ -93,7 +94,6 @@ function remplirDescription(x){
                   data: myData,
                   success: function(data) {
 
-                    console.log(data);
                     document.getElementById("descriptionC").innerHTML=data;
                     document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/"/g, '');
                     document.getElementById("descriptionC").innerHTML = document.getElementById("descriptionC").innerHTML.replace(/u00e9/g, 'é');
@@ -125,29 +125,19 @@ function remplirDuree(x){
                   async: false,
                   data: myData,
                   success: function(data) {
-                    console.log(data);
-
-                    if(data==1)
-                    {
-                        console.log(data);
-                      document.getElementById("Type-"+0).attr('selected','selected');
-                    }
-                    else if(data==2)
-                    {
-                        console.log(data);
-                      document.getElementById("Type-"+1).attr('selected','selected');
-                    }
-                    else if(data==3)
-                    {
-                        console.log(data);
-                      document.getElementById("Type-"+2).attr('selected','selected');
-                    }
-                    else if(data==4)
-                    {
-                        console.log(data);
-                      document.getElementById("Type-"+3).attr('selected','selected');
-                    }
-
+                    //console.log(data);
+                    document.getElementById("duree").innerHTML=data;
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/"/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/select/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/<>/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/V/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/\\/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/\//g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/&lt;/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/&gt;rn/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/option             &gt;<\/option><option>/g, '');
+                    document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/option             rn               <\/option><option>/g, '');
+                    console.log(document.getElementById("duree").innerHTML);
                   } ,
                   error: function() {
                     alert('Error occured');
@@ -169,25 +159,25 @@ function remplirType(x){
                   success: function(data) {
                     console.log(data);
 
-                    if(data==1)
+                    if(data=='1')
                     {
                         console.log(data);
-                      document.getElementById("Type-"+0).attr('selected','selected');
+                      document.getElementById("type").value="En Atelier";
                     }
-                    else if(data==2)
+                    else if(data=='2')
                     {
                         console.log(data);
-                      document.getElementById("Type-"+1).attr('selected','selected');
+                      document.getElementById("type").value="Services à domicile";
                     }
-                    else if(data==3)
+                    else if(data=='3')
                     {
                         console.log(data);
-                      document.getElementById("Type-"+2).attr('selected','selected');
+                      document.getElementById("type").value="En ligne";
                     }
-                    else if(data==4)
+                    else if(data=='4')
                     {
                         console.log(data);
-                      document.getElementById("Type-"+3).attr('selected','selected');
+                      document.getElementById("type").value="En groupe";
                     }
 
                   } ,
