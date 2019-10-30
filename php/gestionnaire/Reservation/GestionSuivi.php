@@ -39,8 +39,6 @@ class GestionSuivi{
   */
   public function updateSuivi($fait, $commentaire, $id_suivi){
     try{
-
-
       $conn = ($connexion = new Connexion())->do();
 
       $requete = "UPDATE suivi SET fait = ?, commentaire = ? WHERE id = ?";

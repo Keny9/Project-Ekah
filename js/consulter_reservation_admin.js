@@ -55,7 +55,7 @@ $(document).ready(function(){
         selectedLine = null;
         $("#suivi").slideUp("slow"); //Cacher le block dui suivi de la réservation avec animation
       }
-      else{ //Une autre ligne est sélectionné
+      else{ //Une autre ligne est sélectionnée
         selectedLine.css("background-color", "#FFFFFF");
         $(this).css("background-color", "#b0bed9");
         selectedLine = $(this);
@@ -87,7 +87,6 @@ function printSuivi(id_suivi){
 }
 
 function updateSuivi(id_suivi, fait, commentaire){
-
   $.ajax({
     url: "../../php/script/Reservation/updateSuivi.php",
     data: {id_suivi: id_suivi, fait: fait, commentaire: commentaire},
@@ -98,16 +97,17 @@ function updateSuivi(id_suivi, fait, commentaire){
   });
 }
 
+// Retourne les données de la case selectionnée
 function getData(){
   var index = $('#table_reservation').DataTable().cell(selectedLine, 0).index();
-  var data = $('#table_reservation').DataTable().row(index.row ).data();
+  var data = $('#table_reservation').DataTable().row(index.row).data();
 
   return data;
 }
 
+// Sauvegarde les changements dans la BD
 function sauvegarder(){
   var fait = $('#fait').val();
   var commentaire = $('#commentaire').val();
   updateSuivi(id_suivi, fait, commentaire);
-
 }
