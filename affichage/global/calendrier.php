@@ -31,7 +31,6 @@
 
       <div class="btnsCalandrier">
         <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
-        <button type="button" class="bouton-re-que" name="button" id="month"  data-calendar-view="month">MONTH</button>
         <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
       </div>
 

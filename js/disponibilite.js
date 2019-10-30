@@ -35,8 +35,8 @@ $(document).ready(function() {
       var heure = heureElm.text();
       var date = $(".h3").text();
 
-      console.log(heure);
-      console.log(date);
+      // console.log(heure);
+      // console.log(date);
 
       var couleur = $this.css("background-color");
 
@@ -48,10 +48,8 @@ $(document).ready(function() {
 
         supprimerDispo(heure, date);
       }
-
    }
   );
-
 });
 
 
