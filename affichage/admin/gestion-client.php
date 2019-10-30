@@ -119,12 +119,12 @@
         </div>
 
         <div class="group-input-inscr">
-          <button type="button" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
+          <button type="button" onclick="updateProfil()" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
         </div>
 
       </div>
     </div>
-    
+
   </main>
 
   <?php include "../global/footer.php"; ?>

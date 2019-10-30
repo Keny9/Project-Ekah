@@ -24,6 +24,7 @@ $(document).ready(function(){
   });
   jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
 
+// Sur un clique d'une row
   $('#table_reservation tbody').on('click', 'tr', function (){ //Lors du click sur une ligne du tableau
     // Une ligne est selectionnée
     if (selectedLine != null){
@@ -42,9 +43,6 @@ $(document).ready(function(){
 
     // Met les infos du suivi dans les cases
     printSuivi(id_suivi);
-
-
-
 
     $("#suivi").slideDown("slow"); //Afficher le block dui suivi avec une animation
 
