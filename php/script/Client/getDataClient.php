@@ -11,7 +11,7 @@
  * Date de la dernière modification : 2019-10-28
  */
 
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Client/gestionClient.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Client/GestionClient.php";
 
  $gestionClient = new GestionClient();
  $clients = $gestionClient->getAllClient();
