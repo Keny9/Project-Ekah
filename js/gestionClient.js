@@ -11,14 +11,18 @@ $('#table_client').DataTable({
       {"data": "prenom"},
       {"data": "courriel"},
       {"data": "telephone"},
-      {"data": "date_inscription"}
+      {"data": "date_inscription"},
+      {"data": null,
+      render: function(data, type, row){
+        return '<a href="../admin/consulter-reservation-client.php?id=5" target="_blank"><span class="calendar"></span></a>';
+      }},
     ],
     "language":{
       "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
     },
     responsive: false,
-
   });
+
   $('#table_client').DataTable().draw();
   jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
 
@@ -28,13 +32,16 @@ $('#table_client').DataTable({
     var index = $('#table_client').DataTable().cell(this, 0).index();
     var data = $('#table_client').DataTable().row(index.row ).data();
     console.log(data);
+    console.log(selectedLine);
+
+    $("#nomClient").text(data.prenom + " " + data.nom);
 
     if(selectedLine != null){
 
       if(selectedLine.css("background-color") == $(this).css("background-color")){ //La meme ligne est sélectionné
         selectedLine.css("background-color", "#FFFFFF");
         selectedLine = null;
-        $("#suivi").slideUp("slow"); //Cacher le block du profil avec animation
+        $("#profil").slideUp("slow"); //Cacher le block du profil avec animation
       }
       else{ //Une autre ligne est sélectionné
         selectedLine.css("background-color", "#FFFFFF");

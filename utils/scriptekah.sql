@@ -279,8 +279,7 @@ id_disponibilite INT NOT NULL,
 id_region INT,
 PRIMARY KEY (id_specialiste, id_disponibilite),
 FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id),
-FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id),
-FOREIGN KEY (id_region) REFERENCES region(id)
+FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id)
 );
 
 
@@ -478,6 +477,10 @@ INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, 
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 2, "Test2", "Facilitateur2", NOW());
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 3, "Test3", "Facilitateur3", NOW());
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Lampron", "Mario", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Poirier", "Claude", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Wick", "John", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Langlois", "Albert", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Leroux", "Patrick", NOW());
 
 
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
@@ -485,8 +488,11 @@ INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, 
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "test2@admin.ca", "abc123");
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (3, "test3@admin.ca", "abc123");
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4, "test4@client.ca", "abc123");*/
-/*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "client", "client");
-*/
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (5, "test5@client.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (6, "test6@client.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (7, "test7@client.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (8, "test8@client.ca", "abc123");
+
 INSERT INTO fichier_perso(id, fichier, description) VALUES (1, "abc123", "Fichier");
 
 INSERT INTO questionnaire_remplit(id, fichier, description) VALUES (1, "abc123", "Fichier");
@@ -540,7 +546,3 @@ INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUE
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
-
-
-
-
