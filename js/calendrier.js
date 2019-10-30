@@ -1,37 +1,51 @@
 $(document).ready(function() {
+
+
+  $('#0').toggleClass("selectionne");
+
+
   //Les boutons pour naviger dans le calendrier
-  $( "#month" ).click(function() {
-    var $this = $(this);
-    calendar.view($this.data('calendar-view'));
-    changerBackground();
-    enleverDayView();
-  });
   $( "#next" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
     changerBackground();
     enleverDayView();
+    selectionnerJour();
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
     changerBackground();
     enleverDayView();
+    selectionnerJour();
   });
 
-  $( ".cal-day-inmonth" ).each(function(index) {
-    $(this).on("click", function(){
-      $(this).addclass("selectionne");
-      // $(this).css("background-color", "red");
-        console.log("Click");
-    });
-});
 
   changerBackground();
   enleverDayView();
+  selectionnerJour();
 
   getAllDispo();
 });
+
+
+function selectionnerJour(){
+  //Lorsqu'on clique sur une journée, la selectionne (ajout class selectionne)
+    $( ".cal-day-inmonth" ).each(function(index) {
+      $(this).on("click", function(){
+        //Si on clique clique sur lui selectionné
+        // console.log("click");
+        if($(this).hasClass("selectionne")){
+          $(this).toggleClass("selectionne");
+          getAllDispo();
+        }else{
+          $('.selectionne').toggleClass("selectionne");
+          $(this).toggleClass("selectionne");
+          getAllDispo();
+        }
+      });
+  });
+}
 
 //Enleve le click sur une journée pour afficher la view "Day"
 function enleverDayView(){
@@ -50,6 +64,7 @@ function enleverDayView(){
   });
 }
 
+//Change les couleurs de background (vert quand dispo et enleve vert pour today)
 function changerBackground(){
   //Changer la couleur du background si y'a des dispos
     $.each($('.events-list'), function(index, $event){
@@ -59,7 +74,7 @@ function changerBackground(){
 
     //Enlever le CSS inutile pour la réservation
     var $today = $(".cal-day-today");
-    $today.css("background-color", "#FFFFFF");
+    $today.removeClass("cal-day-today");
 
     var $todayTxt = $today.find("span");
     $todayTxt.css("color", "#333333");
@@ -69,19 +84,28 @@ function changerBackground(){
 
 
 //get tous les dispo pour les mettres dans un combobox
-function getAllDispo(idFacilitateur, date){
-  idFacilitateur = 1;
+function getAllDispo(){
+  var idFacilitateur = 1;
+  var date = null;
+
+  // console.log($('.selectionne').children().data('calDate'));
+  date = $('.selectionne').children().data('calDate');
+
+  if(date == null){
+    date = "2000-01-01";
+  }
+
 
   $.ajax({
     type: "POST",
     async: false,
     dataType: "json",
-    url: "../../php/script/Horaire/afficherAllHoraire.php",
+    url: "../../php/script/Horaire/afficherAllHoraireSelectionne.php",
     data: {idFacilitateur: idFacilitateur,
             date: date
          },
     success: function(data){
-        console.log(data);
+        // console.log(data);
         //Puisque les dispo sont en Ms je vais devoir les convertir
         $("#dispo").empty();
 
@@ -91,7 +115,11 @@ function getAllDispo(idFacilitateur, date){
           // alert(date.toString());
 
           var heure = date.getHours() + ":" + date.getMinutes();
-          if(heure.length == 4){
+
+          if(date.getHours().toString().length == 1){
+            heure = "0" + heure;
+          }
+          if(date.getMinutes().toString().length == 1){
             heure = heure + "0";
           }
 
@@ -104,35 +132,4 @@ function getAllDispo(idFacilitateur, date){
         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
     }
   });
-}
-
-
-//Covertir les mois anglais en chiffre
-function convertirMois(mois){
-  switch(mois) {
-  case "January,":
-    return "01";
-  case "February,":
-    return "02";
-  case "March,":
-    return "03";
-  case "April,":
-    return "04";
-  case "May,":
-    return "05";
-  case "June,":
-    return "06";
-  case "July,":
-    return "07";
-  case "August,":
-    return "08";
-  case "September,":
-    return "09";
-  case "October,":
-    return "10";
-  case "November,":
-    return "11";
-  case "December,":
-    return "12";
-  }
 }
