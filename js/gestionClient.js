@@ -21,9 +21,9 @@ $(document).ready(function(){
   courriel = document.getElementById("courriel");
   telephone = document.getElementById("telephone");
   codePostal = document.getElementById("codePostal");
-  jour = document.getElementById("jour");
-  mois = document.getElementById("mois"); //C'est un select
-  annee = document.getElementById("annee");
+  jourE = document.getElementById("jour");
+  moisE = document.getElementById("mois"); //C'est un select
+  anneeE = document.getElementById("annee");
   adresse = document.getElementById("noAdresse");
   rue = document.getElementById("rue");
   ville = document.getElementById("ville");
@@ -40,21 +40,21 @@ $(document).ready(function(){
     }
   });
 
-  jour.addEventListener("focusout", function(){
-    if(verifieJour(jour)){
-      inputUnrequired(jour, "Jour de naissance");
+  jourE.addEventListener("focusout", function(){
+    if(verifieJour(jourE)){
+      inputUnrequired(jourE, "Jour de naissance");
     }
   });
 
-  annee.addEventListener("focusout", function(){
-    if(verifieAnnee(annee)){
-      inputUnrequired(annee, "Jour de naissance");
+  anneeE.addEventListener("focusout", function(){
+    if(verifieAnnee(anneeE)){
+      inputUnrequired(anneeE, "Jour de naissance");
     }
   });
 
-  mois.addEventListener("focusout", function(){
-    if(!siSelectVide(mois)){
-      inputUnrequired(mois, "Mois");
+  moisE.addEventListener("focusout", function(){
+    if(!siSelectVide(moisE)){
+      inputUnrequired(moisE, "Mois");
     }
   });
 
@@ -243,14 +243,14 @@ function profilUpdated(){
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
     e.style.borderBottomColor = "#ff0000";
-    e.style.setProperty("--color", "#ff0000");
+    e.classList.add('redPlaceholder');
  }
 
 //Fonction qui remet les couleurs par défauts
  function inputUnrequired(e, placeholder){
    e.style.borderBottomColor = "#9E9E9E";
-   e.style.setProperty("--borderBottomColor", "#f0592a");
-   e.style.setProperty("--color", "#C8C8C8");
+   e.classList.add('borderBottomColor');
+   e.classList.add('defaultPlaceholder');
    e.placeholder = placeholder;
  }
 
@@ -288,7 +288,7 @@ function valideFormProfil(){
   }
 
   //Si les 3 ne sont pas vides alors pas d'erreur que c'est vide
-  if((!siVide(jour) && !siSelectVide(mois) && !siVide(annee))){
+  if((!siVide(jourE) && !siSelectVide(moisE) && !siVide(anneeE))){
     groupDateEmpty = false;
   }
 
@@ -303,7 +303,7 @@ function valideFormProfil(){
   }
 
   //Si un des 3 n'est pas vide les autres ne doivent pas etre vide egalement ou si les 3 sont pas vides alors correct
-  if((!siVide(jour) || !siSelectVide(mois) || !siVide(annee)) && groupDateEmpty == true){
+  if((!siVide(jourE) || !siSelectVide(moisE) || !siVide(anneeE)) && groupDateEmpty == true){
     indiqueTempsVide();
     document.getElementById("error-blank").style.display = "block";
     return false;
@@ -326,7 +326,7 @@ function valideFormProfil(){
 
   //Les dates sont remplis (les 3)
   if(groupDateEmpty == false){
-    if(!verifieJour(jour) || !verifieAnnee(annee)){
+    if(!verifieJour(jourE) || !verifieAnnee(anneeE)){
       indiqueChampDateInvalide();
       return false;
     }
@@ -425,14 +425,14 @@ function verifieNomPrenom(e){
 
   //Si les champs sont remplis, indique lesquels sont invalides
    function indiqueChampDateInvalide(){
-     if(!verifieJour(jour)){
-       inputRequired(jour);
+     if(!verifieJour(jourE)){
+       inputRequired(jourE);
        jour.value = null;
        jour.placeholder = "Jour invalide *";
      }
 
-     if(!verifieAnnee(annee)){
-       inputRequired(annee);
+     if(!verifieAnnee(anneeE)){
+       inputRequired(anneeE);
        annee.value = null;
        annee.placeholder = "Année invalide *";
      }
@@ -480,16 +480,16 @@ function verifieNomPrenom(e){
 
    //Indique quels champs sont vide pour la date de naissance
     function indiqueTempsVide(){
-      if(siVide(jour)){
-        inputRequired(jour);
+      if(siVide(jourE)){
+        inputRequired(jourE);
       }
 
-      if(siSelectVide(mois)){
-        inputRequired(mois);
+      if(siSelectVide(moisE)){
+        inputRequired(moisE);
       }
 
-      if(siVide(annee)){
-        inputRequired(annee);
+      if(siVide(anneeE)){
+        inputRequired(anneeE);
       }
     }
 

@@ -115,14 +115,14 @@ window.onload = function(){
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
     e.style.borderBottomColor = "#ff0000";
-    e.style.setProperty("--color", "#ff0000");
+    e.classList.add('redPlaceholder');
  }
 
 //Fonction qui remet les couleurs par défauts
  function inputUnrequired(e, placeholder){
    e.style.borderBottomColor = "#9E9E9E";
-   e.style.setProperty("--borderBottomColor", "#f0592a");
-   e.style.setProperty("--color", "#C8C8C8");
+   e.classList.add('borderBottomColor');
+   e.classList.add('defaultPlaceholder');
    e.placeholder = placeholder;
  }
 

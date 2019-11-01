@@ -91,6 +91,10 @@ main{
   opacity: 1;
 }
 
+.borderBottomColor{
+  border-bottom-color: #f0592a;
+}
+
 .input-inscr:focus{
   outline: initial;
   border-bottom-color: #f0592a;
