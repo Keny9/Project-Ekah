@@ -45,6 +45,24 @@
            </div>
          </div>
          <form class="form-inscr" id="mickeymouse" action="bebechien" method="post">
+
+           <div id="modal-inscription" class="modal-inscription">
+             <div class="modal-content">
+               <div class="modal-align-middle img-conf-insc">
+                  <img src="../../img/crochet.png" alt="Confirmation inscription">
+               </div>
+               <div class="modal-align-middle txt-bravo">
+                 <p>Félicitations !</p>
+               </div>
+               <div class="modal-align-middle txt-modal-bienv">
+                 <p>Bienvenue dans la famille Ekah !</p>
+               </div>
+               <div class="modal-align-middle btn-modal-insc">
+                 <button type="submit" class="btn-confirmer input-court" name="button">Se connecter</button>
+               </div>
+             </div>
+           </div>
+
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
@@ -105,7 +123,7 @@
              </div>
            </div>
            <div class="group-input-inscr">
-             <button type="submit" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
+             <button type="button" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
            </div>
            <div class="group-input-inscr btn-espace">
             <a href="./login.php"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>

@@ -56,7 +56,6 @@ $( document ).ready(function() {
 
 /*Afficher les sous onglet dans le menu mobile*/
 $("#folder_service_m").click(function(){
-
   checkIfOngletOuvert($("#folder_service_m").attr('id'));
   clickedElement = "folder_service_m";
   clickMenuMobile++;
@@ -69,11 +68,37 @@ $("#folder_service_m").click(function(){
     $("#service_m").show();
     $("#folder_service_m").text("- SERVICES");
   }
-
 });
 
-// TODO: Terminer les autres click des autres onglets mobiles
+$("#folder_retraite_m").click(function(){
+  checkIfOngletOuvert($("#folder_retraite_m").attr('id'));
+  clickedElement = "folder_retraite_m";
+  clickMenuMobile++;
 
+  if(clickMenuMobile % 2 == 0){
+    $("#retraite_m").hide();
+    $("#folder_retraite_m").text("+ RETRAITES");
+  }
+  else if(clickMenuMobile % 2 == 1){
+    $("#retraite_m").show();
+    $("#folder_retraite_m").text("- RETRAITES");
+  }
+});
+
+$("#folder_propos_m").click(function(){
+  checkIfOngletOuvert($("#folder_propos_m").attr('id'));
+  clickedElement = "folder_propos_m";
+  clickMenuMobile++;
+
+  if(clickMenuMobile % 2 == 0){
+    $("#propos_m").hide();
+    $("#folder_propos_m").text("+ À PROPOS");
+  }
+  else if(clickMenuMobile % 2 == 1){
+    $("#propos_m").show();
+    $("#folder_propos_m").text("- À PROPOS");
+  }
+});
 
 /*---------------------------------------------------------------*/
 

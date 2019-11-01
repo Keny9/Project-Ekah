@@ -81,6 +81,16 @@ main{
   opacity: 1;
 }
 
+.redPlaceholder::placeholder{
+  color: #ff0000;
+  opacity: 1;
+}
+
+.defaultPlaceholder::placeholder{
+  color: #C8C8C8;
+  opacity: 1;
+}
+
 .input-inscr:focus{
   outline: initial;
   border-bottom-color: #f0592a;

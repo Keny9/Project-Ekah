@@ -107,7 +107,7 @@ window.onload = function(){
 
   ville.addEventListener("focusout", function(){
     if(verifieNomPrenom(ville)){
-      inputUnrequired(ville, "Code postal");
+      inputUnrequired(ville, "Ville");
     }
   });
 };
@@ -415,7 +415,7 @@ window.onload = function(){
    if(!verifieNomPrenom(ville)){
      inputRequired(ville);
      ville.value = null;
-     ville.placeholder = "Rue invalide *";
+     ville.placeholder = "Ville invalide *";
    }
  }
 

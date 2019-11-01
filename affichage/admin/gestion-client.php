@@ -59,6 +59,15 @@
 
         <div class="txt-consulter">Profil de <br><span id="nomClient"></span></div>
 
+        <div class="error" id="error-blank">
+          <div class="icon-error">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="text-error">
+            Ces champs ne peuvent pas être vide.
+          </div>
+        </div>
+        
         <div class="group-input-inscr">
           <label class="label-consulter">Date de naissance</label>
           <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">
