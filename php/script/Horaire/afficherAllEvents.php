@@ -12,10 +12,10 @@
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
-  $idFacilitateur = $_POST['idFacilitateur'];
-  $date = $_POST['date'];
-  // $date = "2019-10-31";
-  // $idFacilitateur = -1;
+  // $idFacilitateur = $_POST['idFacilitateur'];
+  // $date = $_POST['date'];
+  $date = "2019-10-31";
+  $idFacilitateur = -1;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -57,9 +57,7 @@
             'title' => $dispo[$j]->getId(),
             'url' => "URL",
             'start' => strtotime($start) . '000',
-            'end' => strtotime($end) .'000',
-            'date_debut' => $dispo[$j]->getHeureDebut(),
-            'date_fin' => $dispo[$j]->getHeureFin()
+            'end' => strtotime($end) .'000'
           );
         }
       }
