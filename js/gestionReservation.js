@@ -157,27 +157,24 @@ function remplirType(x){
                   async: false,
                   data: myData,
                   success: function(data) {
-                    console.log(data);
+                    document.getElementById("typeSelect").value=data;
+                    document.getElementById("typeSelect").value = document.getElementById("typeSelect").value.replace(/"/g, '');
 
-                    if(data=='1')
+                    if(document.getElementById("typeSelect").value==1)
                     {
-                        console.log(data);
-                      document.getElementById("type").value="En Atelier";
+                    document.getElementById("type").selectedIndex="0";
                     }
-                    else if(data=='2')
+                    else if(document.getElementById("typeSelect").value==2)
                     {
-                        console.log(data);
-                      document.getElementById("type").value="Services à domicile";
+                      document.getElementById("type").selectedIndex="1";
                     }
-                    else if(data=='3')
+                    else if(document.getElementById("typeSelect").value==3)
                     {
-                        console.log(data);
-                      document.getElementById("type").value="En ligne";
+                        document.getElementById("type").selectedIndex="2";
                     }
-                    else if(data=='4')
+                    else if(document.getElementById("typeSelect").value==4)
                     {
-                        console.log(data);
-                      document.getElementById("type").value="En groupe";
+                      document.getElementById("type").selectedIndex="3";
                     }
 
                   } ,

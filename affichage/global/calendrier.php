@@ -31,27 +31,12 @@
 
       <div class="btnsCalandrier">
         <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
-        <button type="button" class="bouton-re-que" name="button" id="month"  data-calendar-view="month">MONTH</button>
         <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
       </div>
 
 <br><br>
 
       <div id="calendar"></div>
-
-      <script type="text/javascript">
-
-        var calendar = $("#calendar").calendar(
-          {
-            tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
-            weekbox: false,
-            events_source: "../../php/script/Horaire/afficherAllHoraire.php",
-
-            onAfterViewLoad: function(view) {
-        			$('.page-header h3').text(this.getTitle());
-            }
-          });
-        </script>
 
         <br><br>
       </main>

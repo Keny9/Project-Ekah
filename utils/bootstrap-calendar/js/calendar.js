@@ -126,10 +126,10 @@ if(!String.prototype.formatNum) {
 			}
 		},
 		merge_holidays: false,
-		display_week_numbers: true,
-		weekbox: true,
+		display_week_numbers: false,
+		weekbox: false,
 		//shows events which fits between time_start and time_end
-		show_events_which_fits_time: false,
+		show_events_which_fits_time: true,
 		// Headers defined for ajax call
 		headers: {},
 
@@ -264,11 +264,13 @@ if(!String.prototype.formatNum) {
 	function buildEventsUrl(events_url, data) {
 		var separator, key, url;
 		url = events_url;
-		separator = (events_url.indexOf('?') < 0) ? '?' : '&';
-		for(key in data) {
-			url += separator + key + '=' + encodeURIComponent(data[key]);
-			separator = '&';
-		}
+
+    //Inutile pour Ekah
+		// separator = (events_url.indexOf('?') < 0) ? '?' : '&';
+		// for(key in data) {
+		// 	url += separator + key + '=' + encodeURIComponent(data[key]);
+		// 	separator = '&';
+		// }
 		return url;
 	}
 

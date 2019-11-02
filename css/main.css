@@ -23,6 +23,7 @@ html,body{
   background-color: #FFFFFF;
   background-color: rgba(255,255,255,.9);
 }
+
 /*--------
   HEADER
 colors:
@@ -30,172 +31,244 @@ colors:
   onclick orange : #f0592a
   blanc :  rgba(255,255,255,.9)
 ----------*/
+
+/*--------------HEADER v2.0------------------------------------*/
 header{
   background-color: #034e54;
   height:83px;
   max-height: 83px;
   width:100%;
-  padding: 0 20px;
+  padding: 20px 20px;
 }
 
-.header_inner{
-  padding: 20px 0;
-  width: 100%;
-  height:100%;
-  display:flex;
-}
-
-#navWrapper{
-  height:100%;
-  width:100%;
+.inner-header{
+  display: inline-block;
 }
 
 #logoWrapper{
+  display: block;
   height:100%;
   max-width: 126px;
+  float: left;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 #logoWrapper img{
   max-height:100%;
-}
-
-#headerNav{
-  width:100%;
-  height:100%;
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.tab{
-  font-size: 15px;
-
+  width: 125px;
   vertical-align: middle;
-  color: #FFFFFF;
-  color: rgba(255,255,255,.9);
-
-  font-weight: 700;
-  line-height: 30px;
 }
-.tab:hover{
-  z-index:1;
-}
-
-.tab a:hover{
-  color:#f0592a;
-  cursor: pointer;
-}
-
-.tab a{
-  display:block;
-  color: inherit;
-  text-decoration:none;
-  padding: 8.25px 11px;
-  transition: 0.1s;
-}
-
-.subTab{
-  z-index: -1;
-  position:absolute;
-  background-color: #034e54;
-
-  transition: .2s;
-}
-.tab:hover .subTab{
-  transform: translateY(100%);
-  z-index: -1;
-}
-
-
-.subTab a{
- overflow:hidden;
- color: rgba(255,255,255,.9);
- padding: 0;
-
- visibility:hidden;
- opacity: 0;
-
- transition-duration: .2s;
- transition-delay: 0.18s;
- transition: color .1s .1s, opacity .2s .18s;
-}
-
-.subTab a:hover{
-    transition: color .1s;
-    color:#f0592a;
-}
-
-.tab:hover .subTab a{
-  visibility:visible;
-  opacity: 1;
-}
-
-
-.subTab li{
-  list-style-type: none;
-}
-
-.subTab ul{
-  padding: 8.25px 11px;
-  margin : 0;
-}
-
-
-.subTab li:hover{
-  color:#f0592a;
-  cursor: pointer;
-}
-
 
 #logoHeader:hover{
   cursor: pointer;
 }
 
-#contactNav{
-  order: 0;
-  margin-left: 11px;
-  line-height: 30px;
-  padding-top:2px;
-  height: 36px;
+.nav-header{
+  display: block;
+  text-align: right;
 }
 
-#contactNav a{
+.onglet{
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+}
+
+.onglet-m{
+  font-size: 10px;
+  min-width: 210px;
+}
+
+.onglet .folder{
+  text-decoration: none;
+  transition: 0.1s;
+  padding: 8.25px 11px;
+}
+
+.onglet .folder:visited{
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
+}
+
+.onglet .folder:hover{
+  color:#f0592a;
+}
+
+.onglet a{
+  text-decoration: none;
+  transition: 0.1s;
+  padding: 8.25px 11px;
+}
+
+.onglet a:visited{
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
+}
+
+.onglet a:hover{
+  color:#f0592a;
+}
+
+.btn-header{
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
+  line-height: 30px;
+  padding-top:2px;
+  height: 37px;
+}
+
+.btn-header:hover{
+  z-index:1;
+}
+
+.btn-header a:hover{
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+}
+
+.btn-header a{
+  display:block;
+  text-decoration:none;
+  transition: 0.1s;
   border: 2px solid #fff;
   border-radius: 100px;
   color: #fff;
-  transition: .15s;
   padding: 3px 15px;
 }
 
-
-#contactNav a:hover{
-    background-color: #fff;
-  color: #000;
+.folder{
+  position: relative;
+  display: inline-block;
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
+  cursor: pointer;
 }
-#seConnecter{
-  order: 0;
+
+.sous-onglet{
+  display: none;
+  position: absolute;
+  background-color: #034e54;
+  text-align: left;
+  z-index: 1;
+  height: 63px;
+  width: auto;
+  padding: 0 0 1em 0;
+}
+
+.sous-onglet-m{
+  display: none;
+  height: auto;
+  position: relative;
+  padding: 0 11px 11px 14px;
+}
+
+.sous-onglet:hover{
+  display: block;
+}
+
+.collection{
+  visibility: hidden;
+  opacity: 0;
+  padding-top: 11px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.collection_m{
+  padding-top: 5.50px;
+  padding-bottom: 5.50px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.collection_m a{
+  display: block;
+  padding-top: 0;
+  padding-bottom: 5.50px;
+}
+
+.nav-mobile{
+  display: none;
+}
+
+#nav-mobile{
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.nav-mobile-ouvert{
+  margin-right: 260px;
+}
+
+.logo-ouvert-mobile{
+  position: absolute;
+  left: -250px;
+}
+
+.icon-nav-mobile{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  display: inline-block;
+  width: 50px;
+  font-size: 22px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 8.25px 11px;
+  vertical-align: middle;
+}
+
+#icon-mobile-menu:before{
+  content: '\f0c9';
+  cursor: pointer;
+}
+
+.side-nav{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  width: 260px;
+  background-color: #034e54;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: height 0s .14s linear,visibility 0s 0s linear;
+  overflow: auto;
+}
+
+.mobile-navigation{
+  padding: 24px 36px 72px 36px;
+  text-align: left;
+}
+
+.active{
+  color: #f0592a;
+}
+
+#folder_accueil_m a{
+  padding-left: 0;
+}
+
+.btn-header-m{
   margin-left: 11px;
-  line-height: 30px;
-  padding-top:2px;
-  height: 36px;
+  margin-bottom: 11px;
 }
 
-#seConnecter a{
-  border: 2px solid #fff;
-  border-radius: 100px;
-  color: #fff;
-  transition: .15s;
-  padding: 3px 15px;
-}
-#seConnecter a:hover{
-    background-color: #fff;
-  color: #000;
-}
-#tab-1{order:1;}
-#tab-2{order:2;}
-#tab-3{order:3;}
-#tab-4{order:4;}
-
-/*---------Menu navigation------------*/
+/*************---------Menu navigation------------*********/
 nav{
   display: inline-block;
 }
@@ -443,6 +516,11 @@ footer{
     height: 130px;
   }
 
+  .inner-header{
+    display: none;
+    visibility: hidden;
+  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1100px){ /*tablette*/
@@ -470,5 +548,23 @@ footer{
   .photo a img{
     width: 130px;
     height: 130px;
+  }
+}
+
+@media only screen and (max-width: 1100px){
+  .inner-header{
+    display: none;
+    visibility: hidden;
+  }
+
+  .nav-mobile{
+    display: inline-block;
+  }
+
+}
+
+@media only screen and (min-width: 1100px){
+  .side-nav{
+    display: none;
   }
 }
