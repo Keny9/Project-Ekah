@@ -82,6 +82,7 @@ class GestionClient{
 
 
     // Update client
+
     $requete = "UPDATE utilisateur
                 SET telephone = ?,
                     date_naissance = ?
@@ -98,7 +99,8 @@ class GestionClient{
     $stmt->bind_param('si', $array['courriel'], $array['id_client']);
     $stmt->execute();
 
-
+    $date = $array['date_naissance'];
+    echo $date;
   }
 
 }

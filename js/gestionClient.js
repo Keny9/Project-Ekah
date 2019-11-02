@@ -188,7 +188,19 @@ $('#table_client').DataTable({
 function updateProfil(){
 
   if(valideFormProfil() == true){
-    var date_naissance = null; // TODO: arranger ça
+    var jour = $('#jour').val();
+    var mois = $('#mois').val();
+    var annee = $('#annee').val();
+    var date_naissance = null;
+
+
+
+    // Toutes les variables de la date de naissance sont entrées
+    if(jour && mois && annee){
+      var date_naissance = annee+"-"+mois+"-"+jour;
+    }
+
+    alert(date_naissance);
 
     var dataClient = {
       id_client: data.id,
@@ -210,6 +222,7 @@ function updateProfil(){
       data: {data: dataClientJson},
       async:false,
       success: function(result){
+        //alert(result);
         console.log(result);
         location.reload();
       },
