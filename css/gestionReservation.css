@@ -108,6 +108,18 @@
  margin-right:45px;
  float:right;
 }
+.submitSupprimerQuestion{
+ font-size: 15px;
+ width:70px;
+ height:40px;
+ color:#FFF;
+ background-color:#EC592A;
+ background-size: 90px 35px;
+ border:none;
+ border-radius: 20px;
+ margin-right:45px;
+ float:right;
+}
 .question{
 
 }
