@@ -31,7 +31,7 @@ else{
       </div>
         <div id="onglet_service" class="onglet">
           <div id="folder_service" class="folder">SERVICES</div>
-          <div id="service" class="sous-onglet">
+          <div id="service_header" class="sous-onglet">
             <div id="c-individu" class="collection">
               <a href="https://ekah.co/je-suis-un-individu">JE SUIS UN INDIVIDU</a>
             </div>

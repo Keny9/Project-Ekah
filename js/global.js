@@ -18,13 +18,13 @@ $( document ).ready(function() {
 
   //Afficher les sous-onglets avec une animation
   $("#folder_service").mouseenter(function(){
-    $("#service").stop().slideDown("fast");
+    $("#service_header").stop().slideDown("fast");
     $('#c-individu').css({opacity: 1.0, visibility: "visible"}).animate({opacity: 1}, 200);
     $('#c-equipe').css({opacity: 1.0, visibility: "visible"}).animate({opacity: 1}, 200);
   });
 
   $("#onglet_service").mouseleave(function(){
-    $("#service").stop().slideUp("fast");
+    $("#service_header").stop().slideUp("fast");
     $('#c-individu').css({opacity: 0.0, visibility: "hidden"});
     $('#c-equipe').css({opacity: 0.0, visibility: "hidden"});
   });
