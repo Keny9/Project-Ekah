@@ -20,16 +20,20 @@ $(document).ready(function() {
 
         calendar = loadCalendrier(calendar);
         calendrierReady(calendar);
-        getAllDispo();
+        // getEvents();
         changerBackground();
+        enleverDayView();
+        selectionnerJour();
       }else{
         $('.facilitateur-select').toggleClass("facilitateur-select");
         $(this).toggleClass("facilitateur-select");
 
         calendar = loadCalendrier(calendar);
-        calendrierReady(calendar);
-        getAllDispo();
+        // calendrierReady(calendar);
+        getEvents(calendar);
         changerBackground();
+        enleverDayView();
+        selectionnerJour();
       }
     });
   });

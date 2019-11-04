@@ -100,6 +100,71 @@ function changerBackground(){
 }
 
 
+function getEvents(calendrier){
+  var idFacilitateur = null;
+  var date = null;
+
+  idFacilitateur = $('.facilitateur-select').attr("id");
+
+  // console.log($('.selectionne').children().data('calDate'));
+
+  if(idFacilitateur == null){
+    idFacilitateur = -1;
+  }
+
+  // console.log("facilitateur" + idFacilitateur);
+
+
+  $.ajax({
+    type: "POST",
+    async: false,
+    dataType: "json",
+    url: "../../php/script/Horaire/afficherAllEvents.php",
+    data: {idFacilitateur: idFacilitateur
+         },
+    success: function(data){
+
+        $("#dispo").empty();
+
+        console.log(data);
+        // console.log([data]);
+        calendrier = $("#calendar").calendar(
+           {
+             tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+             weekbox: false,
+             events_source: [data],
+
+             onAfterViewLoad: function(view) {
+               $('.page-header h3').text(this.getTitle());
+             }
+           });
+
+        $.each(data.result, function (index) {
+          var time = data.result[index].date_debut;
+          var date = new Date(time);
+          // alert(date.toString());
+
+          var heure = date.getHours() + ":" + date.getMinutes();
+
+          if(date.getHours().toString().length == 1){
+            heure = "0" + heure;
+          }
+          if(date.getMinutes().toString().length == 1){
+            heure = heure + "0";
+          }
+
+          $("#dispo").append($("<option></option>").val(this['id']).html(heure));
+        });
+
+        return calendrier;
+    },
+    error: function (jQXHR, textStatus, errorThrown) {
+        console.warn(jQXHR.responseText);
+        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+    }
+  });
+}
+
 
 //get tous les dispo pour les mettres dans un combobox
 function getAllDispo(){
