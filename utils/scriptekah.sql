@@ -201,6 +201,7 @@ prenom VARCHAR(40) NOT NULL,
 telephone VARCHAR(15),
 date_naissance date,
 date_inscription datetime default CURRENT_TIMESTAMP,
+photo VARCHAR(255), -- path vers la photo
 
 FOREIGN KEY (id_type_utilisateur) REFERENCES type_utilisateur(id),
 FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
