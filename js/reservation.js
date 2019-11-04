@@ -16,11 +16,12 @@ $(document).ready(function() {
       // console.log("click");
 
       if($(this).hasClass("facilitateur-select")){
+        //Fonctionne (enlever le facilitateur choisi si on reclique dessu)
         $(this).toggleClass("facilitateur-select");
 
         calendar = loadCalendrier(calendar);
-        calendrierReady(calendar);
         // getEvents();
+        // calendar.view();
         changerBackground();
         enleverDayView();
         selectionnerJour();
@@ -31,6 +32,7 @@ $(document).ready(function() {
         calendar = loadCalendrier(calendar);
         // calendrierReady(calendar);
         getEvents(calendar);
+        // calendar.view();
         changerBackground();
         enleverDayView();
         selectionnerJour();
