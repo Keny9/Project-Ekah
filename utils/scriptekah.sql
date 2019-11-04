@@ -440,10 +440,10 @@ INSERT INTO activite(id, id_type_activite, nom, description_breve, description_l
 INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (13, 3, "Mentorat", "Pour vous accompagner dans votre développement personnel, professionnel et spirituel, nous partageons des réflexions, pistes de solutions, pratiques personnelles, nouvelles expériences ainsi que de devoirs à accomplir dans des rencontres de 60 minutes en ligne. L’encadrement est adapté à vos besoins et inclu un suivi par courriel hebdomadaire.", "LONGUE");
 INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (14, 3, "Programmes d’entraînement", "Pour vous encadrer dans votre mode de vie actif, préparer votre corps pour une discipline sportive, prévenir vos blessures et adopter une pratique adaptée à vos besoins, nous offrons des services de préparation de programme sur mesure en ligne. la rencontre d’évaluation dure 30 minutes en ligne et la prescription du programme d’entraînement 90 minutes.", "LONGUE");
 
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (15, 4, "COACHING PROFESSIONNEL", "Ces séances individuelles visent à orienter  chaque  membre de l’équipe à travers une pratique qui fait émerger et cultive un leadership authentique.", "LONGUE");
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (16, 4, "ATELIERS ET FACILITATION", "Nos ateliers visent à  intégrer des outils et des pratiques qui enrichissent les dynamiques personnelles et  interpersonnelles dans les équipes ", "LONGUE");
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (17, 4, "CONSOLIDATION EN PLEIN-AIR", "Nos défis d’équipe visent à tester et transformer les dynamiques d’équipe,  supportés par des outils psychométriques nous expérimentons des épreuves dans un environnement inconnu. ", "LONGUE");
-INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (18, 4, "ENTRAÎNEMENTS EN ÉQUIPE", "Nos entraînements de groupe permettent de cultiver la dynamique d’équipe dans une atmosphère ludique et énergisante. Séances  privés au bureau et en plein-air..", "LONGUE");
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (15, 4, "Coaching Professionnel", "Ces séances individuelles visent à orienter  chaque  membre de l’équipe à travers une pratique qui fait émerger et cultive un leadership authentique.", "LONGUE");
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (16, 4, "Ateliers et Facilitation", "Nos ateliers visent à  intégrer des outils et des pratiques qui enrichissent les dynamiques personnelles et  interpersonnelles dans les équipes ", "LONGUE");
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (17, 4, "Consolidation en Plein-air", "Nos défis d’équipe visent à tester et transformer les dynamiques d’équipe,  supportés par des outils psychométriques nous expérimentons des épreuves dans un environnement inconnu. ", "LONGUE");
+INSERT INTO activite(id, id_type_activite, nom, description_breve, description_longue) VALUES (18, 4, "Entraînements en Équipe", "Nos entraînements de groupe permettent de cultiver la dynamique d’équipe dans une atmosphère ludique et énergisante. Séances  privés au bureau et en plein-air..", "LONGUE");
 
 
 INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (1, 2);
@@ -453,10 +453,11 @@ INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_
 INSERT INTO ta_activite_questionnaire_reservation(id_activite, id_questionnaire_res) VALUES (14, 6);
 
 
-INSERT INTO duree(id, temps) VALUES (1, 1);
-INSERT INTO duree(id, temps) VALUES (2, 2);
-INSERT INTO duree(id, temps) VALUES (3, 3);
-INSERT INTO duree(id, temps) VALUES (4, 4);
+INSERT INTO duree(id, temps) VALUES (1, 30);
+INSERT INTO duree(id, temps) VALUES (2, 60);
+INSERT INTO duree(id, temps) VALUES (3, 90);
+INSERT INTO duree(id, temps) VALUES (4, 120);
+INSERT INTO duree(id, temps) VALUES (5, 150);
 
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (1, 1);
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (1, 3);
