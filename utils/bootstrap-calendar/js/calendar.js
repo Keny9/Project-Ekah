@@ -264,11 +264,13 @@ if(!String.prototype.formatNum) {
 	function buildEventsUrl(events_url, data) {
 		var separator, key, url;
 		url = events_url;
-		separator = (events_url.indexOf('?') < 0) ? '?' : '&';
-		for(key in data) {
-			url += separator + key + '=' + encodeURIComponent(data[key]);
-			separator = '&';
-		}
+
+    //Inutile pour Ekah
+		// separator = (events_url.indexOf('?') < 0) ? '?' : '&';
+		// for(key in data) {
+		// 	url += separator + key + '=' + encodeURIComponent(data[key]);
+		// 	separator = '&';
+		// }
 		return url;
 	}
 
