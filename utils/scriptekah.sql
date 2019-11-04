@@ -201,7 +201,6 @@ prenom VARCHAR(40) NOT NULL,
 telephone VARCHAR(15),
 date_naissance date,
 date_inscription datetime default CURRENT_TIMESTAMP,
-photo VARCHAR(255),
 
 FOREIGN KEY (id_type_utilisateur) REFERENCES type_utilisateur(id),
 FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
@@ -550,3 +549,7 @@ INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUE
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
+
+
+
+

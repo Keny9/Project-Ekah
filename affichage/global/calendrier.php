@@ -38,6 +38,20 @@
 
       <div id="calendar"></div>
 
+      <script type="text/javascript">
+
+        var calendar = $("#calendar").calendar(
+          {
+            tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+            weekbox: false,
+            events_source: "../../php/script/Horaire/afficherAllHoraire.php",
+
+            onAfterViewLoad: function(view) {
+        			$('.page-header h3').text(this.getTitle());
+            }
+          });
+        </script>
+
         <br><br>
       </main>
 

@@ -18,22 +18,25 @@ $(document).ready(function() {
       if($(this).hasClass("facilitateur-select")){
         $(this).toggleClass("facilitateur-select");
 
-        calendar = afficherCalendrier(calendar);
+        calendar = loadCalendrier(calendar);
         calendrierReady(calendar);
-        getAllDispo();
+        // getEvents();
         changerBackground();
+        enleverDayView();
+        selectionnerJour();
       }else{
         $('.facilitateur-select').toggleClass("facilitateur-select");
         $(this).toggleClass("facilitateur-select");
-        
-        calendar = afficherCalendrier(calendar);
-        calendrierReady(calendar);
-        getAllDispo();
+
+        calendar = loadCalendrier(calendar);
+        // calendrierReady(calendar);
+        getEvents(calendar);
         changerBackground();
+        enleverDayView();
+        selectionnerJour();
       }
     });
-});
-
+  });
 
   listInput = document.querySelectorAll("input, textarea, select");
 
