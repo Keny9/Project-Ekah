@@ -74,6 +74,8 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     $reservation->setIdGroupe($id_groupe);
     $reservation->setIdEmplacement($id_emplacement);
 
+
+
     // Insert la reservation, Rollback si erreur
     if($this->reservationInsert($conn, $reservation) == false){
       $conn->rollback();
@@ -236,13 +238,24 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   private function reservationInsert($conn, $reservation){
     $id_paiement = $reservation->getIdPaiement();
     $id_emplacement = $reservation->getIdEmplacement();
-    $id_suivi = $reservation->getIdSuivi();
+    //$id_suivi = $reservation->getIdSuivi();
     $id_activite = $reservation->getIdActivite();
     $id_groupe = $reservation->getIdGroupe();
     $date_rendez_vous = $reservation->getDateRendezVous();
     $heure_debut = $reservation->getHeureDebut();
     $heure_fin = $reservation->getHeureFin();
     $id_facilitateur = $reservation->getIdFacilitateur();
+
+
+
+        // TODO: faire une méthode pour ça
+        // Insert le suivi vide
+    $suivi_contenu = "";
+    $stmt = $conn->prepare("INSERT INTO suivi (fait) VALUES (?)");
+    $stmt->bind_param('s', $suivi_contenu);
+    $stmt->execute();
+    $id_suivi = $conn->insert_id;
+
 
     $stmt = $conn->prepare("INSERT INTO Reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin, id_facilitateur) VALUES (?,?,?,?,?,?,?,?,?);");
     $stmt->bind_param('iiiiisiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur);
@@ -429,7 +442,10 @@ public function selectAll($user_id = null){
     return $facilitateur;
   }
 
-//Obtenir toutes la liste des reservations sous forme de donnees
+/**
+* Obtenir toutes la liste des reservations sous forme de donnees
+*
+*/
   public function getAllReservationData($id_client = null){
     $conn = ($connexion = new Connexion())->do();
 
@@ -466,5 +482,7 @@ public function selectAll($user_id = null){
     }
     return $arrReservation;
   }
+
+
 }
  ?>

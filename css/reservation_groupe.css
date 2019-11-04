@@ -27,6 +27,10 @@
   margin-right: 8px;
 }
 
+#nom{
+  margin-top: 0;
+}
+
 /* The Modal (background) */
 .modal {
   display: none;

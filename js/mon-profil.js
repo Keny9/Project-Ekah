@@ -8,8 +8,9 @@
  * Date de la dernière modification : 2019-09-30
  */
 
-//Lorsque le document est prêt
+var client_arr = null;
 
+//Lorsque le document est prêt
 window.onload = function(){
   listInput = document.querySelectorAll("input");
 
@@ -26,6 +27,7 @@ window.onload = function(){
     });
   });
 
+/*
   prenom = document.getElementById("prenom");
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
@@ -38,6 +40,22 @@ window.onload = function(){
   adresse = document.getElementById("noAdresse");
   rue = document.getElementById("rue");
   ville = document.getElementById("ville");
+*/
+  prenom = document.getElementById("prenom");
+  nom = document.getElementById("nom");
+  courriel = document.getElementById("courriel");
+  telephone = document.getElementById("telephone");
+  motDePasse = document.getElementById("motDePasse");
+  codePostal = document.getElementById("codePostal");
+  jour = document.getElementById("jour");
+  mois = document.getElementById("mois"); //C'est un select
+  annee = document.getElementById("annee");
+  adresse = document.getElementById("noAdresse");
+  rue = document.getElementById("rue");
+  ville = document.getElementById("ville");
+  pays = document.getElementById("pays"); // C'est un select
+
+  setMonProfilChamps();
 
   prenom.addEventListener("focusout", function(){
     if(verifieNomPrenom(prenom)){
@@ -111,6 +129,47 @@ window.onload = function(){
     }
   });
 };
+
+// Initialise les champs avec les infos du client
+function setMonProfilChamps(){
+  let date_naissance = CLIENT['date_naissance'].split('-');
+
+  prenom.value = CLIENT['prenom'];
+  nom.value = CLIENT['nom'];
+  courriel.value = CLIENT['courriel'];
+  telephone.value = CLIENT['telephone'];
+  //motDePasse.value = CLIENT[''];
+  codePostal.value = CLIENT['code_postal'];
+  jour.value = date_naissance[2];
+  mois.value = date_naissance[1];
+  annee.value = date_naissance[0];
+  adresse.value = CLIENT['no_civique'];
+  rue.value = CLIENT['rue'];
+  ville.value = CLIENT['ville'];
+  pays.value = CLIENT['pays'];
+
+  // Enlève le 0 de trop dans le mois de naissance
+  if(parseInt(date_naissance[1]) < 10){
+    mois.value = date_naissance[1].substr(1);
+  }
+}
+
+//Retourne un array d'info du client, ou null si erreur
+/*function getInfoClient(){
+  $.ajax({
+    async: false,
+    url: "../../php/script/Client/getMonProfil.php",
+    data: {"courriel": $('#courriel').val()},
+    success: function(result){
+      if(result == 'false'){
+        bool = false;
+      }
+    },
+    error: function (jQXHR, textStatus, errorThrown) {
+        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+    }
+  });
+}*/
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){

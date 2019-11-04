@@ -87,7 +87,7 @@ main{
 
 .photo-facilitateur{
   display: inline-block;
-  background-color: grey;
+  /* background-color: grey; */
   width: 75px;
   height: 75px;
   margin-right: 15px;
@@ -136,6 +136,15 @@ textarea:focus{
   -moz-transition: border 0.4s;
   -o-transition: border 0.4s;
   transition: border 0.4s;
+}
+
+.events-list{
+  visibility: hidden;
+}
+
+.selectionne{
+  border: 2px solid #000000;
+  border-radius: 0px;
 }
 
 @media only screen and (min-width: 768px){
@@ -194,8 +203,8 @@ textarea:focus{
     font-size: 15px;
   }
 
-  .events-list{
-    visibility: hidden;
-  }
-
+.facilitateur-select{
+  border: 2px solid #000000;
+  border-radius: 0px;
+}
 }

@@ -9,6 +9,37 @@
  */
 
 $(document).ready(function() {
+  var calendar = null;
+  $(".block-photo-facilitateur").each(function(index) {
+    $(this).on("click", function(){
+      //Cliquer sur un facilitateur
+      // console.log("click");
+
+      if($(this).hasClass("facilitateur-select")){
+        //Fonctionne (enlever le facilitateur choisi si on reclique dessu)
+        $(this).toggleClass("facilitateur-select");
+
+        calendar = loadCalendrier(calendar);
+        // getEvents();
+        // calendar.view();
+        changerBackground();
+        enleverDayView();
+        selectionnerJour();
+      }else{
+        $('.facilitateur-select').toggleClass("facilitateur-select");
+        $(this).toggleClass("facilitateur-select");
+
+        calendar = loadCalendrier(calendar);
+        // calendrierReady(calendar);
+        getEvents(calendar);
+        // calendar.view();
+        changerBackground();
+        enleverDayView();
+        selectionnerJour();
+      }
+    });
+  });
+
   listInput = document.querySelectorAll("input, textarea, select");
 
   listInput.forEach(function(e){

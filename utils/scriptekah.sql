@@ -201,6 +201,7 @@ prenom VARCHAR(40) NOT NULL,
 telephone VARCHAR(15),
 date_naissance date,
 date_inscription datetime default CURRENT_TIMESTAMP,
+photo VARCHAR(255), -- path vers la photo
 
 FOREIGN KEY (id_type_utilisateur) REFERENCES type_utilisateur(id),
 FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
@@ -267,12 +268,20 @@ FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe),
 FOREIGN KEY (id_facilitateur) REFERENCES utilisateur(id)
 );
 
+CREATE TABLE region (
+id INT NOT NULL,
+nom varchar(30),
+PRIMARY KEY (id)
+);
+
 CREATE TABLE ta_disponibilite_specialiste (
 id_specialiste INT NOT NULL,
 id_disponibilite INT NOT NULL,
+id_region INT,
 PRIMARY KEY (id_specialiste, id_disponibilite),
 FOREIGN KEY (id_disponibilite) REFERENCES disponibilite(id),
-FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id)
+FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id),
+FOREIGN KEY (id_region) REFERENCES region(id)
 );
 
 
@@ -307,6 +316,10 @@ INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (1, "1", "Le b
 INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (2, "2", "Maison du client");
 
 INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (2, "Ce fut un plaisir, \nÀ la prochaine.", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (3, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (4, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
+INSERT INTO suivi(id, fait, commentaire) VALUES (5, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
 
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
@@ -462,12 +475,21 @@ INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "U
 INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (1, "Disponible");
 INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (2, "Non Disponible");
 
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 1, "Test", "Facilitateur1", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 2, "Test2", "Facilitateur2", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 3, "Test3", "Facilitateur3", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Lampron", "Mario", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 1, "Admin", "Gabriel", NOW(), "img1.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 2, "Admin", "Raphaël", NOW(), "img2.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 3, "Admine", "Claudie", NOW(), "img3.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 4, "Cliente", "Annie", NOW(), "1995-09-01");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 1, "Cliente", "Beatrice", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 2, "Cliente", "Charlotte", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 3, "Client", "David", NOW());
 
-
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "admin1@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "admin2@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (3, "admin3@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4, "annie@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (5, "beatrice@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (6, "charlotte@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (7, "david@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
 /*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
 
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "test2@admin.ca", "abc123");
@@ -512,10 +534,10 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 
 
 
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12 19:00:00', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 1, 1, 2, 2, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 1, 1, 3, 3, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 2, 1, 2, 4, 1, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 2, 1, 3, 5, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 2, 1, 2, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 3, 1, 3, 3, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 2, 4, 2, 4, 1, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 2, 5, 3, 5, 2, '2020-02-02', 13, 14);
 
 
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);

@@ -19,6 +19,7 @@ include_once $path;
 class Facilitateur extends Utilisateur{
   private $etat;
   private $disponibilite;
+  private $photo;
 
 
   function __construct($id, $nom, $prenom, $dateInscription,
@@ -36,13 +37,18 @@ class Facilitateur extends Utilisateur{
   public function setDisponibilite($val){
     $this->disponibilite = $val;
   }
-
+  public function setPhoto($val){
+    $this->photo = $val;
+  }
 
   public function getRue(){
     return $this->etat;
   }
   public function getDisponibilite(){
     return $this->disponibilite;
+  }
+  public function getPhoto(){
+    return $this->photo;
   }
 
 }
