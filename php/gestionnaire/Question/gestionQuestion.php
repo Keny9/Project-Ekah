@@ -20,9 +20,9 @@ class GestionQuestion{
   public function ajouterQuestion($question){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
-      $requete1="SET FOREIGN_KEY_CHECKS=0";
-      $result1 = $conn->query($requete1);
-      //Crée l'employé
+      /*$requete1="SET FOREIGN_KEY_CHECKS=0";
+      $result1 = $conn->query($requete1);*/
+
       $requete= "INSERT INTO question VALUES(
                   '".$question->getIdentifiant()."',
                   '".$question->getId_type()."',
@@ -30,35 +30,42 @@ class GestionQuestion{
                   '".$question->getNb_ligne()."');";
       $result = $conn->query($requete);
 
-      $requete2="SET FOREIGN_KEY_CHECKS=1";
+      /*$requete2="SET FOREIGN_KEY_CHECKS=1";
       $result2 = $conn->query($requete2);
-      if(!$result){
-        trigger_error($conn->error);
-      }
+      */
     }
     public function ajouterQuestionnaire($questionnaire){
         $tempconn = new Connexion();
         $conn = $tempconn->getConnexion();
-        //$requete1="SET FOREIGN_KEY_CHECKS=0";
-        //$result1 = $conn->query($requete1);
 
-        $requete= "INSERT INTO questionnaire VALUES(
+        $requete= "INSERT INTO questionnaire_reservation VALUES(
                     '".$questionnaire->getIdentifiant()."',
                     '".$questionnaire->getNomQuestionnaire()."');";
         $result = $conn->query($requete);
-
-        //$requete2="SET FOREIGN_KEY_CHECKS=1";
-        //$result2 = $conn->query($requete2);
       }
 
-      public function ajouterActiviteQuestionnaire($ta_activite_questionnaire){
+      public function ajouterActiviteQuestionnaire($ta_activite_questionnaire_reservation){
           $tempconn = new Connexion();
           $conn = $tempconn->getConnexion();
 
           //Crée l'employé
           $requete= "INSERT INTO ta_activite_questionnaire_reservation VALUES(
-                      '".$ta_activite_questionnaire->getIdActivite()."',
-                      '".$ta_activite_questionnaire->getIdQuestionnaire()."');";
+                      '".$ta_activite_questionnaire_reservation->getIdActivite()."',
+                      '".$ta_activite_questionnaire_reservation->getIdQuestionnaire()."');";
+          $result = $conn->query($requete);
+          if(!$result){
+            trigger_error($conn->error);
+        }
+      }
+
+      public function ajouterQuestionQuestionnaire($ta_questionnaire_reservation_question){
+          $tempconn = new Connexion();
+          $conn = $tempconn->getConnexion();
+
+          //Crée l'employé
+          $requete= "INSERT INTO ta_questionnaire_reservation_question VALUES(
+                      '".$ta_questionnaire_reservation_question->getIdQuestionnaire()."',
+                      '".$ta_questionnaire_reservation_question->getIdQuestion()."');";
           $result = $conn->query($requete);
           if(!$result){
             trigger_error($conn->error);

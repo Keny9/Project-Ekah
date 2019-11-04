@@ -77,7 +77,7 @@
     <h6 class="descriptionC texteEkha">Description du service:</h6>
     <textarea class="boxDescription" type="text" name="descriptionC" cols="40" rows="5" id="descriptionC"></textarea>
     <br />
-    <h6 class="descriptionC texteEkha">Questionnaire de l'activité:</h6>
+    <h6 class="descriptionC texteEkha">Questions de l'activité:</h6>
     <?php
                     require_once 'gestionAffichageGestionReservation.php';
                     $gagr = new GestionAffichageGestionReservation();
