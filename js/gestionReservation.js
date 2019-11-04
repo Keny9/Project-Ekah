@@ -305,16 +305,53 @@ function ajoutDuree(x){
        });
      });
    }
+
+   function supprimerQuestion(x){
+     var hr = new XMLHttpRequest();
+     var url="../../php/script/Activite/supprimerActiviteDuree.php";
+     console.log("allo");
+     for (i = 0; i <= 18; i++){
+       let divSelection = document.getElementById("Activite-"+i);
+
+       if(divSelection.classList.contains("selectionne")){
+         var id = i+1;
+       }
+     }
+     var idDuree=x+1;
+
+     $(function($) {
+         $.ajax({
+           url: url,
+           type:"POST",
+           async: false,
+           data: {idActivite: id, idDuree:idDuree},
+           success: function(data) {
+             if(!data){
+                 //alert("La modification s'est effectuée avec succès!");
+             }
+             else{
+               //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+                 console.log(data);
+             }
+           } ,
+           error: function() {
+             alert('Error occured');
+           }
+         });
+       });
+     }
+
 function ajouterQuestionnaire(){
+
   for (i = 0; i <= 18; i++){
     let divSelection = document.getElementById("Activite-"+i);
     if(divSelection.classList.contains("selectionne")){
-      var id = i+1;
+      var idActivite = i+1;
     }
   }
-  //var idActivite=x+1;
-  var nomQuestionnaire = document.getElementById('titre').value;
-
+  var nomQuestionnaire = document.getElementById('nom').value;
+  console.log(nomQuestionnaire);
+  console.log(idActivite);
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
@@ -325,7 +362,7 @@ function ajouterQuestionnaire(){
         url: url,
         type:"POST",
         async: false,
-        data: {id:id,nomQuestionnaire:nomQuestionnaire},
+        data: {id:idActivite,nomQuestionnaire:nomQuestionnaire},
         success: function(data) {
           console.log(data);
           if(!data){
@@ -341,7 +378,38 @@ function ajouterQuestionnaire(){
         }
       });
     });
+    ajouterActiviteQuestionnaire(idActivite);
+    ajouterQuestion();
+    ajouterQuestionQuestionnaire(idActivite);
+}
 
+function ajouterActiviteQuestionnaire(id){
+  // Create our XMLHttpRequest object
+  var hr = new XMLHttpRequest();
+  // Create some variables we need to send to our PHP file
+  var url="../../php/script/Question/ajouterActiviteQuestionnaire.php";
+
+  $(function($) {
+      $.ajax({
+        url: url,
+        type:"POST",
+        async: false,
+        data: {id:id},
+        success: function(data) {
+          console.log(data);
+          if(!data){
+              alert("La modification s'est effectuée avec succès!");
+          }
+          else{
+            //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+              console.log(data);
+          }
+        } ,
+        error: function() {
+          alert('Error occured');
+        }
+      });
+    });
 }
 
 
@@ -354,10 +422,9 @@ function ajouterQuestion(){
   for (i = 0; i <= 18; i++){
     let divSelection = document.getElementById("Activite-"+i);
     if(divSelection.classList.contains("selectionne")){
-      var id = i+1;
+      var idActivite = i+1;
     }
   }
-  var idActivite=x+1;
 
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
@@ -386,6 +453,39 @@ function ajouterQuestion(){
       });
     });
 }
+
+function ajouterQuestionQuestionnaire(id){
+  var idQues = document.getElementById('idQuestion').value;
+  console.log(id);
+  console.log(idQues);
+  // Create our XMLHttpRequest object
+  var hr = new XMLHttpRequest();
+  // Create some variables we need to send to our PHP file
+  var url="../../php/script/Question/ajouterQuestionQuestionnaire.php";
+
+  $(function($) {
+      $.ajax({
+        url: url,
+        type:"POST",
+        async: false,
+        data: {id:id,idQues:idQues},
+        success: function(data) {
+          console.log(data);
+          if(!data){
+              alert("La modification s'est effectuée avec succès!");
+          }
+          else{
+            //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+              console.log(data);
+          }
+        } ,
+        error: function() {
+          alert('Error occured');
+        }
+      });
+    });
+}
+
  function ajouter(){
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
