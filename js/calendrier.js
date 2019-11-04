@@ -1,8 +1,18 @@
 $(document).ready(function() {
+  var calendrier = null;
+  calendrier = loadCalendrier(calendrier);
+  calendrierReady(calendrier);
 
+  changerBackground();
+  enleverDayView();
+  selectionnerJour();
 
+  getAllDispo();
+});
+
+//Les event on click pour les boutons
+function calendrierReady(calendrier){
   $('#0').toggleClass("selectionne");
-
 
   //Les boutons pour naviger dans le calendrier
   $( "#next" ).click(function() {
@@ -19,14 +29,22 @@ $(document).ready(function() {
     enleverDayView();
     selectionnerJour();
   });
+}
 
+//Load le calendrier avec tous les events (De base)
+function loadCalendrier(calendrier){
+ calendar = $("#calendar").calendar(
+    {
+      tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+      weekbox: false,
+      events_source: "../../php/script/Horaire/afficherAllHoraire.php",
 
-  changerBackground();
-  enleverDayView();
-  selectionnerJour();
-
-  getAllDispo();
-});
+      onAfterViewLoad: function(view) {
+        $('.page-header h3').text(this.getTitle());
+      }
+    });
+    return calendrier;
+}
 
 
 function selectionnerJour(){

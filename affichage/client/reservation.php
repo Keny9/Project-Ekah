@@ -91,18 +91,11 @@ $activites = $gActivite->getAllActivite();
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>
             <input type="checkbox" name="facilitateur" id="facilitateur" onclick="check()" value="">
           </div>
+          
           <div id="photo-facilitateur" class="group-input-inscr">
-            <div class="block-photo-facilitateur">
-              <div class="photo-facilitateur"></div>
-              <div class="photo-facilitateur"></div>
-              <div class="photo-facilitateur"></div>
-            </div>
-            <div class="block-photo-nom">
-              <div class="photo-nom">Antoine</div>
-              <div class="photo-nom">Alejandro</div>
-              <div class="photo-nom">Philippe</div>
-            </div>
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/afficherPhotos.php'; ?>
           </div>
+
           <div class="group-input-inscr">
             <label class="label-reservation label-long">Sélectionner la date et l'heure désiré</label>
             <!--<img id="calendrier" src="../../img/calendar.JPG" alt="Calendrier">-->
