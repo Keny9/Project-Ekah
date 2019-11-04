@@ -86,6 +86,18 @@ class GestionQuestion{
     }
   }
 
+  public function supprimerQuestionQuestionnaire($idQuestionnaire,$idQuestion){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+
+    $requete= "DELETE FROM ta_questionnaire_reservation_question
+              WHERE id_questionnaire_res = '$idQuestionnaire' AND id_question = '$idQuestion';";
+    $result = $conn->query($requete);
+    if(!$result){
+      trigger_error($conn->error);
+    }
+  }
+
   public function getQuestionsOfActivite($idActivite){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
