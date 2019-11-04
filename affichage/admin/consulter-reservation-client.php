@@ -11,6 +11,13 @@
  $page_type=2;
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
+// La variable GET[id] n'est pas définit
+if(!isset($_GET['id'])){ // Retour à la page précédente
+  echo '<script type="text/javascript">
+          alert("Page inaccessible.");
+          window.history.back();
+        </script>';
+}
  $idClient = $_GET['id'];
 
  ?>
