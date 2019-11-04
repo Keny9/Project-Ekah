@@ -201,6 +201,7 @@ prenom VARCHAR(40) NOT NULL,
 telephone VARCHAR(15),
 date_naissance date,
 date_inscription datetime default CURRENT_TIMESTAMP,
+photo VARCHAR(255), -- path vers la photo
 
 FOREIGN KEY (id_type_utilisateur) REFERENCES type_utilisateur(id),
 FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
@@ -474,10 +475,10 @@ INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "U
 INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (1, "Disponible");
 INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (2, "Non Disponible");
 
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 1, "Admin", "Gabriel", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 2, "Admin", "Raphaël", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (2, 1, 3, "Admine", "Claudie", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 4, "Cliente", "Annie", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 1, "Admin", "Gabriel", NOW(), "img1.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 2, "Admin", "Raphaël", NOW(), "img2.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 3, "Admine", "Claudie", NOW(), "img3.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 4, "Cliente", "Annie", NOW(), "1995-09-01");
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 1, "Cliente", "Beatrice", NOW());
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 2, "Cliente", "Charlotte", NOW());
 INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 3, "Client", "David", NOW());

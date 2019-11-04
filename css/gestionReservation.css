@@ -108,6 +108,9 @@
  margin-right:45px;
  float:right;
 }
+.question{
+
+}
 .submitSupprimer{
   font-size: 15px;
   width:120px;
@@ -155,7 +158,7 @@
  .reservationMain{
    width:800px;
    height:40px;
-   margin-left:400px;
+   margin-left:450px;
    margin-bottom:1000px;
  }
  .reservationHeader{
@@ -169,6 +172,9 @@
    width:800px;
    height:250px;
    float:left
+ }
+ .cacher{
+   display:none;
  }
  .titreImg{
    margin-left:420px;

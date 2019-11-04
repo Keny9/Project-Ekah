@@ -68,9 +68,11 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
         <div class="txt-explication">Avant de faire une réservation, nous aimerions apprendre à mieux vous connaître.</div>
 
         <form class="form-reservation-question" id="form-reservation-question" action="#" method="post">
-          <?php
-            echo $stringQuestions;
-           ?>
+          <div id="form-questions">
+            <?php
+              echo $stringQuestions;
+            ?>
+          </div>
           <div class="group-input-inscr">
             <p class="label-question">Signez et datez la déclaration</p>
             <div class="group-input-inscr">

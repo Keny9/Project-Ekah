@@ -22,7 +22,7 @@
  $gReservation = new GestionReservation();
  $gAffichageReservation = new GestionAffichageReservation();
 
- $id_activite = $_POST['service'];
+ $id_activite = 1;//$_POST['service'];
  $questionnaireArray = null;
  $questionnaire = null;
 
@@ -34,9 +34,10 @@
 
    //Créer la réservation
    $groupe = new Groupe(null, 1, null, null, 1);
-   $id_activite = $_POST['service'];
+   $id_activite = 1;//$_POST['service'];
    $dateTime = "2018-01-01";//$_POST['date_rendez_vous'];
    $id_facilitateur = 1;//$_POST['id_facilitateur'];
+   // TODO: Pourrait créer le suivi ici et pass son id...
    $reservation = new Reservation(null, null, 1, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);
    $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
 
@@ -48,5 +49,5 @@
 $questionnaire = $questionnaireArray[0];
 $_SESSION['questionnaire'] = $questionnaire;
 
-header('Location: /Project-Ekah/affichage/client/questionnaire.php');
+header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.);
  ?>

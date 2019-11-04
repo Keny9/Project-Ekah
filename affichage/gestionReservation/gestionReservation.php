@@ -2,6 +2,7 @@
   session_start();
   require_once("../../php/gestionnaire/Activite/gestionActivite.php");
   require_once("../../php/gestionnaire/Duree/gestionDuree.php");
+  require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +60,10 @@
                    echo $gagr->getAllTypeActivite();
                  ?>
 
+
+    <div id="typeSelect" class="cacher">
+      yo
+    </div>
     <h6 class="duree texteEkha">Duree:</h6>
     <?php
                    require_once 'gestionAffichageGestionReservation.php';
@@ -66,16 +71,24 @@
                    echo $gagr->getDureeActivite(1);
                  ?>
 
+
     <h6 class="prix texteEkha">Prix:</h6>
     <input class="boxDuree" type="text" name="prix" min="0" value="Non fonctionelle scrum 1"></input>
     <h6 class="descriptionC texteEkha">Description du service:</h6>
     <textarea class="boxDescription" type="text" name="descriptionC" cols="40" rows="5" id="descriptionC"></textarea>
+    <br />
+    <h6 class="descriptionC texteEkha">Questions de l'activité:</h6>
+    <?php
+                    require_once 'gestionAffichageGestionReservation.php';
+                    $gagr = new GestionAffichageGestionReservation();
+                    echo $gagr->getQuestionActivite(1);
+                  ?>
     <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h6>
       <input class="inputId" type="text"  placeholder="Id" id="idQuestion"></input>
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
       <input class="inputType" type="text"  placeholder="Type de la question" id="typeQuestion"></input>
-      <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestion();" value="Ajouter" />
+      <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />
 
 </main>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/footer.php' ?>

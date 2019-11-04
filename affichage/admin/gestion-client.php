@@ -59,6 +59,15 @@
 
         <div class="txt-consulter">Profil de <br><span id="nomClient"></span></div>
 
+        <div class="error" id="error-blank">
+          <div class="icon-error">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="text-error">
+            Ces champs ne peuvent pas être vide.
+          </div>
+        </div>
+        
         <div class="group-input-inscr">
           <label class="label-consulter">Date de naissance</label>
           <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">
@@ -119,12 +128,12 @@
         </div>
 
         <div class="group-input-inscr">
-          <button type="button" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
+          <button type="button" onclick="updateProfil()" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
         </div>
 
       </div>
     </div>
-    
+
   </main>
 
   <?php include "../global/footer.php"; ?>

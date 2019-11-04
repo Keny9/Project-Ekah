@@ -1,13 +1,22 @@
 <?php
 /**
- * Page inscription, lorsqu'un client veut s'inscire sur le site d'Ekah
+ * Page 'mon-profil'. Le client peut modifier ses informations personnelles
+ * ici.
  *
- * Nom :         inscription.php
+ * Nom :         mon-profil.php
  * Catégorie :   Page
- * Auteur :      Karl Boutin
+ * Auteur :      Maxime Lussier
  * Version :     1.0
- * Date de la dernière modification : 2019-09-30
+ * Date de la dernière modification : 2019-11-03
  */
+
+ $page_type=1;
+ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
+ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
+
+ //$client_id = $_SESSION['logged_in_user_id'];
+
+
  ?>
 
  <!DOCTYPE html>
@@ -19,8 +28,12 @@
      <link rel="stylesheet" href="../../css/main.css">
      <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-     <script type="text/javascript" src="../../js/inscription.js"></script>
      <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+     <script type="text/javascript">
+       // variable qui contient un array JSON des informations du client
+       const CLIENT = <?php echo $client_json ?>;
+     </script>
+     <script type="text/javascript" src="../../js/mon-profil.js"></script>
      <title>Inscription</title>
    </head>
    <body>
@@ -44,7 +57,7 @@
              Ces champs ne peuvent pas être vide.
            </div>
          </div>
-         <form class="form-inscr" id="mickeymouse" action="bebechien" method="post">
+         <form class="form-inscr" id="mickeymouse" action="" method="post">
 
            <div id="modal-inscription" class="modal-inscription">
              <div class="modal-content">
