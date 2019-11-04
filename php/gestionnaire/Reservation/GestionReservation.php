@@ -339,7 +339,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   public function questionSelectAllWithQuestionnaireId($id_du_questionnaire){
     $conn = ($connexion = new Connexion())->do();
 
-    $stmt = $conn->prepare("SELECT q.id, q. id_type_question, q.question, q.nb_ligne, ta.ordre FROM question AS q
+    $stmt = $conn->prepare("SELECT q.id, q.id_type_question, q.question, q.nb_ligne, ta.ordre FROM question AS q
       INNER JOIN ta_questionnaire_reservation_question AS ta ON ta.id_question = q.id
       INNER JOIN questionnaire_reservation AS qr ON qr.id = ta.id_questionnaire_res
       WHERE qr.id = ?
@@ -352,6 +352,8 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
       $questionTemp = new Question($row['id'], $row['id_type_question'], $row['question'], $row['nb_ligne'], $row['ordre']);
       array_push($array, $questionTemp);
     }
+
+
     return $array;
   }
 

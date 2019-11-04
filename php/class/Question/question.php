@@ -15,7 +15,7 @@
     private $idType;
     private $question;
     private $nbLigne;
-    //private $ordre;
+    private $ordre;
 
 
     function __construct( $identifiant,$idType,$question,$nbLigne, $ordre = null){
@@ -23,7 +23,7 @@
       $this->setId_type($idType);
       $this->setQuestion($question);
       $this->setNb_ligne($nbLigne);
-      //$this->setOrdre($ordre);
+      $this->setOrdre($ordre);
     }
 
     /*
@@ -72,11 +72,11 @@
       $this->nbLigne = $nbLigne;
     }
 
-    /*public function setOrdre($val){
+    public function setOrdre($val){
       $this->ordre = $val;
     }
     public function getOrdre(){
       return $this->ordre;
-    }*/
+    }
   }
  ?>
