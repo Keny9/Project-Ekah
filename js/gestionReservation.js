@@ -23,6 +23,7 @@
        remplirDescription(x);
        remplirType(x);
        remplirDuree(x);
+       remplirQuestion(x);
         }
  }
 
@@ -137,7 +138,45 @@ function remplirDuree(x){
                     document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/&gt;rn/g, '');
                     document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/option             &gt;<\/option><option>/g, '');
                     document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/option             rn               <\/option><option>/g, '');
+
                     console.log(document.getElementById("duree").innerHTML);
+                  } ,
+                  error: function() {
+                    alert('Error occured');
+                  }
+                });
+              });
+}
+function remplirQuestion(x){
+  var id = x+1;
+  myData={id:id};
+  var url="../../php/script/Activite/remplirActiviteQuestionnaire.php";
+              $(function($) {
+                $.ajax({
+                  url: url,
+                  type:"POST",
+                  async: false,
+                  data: myData,
+                  success: function(data) {
+                    //console.log(data);
+                    document.getElementById("questionnaire").innerHTML=data;
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/"/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/select/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/<>/g, '');
+                    //document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/&gt;/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/V/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/\\/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/\//g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/&lt;/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/rn/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/&gt;rn/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option&gt;/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option&gt;              &gt;/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option              &gt;/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option             &gt;<\/option><option>/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option             rn               <\/option><option>/g, '');
+                    //console.log(document.getElementById("questionnaire").innerHTML);
+
                   } ,
                   error: function() {
                     alert('Error occured');
@@ -266,12 +305,60 @@ function ajoutDuree(x){
        });
      });
    }
+function ajouterQuestionnaire(){
+  for (i = 0; i <= 18; i++){
+    let divSelection = document.getElementById("Activite-"+i);
+    if(divSelection.classList.contains("selectionne")){
+      var id = i+1;
+    }
+  }
+  //var idActivite=x+1;
+  var nomQuestionnaire = document.getElementById('titre').value;
+
+  // Create our XMLHttpRequest object
+  var hr = new XMLHttpRequest();
+  // Create some variables we need to send to our PHP file
+  var url="../../php/script/Question/ajouterQuestionnaire.php";
+
+  $(function($) {
+      $.ajax({
+        url: url,
+        type:"POST",
+        async: false,
+        data: {id:id,nomQuestionnaire:nomQuestionnaire},
+        success: function(data) {
+          console.log(data);
+          if(!data){
+              alert("La modification s'est effectuée avec succès!");
+          }
+          else{
+            //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+              console.log(data);
+          }
+        } ,
+        error: function() {
+          alert('Error occured');
+        }
+      });
+    });
+
+}
+
 
 function ajouterQuestion(){
   var id = document.getElementById('idQuestion').value;
   var question = document.getElementById('question').value;
   var idType = document.getElementById('typeQuestion').value;
   var nbLigne = document.getElementById('nbLigne').value;
+
+  for (i = 0; i <= 18; i++){
+    let divSelection = document.getElementById("Activite-"+i);
+    if(divSelection.classList.contains("selectionne")){
+      var id = i+1;
+    }
+  }
+  var idActivite=x+1;
+
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file

@@ -76,6 +76,28 @@
          }
          return $html;
        }
+       public function getQuestionActivite($idActivite){
+          $gq = new GestionQuestion();
+          $question_activite = $gq->getQuestionsOfActivite($idActivite);
+
+          $html = "";
+
+           if (!is_array($question_activite)){
+            $html .= "Aucun resultat trouvé.";
+          }
+          else{
+            $html .= "<select class=\"boxDuree\" name=\"service\" id=\"questionnaire\">";
+            for ($i = 0; $i < sizeof($question_activite);$i++){
+              $j=$i+1;
+
+              $html .= "
+                <option id='Question-$i' value=\"$j\" >".$question_activite[$i]->getQuestion()."</option>
+              ";
+            }
+            $html .= "</select>";
+          }
+          return $html;
+        }
 
      public function getAllDuree(){
         $gd = new GestionDuree();
