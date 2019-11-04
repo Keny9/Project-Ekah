@@ -12,21 +12,16 @@
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
-  $idFacilitateur = $_POST['idFacilitateur'];
+  // $idFacilitateur = $_POST['idFacilitateur'];
   $date = $_POST['date'];
-  // $date = "2019-10-31";
-  // $idFacilitateur = -1;
+
 
   $gestionFacilitateur = new GestionFacilitateur();
 
-  $facilitateur = null;
-  // echo $idFacilitateur;
-  if($idFacilitateur == -1){
-    $facilitateur = $gestionFacilitateur->getAllFacilitateurActifAvecDispoGroup();
-  }else{
-    $facilitateur = $gestionFacilitateur->getFacilitateurActifAvecDispoGroup($idFacilitateur);
-  }
-  // print_r($facilitateur);
+
+
+  $facilitateur = $gestionFacilitateur->getAllFacilitateurActifAvecDispo();
+  // print_r($facilitateur[1]->getNom());
 
 
   date_default_timezone_set('America/Toronto');
