@@ -1,35 +1,49 @@
 $(document).ready(function() {
-  var calendar = null;
+  var calendrier = null;
+  calendrier = loadCalendrier(calendrier);
+  calendrierReady(calendrier);
 
-  calendar = afficherCalendrier(calendar);
-  calendrierReady(calendar);
+  changerBackground();
+  enleverDayView();
+  selectionnerJour();
+
+  getAllDispo();
 });
 
-function calendrierReady(calendar){
-    console.log("Test");
-    $('#0').toggleClass("selectionne");
+//Les event on click pour les boutons
+function calendrierReady(calendrier){
+  $('#0').toggleClass("selectionne");
 
-    //Les boutons pour naviger dans le calendrier
-    $( "#next" ).click(function() {
-      var $this = $(this);
-      calendar.navigate($this.data('calendar-nav'));
-      changerBackground();
-      enleverDayView();
-      selectionnerJour();
-    });
-    $( "#prev" ).click(function() {
-      var $this = $(this);
-      calendar.navigate($this.data('calendar-nav'));
-      changerBackground();
-      enleverDayView();
-      selectionnerJour();
-    });
-
+  //Les boutons pour naviger dans le calendrier
+  $( "#next" ).click(function() {
+    var $this = $(this);
+    calendar.navigate($this.data('calendar-nav'));
     changerBackground();
     enleverDayView();
     selectionnerJour();
+  });
+  $( "#prev" ).click(function() {
+    var $this = $(this);
+    calendar.navigate($this.data('calendar-nav'));
+    changerBackground();
+    enleverDayView();
+    selectionnerJour();
+  });
+}
 
-    getAllDispo();
+//Load le calendrier avec tous les events (De base)
+function loadCalendrier(calendrier){
+ calendar = $("#calendar").calendar(
+    {
+      tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+      weekbox: false,
+      events_source: "../../php/script/Horaire/afficherAllHoraire.php",
+
+      onAfterViewLoad: function(view) {
+        $('.page-header h3').text(this.getTitle());
+      }
+    });
+    return calendrier;
 }
 
 
@@ -86,87 +100,76 @@ function changerBackground(){
 }
 
 
-function afficherCalendrier(calendar){
-    calendar = $("#calendar").calendar(
-    {
-      tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
-      weekbox: false,
-      events_source: function(){
-        getEvents();
-      },
-
-      onAfterViewLoad: function(view) {
-        $('.page-header h3').text(this.getTitle());
-      }
-    });
-    return calendar;
-}
-
-//get tous les events pour le calendrier
-function getEvents(){
-  var data;
+function getEvents(calendrier){
   var idFacilitateur = null;
   var date = null;
 
   idFacilitateur = $('.facilitateur-select').attr("id");
 
   // console.log($('.selectionne').children().data('calDate'));
-  date = $('.selectionne').children().data('calDate');
 
-  if(date == null){
-    date = "2000-01-01";
-  }
   if(idFacilitateur == null){
     idFacilitateur = -1;
   }
 
-  data = doAjax(idFacilitateur, date);
-  console.log(data.responseJSON);
-  return data.responseJSON;
-}
+  // console.log("facilitateur" + idFacilitateur);
 
-async function doAjax(idFacilitateur, date){
-  var data;
-  await $.ajax({
+
+  $.ajax({
     type: "POST",
     async: false,
     dataType: "json",
     url: "../../php/script/Horaire/afficherAllEvents.php",
-    data: {idFacilitateur: idFacilitateur,
-            date: date
+    data: {idFacilitateur: idFacilitateur
          },
     success: function(data){
-      return data;
+
+        $("#dispo").empty();
+
+        console.log(data);
+        // console.log([data]);
+        calendrier = $("#calendar").calendar(
+           {
+             tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+             weekbox: false,
+             events_source: [data],
+
+             onAfterViewLoad: function(view) {
+               $('.page-header h3').text(this.getTitle());
+             }
+           });
+
+        $.each(data.result, function (index) {
+          var time = data.result[index].date_debut;
+          var date = new Date(time);
+          // alert(date.toString());
+
+          var heure = date.getHours() + ":" + date.getMinutes();
+
+          if(date.getHours().toString().length == 1){
+            heure = "0" + heure;
+          }
+          if(date.getMinutes().toString().length == 1){
+            heure = heure + "0";
+          }
+
+          $("#dispo").append($("<option></option>").val(this['id']).html(heure));
+        });
+
+        return calendrier;
     },
     error: function (jQXHR, textStatus, errorThrown) {
         console.warn(jQXHR.responseText);
         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
     }
   });
-  return data;
 }
-
-// function afficherCalendrier(calendar){
-//     calendar = $("#calendar").calendar(
-//     {
-//       tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
-//       weekbox: false,
-//       events_source: "../../php/script/Horaire/afficherAllHoraire.php",
-//
-//       onAfterViewLoad: function(view) {
-//         $('.page-header h3').text(this.getTitle());
-//       }
-//     });
-//     return calendar;
-// }
 
 
 //get tous les dispo pour les mettres dans un combobox
 function getAllDispo(){
-  var idFacilitateur = null;
+  var idFacilitateur = 1;
   var date = null;
-
-  idFacilitateur = $('.facilitateur-select').attr("id");
 
   // console.log($('.selectionne').children().data('calDate'));
   date = $('.selectionne').children().data('calDate');
@@ -174,9 +177,7 @@ function getAllDispo(){
   if(date == null){
     date = "2000-01-01";
   }
-  if(idFacilitateur == null){
-    idFacilitateur = -1;
-  }
+
 
   $.ajax({
     type: "POST",

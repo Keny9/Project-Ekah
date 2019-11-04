@@ -199,19 +199,21 @@ class GestionFacilitateur{
 
           $disponibilite = $this->getAllDisponibiliteActive($id);
 
-          if(sizeof($disponibilite) > 0){
-            $facilitateur[] = new Facilitateur(
-                                      $id,
-                                      $row['nom'],
-                                      $row['prenom'],
-                                      $row['date_inscription'],
-                                      $row['courriel'],
-                                      $row['date_naissance'],
-                                      $row['telephone'],
-                                      "actif",
-                                      $disponibilite
-                                    );
-            $facilitateur[$i]->setPhoto($row['photo']);
+          if(isset($disponibilite)){
+            if(sizeof($disponibilite) > 0){
+              $facilitateur[] = new Facilitateur(
+                                        $id,
+                                        $row['nom'],
+                                        $row['prenom'],
+                                        $row['date_inscription'],
+                                        $row['courriel'],
+                                        $row['date_naissance'],
+                                        $row['telephone'],
+                                        "actif",
+                                        $disponibilite
+                                      );
+              $facilitateur[$i]->setPhoto($row['photo']);
+            }
           }
             $i++;
         }
