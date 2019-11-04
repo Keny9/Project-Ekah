@@ -37,7 +37,7 @@
      <title>Inscription</title>
    </head>
    <body>
-
+     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
      <main>
        <div class="inscription">
          <div class="logo-inscr">
