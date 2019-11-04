@@ -12,8 +12,8 @@
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
-  // $idFacilitateur = $_POST['idFacilitateur'];
-  $idFacilitateur = 1;
+  $idFacilitateur = $_POST['idFacilitateur'];
+  // $idFacilitateur = 1;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -24,6 +24,7 @@
   }else{
     $facilitateur = $gestionFacilitateur->getFacilitateurActifAvecDispoGroup($idFacilitateur);
   }
+  
   // print_r($facilitateur);
 
 
