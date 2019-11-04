@@ -44,10 +44,12 @@ alert(suivi_string);
 // TODO: faire l'url
 // TODO: remettre le script redirectionQuestionnaire À défaut
   $.ajax({
-    url: url,
+    url: "../../php/script/Reservation/updateSuivi.php",
     type:"POST",
     async: false,
-    data: {suivi: suivi_string},
+    data: {fait: suivi_string,
+           commentaire: "",
+           id_suivi: ""},
     success: function(data) {
       console.log(data);
       if(!data){
