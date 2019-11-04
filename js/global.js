@@ -9,7 +9,7 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-10-03
  */
-$( document ).ready(function() {
+$(document).ready(function() {
   // ajuste la positions des sous-menus
   $('.tab .subTab').each(function(){
     var $left = $(this).parent().offset().left;
