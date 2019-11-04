@@ -1,13 +1,21 @@
+var calendrier = null;
 $(document).ready(function() {
-  var calendrier = null;
+
   calendrier = loadCalendrier(calendrier);
   calendrierReady(calendrier);
+
+  getEvents(calendrier);
+
+  console.log(calendrier);
+
+  getAllDispo();
+
+  calendrier.view();
 
   changerBackground();
   enleverDayView();
   selectionnerJour();
 
-  getAllDispo();
 });
 
 //Les event on click pour les boutons
@@ -17,14 +25,14 @@ function calendrierReady(calendrier){
   //Les boutons pour naviger dans le calendrier
   $( "#next" ).click(function() {
     var $this = $(this);
-    calendar.navigate($this.data('calendar-nav'));
+    calendrier.navigate($this.data('calendar-nav'));
     changerBackground();
     enleverDayView();
     selectionnerJour();
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
-    calendar.navigate($this.data('calendar-nav'));
+    calendrier.navigate($this.data('calendar-nav'));
     changerBackground();
     enleverDayView();
     selectionnerJour();
@@ -33,7 +41,7 @@ function calendrierReady(calendrier){
 
 //Load le calendrier avec tous les events (De base)
 function loadCalendrier(calendrier){
- calendar = $("#calendar").calendar(
+ calendrier = $("#calendar").calendar(
     {
       tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
       weekbox: false,
@@ -67,7 +75,6 @@ function selectionnerJour(){
 
 //Enleve le click sur une journée pour afficher la view "Day"
 function enleverDayView(){
-  // console.log("Enlever");
   var i = 0;
   $.each($('.cal-cell'), function(index, $event){
     var $this = $(this);
@@ -90,7 +97,7 @@ function changerBackground(){
       $this.parent().css("background-color", "#e8fde7");
     });
 
-    //Enlever le CSS inutile pour la réservation
+    //Enlever le CSS inutile pour la réservation (css today)
     var $today = $(".cal-day-today");
     $today.removeClass("cal-day-today");
 
@@ -105,15 +112,13 @@ function getEvents(calendrier){
   var date = null;
 
   idFacilitateur = $('.facilitateur-select').attr("id");
+  idFacilitateur = 1;
 
   // console.log($('.selectionne').children().data('calDate'));
 
   if(idFacilitateur == null){
     idFacilitateur = -1;
   }
-
-  // console.log("facilitateur" + idFacilitateur);
-
 
   $.ajax({
     type: "POST",
@@ -124,38 +129,19 @@ function getEvents(calendrier){
          },
     success: function(data){
 
-        $("#dispo").empty();
+      // console.log([data]);
+      calendrier = $("#calendar").calendar(
+         {
+           tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+           weekbox: false,
+           events_source: [data],
 
-        console.log(data);
-        // console.log([data]);
-        calendrier = $("#calendar").calendar(
-           {
-             tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
-             weekbox: false,
-             events_source: [data],
+           onAfterViewLoad: function(view) {
+             $('.page-header h3').text(this.getTitle());
+           }
+         });
 
-             onAfterViewLoad: function(view) {
-               $('.page-header h3').text(this.getTitle());
-             }
-           });
-
-        $.each(data.result, function (index) {
-          var time = data.result[index].date_debut;
-          var date = new Date(time);
-          // alert(date.toString());
-
-          var heure = date.getHours() + ":" + date.getMinutes();
-
-          if(date.getHours().toString().length == 1){
-            heure = "0" + heure;
-          }
-          if(date.getMinutes().toString().length == 1){
-            heure = heure + "0";
-          }
-
-          $("#dispo").append($("<option></option>").val(this['id']).html(heure));
-        });
-
+        // console.log(calendrier);
         return calendrier;
     },
     error: function (jQXHR, textStatus, errorThrown) {
@@ -166,7 +152,7 @@ function getEvents(calendrier){
 }
 
 
-//get tous les dispo pour les mettres dans un combobox
+//get les dispo du jour selectionné pour les mettres dans un combobox
 function getAllDispo(){
   var idFacilitateur = 1;
   var date = null;
