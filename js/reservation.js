@@ -82,10 +82,16 @@
          if($(this).hasClass("selectionne")){
            $(this).toggleClass("selectionne");
            getAllDispo();
+           $("#dispo").empty();
+
          }else{
            $('.selectionne').toggleClass("selectionne");
            $(this).toggleClass("selectionne");
            getAllDispo();
+
+           if($("#dispo").is(':empty')){
+             $("#dispo").append($("<option></option>").val("-1").html("Aucune disponibilité"));
+           }
          }
        });
    });
@@ -132,9 +138,9 @@
 //Toujours mettre après getEvents
  function apresAjax(){
    $.when(callAjax()).done(function(response){
-     // console.log("When Done Reservation");
      calendrier = loadCalendrier(response.result);
      calendrier.view();
+     return calendrier;
    });
  }
 
@@ -195,19 +201,8 @@
    });
  }
 
- ///////////////////////////////////////////////
-
-$(document).ready(function() {
-
-  apresAjax();
-
-  getEvents();
-  calendrier.view();
-
-  changerBackground();
-  enleverDayView();
-  selectionnerJour();
-
+//Click pour choisir un facilitateur
+function choisirFacilitateur(){
   $(".block-photo-facilitateur").each(function(index) {
 
     $(this).on("click", function(){
@@ -217,8 +212,6 @@ $(document).ready(function() {
       if($(this).hasClass("facilitateur-select")){
         //Fonctionne (enlever le facilitateur choisi si on reclique dessu)
         $(this).toggleClass("facilitateur-select");
-
-        console.log("Premier");
         getEvents();
         apresAjax();
         calendrier.view();
@@ -228,8 +221,6 @@ $(document).ready(function() {
       }else{
         $('.facilitateur-select').toggleClass("facilitateur-select");
         $(this).toggleClass("facilitateur-select");
-
-        console.log("Deuxieme");
         getEvents();
         apresAjax();
         calendrier.view();
@@ -239,6 +230,24 @@ $(document).ready(function() {
       }
     });
   });
+}
+
+ ///////////////////////////////////////////////
+
+$(document).ready(function() {
+  apresAjax();
+
+  getEvents();
+
+  calendrier.view();
+
+  changerBackground();
+  enleverDayView();
+  selectionnerJour();
+
+  choisirFacilitateur();
+
+
 
   listInput = document.querySelectorAll("input, textarea, select");
 
