@@ -11,10 +11,11 @@
  */
 var clickNav = 0; //Nombre de click sur l'icone mobile pour le menu
 var clickMenuMobile = 0; //Nombre de click sur le menu services mobile
+var clickDropHeader = 0; //Nombre de click sur le dropdown menu du header
 var clickedElement;
 var resizeTimer;
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
   //Afficher les sous-onglets avec une animation
   $("#folder_service").mouseenter(function(){
@@ -121,14 +122,39 @@ $("#icon-mobile-menu").click(function(){
 
   });
 
+/*Click sur le dropdown menu du header pour un client ou un admin*/
+  $("#header_drop").click(function(){
+    clickDropHeader++;
+
+    if(clickDropHeader % 2 == 0){ //Ferme le nav
+      $("#header_nav").removeClass('nav_show');
+      $("#header_nav").addClass('nav_hidden');
+    }
+    else if(clickDropHeader % 2 == 1){ //Ouvre le nav
+      $("#header_nav").removeClass('nav_hidden');
+      $("#header_nav").addClass('nav_show');
+      $("#header_nav").focus();
+    }
+
+  });
+
 });
+
+/*Lorsqu'un click survient hors du menu, on le ferme*/ //Fonctionne pas encore
+  $("#header_nav").focusout(function(){
+    console.log("OUT");
+    $(this).removeClass('nav_show');
+    $(this).addClass('nav_hidden');
+  });
 
 $(window).resize(function () {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(resizePage, 100);
 });
 
-//Fonction lorsqu'on resize la page
+/*Fonction lorsqu'on resize la page
+ Dependemment de la dimension de la page, on ajuste le header si c'est mobile ou non
+*/
 function resizePage(){
   windowWidth = $(window).width();
 
