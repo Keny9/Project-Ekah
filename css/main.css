@@ -387,6 +387,18 @@ nav{
   content: '\f007';
 }
 
+#icon-stat:before{
+  content: '\f080';
+}
+
+#icon-book:before{
+  content :'\f518';
+}
+
+#icon-horaire:before{
+  content :'\f017';
+}
+
 .footer-main{
   display: block;
   width: 1050px;
