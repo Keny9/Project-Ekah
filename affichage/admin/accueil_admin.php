@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-// Accueil du client
+// Accueil de l'admin
 $page_type=2;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 

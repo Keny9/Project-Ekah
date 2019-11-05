@@ -26,6 +26,7 @@ class GestionReservation{
   *
   * Insert un enregistrement dans la table Reservation
   * pour une réservation individuelle
+  * Retourne l'id du suivi
   */
 public function insertReservationIndividuelle($groupe, $reservation, $client_id/*, $emplacement*/){
     $connexion = new Connexion();
@@ -76,13 +77,15 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
 
 
 
+
     // Insert la reservation, Rollback si erreur
-    if($this->reservationInsert($conn, $reservation) == false){
+    if(( $suivi_id = $this->reservationInsert($conn, $reservation) ) == false){
       $conn->rollback();
       exit();
     }
 
     $conn->commit();
+    return $suivi_id;
   }
 
   /**
@@ -105,7 +108,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     $stmt->bind_param('issi', $id_type_groupe, $nom_entreprise, $nom_organisateur, $nb_participant);
     $stmt->execute();
 
-    //Vérifie si le groupe a bien été insert
+/*    //Vérifie si le groupe a bien été insert
     $stmt = $conn->prepare("SELECT * FROM groupe WHERE id_type_groupe = ? AND nom_entreprise = ? AND nom_organisateur = ? AND nb_participant = ?;");
     $stmt->bind_param('issi', $id_type_groupe, $nom_entreprise, $nom_organisateur, $nb_participant);
     $stmt->execute();
@@ -115,6 +118,13 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     if ($row = $result->fetch_assoc()){
       $id = $row['no_groupe']; // get l'id du groupe
     }
+*/
+
+
+    // get l'id du groupe
+    $id = $conn->insert_id;
+
+
 
     if($conn->error){
       echo "groupeInsertReturnId : ".$conn->error;
@@ -234,6 +244,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   /**
   * Insert une reservation dans la BD
   * Retourne un bool si erreur
+  * Retourne l'id du suivi
   */
   private function reservationInsert($conn, $reservation){
     $id_paiement = $reservation->getIdPaiement();
@@ -265,7 +276,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
       echo "reservationInsert".$conn->error;
       return false;
     }
-    return true;
+    return $id_suivi;
   }
 
   /**

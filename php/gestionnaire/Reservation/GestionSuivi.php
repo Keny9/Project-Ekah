@@ -46,8 +46,7 @@ class GestionSuivi{
       $stmt->bind_param('ssi', $fait, $commentaire, $id_suivi);
       $stmt->execute();
       $result = $stmt->get_result();
-
-      echo var_dump($conn);
+      
       if ($conn->affected_rows >= 1) {
         echo '<br/>record updated!<br/>';
       }

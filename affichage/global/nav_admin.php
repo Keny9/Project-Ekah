@@ -1,3 +1,4 @@
+<?php // TODO: delete le fichier? ?>
 <div class="side-menu">
   <ul class="list-menu">
     <li>
