@@ -52,6 +52,10 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     <script type="text/javascript" src="../../js/global.js"></script>
     <script type="text/javascript" src="../../js/reservation.js"></script>
     <script type="text/javascript" src="../../js/questionnaire.js"></script>
+    <script type="text/javascript">
+      const SUIVI_ID = <?php echo $_GET['res_id']; ?>;
+    //  alert(SUIVI_ID);
+    </script>
     <title>Réservation - Questions</title>
   </head>
   <body>
