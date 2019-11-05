@@ -306,25 +306,27 @@ function ajoutDuree(x){
      });
    }
 
-   function supprimerQuestion(x){
+   function supprimerQuestion(){
      var hr = new XMLHttpRequest();
-     var url="../../php/script/Activite/supprimerActiviteDuree.php";
-     console.log("allo");
+     var url="../../php/script/Question/supprimerQuestion.php";
+     let divSelection = document.getElementById("idQuestionSupprimer").value;
+     console.log(divSelection);
+     var id=divSelection;
      for (i = 0; i <= 18; i++){
        let divSelection = document.getElementById("Activite-"+i);
-
        if(divSelection.classList.contains("selectionne")){
-         var id = i+1;
+         var idActivite = i+1;
        }
      }
-     var idDuree=x+1;
+     console.log(divSelection);
+     console.log(idActivite);
 
      $(function($) {
          $.ajax({
            url: url,
            type:"POST",
            async: false,
-           data: {idActivite: id, idDuree:idDuree},
+           data: {id: id,idQuestionnaire:idActivite},
            success: function(data) {
              if(!data){
                  //alert("La modification s'est effectuée avec succès!");

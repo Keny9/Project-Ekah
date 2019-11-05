@@ -33,7 +33,7 @@
   <script type="text/javascript" src="../../js/global.js"></script>
 </head>
 <body>
-
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
   <main>
     <div class="reservation">
       <div class="txt-consulter">Gestion des clients</div>
@@ -67,7 +67,7 @@
             Ces champs ne peuvent pas être vide.
           </div>
         </div>
-        
+
         <div class="group-input-inscr">
           <label class="label-consulter">Date de naissance</label>
           <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">

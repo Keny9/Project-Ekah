@@ -31,7 +31,7 @@ else{
       </div>
         <div id="onglet_service" class="onglet">
           <div id="folder_service" class="folder">SERVICES</div>
-          <div id="service" class="sous-onglet">
+          <div id="service_header" class="sous-onglet">
             <div id="c-individu" class="collection">
               <a href="https://ekah.co/je-suis-un-individu">JE SUIS UN INDIVIDU</a>
             </div>
@@ -68,6 +68,21 @@ else{
       <div id="seConnecter" class="btn-header">
         <a href="<?php echo $seConnecterRedirect; ?>">ESPACE CLIENT</a>
       </div>
+      <div class="dropdown_button">
+        <span id="header_drop" class="header_drop"></span>
+      </div>
+      <nav id="header_nav">
+        <?php
+          if(isset($page_type)){
+            if($page_type == 1){
+              include "nav_client.php";
+            }
+            else if($page_type == 2){
+              include "nav_admin.php";
+            }
+          }
+         ?>
+      </nav>
     </div>
     <div id="nav-mobile" class="nav-mobile">
       <span id="icon-mobile-menu" class="icon-nav-mobile"></span>

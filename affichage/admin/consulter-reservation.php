@@ -36,7 +36,7 @@
 
   </head>
   <body>
-
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
     <main>
       <div class="reservation">
         <div class="txt-consulter">Listes des réservations</div>

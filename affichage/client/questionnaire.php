@@ -55,7 +55,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     <title>Réservation - Questions</title>
   </head>
   <body>
-
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
     <main>
       <div class="top-img">
         <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
