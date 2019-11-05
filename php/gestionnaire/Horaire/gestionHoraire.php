@@ -80,7 +80,23 @@ class GestionHoraire{
           }
         }
         return $disponibilite;
-      }
+    }
+
+  //Retourne une dispo
+  public function reserverDispo($id){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+
+    $requete= "UPDATE disponibilite
+                SET id_etat = 2
+               WHERE id = ".$id." AND id_etat = 1 ;";
+
+    $result = $conn->query($requete);
+    if(!$result){
+      trigger_error($conn->error);
+    }
+
+  }
 
 }
 

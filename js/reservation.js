@@ -241,7 +241,7 @@ function choisirFacilitateur(){
 }
 
  ///////////////////////////////////////////////
-
+//Page est chargé
 $(document).ready(function() {
   apresAjax();
 
@@ -331,11 +331,20 @@ $(document).ready(function() {
 
 // TODO: Guillaume
 function clickSuivant(){
-  let facilitateur_id = "";
-  let date_rendez_vous = "";
+  let facilitateur_id = $('.facilitateur-select').attr("id");
+  let date_rendez_vous = $('.selectionne').children().data('calDate');
+  let id_dispo = $('#dispo').find('option:selected').val();
+
+  if(facilitateur_id == null){
+    facilitateur_id = -1;
+  }
+  if(date_rendez_vous == null){
+    date_rendez_vous = "2000-01-01";
+  }
+
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
-  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous'+date_rendez_vous;
+  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous'+date_rendez_vous+'&id_dispo'+id_dispo;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
   $('#form-reservation').attr('action', urlRedirectQuestionnaire);
   $('#form-reservation').submit();

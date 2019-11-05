@@ -91,7 +91,7 @@ $activites = $gActivite->getAllActivite();
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>
             <input type="checkbox" name="facilitateur" id="facilitateur" onclick="check()" value="">
           </div>
-          
+
           <div id="photo-facilitateur" class="group-input-inscr">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/afficherPhotos.php'; ?>
           </div>
