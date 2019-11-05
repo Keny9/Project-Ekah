@@ -22,12 +22,15 @@
      idFacilitateur = -1;
    }
 
+   duree = $('#duree').val();
+
+
    return $.ajax({
      type: "POST",
      async: false,
      dataType: "json",
      url: "../../php/script/Horaire/afficherAllEvents.php",
-     data: {idFacilitateur: idFacilitateur}
+     data: {idFacilitateur: idFacilitateur, duree: duree}
    });
  }
 
@@ -148,9 +151,12 @@
  function getAllDispo(){
    var idFacilitateur = null;
    var date = null;
+   var duree = null;
 
    idFacilitateur = $('.facilitateur-select').attr("id");
    // idFacilitateur = 1;
+
+   duree = $('#duree').val();
 
    if(idFacilitateur == null){
      idFacilitateur = -1;
@@ -169,7 +175,8 @@
      dataType: "json",
      url: "../../php/script/Horaire/afficherAllHoraireSelectionne.php",
      data: {idFacilitateur: idFacilitateur,
-             date: date
+             date: date,
+             duree: duree
           },
      success: function(data){
          // console.log(data);
@@ -246,6 +253,15 @@ $(document).ready(function() {
   selectionnerJour();
 
   choisirFacilitateur();
+
+  $("#duree").change(function() {
+    getEvents();
+    apresAjax();
+    calendrier.view();
+    changerBackground();
+    enleverDayView();
+    selectionnerJour();
+});
 
 
 
