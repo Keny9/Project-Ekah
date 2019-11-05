@@ -67,7 +67,7 @@ header{
   cursor: pointer;
 }
 
-.nav-header{
+.navi-header{
   display: block;
   text-align: right;
 }
@@ -341,7 +341,7 @@ nav{
   background-color: #02AEE0;
 }
 
-.icon-menu{
+.picto-menu{
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   display: inline-block;
@@ -394,7 +394,6 @@ nav{
   margin: 0 auto;
   padding: 64px 32px 64px 32px;
 }
-
 
 /*--------------------Footer -------------------------------*/
 footer{

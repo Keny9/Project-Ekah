@@ -24,7 +24,7 @@ else{
     <img id='logoHeader'src="../../img/logo_ekah_header.png" onclick="window.location.href='https://ekah.co'"  alt="Ekah">
   </div>
 
-  <nav class="nav-header">
+  <nav class="navi-header">
     <div class="inner-header">
       <div class="onglet">
         <a href="https://ekah.co">ACCUEIL</a>

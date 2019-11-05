@@ -39,3 +39,11 @@ button,textarea{
   font-weight: 400 !important;
   box-shadow: none !important;
 }
+
+.list-menu{
+  margin: 0;
+}
+
+.li-menu{
+  line-height: 0;
+}
