@@ -26,7 +26,7 @@ class Disponibilite{
     $this->setHeureDebut($heure_debut);
     $this->setHeureFin($heure_fin);
     $this->setEtat($etat);
-
+    
   }
 
   /*
