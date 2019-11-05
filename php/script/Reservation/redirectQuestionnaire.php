@@ -22,26 +22,26 @@
  $gReservation = new GestionReservation();
  $gAffichageReservation = new GestionAffichageReservation();
 
- $id_activite = 1;//$_POST['service'];
  $questionnaireArray = null;
  $questionnaire = null;
 
-// L'activité ne contient pas de questionnaire
+
+ //Créer la réservation
+ $groupe = new Groupe(null, 1, null, null, 1);
+ $id_activite = $_POST['service'];
+ $dateTime = "2018-01-01";//$_GET['date_rendez_vous'];
+ $id_facilitateur = 1;//$_GET['facilitateur_id'];
+ // TODO: Pourrait créer le suivi ici et pass son id...
+ $reservation = new Reservation(null, null, 1, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);
+ // Insert la reservation et get l'id de son suivi
+ $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
+
+
+ // L'activité ne contient pas de questionnaire
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
    echo "Il n'y a pas de questionnaire pour cette activité\n";
    echo "Réservation complétée";
-
-
-   //Créer la réservation
-   $groupe = new Groupe(null, 1, null, null, 1);
-   $id_activite = $_POST['service'];
-   $dateTime = "2018-01-01";//$_POST['date_rendez_vous'];
-   $id_facilitateur = 1;//$_POST['id_facilitateur'];
-   // TODO: Pourrait créer le suivi ici et pass son id...
-   $reservation = new Reservation(null, null, 1, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);
-   $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
-
- // TODO: redirect vers page appropriée
+   // TODO: redirect vers page appropriée
    exit();
  }
 
@@ -49,5 +49,5 @@
 $questionnaire = $questionnaireArray[0];
 $_SESSION['questionnaire'] = $questionnaire;
 
-header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id=');
+header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
  ?>
