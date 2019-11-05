@@ -365,7 +365,9 @@ function clickSuivant(){
  function valideReservation(){
    if(siSelectVide(service) || siSelectVide(duree)){
      indiqueChampVideReservation();
-     window.scrollTo({ top: 0, behavior: 'smooth' });
+     document.querySelector('#form-reservation').scrollIntoView({ //Animation scroll smooth au debut du form
+       behavior: 'smooth'
+     });
      return false;
    }
    return true;
