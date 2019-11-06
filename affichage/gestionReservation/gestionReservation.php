@@ -93,6 +93,10 @@
       <input class="inputType" type="text"  placeholder="Type de la question" id="typeQuestion"></input>
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />
 
+      <div class="group-input-inscr btn-espace">
+       <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer submitRetour">RETOUR</button></a>
+      </div>
+
 </main>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/footer.php' ?>
 </body>
