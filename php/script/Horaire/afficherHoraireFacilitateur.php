@@ -14,7 +14,12 @@
 
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
-$id = 1;
+ if (session_status() === PHP_SESSION_NONE){session_start();}
+
+// $id = 1;
+$id = $_SESSION['logged_in_user_id'];
+// print_r($id);
+
 
 $gestionFacilitateur = new GestionFacilitateur();
 

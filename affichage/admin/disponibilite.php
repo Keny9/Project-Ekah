@@ -11,6 +11,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
 	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
+  <link rel="stylesheet" href="../../css/fix.css">
 
   <script type="text/javascript" src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
@@ -22,6 +23,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
   <script type="text/javascript" src="../../js/disponibilite.js"></script>
 
+  <link rel="stylesheet" href="../../css/disponibilite.css">
+
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <script type="text/javascript" src="../../js/global.js"></script>
@@ -29,12 +32,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 </head>
 <body>
 
-  <?php include 'header.php' ?>
+  <?php include '../global/header.php' ?>
 
-  <main>
+  <main class="reservation">
 
     <div class="page-header">
-      <h3 class=" h3"></h3>
+      <h3 class="h3"></h3>
     </div>
 
       <div class="btnsCalandrier">
@@ -65,7 +68,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <br><br>
       </main>
 
-    <?php include 'footer.php' ?>
+    <?php include '../global/footer.php' ?>
 
   </body>
 </html>
