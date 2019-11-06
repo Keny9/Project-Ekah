@@ -529,7 +529,6 @@ if(!String.prototype.formatNum) {
         // console.log(entry_heure_debut_int + " " + heure_debut_int);
 
         if(entry_heure_debut_int <= heure_debut_int && entry_heure_fin_int >= heure_fin_int){
-          console.log("Whattt");
           // console.log("debut : " + heure_debut_int + " fin : " + heure_fin_int);
            $this.css("background-color", "green");
         }
