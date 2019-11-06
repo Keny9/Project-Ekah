@@ -320,6 +320,7 @@ $(document).ready(function() {
     return;
   });
 
+  // fenetre modale?
   //Fermer la fenetre modale
   $('#close-demande').click(function(){
     $(this).css("display", "none");
@@ -344,7 +345,7 @@ function clickSuivant(){
 
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
-  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous'+date_rendez_vous+'&id_dispo'+id_dispo;
+  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
   $('#form-reservation').attr('action', urlRedirectQuestionnaire);
   $('#form-reservation').submit();
@@ -365,7 +366,7 @@ function clickSuivant(){
  function valideReservation(){
    if(siSelectVide(service) || siSelectVide(dureeInput)){
      indiqueChampVideReservation();
-     document.querySelector('#form-reservation').scrollIntoView({ //Animation scroll smooth au debut du form
+     document.querySelector('.reservation').scrollIntoView({ //Animation scroll smooth au debut du form
        behavior: 'smooth'
      });
      return false;
