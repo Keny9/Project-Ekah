@@ -1,4 +1,4 @@
-<div class="side-menu">
+<div id="side_menu" class="side-menu">
   <ul class="list-menu">
     <li>
       <a class="link-menu" href="/Project-Ekah/affichage/admin/disponibilite.php">
