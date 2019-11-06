@@ -1,7 +1,7 @@
 <div class="side-menu">
   <ul class="list-menu">
     <li>
-      <a class="link-menu" href="/Project-Ekah/affichage/gestionReservation/gestionReservation.php">
+      <a class="link-menu" href="/Project-Ekah/affichage/admin/disponibilite.php">
         <span id="icon-horaire" class="picto-menu"></span>
         <span class="text-menu"><p>Mon horaire</p></span>
       </a>
@@ -14,7 +14,7 @@
       </a>
     </li>
     <li>
-      <a class="link-menu" href="/Project-Ekah/affichage/gestionReservation/gestionReservation.php">
+      <a class="link-menu" href="/Project-Ekah/affichage/admin/gestionReservation.php">
         <span id="icon-form" class="picto-menu"></span>
         <span class="text-menu"><p>Gestion des services</p></span>
       </a>

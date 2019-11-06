@@ -140,6 +140,18 @@ $("#icon-mobile-menu").click(function(){
 
 });
 
+/*Lorsqu'un click survient hors du menu, on le ferme*/
+$(document).mouseup(function(e)
+{
+  var container = $("YOUR CONTAINER SELECTOR");
+
+  // if the target of the click isn't the container nor a descendant of the container
+  if (!container.is(e.target) && container.has(e.target).length === 0)
+  {
+      container.hide();
+  }
+});
+
 /*Lorsqu'un click survient hors du menu, on le ferme*/ //Fonctionne pas encore
   $("#header_nav").focusout(function(){
     console.log("OUT");
