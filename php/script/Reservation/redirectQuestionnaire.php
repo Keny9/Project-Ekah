@@ -39,7 +39,7 @@
 
 
 //Réserver la disponibilité
-  $id_dispo = $_GET['date_rendez_vous'];
+  $id_dispo = $_GET['id_dispo'];
   reserverDispo($id_dispo);
 
 
