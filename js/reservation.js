@@ -293,7 +293,7 @@ $(document).ready(function() {
 
   //Input de la page reservation
   service = document.getElementById("service");
-  duree = document.getElementById("duree");
+  dureeInput = document.getElementById("duree");
 
   //Input de la page reservation groupe
   serviceGroupe = document.getElementById("service-groupe");
@@ -320,6 +320,7 @@ $(document).ready(function() {
     return;
   });
 
+  // fenetre modale?
   //Fermer la fenetre modale
   $('#close-demande').click(function(){
     $(this).css("display", "none");
@@ -344,7 +345,7 @@ function clickSuivant(){
 
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
-  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous'+date_rendez_vous+'&id_dispo'+id_dispo;
+  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
   $('#form-reservation').attr('action', urlRedirectQuestionnaire);
   $('#form-reservation').submit();
@@ -363,9 +364,9 @@ function clickSuivant(){
 
 //Valider le formulaire de réservation
  function valideReservation(){
-   if(siSelectVide(service) || siSelectVide(duree)){
+   if(siSelectVide(service) || siSelectVide(dureeInput)){
      indiqueChampVideReservation();
-     document.querySelector('#form-reservation').scrollIntoView({ //Animation scroll smooth au debut du form
+     document.querySelector('.reservation').scrollIntoView({ //Animation scroll smooth au debut du form
        behavior: 'smooth'
      });
      return false;
@@ -452,7 +453,7 @@ function sendEmail(){
 //Indique les champos invalide dans la page de reservation
 function indiqueChampVideReservation(){
   if(siSelectVide(service)){inputRequired(service);}
-  if(siSelectVide(duree)){inputRequired(duree);}
+  if(siSelectVide(dureeInput)){inputRequired(dureeInput);}
 }
 
 //Verifie si le champ de l'element est vide

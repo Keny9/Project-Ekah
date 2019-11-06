@@ -1,5 +1,5 @@
 <?php
-$page_type=1;
+$page_type=2;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
 // TODO: faire des 'include' comme plus haut

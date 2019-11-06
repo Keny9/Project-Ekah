@@ -140,12 +140,15 @@ $("#icon-mobile-menu").click(function(){
 
 });
 
-/*Lorsqu'un click survient hors du menu, on le ferme*/ //Fonctionne pas encore
-  $("#header_nav").focusout(function(){
-    console.log("OUT");
-    $(this).removeClass('nav_show');
-    $(this).addClass('nav_hidden');
-  });
+/*Lorsqu'un click survient hors du menu, on le ferme*/
+$(document).mouseup(function(e)
+{
+  //Cacher la boite de recherche lorsqu'il y a un click a l'exterieur
+    if ($(e.target).closest("#side_menu").length === 0 && $("#header_nav").css('display') == "block"){
+        $("#header_nav").removeClass('nav_show');
+        $("#header_nav").addClass('nav_hidden');
+    }
+});
 
 $(window).resize(function () {
   clearTimeout(resizeTimer);

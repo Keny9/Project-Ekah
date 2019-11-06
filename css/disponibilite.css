@@ -1,0 +1,47 @@
+main{
+  background-color: #FFFFFF;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+
+.reservation{
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 8px 0 5px;
+}
+
+#calendrier{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+
+@media only screen and (min-width: 768px){
+  .top-img{
+    font-size: 64px;
+  }
+
+  .reservation{
+    width: 700px;
+  }
+
+  .label-reservation{
+    width: 150px;
+  }
+
+  #prix{
+    margin-left: 0;
+  }
+
+  #calendrier{
+    width: 65%;
+    height: 450px;
+  }
+
+}
