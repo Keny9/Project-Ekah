@@ -67,7 +67,7 @@ header{
   cursor: pointer;
 }
 
-.nav-header{
+.navi-header{
   display: block;
   text-align: right;
 }
@@ -341,7 +341,7 @@ nav{
   background-color: #02AEE0;
 }
 
-.icon-menu{
+.picto-menu{
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   display: inline-block;
@@ -387,6 +387,18 @@ nav{
   content: '\f007';
 }
 
+#icon-stat:before{
+  content: '\f080';
+}
+
+#icon-book:before{
+  content :'\f518';
+}
+
+#icon-horaire:before{
+  content :'\f017';
+}
+
 .footer-main{
   display: block;
   width: 1050px;
@@ -394,7 +406,6 @@ nav{
   margin: 0 auto;
   padding: 64px 32px 64px 32px;
 }
-
 
 /*--------------------Footer -------------------------------*/
 footer{

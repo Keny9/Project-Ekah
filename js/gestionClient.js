@@ -18,6 +18,7 @@ $(document).ready(function(){
     });
   });
 
+  pays = document.getElementById("pays");
   courriel = document.getElementById("courriel");
   telephone = document.getElementById("telephone");
   codePostal = document.getElementById("codePostal");
@@ -27,6 +28,9 @@ $(document).ready(function(){
   adresse = document.getElementById("noAdresse");
   rue = document.getElementById("rue");
   ville = document.getElementById("ville");
+
+  moisE.style.color = "#000000";
+  pays.style.color = "#000000";
 
   courriel.addEventListener("focusout", function(){
     if(verifieCourriel(courriel)){
@@ -200,8 +204,6 @@ function updateProfil(){
       var date_naissance = annee+"-"+mois+"-"+jour;
     }
 
-    alert(date_naissance);
-
     var dataClient = {
       id_client: data.id,
       id_adresse: data.id_adresse,
@@ -222,7 +224,6 @@ function updateProfil(){
       data: {data: dataClientJson},
       async:false,
       success: function(result){
-        //alert(result);
         console.log(result);
         location.reload();
       },

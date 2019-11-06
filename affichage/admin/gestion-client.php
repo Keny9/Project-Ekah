@@ -108,7 +108,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <div class="group-input-inscr">
           <label class="label-consulter">Pays</label>
           <div class="box-select">
-            <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
+            <select class="select-inscr input-long blackPlaceholder" name="pays" id="pays" onchange="changePays()">
               <option class="option-vide" value="vide" selected="selected">Pays</option>
               <option value="Canada">Canada</option>
               <option value="États-Unis">États-Unis</option>
