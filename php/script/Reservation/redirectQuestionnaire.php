@@ -11,7 +11,7 @@
 
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
- include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php';
+ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
@@ -22,6 +22,7 @@
 
  $gReservation = new GestionReservation();
  $gAffichageReservation = new GestionAffichageReservation();
+ $gHoraire = new GestionHoraire();
 
  $questionnaireArray = null;
  $questionnaire = null;
@@ -40,7 +41,7 @@
 
 //Réserver la disponibilité
   $id_dispo = $_GET['date_rendez_vous'];
-  reserverDispo($id_dispo);
+  $gHoraire->reserverDispo($id_dispo);
 
 
  // L'activité ne contient pas de questionnaire

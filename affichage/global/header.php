@@ -20,8 +20,8 @@ else{
 
  ?>
 <header>
-  <div id="logoWrapper" class="logo">
-    <img id='logoHeader'src="../../img/logo_ekah_header.png" onclick="window.location.href='https://ekah.co'"  alt="Ekah">
+  <div id="logoWrapper" onclick="window.location.href='https://ekah.co'" class="logo">
+    <img id='logoHeader' src="../../img/logo_ekah_header.png" alt="Ekah">
   </div>
 
   <nav class="navi-header">
