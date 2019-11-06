@@ -509,13 +509,24 @@ INSERT INTO etat_disponible(id, nom) VALUES (1, "Actif");
 INSERT INTO etat_disponible(id, nom) VALUES (2, "Reserve");
 INSERT INTO etat_disponible(id, nom) VALUES (3, "Annule");
 
-INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (1, 1, '2019-10-11 11:00:00','2019-10-11 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (1, 1, '2059-10-11 11:00:00','2059-10-11 12:00:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (2, 1, '2019-10-11 14:00:00','2019-10-11 16:30:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (3, 1, '2019-10-12 11:00:00','2019-10-12 13:00:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (5, 2, '2019-10-13 08:30:00','2019-10-13 12:00:00');
-INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (6, 3, '2019-10-13 11:00:00','2019-10-13 17:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (6, 3, '2010-10-13 11:00:00','2010-10-13 17:00:00');
 
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (7, 1, '2019-11-29 11:00:00','2019-11-29 12:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (8, 1, '2019-11-29 11:30:00','2019-11-29 12:00:00');
+
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (9, 1, '2019-11-29 14:00:00','2019-11-29 14:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (10, 1, '2019-11-29 14:30:00','2019-11-29 15:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (11, 1, '2019-11-29 15:00:00','2019-11-29 15:30:00');
+
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (12, 1, '2019-12-16 11:00:00','2019-12-16 11:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (13, 1, '2019-12-16 11:30:00','2019-12-16 12:00:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (14, 1, '2019-12-16 12:00:00','2019-12-16 12:30:00');
+INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (15, 1, '2019-12-16 12:30:00','2019-12-16 13:00:00');
 
 
 
@@ -546,12 +557,18 @@ INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 
 
 
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,1);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,2);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,3);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
+-- INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,2);
+-- INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,3);
+-- INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,4);
+-- INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,5);
+-- INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (3,6);
 
-
-
-
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,7);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,8);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,9);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,10);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,11);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,12);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,13);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,14);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,15);

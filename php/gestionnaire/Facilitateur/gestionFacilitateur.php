@@ -172,7 +172,6 @@ class GestionFacilitateur{
     Retourne une liste de tous les facilitateurs groupé par id qui sont actifs et qui ont des dispos
   */
     public function getAllFacilitateurActifAvecDispoGroup(){
-
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
       $disponibilite[] = null;
@@ -195,8 +194,6 @@ class GestionFacilitateur{
         while($row = $result->fetch_assoc()) {
           $id = $row['id'];
 
-          // echo $row['id'] . "<br />";
-
           $disponibilite = $this->getAllDisponibiliteActive($id);
 
           if(isset($disponibilite)){
@@ -218,9 +215,9 @@ class GestionFacilitateur{
             $i++;
         }
       }
+
       return $facilitateur;
     }
-
 
     /*
       Retourne un facilitateur selon l'id qui as des dispo
@@ -266,6 +263,7 @@ class GestionFacilitateur{
             }
           }
         }
+
         return $facilitateur;
       }
 

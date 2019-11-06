@@ -36,7 +36,7 @@
 
   </head>
   <body>
-
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
     <main>
       <div class="top-img">
         <img src="../../img/activite/operationMPO.jpg" alt="Mouvement Intuitif">
@@ -58,38 +58,11 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-            
+
             </tbody>
         </table>
         </div>
 
-
-
-        <!--<div class="tbl-reservation">
-          <div class="tbl-header">
-            <div class="tbl-content">Activité</div>
-            <div class="tbl-content">Date/Heure</div>
-            <div class="tbl-content">Lieu</div>
-            <div class="tbl-content">Coût</div>
-            <div class="tbl-content">Spécialiste</div>
-          </div>
-          <div class="tbl-line">
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-          </div>
-          <div class="tbl-line">
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-            <div class="tbl-content"></div>
-          </div>
-        </div>
-
-      </div>-->
     </main>
 
     <?php include "../global/footer.php"; ?>

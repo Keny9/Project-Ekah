@@ -25,6 +25,9 @@ $activites = $gActivite->getAllActivite();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
+  	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
+  	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/reservation.css">
@@ -91,7 +94,7 @@ $activites = $gActivite->getAllActivite();
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>
             <input type="checkbox" name="facilitateur" id="facilitateur" onclick="check()" value="">
           </div>
-          
+
           <div id="photo-facilitateur" class="group-input-inscr">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/afficherPhotos.php'; ?>
           </div>

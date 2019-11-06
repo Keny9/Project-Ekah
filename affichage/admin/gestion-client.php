@@ -9,6 +9,8 @@
 * Date de la dernière modification : 2019-10-28
 */
 
+$page_type=2;
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +35,7 @@
   <script type="text/javascript" src="../../js/global.js"></script>
 </head>
 <body>
-
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
   <main>
     <div class="reservation">
       <div class="txt-consulter">Gestion des clients</div>
@@ -67,7 +69,7 @@
             Ces champs ne peuvent pas être vide.
           </div>
         </div>
-        
+
         <div class="group-input-inscr">
           <label class="label-consulter">Date de naissance</label>
           <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">
@@ -106,7 +108,7 @@
         <div class="group-input-inscr">
           <label class="label-consulter">Pays</label>
           <div class="box-select">
-            <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
+            <select class="select-inscr input-long blackPlaceholder" name="pays" id="pays" onchange="changePays()">
               <option class="option-vide" value="vide" selected="selected">Pays</option>
               <option value="Canada">Canada</option>
               <option value="États-Unis">États-Unis</option>
