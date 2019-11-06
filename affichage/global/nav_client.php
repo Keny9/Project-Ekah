@@ -1,4 +1,4 @@
-<div class="side-menu">
+<div id="side_menu" class="side-menu">
   <ul class="list-menu">
     <li class="li-menu">
       <a class="link-menu" href="#">
