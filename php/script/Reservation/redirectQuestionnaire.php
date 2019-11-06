@@ -12,6 +12,7 @@
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
+ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
@@ -23,6 +24,7 @@
  $gReservation = new GestionReservation();
  $gAffichageReservation = new GestionAffichageReservation();
  $gHoraire = new GestionHoraire();
+ $gFacilitaeur = new GestionFacilitateur();
 
 
  $questionnaireArray = null;
@@ -32,16 +34,23 @@
  //Créer la réservation
  $groupe = new Groupe(null, 1, null, null, 1);
  $id_activite = $_POST['service'];
- $dateTime = "2018-01-01";//$_GET['date_rendez_vous'];
- $id_facilitateur = 1;//$_GET['facilitateur_id'];
+ $dateTime = $_GET['date_rendez_vous'];//$_GET['date_rendez_vous'];
+ $id_facilitateur = $_GET['facilitateur_id'];//$_GET['facilitateur_id'];
+ $id_dispo = $_GET['id_dispo'];
  // TODO: Pourrait créer le suivi ici et pass son id...
+
+ if($id_facilitateur == -1){
+   $facilitateur = $gFacilitaeur->getDispo($id_dispo);
+   $id_facilitateur = $facilitateur->getId();
+   print_r($facilitateur);
+ }
+
  $reservation = new Reservation(null, null, 1, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);
  // Insert la reservation et get l'id de son suivi
  $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
 
 
 //Réserver la disponibilité
-  $id_dispo = $_GET['id_dispo'];
   $gHoraire->reserverDispo($id_dispo);
 
 
