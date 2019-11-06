@@ -55,16 +55,20 @@ header{
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 
 #logoWrapper img{
   max-height:100%;
-  width: 125px;
-  vertical-align: middle;
+  max-width: 125px;
 }
 
 #logoHeader:hover{
   cursor: pointer;
+}
+
+.link-logo{
+  display: block;
 }
 
 .navi-header{
