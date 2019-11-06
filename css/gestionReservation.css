@@ -120,6 +120,23 @@
  margin-right:45px;
  float:right;
 }
+.btn-confirmer{
+  display: block;
+  margin: 0 auto;
+}
+.submitRetour{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#034E54;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:300px;
+  margin-top:80px;
+}
 .question{
 
 }
@@ -171,7 +188,7 @@
    width:800px;
    height:40px;
    margin-left:450px;
-   margin-bottom:1000px;
+   margin-bottom:1200px;
  }
  .reservationHeader{
    background-color:#034E54;
