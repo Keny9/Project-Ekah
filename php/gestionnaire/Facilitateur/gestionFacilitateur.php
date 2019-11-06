@@ -399,6 +399,45 @@ class GestionFacilitateur{
         trigger_error($conn->error);
       }
     }
+
+    //Retourne un facilitateur avec l'id de sa dispo
+    public function getDispo($id){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+
+      //Il manque le WHERE facilitateur actif
+      $requete= "SELECT * FROM utilisateur
+                   INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
+                   INNER JOIN compte_utilisateur ON fk_utilisateur = id
+                   WHERE id_disponibilite = ".$id." AND id_type_utilisateur = 2
+                ";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      $disponibilite = null;
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $facilitateur = new Facilitateur(
+                                $row['utilisateur.id'],
+                                $row['nom'],
+                                $row['prenom'],
+                                $row['date_inscription'],
+                                $row['courriel'],
+                                $row['date_naissance'],
+                                $row['telephone'],
+                                "actif",
+                                $disponibilite
+                              );
+        }
+      }
+      return $facilitateur;
+    }
+
+
   }
 
  ?>
