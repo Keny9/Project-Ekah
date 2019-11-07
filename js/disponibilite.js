@@ -55,6 +55,7 @@ $(document).ready(function() {
 
 //Ajouter une nouvelle disponibilite à la base de données
 function envoyeDispo(heure, date){
+  console.log(heure + " " + date);
 
   var dates = date.split(" ");
   var jour = dates[1];
@@ -71,7 +72,7 @@ function envoyeDispo(heure, date){
   var heure_debut = heure;
   var heure_fin = "" + moment.getHours() + ":" + moment.getMinutes();
 
-   // console.log(annee + " " + mois + " " + jour + " " + heure_debut + " " + heure_fin);
+   console.log(annee + " " + mois + " " + jour + " " + heure_debut + " " + heure_fin);
 
 
   $.ajax({

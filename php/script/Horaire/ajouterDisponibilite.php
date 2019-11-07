@@ -14,6 +14,8 @@
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Disponibilite.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
+   if (session_status() === PHP_SESSION_NONE){session_start();}
+
    $idFacilitateur = null;
    $annee = null;
    $mois = null;
@@ -21,23 +23,22 @@
    $heure_debut = null;
    $heure_fin = null;
 
-//   if(isset($_POST['idFacilitateur'])) {$idFacilitateur = $_POST['idFacilitateur'];}
-   if(isset($_POST['annee'])) {$annee = $_POST['annee'];}
-   if(isset($_POST['mois'])) {$mois = $_POST['mois'];}
-   if(isset($_POST['jour'])) {$jour = $_POST['jour'];}
-
-   if(isset($_POST['heure_debut'])) {$heure_debut = $_POST['heure_debut'];}
-   if(isset($_POST['heure_fin'])) {$heure_fin = $_POST['heure_fin'];}
+   $idFacilitateur = $_SESSION['logged_in_user_id'];
+   $annee = $_POST['annee'];
+   $mois = $_POST['mois'];
+   $jour = $_POST['jour'];
+   $heure_debut = $_POST['heure_debut'];
+   $heure_fin = $_POST['heure_fin'];
 
    // $annee = "2019";
-   // $mois = "10";
+   // $mois = "11";
    // $jour = "14";
    // $heure_debut = "11:30";
-   // $heure_fin = "13:00";
+   // $heure_fin = "12:00";
 
    echo $annee . "-" . $mois . "-" . $jour . " " . $heure_debut . ":00";
 
-  $idFacilitateur = 1;      //TEST AVEC LE PREMIER Facilitateur
+  // $idFacilitateur = 3;      //TEST AVEC LE PREMIER Facilitateur
 
 
   $gestionFacilitateur = new GestionFacilitateur();
