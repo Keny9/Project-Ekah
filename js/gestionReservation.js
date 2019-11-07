@@ -191,7 +191,7 @@ function remplirQuestion(x){
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00c9/g, 'É');
 
 
-                    console.log(document.getElementById("questionnaire").innerHTML);
+                    //console.log(document.getElementById("questionnaire").innerHTML);
 
                   } ,
                   error: function() {
