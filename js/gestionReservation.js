@@ -159,7 +159,7 @@ function remplirQuestion(x){
                   data: myData,
                   success: function(data) {
                     console.log(data);
-                
+
                     document.getElementById("questionnaire").innerHTML=data;
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/"/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/select/g, '');
@@ -521,13 +521,14 @@ function ajouterQuestionQuestionnaire(id){
    console.log(idType);
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
+  var cout=0;
 
    $(function($) {
        $.ajax({
          url: url,
          type:"POST",
          async: false,
-         data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL},
+         data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
          success: function(data) {
            console.log(data);
            if(!data){
