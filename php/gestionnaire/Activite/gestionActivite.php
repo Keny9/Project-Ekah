@@ -85,7 +85,8 @@ class GestionActivite{
                   '".$activite->getId_type()."',
                   '".$activite->getNom()."',
                   '".$activite->getDescriptionC()."',
-                  '".$activite->getDescriptionL()."');";
+                  '".$activite->getDescriptionL()."',
+                '".$activite->getCout()."');";
       $result = $conn->query($requete);
       if(!$result){
         trigger_error($conn->error);
