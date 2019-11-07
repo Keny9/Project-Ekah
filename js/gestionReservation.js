@@ -158,7 +158,8 @@ function remplirQuestion(x){
                   async: false,
                   data: myData,
                   success: function(data) {
-                    //console.log(data);
+                    console.log(data);
+                
                     document.getElementById("questionnaire").innerHTML=data;
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/"/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/select/g, '');
@@ -175,7 +176,22 @@ function remplirQuestion(x){
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option              &gt;/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option             &gt;<\/option><option>/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/option             rn               <\/option><option>/g, '');
-                    //console.log(document.getElementById("questionnaire").innerHTML);
+
+
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/"/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00e9/g, 'é');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/\\/g, '');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u2019/g, '\'');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00ea/g, 'ê');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00e7/g, 'ç');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00e0/g, 'à');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00e2/g, 'â');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00ee/g, 'î');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00e8/g, 'è');
+                    document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00c9/g, 'É');
+
+
+                    console.log(document.getElementById("questionnaire").innerHTML);
 
                   } ,
                   error: function() {
@@ -351,6 +367,7 @@ function ajouterQuestionnaire(){
       var idActivite = i+1;
     }
   }
+  idActivite = idActivite+1;
   var nomQuestionnaire = document.getElementById('nom').value;
   console.log(nomQuestionnaire);
   console.log(idActivite);
