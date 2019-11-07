@@ -47,7 +47,7 @@
     </li>
     <hr class="hr-menu">
     <li>
-      <a class="link-menu" href="#">
+      <a class="link-menu" href="../global/login.php">
         <span id="icon-direction" class="picto-menu"></span>
         <span class="text-menu"><p>Se déconnecter</p></span>
       </a>
