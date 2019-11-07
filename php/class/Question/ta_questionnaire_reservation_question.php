@@ -13,10 +13,12 @@
 class Ta_questionnaire_reservation_question{
   private $idQuestionnaire;
   private $idQuestion;
+  private $ordre;
 
-  function __construct($idQuestionnaire, $idQuestion){
+  function __construct($idQuestionnaire, $idQuestion, $ordre){
     $this->setIdQuestionnaire($idQuestionnaire);
     $this->setIdQuestion($idQuestion);
+    $this->setOrdre($ordre);
   }
   public function getIdQuestionnaire(){
     return $this->idQuestionnaire
@@ -29,5 +31,11 @@ class Ta_questionnaire_reservation_question{
       ;}
   public function setIdQuestion($idQuestion){
     $this->idQuestion = $idQuestion
+    ;}
+    public function getOrdre(){
+      return $this->ordre
+      ;}
+  public function setOrdre($ordre){
+    $this->ordre = $ordre
     ;}
 } ?>

@@ -191,7 +191,7 @@ function remplirQuestion(x){
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/u00c9/g, 'É');
 
 
-                    console.log(document.getElementById("questionnaire").innerHTML);
+                    //console.log(document.getElementById("questionnaire").innerHTML);
 
                   } ,
                   error: function() {
@@ -481,13 +481,13 @@ function ajouterQuestionQuestionnaire(id){
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
   var url="../../php/script/Question/ajouterQuestionQuestionnaire.php";
-
+  var ordre=1;
   $(function($) {
       $.ajax({
         url: url,
         type:"POST",
         async: false,
-        data: {id:id,idQues:idQues},
+        data: {id:id,idQues:idQues,ordre:ordre},
         success: function(data) {
           console.log(data);
           if(!data){

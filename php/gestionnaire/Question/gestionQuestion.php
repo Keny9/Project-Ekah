@@ -65,7 +65,8 @@ class GestionQuestion{
           //Crée l'employé
           $requete= "INSERT INTO ta_questionnaire_reservation_question VALUES(
                       '".$ta_questionnaire_reservation_question->getIdQuestionnaire()."',
-                      '".$ta_questionnaire_reservation_question->getIdQuestion()."');";
+                      '".$ta_questionnaire_reservation_question->getIdQuestion()."',
+                    '".$ta_questionnaire_reservation_question->getIdQuestion()."');";
           $result = $conn->query($requete);
           if(!$result){
             trigger_error($conn->error);
