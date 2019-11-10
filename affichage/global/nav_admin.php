@@ -49,7 +49,7 @@
     <li>
       <a class="link-menu" href="../global/login.php">
         <span id="icon-direction" class="picto-menu"></span>
-        <span class="text-menu"><p>Se déconnecter</p></span>
+        <span class="text-menu" href="login.php"><p>Se déconnecter</p></span>
       </a>
     </li>
   </ul>
