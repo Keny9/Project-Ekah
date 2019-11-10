@@ -15,7 +15,9 @@
 <body>
   <main>
 
-    <select class="" name="" id="dispo" ></select>
+    <select class="" name="" id="dispo">
+      <option value="" disabled selected>Choissiez une date d'abord</option>
+    </select>
 
     <div class="page-header">
       <h3 class=" h3"></h3>
