@@ -19,8 +19,9 @@
      <link rel="stylesheet" href="../../css/main.css">
      <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-     <script type="text/javascript" src="../../js/inscription.js"></script>
      <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+     <script type="text/javascript" src="../../js/inscription.js"></script>
+
      <title>Inscription</title>
    </head>
    <body>

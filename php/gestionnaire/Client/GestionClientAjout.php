@@ -62,7 +62,7 @@ class GestionClientAjout{
       // Variables pour Compte_utilisateur
       $utilisateurId;
       $courriel = $client->getCourriel();
-      $motDePasseHash = password_hash($motDePasse, PASSWORD_ARGON2ID);;
+      $motDePasseHash = password_hash($motDePasse, PASSWORD_ARGON2I);;
       try {
         $conn->do()->begin_transaction();
 

@@ -63,26 +63,6 @@ if (isset($_POST['telephone'])) {$telephone = $_POST['telephone'];}
 else {die($preMessageErreur."Le telephone est vide");}
 
 
-
-//Test
-/*echo "Pays : ".$pays."<br>
-Prenom : ".$prenom."<br>
-Nom : ".$nom."<br>
-Jour naissance : ".$jourNaissance."<br>
-Mois naissance : ".$moisNaissance."<br>
-Annee naissance : ".$anneeNaissance."<br>
-Code postal : ".$codePostal."<br>
-No adresse : ".$numeroAdresse."<br>
-Rue : ".$rue."<br>
-Ville : ".$ville."<br>
-Telephone : ".$telephone."<br>
-Courriel : ".$courriel."<br>
-Mot de passe : ".$motDePasse."<br>";
-$temp = password_hash($motDePasse, PASSWORD_ARGON2ID);
-
-echo $temp;*/
-
-
 $client = new Client(NULL, $nom, $prenom, NULL, $courriel,
 $dateNaissanceString, $telephone, $rue, $codePostal, $numeroAdresse,
 $ville, NULL, NULL, $pays);
