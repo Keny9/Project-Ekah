@@ -44,10 +44,7 @@
            <img src="../../img/logo_ekah_header.png" alt="Ekah">
          </div>
          <div class="txt-inscr">
-           <p>Créer un compte</p>
-         </div>
-         <div class="txt-bienv">
-           <p>Nous désirons mieux vous connaître.</p>
+           <p>Mon profil</p>
          </div>
          <div class="error" id="error-blank">
            <div class="icon-error">
@@ -136,10 +133,7 @@
              </div>
            </div>
            <div class="group-input-inscr">
-             <button type="button" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
-           </div>
-           <div class="group-input-inscr btn-espace">
-            <a href="./login.php"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>
+             <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="return validerFormInscription()">Sauvegarder</button>
            </div>
          </form>
        </div>
