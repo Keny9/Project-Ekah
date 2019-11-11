@@ -9,8 +9,22 @@
  */
 
 var client_arr = null;
-
+var   user_courriel = null;
 //Lorsque le document est prêt
+
+
+
+// Appuie sur la touche ..
+$(window).keydown(function(event){
+  // .. Enter
+  if(event.keyCode == 13) {
+    event.preventDefault();
+    // Fait l'action d'un clique sur le bouton 'Sauvegarder'
+    $('#btnSauvegarder').click();
+    return false;
+  }
+});
+
 window.onload = function(){
   listInput = document.querySelectorAll("input");
 
@@ -55,6 +69,7 @@ window.onload = function(){
   ville = document.getElementById("ville");
   pays = document.getElementById("pays"); // C'est un select
 
+
   setMonProfilChamps();
 
   prenom.addEventListener("focusout", function(){
@@ -81,11 +96,11 @@ window.onload = function(){
     }
   });
 
-  motDePasse.addEventListener("focusout", function(){
+/*  motDePasse.addEventListener("focusout", function(){
     if(verifieMotDePasse(motDePasse)){
       inputUnrequired(motDePasse, "Mot de passe");
     }
-  });
+  });*/
 
   jour.addEventListener("focusout", function(){
     if(verifieJour(jour)){
@@ -147,6 +162,7 @@ function setMonProfilChamps(){
   rue.value = CLIENT['rue'];
   ville.value = CLIENT['ville'];
   pays.value = CLIENT['pays'];
+  user_courriel = CLIENT['courriel'];
 
   // Enlève le 0 de trop dans le mois de naissance
   if(parseInt(date_naissance[1]) < 10){
@@ -212,7 +228,7 @@ function setMonProfilChamps(){
    groupAdressEmpty = true; //Adresse ne sont pas rempli
 
    //Verification des elements qui sont *required
-   if(siVide(prenom) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(motDePasse)){
+   if(siVide(prenom) || siVide(nom) || siVide(courriel) || siVide(telephone)/* || siVide(motDePasse)*/){
      indiqueChampVide();
      document.getElementById("error-blank").style.display = "block";
      return false;
@@ -250,7 +266,7 @@ function setMonProfilChamps(){
    document.getElementById("error-blank").style.display = "none";
 
    //Verification des input avec les regex qui sont *required
-   if(!verifieNomPrenom(prenom) || !verifieNomPrenom(nom) || !verifieCourriel(courriel) || !verifieTelephone(telephone) || !verifieMotDePasse(motDePasse)){
+   if(!verifieNomPrenom(prenom) || !verifieNomPrenom(nom) || !verifieCourriel(courriel) || !verifieTelephone(telephone)/* || !verifieMotDePasse(motDePasse)*/){
      indiqueChampInvalide();
      return false;
    }
@@ -279,12 +295,16 @@ function setMonProfilChamps(){
      }
    }
 
-   // Si le courriel existe déjà dans la BD
-   if(courrielExiste()){
-     inputRequired(courriel);
-     document.getElementById("error-courriel").style.display = "block";
-     return false;
+   // si le courriel entré est différent de celui utilisé
+   if(user_courriel != courriel.value){
+     // Si le courriel existe déjà dans la BD
+     if(courrielExiste()){
+       inputRequired(courriel);
+       document.getElementById("error-courriel").style.display = "block";
+       return false;
+     }
    }
+
 
    // Change l'attribut Action du Formulaire
    $("#modal-inscription").css("display", "block");
@@ -363,10 +383,10 @@ function setMonProfilChamps(){
      inputRequired(telephone);
    }
 
-   if(siVide(motDePasse)){
+/*   if(siVide(motDePasse)){
      inputRequired(motDePasse);
    }
-
+*/
  }
 
 //Indique quels champs sont vide pour la date de naissance
@@ -426,12 +446,12 @@ function setMonProfilChamps(){
      telephone.placeholder = "Téléphone invalide *";
    }
 
-   if(!verifieMotDePasse(motDePasse)){
+/*   if(!verifieMotDePasse(motDePasse)){
      inputRequired(motDePasse);
      motDePasse.value = null;
      motDePasse.placeholder = "Mot de passe invalide *";
      document.getElementById("block-requis").style.border = "1px solid #eb0909";
-   }
+   }*/
  }
 
 //Si les champs sont remplis, indique lesquels sont invalides
