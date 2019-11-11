@@ -1,9 +1,10 @@
+
 $(document).ready(function(){
   selectedLine = null; //La ligne sélectionné
 
   $('#table_reservation_client').DataTable({
     "ajax":{
-      "url": "../../php/script/Reservation/dataReservationClient.php",
+      "url": "../../php/script/Reservation/dataReservationClient.php?id="+CLIENT_ID,
       "dataSrc": ""
     },
     "columns" : [

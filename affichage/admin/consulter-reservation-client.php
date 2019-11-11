@@ -37,11 +37,17 @@ if(!isset($_GET['id'])){ // Retour à la page précédente
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+
+    <script type="text/javascript">
+      const CLIENT_ID = <?php echo $idClient;?>;
+    </script>
+
     <script type="text/javascript" src="../../js/consulter_reservation_client.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
+
 
   </head>
   <body>

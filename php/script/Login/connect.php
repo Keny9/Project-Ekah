@@ -7,7 +7,6 @@ include_once  $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Client/G
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 $gestionLogin = new GestionLogin();
 
 // Le paramètre 'type' contient le user_type_id de restriction
