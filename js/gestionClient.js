@@ -99,7 +99,8 @@ $('#table_client').DataTable({
       {"data": "date_inscription"},
       {"data": null,
       render: function(data, type, row){
-        return '<a href="../admin/consulter-reservation-client.php?id=5" target="_blank"><span class="calendar"></span></a>';
+        // Set la référence vers les réservations du client selon son id
+        return '<a href="../admin/consulter-reservation-client.php?id='+data.id+'" target="_blank"><span class="calendar"></span></a>';
       }},
     ],
     "language":{
