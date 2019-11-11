@@ -24,17 +24,19 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-     <link rel="stylesheet" href="../../css/inscription.css">
+     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
      <link rel="stylesheet" href="../../css/main.css">
-     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+     <link rel="stylesheet" href="../../css/inscription.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
      <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+     <script type="text/javascript" src="../../js/global.js"></script>
      <script type="text/javascript">
        // variable qui contient un array JSON des informations du client
        const CLIENT = <?php echo $client_json ?>;
      </script>
      <script type="text/javascript" src="../../js/mon-profil.js"></script>
-     <title>Inscription</title>
+     <title>Mon profil</title>
    </head>
    <body>
      <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
@@ -140,5 +142,6 @@
 
      </main>
 
+     <?php include "../global/footer.php"; ?>
    </body>
  </html>
