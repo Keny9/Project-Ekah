@@ -229,13 +229,12 @@ class GestionFacilitateur{
         $conn = $tempconn->getConnexion();
         $disponibilite[] = null;
 
-        $requete= "SELECT utilisateur.id, nom, prenom, date_inscription, date_naissance, telephone, courriel, photo FROM `utilisateur`
+        $requete= "SELECT utilisateur.id, nom, prenom, date_inscription, date_naissance, telephone, courriel, photo FROM utilisateur
                     INNER JOIN ta_disponibilite_specialiste ON id_specialiste = utilisateur.id
                     INNER JOIN disponibilite ON id_disponibilite = disponibilite.id
                     INNER JOIN compte_utilisateur ON fk_utilisateur = utilisateur.id
-                    WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = ".$idFacilitateur."
-                    GROUP BY utilisateur.id
-                  ";
+                    WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = '".$idFacilitateur."'
+                    GROUP BY utilisateur.id;";
 
         $result = $conn->query($requete);
         if(!$result){
@@ -409,8 +408,7 @@ class GestionFacilitateur{
       $requete= "SELECT * FROM utilisateur
                    INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
                    INNER JOIN compte_utilisateur ON fk_utilisateur = id
-                   WHERE id_disponibilite = ".$id." AND id_type_utilisateur = 2
-                ";
+                   WHERE id_disponibilite = '".$id."' AND id_type_utilisateur = 2;"; /*************Cette requete ne retourne aucun resultat ?*************/
 
       $result = $conn->query($requete);
       if(!$result){
@@ -422,7 +420,7 @@ class GestionFacilitateur{
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
           $facilitateur = new Facilitateur(
-                                $row['utilisateur.id'],
+                                $row['utilisateur.id'],  /*********Juste id ? Serveur web: erreur undefined index utilisateur.id*************/
                                 $row['nom'],
                                 $row['prenom'],
                                 $row['date_inscription'],

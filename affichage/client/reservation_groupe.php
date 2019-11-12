@@ -37,7 +37,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <span id="close-demande" class="close">&times;</span>
+          <a href="/Project-Ekah/affichage/client/accueil_client.php"><span id="close-demande" class="close">&times;</span></a>
           <h2>Demande envoyée avec succès !</h2>
         </div>
         <div class="modal-body">
@@ -61,7 +61,7 @@
           <div class="group-input-inscr">
             <label class="label-reservation label-col" for="service-groupe">Choisir un service</label>
             <div class="box-select">
-              <select class="select-inscr input-long" name="service-groupe" id="service-groupe" onchange="changeListe(this);">
+              <select class="select-inscr input-long" name="service-groupe" id="serviceGroupe" onchange="changeListe(this);">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
                 <option value="entrainement">Entraînements en équipe</option>
                 <option value="enneagramme">Ennéagramme</option>

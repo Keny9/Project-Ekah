@@ -296,7 +296,7 @@ $(document).ready(function() {
   dureeInput = document.getElementById("duree");
 
   //Input de la page reservation groupe
-  serviceGroupe = document.getElementById("service-groupe");
+  serviceGroupeInput = document.getElementById("serviceGroupe");
   entreprise = document.getElementById("entreprise");
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
@@ -376,8 +376,8 @@ function clickSuivant(){
 
 //Lors de l'envoi d'une demande pour une reservation de groupe.
 function sendEmail(){
-
-  if(siSelectVide(serviceGroupe) || siVide(entreprise) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(vous) || siVide(message)){
+  serviceGroupeInput = document.getElementById("serviceGroupe");
+  if(siSelectVide(serviceGroupeInput) || siVide(entreprise) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(vous) || siVide(message)){
     indiqueChampVideGroupe();
     return false;
   }
@@ -393,7 +393,7 @@ function sendEmail(){
     dataType: 'json',
     contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
-      service: serviceGroupe.options[serviceGroupe.selectedIndex].value,
+      service: serviceGroupeInput.options[serviceGroupeInput.selectedIndex].value,
       entreprise: entreprise.value,
       nom: nom.value,
       courriel: courriel.value,
@@ -408,6 +408,11 @@ function sendEmail(){
         $('#modal-demande').css("display", "block");
         $("#form-reservation-groupe").css("display", "block");
       }
+      else{
+        $("#loader").css("display", "none");
+        alert("Il y a eu un problème lors de l'envoi du courriel.");
+        window.location.href = "/Project-Ekah/affichage/client/reservation_groupe.php";
+      }
     }, error: function(response){
       console.log(response);
       $("#loader").css("display", "none");
@@ -421,8 +426,8 @@ function sendEmail(){
 //Indique quels champs sont vides à l'utilisateur
  function indiqueChampVideGroupe(){
 
-   if(siSelectVide(serviceGroupe)){
-    inputRequired(serviceGroupe);
+   if(siSelectVide(serviceGroupeInput)){
+    inputRequired(serviceGroupeInput);
    }
 
    if(siVide(entreprise)){
