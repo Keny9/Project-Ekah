@@ -13,7 +13,7 @@
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php';
- include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
+ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php';
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
@@ -26,10 +26,8 @@
  $gHoraire = new GestionHoraire();
  $gFacilitaeur = new GestionFacilitateur();
 
-
  $questionnaireArray = null;
  $questionnaire = null;
-
 
  //Créer la réservation
  $groupe = new Groupe(null, 1, null, null, 1);
@@ -41,8 +39,8 @@
 
  if($id_facilitateur == -1){
    $facilitateur = $gFacilitaeur->getDispo($id_dispo);
-   $id_facilitateur = $facilitateur->getId();
-   print_r($facilitateur);
+   $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
+   print_r($facilitateur); /**********Si c'est print, le header() en bas ne fonctionnera pas sur web host **************/
  }
 
  $reservation = new Reservation(null, null, 1, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);

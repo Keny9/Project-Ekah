@@ -88,6 +88,16 @@ header{
   min-width: 210px;
 }
 
+.onglet-m .folder a{
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
+}
+
+.folder_service_m{
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
+}
+
 .onglet .folder{
   text-decoration: none;
   transition: 0.1s;
@@ -104,6 +114,8 @@ header{
 }
 
 .onglet a{
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
   text-decoration: none;
   transition: 0.1s;
   padding: 8.25px 11px;
@@ -201,7 +213,14 @@ header{
 .collection_m a{
   display: block;
   padding-top: 0;
-  padding-bottom: 5.50px;
+  padding-bottom: 5.50px
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
+}
+
+.collection a:visited{
+  color: #FFFFFF;
+  color: rgba(255,255,255,.9);
 }
 
 .nav-mobile{
