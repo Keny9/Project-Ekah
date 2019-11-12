@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
 * Page pour qu'un admin puisse gérer les clients
 *

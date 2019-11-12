@@ -1,4 +1,6 @@
 <?php
+session_start();
+session_destroy();
   /**
    * Page login, lorsqu'un client veut se connecter sur le site d'Ekah
    *
@@ -8,8 +10,7 @@
    * Version :     1.0
    * Date de la dernière modification : 2019-10-03
    */
-   session_start();
-   session_destroy();
+
 ?>
 
 <!DOCTYPE html>

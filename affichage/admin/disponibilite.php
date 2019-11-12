@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Page accessible seulement par les admins?
 $page_type=2;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';

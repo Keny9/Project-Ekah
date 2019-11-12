@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page 'mon-profil'. Le client peut modifier ses informations personnelles
  * ici.
@@ -9,7 +10,6 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-11-03
  */
- session_start();
  $page_type=1;
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
@@ -61,13 +61,13 @@
                   <img src="../../img/crochet.png" alt="Confirmation inscription">
                </div>
                <div class="modal-align-middle txt-bravo">
-                 <p>Félicitations !</p>
+                 <p>Changements faits</p>
                </div>
                <div class="modal-align-middle txt-modal-bienv">
-                 <p>Bienvenue dans la famille Ekah !</p>
+                 <p>Modification effectutée avec succès</p>
                </div>
                <div class="modal-align-middle btn-modal-insc">
-                 <button type="submit" class="btn-confirmer input-court" name="button">Se connecter</button>
+               <button type="button" id="modal-inscription-btn-confirm" class="btn-confirmer input-court" name="button">Confirmer</button>
                </div>
              </div>
            </div>
@@ -135,7 +135,7 @@
            </div>
 -->
            <div class="group-input-inscr">
-             <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="return validerFormInscription()">Sauvegarder</button>
+             <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="validerFormInscription()">Sauvegarder</button>
            </div>
          </form>
        </div>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page de reservation generale pour choisir un service
  *
