@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page pour consulter les réservations d'un client
  *

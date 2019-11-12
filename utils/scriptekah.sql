@@ -284,6 +284,14 @@ FOREIGN KEY (id_specialiste) REFERENCES utilisateur(id),
 FOREIGN KEY (id_region) REFERENCES region(id)
 );
 
+CREATE TABLE fichier_client(
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(30) NOT NULL,
+type VARCHAR(30) NOT NULL,
+size INT NOT NULL,
+content MEDIUMBLOB NOT NULL,
+PRIMARY KEY(id)
+);
 
 INSERT INTO province(id, nom) VALUES (1, "Québec");
 INSERT INTO province(id, nom) VALUES (2, "Ontario");
@@ -308,18 +316,36 @@ INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (2, 1,
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (3, 1, 25.00, '2019-06-21');
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (4, 1, 28.00, '2019-06-26');
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (5, 1, 35.00, '2019-06-28');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (6, 1, 45.25, '2019-01-01');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (7, 1, 50.00, '2019-05-13');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (8, 1, 25.00, '2019-06-21');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (9, 1, 28.00, '2019-06-26');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (10, 1, 35.00, '2019-06-28');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (11, 1, 45.25, '2019-01-01');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (12, 1, 50.00, '2019-05-13');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (13, 1, 25.00, '2019-06-21');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (14, 1, 28.00, '2019-06-26');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (15, 1, 35.00, '2019-06-28');
 
 INSERT INTO type_emplacement(id, type_emplacement) VALUES (1, "Café");
 INSERT INTO type_emplacement(id, type_emplacement) VALUES (2, "Maison");
 
-INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (1, "1", "Le bon Café");
-INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (2, "2", "Maison du client");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (1, "1", "123 rue Galt");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (2, "1", "405 rue Sherbrooke");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (3, "1", "30 Linden Ave.Bear, DE 19701");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (4, "1", "480 Walnut StreetEvansville, IN 47711");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (5, "1", "33 Glenridge Ave.Taylor, MI 48180");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (6, "1", "494 Fawn Ave.Warwick, RI 02886");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (7, "1", "7122 Mountainview StreetStatesville, NC 28625");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (8, "1", "9360 Myrtle Ave.Simpsonville, SC 29680");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (9, "1", "7274 South Lakewood Ave.Lynchburg, VA 24502");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (10, "1", "8036 Academy Ave.Syosset, NY 11791");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (11, "1", "7335 Shub Farm St.Lawrenceville, GA 30043");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (12, "1", "8099 Rockledge LaneBenton Harbor, MI 49022");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (13, "1", "9546 Third St.King Of Prussia, PA 19406");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (14, "1", "75 Beechwood LaneBrighton, MA 02135");
+INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (15, "1", "787 Edgewood DriveClifton Park, NY 12065");
 
-INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
-INSERT INTO suivi(id, fait, commentaire) VALUES (2, "Ce fut un plaisir, \nÀ la prochaine.", "Je recommende de faire un massage thai lors de la prochaine rencontre");
-INSERT INTO suivi(id, fait, commentaire) VALUES (3, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
-INSERT INTO suivi(id, fait, commentaire) VALUES (4, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
-INSERT INTO suivi(id, fait, commentaire) VALUES (5, "Aujourd'hui, nous avons fait un message", "Je recommende de faire un massage thai lors de la prochaine rencontre");
 
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
@@ -491,13 +517,7 @@ INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (5, "beatrice@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (6, "charlotte@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
 INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (7, "david@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
-/*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
 
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "test2@admin.ca", "abc123");
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (3, "test3@admin.ca", "abc123");
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4, "test4@client.ca", "abc123");*/
-/*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "client", "client");
-*/
 INSERT INTO fichier_perso(id, fichier, description) VALUES (1, "abc123", "Fichier");
 
 INSERT INTO questionnaire_remplit(id, fichier, description) VALUES (1, "abc123", "Fichier");
@@ -532,24 +552,72 @@ INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (15, 1, '2
 
 INSERT INTO specialite(id, nom) VALUES (1, "Meditation");
 
-INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, "APPLE", "Steve Jobs", 45);
-INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (2, 1, "POMIER", "Steve Jobs", 45);
-INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (3, 1, "BANANE", "Steve Jobs", 45);
+
+
+
+INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (2, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (3, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (4, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (5, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (6, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (7, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (8, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (9, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (10, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (11, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (12, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (13, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (14, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (15, "Vide", "Vide");
+
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (2, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (3, 1, null, null, null);
 INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (4, 1, null, null, null);
 INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (5, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (6, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (7, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (8, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (9, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (10, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (11, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (12, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (13, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (14, 1, null, null, null);
+INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (15, 1, null, null, null);
 
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 2, '2020-02-22');
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 1, '2020-02-22');
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 3, '2020-02-22');
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 4, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 1, '2020-01-05');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 2, '2020-01-17');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 3, '2020-01-18');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (7, 4, '2020-02-10');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 5, '2020-02-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 6, '2020-02-30');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 7, '2020-03-01');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (7, 8, '2020-03-10');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 9, '2020-03-11');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 10, '2020-03-22');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 11, '2020-03-28');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (7, 12, '2020-04-03');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 13, '2020-05-09');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 14, '2020-05-15');
+INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 15, '2020-05-23');
 
-
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-12-12 19:00:00', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 1, 2, 1, 2, 2, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 2, 3, 1, 3, 3, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 2, 4, 2, 4, 1, '2020-02-02', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 2, 5, 3, 5, 2, '2020-02-02', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2020-01-05 19:00', 8, 9);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 2, 2, 1, 2, 2, '2020-02-02 13:00', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 3, 3, 1, 3, 3, '2020-02-10 13:30', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 4, 4, 2, 4, 1, '2020-02-24 07:00', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 5, 5, 3, 5, 2, '2020-02-29 09:30', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (6, 6, 6, 6, 1, 6, 1, '2020-03-01 19:30', 8, 9);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (7, 7, 7, 7, 4, 7, 2, '2020-03-11 12:30', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (8, 8, 8, 8, 1, 8, 3, '2020-03-15 09:30', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (9, 9, 9, 9, 2, 9, 1, '2020-03-20 10:00', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (10, 10, 10, 10, 3, 10, 2, '2020-03-24 11:30', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (11, 11, 11, 11, 1, 11, 1, '2020-03-24 17:00', 8, 9);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (12, 12, 12, 12, 5, 12, 2, '2020-04-02 13:30', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (13, 13, 13, 13, 6, 13, 3, '2020-04-12 06:00', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (14, 14, 14, 14, 2, 14, 1, '2020-04-15 14:30', 13, 14);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (15, 15, 15, 15, 3, 15, 2, '2020-04-15 15:40', 13, 14);
 
 /*
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (6, 2, 1, 6, 1, 2, 2, '2020-02-02', 13, 14);

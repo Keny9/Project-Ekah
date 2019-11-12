@@ -1,11 +1,12 @@
-<!DOCTYPE html>
 <?php
+session_start();
 // Accueil du client
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
 ?>
 
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">

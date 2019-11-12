@@ -482,20 +482,26 @@ public function selectAll($user_id = null){
     $result = $stmt->get_result();
 
     if($result->num_rows == 0){
-        $arrReservation = [];
-        return $arrReservation;
-      }
+      $arrReservation = [];
+      return $arrReservation;
+    }
 
     while($row = $result->fetch_assoc()){
+      // Format le montant
       $montant = $row['montant'];
-    $montant = str_pad($montant, 20/*, " ", STR_PAD_RIGHT*/);
+      $montant = str_pad($montant, 20/*, " ", STR_PAD_RIGHT*/);
       $montantFormat = sprintf("%s%s", $montant, "$");
       $row['montant'] = $montantFormat;
-      $arrReservation[] = $row;
 
-    }
-    return $arrReservation;
+      // Format le datetime
+      $daterdv = $row['date_rendez_vous'];
+      $daterdvFormat = substr($daterdv, 0, -3);
+      $row['date_rendez_vous'] = $daterdvFormat;
+
+      $arrReservation[] = $row;
   }
+  return $arrReservation;
+}
 
 
 
