@@ -16,8 +16,12 @@
 
  if (session_status() === PHP_SESSION_NONE){session_start();}
 
-// $id = 1;
-$id = $_SESSION['logged_in_user_id'];
+// $id = 2;
+$id = $_POST['idFacilitateur'];
+
+if($id == -1){
+  $id = $_SESSION['logged_in_user_id'];
+}
 // print_r($id);
 
 

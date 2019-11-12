@@ -12,21 +12,20 @@
  * Date de la dernière modification : 2019-10-10
  */
 
-// $path = $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Utilisateur.php";
-// include_once $path;
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Region/Region.php";
 
 class Disponibilite{
   private $id;
   private $heure_debut;
   private $heure_fin;
   private $etat;
+  private $region;
 
   function __construct($id, $heure_debut, $heure_fin, $etat){
     $this->setId($id);
     $this->setHeureDebut($heure_debut);
     $this->setHeureFin($heure_fin);
     $this->setEtat($etat);
-    
   }
 
   /*
@@ -44,6 +43,9 @@ class Disponibilite{
   public function setEtat($etat){
     $this->etat = $etat;
   }
+  public function setRegion($region){
+    $this->region = $region;
+  }
 
 /*
 * GETTEUR
@@ -59,6 +61,9 @@ class Disponibilite{
   }
   public function getEtat(){
     return $this->etat;
+  }
+  public function getRegion(){
+    return $this->region;
   }
 }
  ?>
