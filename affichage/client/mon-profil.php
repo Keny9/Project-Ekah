@@ -9,13 +9,10 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-11-03
  */
-
+ session_start();
  $page_type=1;
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
-
- //$client_id = $_SESSION['logged_in_user_id'];
-
 
  ?>
 
@@ -126,6 +123,8 @@
              </div>
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
+
+<!--
            <div class="group-input-inscr">
              <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
              <div id="block-requis" class="block-requis-psw">
@@ -134,6 +133,7 @@
                <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 lettre majuscule.</p><br><br>
              </div>
            </div>
+-->
            <div class="group-input-inscr">
              <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="return validerFormInscription()">Sauvegarder</button>
            </div>
