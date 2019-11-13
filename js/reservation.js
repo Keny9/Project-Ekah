@@ -10,11 +10,25 @@
 
  var calendrier = null;
 
+
+
+
+ $(function(ready){
+   // Set le onChange du select pour les services
+   $("#service").change(function() {
+     $.ajax({url: "/Project-Ekah/php/script/Client/reservationInputComplementaire.php",
+     data: {service_id : $("#service").val()},
+     success: function(result){
+       $("#question-complementaire").css("display", result);
+     }});
+   });
+ });
+
  //Fonction pour afficher les events du calendrier dans le calendrier
  function callAjax(){
    // console.log("Ajax");
 
-//
+   //
    var idFacilitateur = null;
    idFacilitateur = $('.facilitateur-select').attr("id");
    // idFacilitateur = 1;

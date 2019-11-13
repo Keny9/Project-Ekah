@@ -69,6 +69,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
       $conn->rollback();
       exit();
     }*/
+    // TODO: Gérer l'emplacement
     $id_emplacement = 1;
 
     // Créer la réservation
@@ -102,24 +103,10 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     if($nom_entreprise == null) $nom_entreprise = "NULL";
     if($nom_organisateur == null) $nom_organisateur = "NULL";
 
-
     // Créer le groupe
     $stmt = $conn->prepare("INSERT INTO groupe (id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (?, ?, ?, ?);");
     $stmt->bind_param('issi', $id_type_groupe, $nom_entreprise, $nom_organisateur, $nb_participant);
     $stmt->execute();
-
-/*    //Vérifie si le groupe a bien été insert
-    $stmt = $conn->prepare("SELECT * FROM groupe WHERE id_type_groupe = ? AND nom_entreprise = ? AND nom_organisateur = ? AND nb_participant = ?;");
-    $stmt->bind_param('issi', $id_type_groupe, $nom_entreprise, $nom_organisateur, $nb_participant);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // S'il y a un résultat
-    if ($row = $result->fetch_assoc()){
-      $id = $row['no_groupe']; // get l'id du groupe
-    }
-*/
-
 
     // get l'id du groupe
     $id = $conn->insert_id;
