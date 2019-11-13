@@ -17,7 +17,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <link rel="stylesheet" href="../../css/gestionReservation.css">
   <link rel="stylesheet" href="../../css/main.css">
   <script type="text/javascript" src="../../js/global.js"></script>

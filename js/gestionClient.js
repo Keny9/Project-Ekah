@@ -168,12 +168,23 @@ $('#table_client').DataTable({
 
       if(selectedLine.css("background-color") == $(this).css("background-color")){ //La meme ligne est sélectionné
         selectedLine.css("background-color", "#FFFFFF");
+        selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
+          $(this).css("background-color", "whitesmoke");
+          },function(){
+          $(this).css("background-color", "#FFFFFF");
+        });
         selectedLine = null;
         $("#profil").slideUp("slow"); //Cacher le block du profil avec animation
       }
       else{ //Une autre ligne est sélectionné
         selectedLine.css("background-color", "#FFFFFF");
+        selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
+          $(this).css("background-color", "whitesmoke");
+          },function(){
+          $(this).css("background-color", "#FFFFFF");
+        });
         $(this).css("background-color", "#b0bed9");
+        $(this).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
         selectedLine = $(this);
       }
     }
@@ -181,6 +192,7 @@ $('#table_client').DataTable({
       document.querySelector('#profil').scrollIntoView({ //Animation du scroll au block profil (smooth)
         behavior: 'smooth'
       });
+      $(this).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
       $(this).css("background-color", "#b0bed9");
       selectedLine = $(this);
     }
