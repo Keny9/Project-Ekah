@@ -265,7 +265,8 @@ function ajoutDuree(x){
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
   var url="../../php/script/Activite/ajouterActiviteDuree.php";
-  for (i = 0; i <= 18; i++){
+  let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+  for (i = 0; i < divFin; i++){
     let divSelection = document.getElementById("Activite-"+i);
     if(divSelection.classList.contains("selectionne")){
       var id = i+1;
@@ -294,12 +295,13 @@ function ajoutDuree(x){
         }
       });
     });
+    //window.location.reload();
 }
  function enleveDuree(x){
    var hr = new XMLHttpRequest();
    var url="../../php/script/Activite/supprimerActiviteDuree.php";
-   console.log("allo");
-   for (i = 0; i <= 18; i++){
+   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+   for (i = 0; i < divFin; i++){
      let divSelection = document.getElementById("Activite-"+i);
 
      if(divSelection.classList.contains("selectionne")){
@@ -328,6 +330,7 @@ function ajoutDuree(x){
          }
        });
      });
+     //window.location.reload();
    }
 
    function supprimerQuestion(){
@@ -336,7 +339,8 @@ function ajoutDuree(x){
      let divSelection = document.getElementById("idQuestionSupprimer").value;
      console.log(divSelection);
      var id=divSelection;
-     for (i = 0; i <= 18; i++){
+     let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+     for (i = 0; i < divFin; i++){
        let divSelection = document.getElementById("Activite-"+i);
        if(divSelection.classList.contains("selectionne")){
          var idActivite = i+1;
@@ -365,11 +369,12 @@ function ajoutDuree(x){
            }
          });
        });
+       //window.location.reload();
      }
 
 function ajouterQuestionnaire(){
-
-  for (i = 0; i <= 18; i++){
+let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+  for (i = 0; i < divFin; i++){
     let divSelection = document.getElementById("Activite-"+i);
     if(divSelection.classList.contains("selectionne")){
       var idActivite = i+1;
@@ -377,8 +382,7 @@ function ajouterQuestionnaire(){
   }
   idActivite = idActivite+1;
   var nomQuestionnaire = document.getElementById('nom').value;
-  console.log(nomQuestionnaire);
-  console.log(idActivite);
+
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
@@ -445,8 +449,8 @@ function ajouterQuestion(){
   var question = document.getElementById('question').value;
   var idType = document.getElementById('typeQuestion').value;
   var nbLigne = document.getElementById('nbLigne').value;
-
-  for (i = 0; i <= 18; i++){
+  let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+  for (i = 0; i < divFin; i++){
     let divSelection = document.getElementById("Activite-"+i);
     if(divSelection.classList.contains("selectionne")){
       var idActivite = i+1;
@@ -479,6 +483,7 @@ function ajouterQuestion(){
         }
       });
     });
+    //window.location.reload();
 }
 
 function ajouterQuestionQuestionnaire(id){
@@ -515,7 +520,6 @@ function ajouterQuestionQuestionnaire(id){
 
  function ajouter(){
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
-   console.log(divFin);
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
@@ -542,7 +546,7 @@ function ajouterQuestionQuestionnaire(id){
          success: function(data) {
            console.log(data);
            if(!data){
-               alert("La modification s'est effectuée avec succès!");
+               //alert("La modification s'est effectuée avec succès!");
            }
            else{
              //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
@@ -554,14 +558,16 @@ function ajouterQuestionQuestionnaire(id){
          }
        });
      });
+     window.location.reload();
  }
 
  function modifier(){
+   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/modifierActivite.php";
-   for (i = 0; i <= 18; i++){
+   for (i = 0; i < divFin; i++){
      let divSelection = document.getElementById("Activite-"+i);
      if(divSelection.classList.contains("selectionne")){
        var id = i+1;
@@ -582,7 +588,7 @@ function ajouterQuestionQuestionnaire(id){
          success: function(data) {
            console.log(data);
            if(!data){
-               alert("La modification s'est effectuée avec succès!");
+               //alert("La modification s'est effectuée avec succès!");
            }
            else{
              //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
@@ -594,13 +600,15 @@ function ajouterQuestionQuestionnaire(id){
          }
        });
      });
+     window.location.reload();
  }
  function supprime(){
+   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/supprimerActivite.php";
-   for (i = 0; i <= 19; i++){
+   for (i = 0; i < divFin; i++){
      let divSelection = document.getElementById("Activite-"+i);
      if(divSelection.classList.contains("selectionne")){
        var id = i+1;
@@ -616,7 +624,7 @@ function ajouterQuestionQuestionnaire(id){
          success: function(data) {
            console.log(data);
            if(!data){
-               alert("La modification s'est effectuée avec succès!");
+               //alert("La modification s'est effectuée avec succès!");
            }
            else{
              //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
@@ -628,4 +636,5 @@ function ajouterQuestionQuestionnaire(id){
          }
        });
      });
+     window.location.reload();
 }
