@@ -11,6 +11,7 @@
 
 var id_suivi = null;
 var currentRowData = null;
+
 $(document).ready(function(){
   //var id_suivi = null;
   selectedLine = null; //La ligne sélectionné
@@ -35,7 +36,11 @@ $(document).ready(function(){
       {"data": "nom_lieu"},
       {"data": "date_rendez_vous"},
       {"data": "montant"},
-      {"data": "facilitateur"}
+      {"data": "facilitateur"},
+      {"data": null,
+    render: function(data, type, row){
+      return '<span class="cog" id='+data.id+'></span>';
+    }},
     ],
     "language":{
       "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
@@ -112,7 +117,6 @@ $(document).ready(function(){
   });
 
   setTimeout(function(){
-
     table.rows().every( function ( rowIdx, tableLoop, rowLoop ) { //Loop au travers de chaque ligne de dataTable
         var data = this.data();
         var row = table.row(rowIdx);
@@ -132,6 +136,16 @@ $(document).ready(function(){
         }
     });
   }, 500);
+
+setTimeout(function(){
+  listCog = document.querySelectorAll(".cog"); //Liste de tous les boutons modifier
+  listCog.forEach(function(e){ //Pour chaque bouton ajouter le click
+    e.addEventListener("click", openModal);
+  });
+  },500);
+
+  $("#btn-annuler").click(closeModal);
+
 
 });
 
@@ -173,4 +187,14 @@ function sauvegarder(){
   var fait = $('#fait').val();
   var commentaire = $('#commentaire').val();
   updateSuivi(id_suivi, fait, commentaire);
+}
+
+//Fermer la fenetre modale de modification d'une réservation
+function closeModal(){
+  $("#modal-modif-reservation").css("display", "none");
+}
+
+//Ouvrir la fenêtre modal
+function openModal(){
+  $("#modal-modif-reservation").css("display", "block");
 }

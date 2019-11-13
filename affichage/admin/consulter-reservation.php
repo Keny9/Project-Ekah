@@ -12,6 +12,12 @@ session_start();
  $page_type=2;
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+
+ $gFacilitateur = new GestionFacilitateur();
+ $arrFacilitateur = $gFacilitateur->getAllFacilitateurActif();
+
  ?>
 
 <!DOCTYPE html>
@@ -39,6 +45,29 @@ session_start();
   <body>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
     <main>
+
+      <div id="modal-modif-reservation" class="modal-modif-reservation">
+        <div class="modal-content">
+            <div class="modal-align-middle-mr">
+               <label class="label-reservation" for="activite">Facilitateur</label>
+               <div class="box-select">
+                 <select class="select-inscr input-long" name="service" id="service" onchange="changeListe(this);">
+                   <option class="option-vide" value="vide" selected="selected">Facilitateur</option>
+                   <?php
+                   foreach ($arrFacilitateur as $facilitateur){
+                     echo "<option value=\"".$facilitateur->getId()."\">".$facilitateur->getPrenom()." ".$facilitateur->getNom()."</option>";
+                   }
+                   ?>
+                 </select>
+               </div>
+            </div>
+          <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
+            <button type="submit" class="btn-confirmer input-court" name="button">Sauvegarder</button>
+            <button id="btn-annuler" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Annuler</button>
+          </div>
+        </div>
+      </div>
+
       <div class="reservation">
         <div class="txt-consulter">Listes des réservations</div>
 
@@ -52,6 +81,7 @@ session_start();
                 <th class="min-desktop">Date/Heure</th>
                 <th class="min-desktop">Coût</th>
                 <th class="all">Facilitateur</th>
+                <th class="all">Modifier</th>
               </tr>
             </thead>
             <tbody>
