@@ -69,7 +69,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         </script>
 
 <!-- MODAL -->
-        <!-- <div id="modal-modif-reservation" class="modal-modif-reservation">
+        <div id="modal-modif-reservation" class="modal-modif-reservation">
           <div class="modal-content">
               <div class="modal-align-middle-mr">
                  <label class="label-reservation" for="activite">Facilitateur</label>
@@ -89,7 +89,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
               <button id="btn-annuler" type="button" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
             </div>
           </div>
-        </div> -->
+        </div>
 
       </div>
     </main>
