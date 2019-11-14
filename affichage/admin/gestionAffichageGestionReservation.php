@@ -69,7 +69,7 @@
              $j=$i+1;
 
              $html .= "
-               <option id='Duree-$i' value=\"$j\" >".$duree_activite[$i]->getTemps()." minutes</option>
+               <option id='Durees-".$duree_activite[$i]->getTemps()."' value=".$duree_activite[$i]->getTemps()." >".$duree_activite[$i]->getTemps()." minutes</option>
              ";
            }
            $html .= "</select>";

@@ -73,7 +73,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     <?php
                    require_once 'gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
-                   echo $gagr->getDureeActivite(1);
+                   echo $gagr->getDureeActivite(18);
                  ?>
 
 
