@@ -13,7 +13,6 @@ var id_suivi = null;
 var currentRowData = null;
 
 $(document).ready(function(){
-  //var id_suivi = null;
   selectedLine = null; //La ligne sélectionné
   var today = new Date(); //Obtenir la date d'aujourd'hui
   var dd = String(today.getDate()).padStart(2, '0');
@@ -31,7 +30,7 @@ $(document).ready(function(){
       {"data": "nom"},
       {"data": null,
       render: function(data, type, row){
-        return '<a class="link-client" href="../admin/gestion-client.php?client='+data.client+'" target="_blank">'+ data.client +'</a>';
+        return '<a class="link-client" href="../admin/gestion-client.php?client='+data.client_id+'" target="_blank">'+ data.client +'</a>';
       }},
       {"data": "nom_lieu"},
       {"data": "date_rendez_vous"},
@@ -39,7 +38,7 @@ $(document).ready(function(){
       {"data": "facilitateur"},
       {"data": null,
     render: function(data, type, row){
-      return '<span class="cog" id='+data.id+'></span>';
+      return '<span class="cog" id='+data.id+' onclick="openModal()"></span>';
     }},
     ],
     "language":{

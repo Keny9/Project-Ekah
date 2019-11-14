@@ -62,8 +62,8 @@ session_start();
                </div>
             </div>
           <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-            <button type="submit" class="btn-confirmer input-court" name="button">Sauvegarder</button>
-            <button id="btn-annuler" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Annuler</button>
+            <button type="submit" class="btn-confirmer input-court btn-coller" name="button">Sauvegarder</button>
+            <button id="btn-annuler" type="button" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
           </div>
         </div>
       </div>

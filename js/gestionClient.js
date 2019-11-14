@@ -4,6 +4,7 @@ var data = null;
 $(document).ready(function(){
   selectedLine = null; //La ligne sélectionné
   listInput = document.querySelectorAll("input");
+  idClient = document.getElementById("idClient").value; //Si un client a été sélectionné à partir de la page consulter les réservations
 
   listInput.forEach(function(e){
     e.addEventListener("focusin", function(){
@@ -86,7 +87,7 @@ $(document).ready(function(){
     }
   });
 
-$('#table_client').DataTable({
+table = $('#table_client').DataTable({
     "ajax":{
       "url": "../../php/script/Client/getDataClient.php",
       "dataSrc": ""
@@ -113,93 +114,109 @@ $('#table_client').DataTable({
   jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
 
 // Sur un clique d'une ligne
-  $('#table_client tbody').on('click', 'tr', function (){ //Lors du click sur une ligne du tableau
-    $("#profil").slideDown("slow"); //Afficher le block du profil avec une animation
-    // Une ligne est selectionnée
-    if(selectedLine != null){
-      // Il y a eu changement dans les textareas
-      if(profilUpdated()){
-        // Demande de confirmation de sauvegarde
-        if(confirm("Voulez-vous sauvegarder les changements?")){
-          updateProfil();
-        }
-      }
-    }
-
-    //Get les données du client et de son profil
-    index = $('#table_client').DataTable().cell(this, 0).index();
-    data = $('#table_client').DataTable().row(index.row ).data();
-    console.log(data);
-    //console.log(selectedLine);
-
-    // Set le titre du suivi
-    $("#nomClient").text(data.prenom + " " + data.nom);
-
-    // Prépare les données pour la date de naissance
-    var annee = jour = date_naissance = null;
-    var mois = "vide";
-    if(data.date_naissance != null) { // Date naissance n'est pas null
-      var date_naissance = data.date_naissance;
-      var date_array = date_naissance.split("-");
-      var annee = date_array[0];
-      var mois = date_array[1];
-      var jour = date_array[2];
-
-      if (mois[0] == 0){ // La valeur du mois commence par un 0  (01, 02, ..)
-        // Enlève le 0
-        mois = mois.slice(1);
-      }
-    }
-    // Set les données du profil du client séléctionné dans les cases
-    $('#jour').val(jour);
-    $('#mois').val(mois);
-    $('#annee').val(annee);
-    $('#noAdresse').val(data.no_civique);
-    $('#rue').val(data.rue);
-    $('#ville').val(data.ville);
-    $('#codePostal').val(data.code_postal);
-    $('#pays').val(data.pays);
-    $('#telephone').val(data.telephone);
-    $('#courriel').val(data.courriel);
-
-    courrielValue = data.courriel;
-
-    if(selectedLine != null){
-
-      if(selectedLine.css("background-color") == $(this).css("background-color")){ //La meme ligne est sélectionné
-        selectedLine.css("background-color", "#FFFFFF");
-        selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
-          $(this).css("background-color", "whitesmoke");
-          },function(){
-          $(this).css("background-color", "#FFFFFF");
-        });
-        selectedLine = null;
-        $("#profil").slideUp("slow"); //Cacher le block du profil avec animation
-      }
-      else{ //Une autre ligne est sélectionné
-        selectedLine.css("background-color", "#FFFFFF");
-        selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
-          $(this).css("background-color", "whitesmoke");
-          },function(){
-          $(this).css("background-color", "#FFFFFF");
-        });
-        $(this).css("background-color", "#b0bed9");
-        $(this).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
-        selectedLine = $(this);
-      }
-    }
-    else{ //Premiere fois qu'on selectionne une ligne
-      document.querySelector('#profil').scrollIntoView({ //Animation du scroll au block profil (smooth)
-        behavior: 'smooth'
-      });
-      $(this).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
-      $(this).css("background-color", "#b0bed9");
-      selectedLine = $(this);
-    }
-
+  $('#table_client tbody').on('click', 'tr', function(){ //Lors du click sur une ligne du tableau
+    clickLine(this);
   });
 
+  setTimeout(function(){
+    table.rows().every(function(rowIdx,tableLoop,rowLoop){ //Loop au travers de chaque ligne de dataTable
+        var data = this.data();
+        var row = table.row(rowIdx);
+
+        tr = table.row(rowIdx).node(); //Recupere le tr (la ligne en html)
+
+        if(idClient == data.id){ //Affiche le profil du client
+          clickLine(tr);
+        }
+
+    });
+  }, 500);
+
 });
+
+//Fonction lorsqu'il y a un click sur une ligne
+function clickLine(line){
+  $("#profil").slideDown("slow"); //Afficher le block du profil avec une animation
+  // Une ligne est selectionnée
+  if(selectedLine != null){
+    // Il y a eu changement dans les textareas
+    if(profilUpdated()){
+      // Demande de confirmation de sauvegarde
+      if(confirm("Voulez-vous sauvegarder les changements?")){
+        updateProfil();
+      }
+    }
+  }
+
+  //Get les données du client et de son profil
+  index = table.cell(line, 0).index();
+  data = table.row(index.row).data();
+
+  // Set le titre du suivi
+  $("#nomClient").text(data.prenom + " " + data.nom);
+
+  // Prépare les données pour la date de naissance
+  var annee = jour = date_naissance = null;
+  var mois = "vide";
+  if(data.date_naissance != null) { // Date naissance n'est pas null
+    var date_naissance = data.date_naissance;
+    var date_array = date_naissance.split("-");
+    var annee = date_array[0];
+    var mois = date_array[1];
+    var jour = date_array[2];
+
+    if (mois[0] == 0){ // La valeur du mois commence par un 0  (01, 02, ..)
+      // Enlève le 0
+      mois = mois.slice(1);
+    }
+  }
+  // Set les données du profil du client séléctionné dans les cases
+  $('#jour').val(jour);
+  $('#mois').val(mois);
+  $('#annee').val(annee);
+  $('#noAdresse').val(data.no_civique);
+  $('#rue').val(data.rue);
+  $('#ville').val(data.ville);
+  $('#codePostal').val(data.code_postal);
+  $('#pays').val(data.pays);
+  $('#telephone').val(data.telephone);
+  $('#courriel').val(data.courriel);
+
+  courrielValue = data.courriel;
+
+  if(selectedLine != null){
+
+    if(selectedLine.css("background-color") == $(line).css("background-color")){ //La meme ligne est sélectionné
+      selectedLine.css("background-color", "#FFFFFF");
+      selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
+        $(this).css("background-color", "whitesmoke");
+        },function(){
+        $(this).css("background-color", "#FFFFFF");
+      });
+      selectedLine = null;
+      $("#profil").slideUp("slow"); //Cacher le block du profil avec animation
+    }
+    else{ //Une autre ligne est sélectionné
+      selectedLine.css("background-color", "#FFFFFF");
+      selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
+        $(this).css("background-color", "whitesmoke");
+        },function(){
+        $(this).css("background-color", "#FFFFFF");
+      });
+      $(line).css("background-color", "#b0bed9");
+      $(line).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
+      selectedLine = $(line);
+    }
+  }
+  else{ //Premiere fois qu'on selectionne une ligne
+    document.querySelector('#profil').scrollIntoView({ //Animation du scroll au block profil (smooth)
+      behavior: 'smooth'
+    });
+    $(line).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
+    $(line).css("background-color", "#b0bed9");
+    selectedLine = $(line);
+  }
+}
 
 // Update le profil du client et reload la page
 function updateProfil(){
@@ -209,8 +226,6 @@ function updateProfil(){
     var mois = $('#mois').val();
     var annee = $('#annee').val();
     var date_naissance = null;
-
-
 
     // Toutes les variables de la date de naissance sont entrées
     if(jour && mois && annee){
