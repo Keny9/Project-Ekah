@@ -26,9 +26,7 @@
 
  //Fonction pour afficher les events du calendrier dans le calendrier
  function callAjax(){
-   // console.log("Ajax");
 
-   //
    var idFacilitateur = null;
    idFacilitateur = $('.facilitateur-select').attr("id");
    // idFacilitateur = 1;

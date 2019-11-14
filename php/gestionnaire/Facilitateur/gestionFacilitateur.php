@@ -14,6 +14,7 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/disponibilite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Region/Region.php";
 
 
 class GestionFacilitateur{
@@ -96,7 +97,6 @@ class GestionFacilitateur{
 
       $requete= "SELECT * FROM utilisateur
                   INNER JOIN compte_utilisateur ON fk_utilisateur = id
-
                  WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1
                 ";
 
@@ -315,6 +315,7 @@ class GestionFacilitateur{
     $heure_debut = $disponibilite->getHeureDebut();
     $heure_fin = $disponibilite->getHeureFin();
     $etat = $disponibilite->getEtat();
+    $region = $disponibilite->getRegion();
 
     $idFacilitateur = $facilitateur->getId();
 
@@ -335,9 +336,9 @@ class GestionFacilitateur{
 
         // Crée un enregistrement dans la table ta_disponibilite_specialiste de la BD
         $stmt = $conn->do()->prepare("INSERT INTO ta_disponibilite_specialiste
-          (id_specialiste, id_disponibilite)
-          VALUES (?, ?);");
-          $stmt->bind_param('ii', $idFacilitateur, $disponibiliteId);
+          (id_specialiste, id_disponibilite, id_region)
+          VALUES (?, ?, ?);");
+          $stmt->bind_param('iii', $idFacilitateur, $disponibiliteId, $region->getId());
           $stmt->execute();
 
         // Commit la transaction
@@ -433,6 +434,54 @@ class GestionFacilitateur{
         }
       }
       return $facilitateur;
+    }
+
+    //Retourne une liste de toutes les régions
+    public function getRegion(){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $region = null;
+
+      $requete= "SELECT * FROM region";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $region[] = new Region(
+                                    $row['id'],
+                                    $row['nom']
+                                  );
+        }
+      }
+      return $region;
+    }
+
+    //Retourne la region avec id
+    public function getRegionId($id){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $region = null;
+
+      $requete= "SELECT * FROM region WHERE id = ".$id."";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $region = new Region(
+                                $row['id'],
+                                $row['nom']
+                              );
+        }
+      }
+      return $region;
     }
 
 

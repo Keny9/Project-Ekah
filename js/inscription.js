@@ -38,9 +38,6 @@ window.onload = function(){
   });
 
 
-
-
-
   prenom = document.getElementById("prenom");
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
