@@ -15,7 +15,7 @@ $gRegion = new GestionRegion();
 
 $region_array = $gRegion->selectAllRegion();
 
-$html = "<select class=\"\" name=\"\">";
+$html = "<select class=\"\" name=\"region\" id=\"region\">";
 foreach($region_array as $region){
   $html .= "<option value=\"".$region['id']."\">".$region['nom']."</option>";
 }
