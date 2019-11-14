@@ -67,6 +67,22 @@ th{
   content: '\f013';
 }
 
+.cancel{
+  color: #f03e3e;
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  width: 35px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.cancel:before{
+  font-size: 21px;
+  cursor: pointer;
+  content: '\f057';
+}
+
 .modal-modif-reservation{
   display: none;
   position: fixed;

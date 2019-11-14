@@ -11,6 +11,7 @@
 
 var id_suivi = null;
 var currentRowData = null;
+var idReservation = null;
 
 $(document).ready(function(){
   selectedLine = null; //La ligne sélectionné
@@ -37,8 +38,12 @@ $(document).ready(function(){
       {"data": "montant"},
       {"data": "facilitateur"},
       {"data": null,
+      render: function(data, type, row){
+        return '<span class="cog" id=modif'+data.id+' onclick="openModal()"></span>';
+      }},
+    {"data": null,
     render: function(data, type, row){
-      return '<span class="cog" id='+data.id+' onclick="openModal()"></span>';
+      return '<span class="cancel" id=cancel'+data.id+' onclick="openCancelModal('+data.id+');"></span>';
     }},
     ],
     "language":{
@@ -115,26 +120,38 @@ $(document).ready(function(){
 
   });
 
-  setTimeout(function(){
-    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) { //Loop au travers de chaque ligne de dataTable
+    setTimeout(function(){
+      table.rows().every( function ( rowIdx, tableLoop, rowLoop ) { //Loop au travers de chaque ligne de dataTable
         var data = this.data();
         var row = table.row(rowIdx);
         date = data.date_rendez_vous.slice(0,10);
 
         tr = table.row(rowIdx).node(); //Recupere le tr (la ligne en html)
 
-        if(date < today){
-         tr.setAttribute("id", "row" + rowIdx);
-         tr.style.backgroundColor = "#cefdce";
+        if(date < today && data.id_etat == 1){
+          tr.setAttribute("id", "row" + rowIdx);
+          tr.style.backgroundColor = "#cefdce";
 
-         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
-           $(this).css("background-color", "whitesmoke");
-           },function(){
-           $(this).css("background-color", "#cefdce");
-         });
+          $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
+            $(this).css("background-color", "whitesmoke");
+            },function(){
+            $(this).css("background-color", "#cefdce");
+          });
         }
-    });
-  }, 500);
+        else if(data.id_etat == 2){
+          tr.setAttribute("id", "row" + rowIdx);
+          tr.style.backgroundColor = "#ffc2b3";
+
+          $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
+            $(this).css("background-color", "whitesmoke");
+            },function(){
+            $(this).css("background-color", "#ffc2b3");
+          });
+        }
+
+
+       });
+    }, 500);
 
 setTimeout(function(){
   listCog = document.querySelectorAll(".cog"); //Liste de tous les boutons modifier
@@ -144,6 +161,8 @@ setTimeout(function(){
   },500);
 
   $("#btn-annuler").click(closeModal);
+  $("#btn-annuler-cancel").click(closeCancelModal);
+  $("#btn-confirm-cancel").click(cancelReservation);
 
 
 });
@@ -196,4 +215,41 @@ function closeModal(){
 //Ouvrir la fenêtre modal
 function openModal(){
   $("#modal-modif-reservation").css("display", "block");
+}
+
+//Change la couleur du texte lorsqu'on sélectionne un élément de la liste mois
+function changeFacilitateur(){
+  var list = document.getElementById("facilitateur");
+  var selectedValue = list.options[list.selectedIndex].value;
+
+  if(selectedValue != "vide"){
+    list.style.color = "#000000";
+  }
+}
+
+//Ouvrir fenetre modal en lien avec l'annulation d'une réservation
+// id: L'id de la reservation sélectionner pour l'annulation
+function openCancelModal(id){
+  $("#modal-cancel-reservation").css("display", "block");
+  idReservation = id;
+}
+
+//Fermer fenetre modal en lien avec l'annulation d'une réservation
+function closeCancelModal(){
+  $("#modal-cancel-reservation").css("display", "none");
+  idReservation = null;
+}
+
+//Fonction qui annule une réservations
+function cancelReservation(){
+  console.log("Allo");
+  $.ajax({
+    url: "../../php/script/Reservation/cancelReservation.php",
+    type: "post",
+    data: {id_reservation: idReservation},
+    async:false,
+    success: function(result){
+      location.reload();
+    }
+  });
 }
