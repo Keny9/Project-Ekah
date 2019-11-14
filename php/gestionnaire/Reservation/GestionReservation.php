@@ -243,6 +243,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     $heure_debut = $reservation->getHeureDebut();
     $heure_fin = $reservation->getHeureFin();
     $id_facilitateur = $reservation->getIdFacilitateur();
+    $id_etat = 1;
 
 
 
@@ -256,8 +257,8 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
 
     /****************** Erreur sur 000webhost Cannot add or update a child row: a foreign key constraint fails (`id11534325_ekah`.`reservation`, CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_suivi`) REFERENCES `suivi` (`id`)) *******/
 
-    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin, id_facilitateur) VALUES (?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
-    $stmt->bind_param('iiiiisiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur);
+    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin, id_facilitateur, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
+    $stmt->bind_param('iiiiisiiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur, $id_etat);
     $stmt->execute();
 
     if($conn->error){

@@ -421,7 +421,7 @@ class GestionFacilitateur{
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
           $facilitateur = new Facilitateur(
-                                $row['utilisateur.id'],  /*********Juste id ? Serveur web: erreur undefined index utilisateur.id*************/
+                                $row['id'],  /*********Juste id ? Serveur web: erreur undefined index utilisateur.id*************/
                                 $row['nom'],
                                 $row['prenom'],
                                 $row['date_inscription'],

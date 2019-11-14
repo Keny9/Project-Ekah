@@ -35,7 +35,7 @@ html,body{
   padding: 0 !important;
 }
 
-button,textarea{
+button,textarea,input{
   font-weight: 400 !important;
   box-shadow: none !important;
 }
@@ -46,4 +46,17 @@ button,textarea{
 
 .li-menu{
   line-height: 0;
+}
+
+.input-date{
+  width: 32%;
+}
+
+.input-inscr{
+  border: 0;
+  border-bottom: 2px solid #9E9E9E;
+  padding: 5px;
+  padding-bottom: 2px;
+  font-size: 14px;
+  background-color: #FFFFFF;
 }

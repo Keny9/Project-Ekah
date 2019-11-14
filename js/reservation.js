@@ -10,9 +10,6 @@
 
  var calendrier = null;
 
-
-
-
  $(function(ready){
    // Set le onChange du select pour les services
    $("#service").change(function() {
