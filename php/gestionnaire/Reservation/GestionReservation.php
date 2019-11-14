@@ -21,6 +21,35 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activit
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php";
 
 class GestionReservation{
+  //Retourne touts les ateliers
+    public function getAllAteliers(){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $reservation = null;
+
+      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
+                INNER JOIN activite ON id_activite = activite.id
+                INNER JOIN type_activite ON id_type_activite = type_activite.id
+                WHERE type_activite.id = 1";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $reservation[] = new Reservation($row['id'], $row['id_paiement'],
+                                         $row['id_emplacement'], $row['id_suivi'],
+                                         $row['id_activite'], $row['id_groupe'],
+                                         $row['date_rendez_vous'],
+                                         $row['heure_debut'], $row['heure_fin']);
+        }
+      }
+
+      return $reservation;
+    }
+
 
   /**
   *

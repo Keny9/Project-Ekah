@@ -174,7 +174,5 @@ class GestionActivite{
     return $id_type_activite;
   }
 
-
-
 }
 ?>

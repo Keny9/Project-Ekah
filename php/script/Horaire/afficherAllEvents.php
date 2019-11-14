@@ -1,8 +1,8 @@
 <?php
   /**
-   * Fait appel à la méthode getDisponibiliteFacilitateur
+   * Fait appel à la méthode getAllFacilitateurActifAvecDispoGroup
    *
-   * Nom :         AfficherHoraireFacilitateur
+   * Nom :         afficherAllEvents
    * Catégorie :   scriptPhp
    * Auteur :      Guillaume Côté
    * Version :     1.0
