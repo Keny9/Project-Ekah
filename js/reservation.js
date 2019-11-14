@@ -344,7 +344,10 @@ $(document).ready(function() {
 function clickSuivant(){
   let facilitateur_id = $('.facilitateur-select').attr("id");
   let date_rendez_vous = $('.selectionne').children().data('calDate');
+  let heure = $('#dispo').find('option:selected').text();
   let id_dispo = $('#dispo').find('option:selected').val();
+
+  // console.log(heure);
 
   if(facilitateur_id == null){
     facilitateur_id = -1;
@@ -353,6 +356,8 @@ function clickSuivant(){
     date_rendez_vous = "2000-01-01";
   }
 
+  date_rendez_vous = date_rendez_vous + " " + heure;
+  // console.log(date_rendez_vous);
 
 
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
