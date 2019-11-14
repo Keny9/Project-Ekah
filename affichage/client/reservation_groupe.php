@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page de reservation un directeur ou une personne responsable fait une demande
  * pour une activite de groupe

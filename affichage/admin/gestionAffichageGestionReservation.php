@@ -24,7 +24,7 @@
          $html.="
          <div class=\"sectionActivite\" >
          <div class=\"titreActivite\">Ajouter une réservation</div>
-         <div onclick='selectionne($j);' class=\"boiteSelection\" id='Activite-$j'></div>
+         <div onclick='selectionne($j);' class=\"boiteSelection\" id='AjoutActivite' value='$j'></div>
          </div>
          ";
        }

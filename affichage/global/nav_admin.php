@@ -10,7 +10,7 @@
     <li>
       <a class="link-menu" href="#">
         <span id="icon-compte" class="picto-menu"></span>
-        <span class="text-menu"><p>Gestion des spécialistes</p></span>
+        <span class="text-menu"><p>Les facilitateurs</p></span>
       </a>
     </li>
     <li>

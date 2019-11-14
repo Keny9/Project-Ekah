@@ -76,7 +76,7 @@ table.dataTable {
     background-color: #f9f9f9; }
     table.dataTable.stripe tbody tr.odd.selected, table.dataTable.display tbody tr.odd.selected {
       background-color: #abb9d3; }
-  table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+  ligne-hover:hover, table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
     background-color: whitesmoke; }
     table.dataTable.hover tbody tr:hover.selected, table.dataTable.display tbody tr:hover.selected {
       background-color: #a9b7d1; }

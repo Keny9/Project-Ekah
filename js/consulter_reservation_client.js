@@ -29,12 +29,23 @@ $(document).ready(function(){
 
       if(selectedLine.css("background-color") == $(this).css("background-color")){ //La meme ligne est sélectionné
         selectedLine.css("background-color", "#FFFFFF");
+        selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
+          $(this).css("background-color", "whitesmoke");
+          },function(){
+          $(this).css("background-color", "#FFFFFF");
+        });
         selectedLine = null;
         $("#suivi").slideUp("slow"); //Cacher le block dui suivi de la réservation avec animation
       }
       else{ //Une autre ligne est sélectionné
         selectedLine.css("background-color", "#FFFFFF");
+        selectedLine.hover(function(){ //Ajoute le hover qui disparraissait lors du click
+          $(this).css("background-color", "whitesmoke");
+          },function(){
+          $(this).css("background-color", "#FFFFFF");
+        });
         $(this).css("background-color", "#b0bed9");
+        $(this).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
         selectedLine = $(this);
       }
     }
@@ -42,6 +53,7 @@ $(document).ready(function(){
       document.querySelector('#suivi').scrollIntoView({ //Animation du scroll au block suivi (smooth)
         behavior: 'smooth'
       });
+      $(this).off('mouseenter mouseleave'); //Enleve le hover pour que la ligne reste sélectionné
       $(this).css("background-color", "#b0bed9");
       selectedLine = $(this);
     }

@@ -14,7 +14,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisa
 $preMessageErreur = "script ajouterClient mouru : ";
 
 $gestion = new GestionClientAjout();
-$client;
+$client_id
 $pays = null;
 $codePostal = null;
 $numeroAdresse = null;
@@ -61,7 +61,7 @@ else {die($preMessageErreur."Le mot de passe est vide");}
 if (isset($_POST['telephone'])) {$telephone = $_POST['telephone'];}
 else {die($preMessageErreur."Le telephone est vide");}
 
-
+// Créer le clientpour le passer en paramètre au gestionnaire
 $client = new Client(NULL, $nom, $prenom, NULL, $courriel,
 $dateNaissanceString, $telephone, $rue, $codePostal, $numeroAdresse,
 $ville, NULL, NULL, $pays);
@@ -69,8 +69,9 @@ $ville, NULL, NULL, $pays);
 // Si l'ajout est un succès (si ajouterClient() retourne true)
 // TODO on dirait que la méthode ajouterClient ne fonctionne pas correctement.
     // retourne TRUE même si les inserts fail
-if($gestion->ajouterClient($client, $motDePasse)){
+if($gestion->ajouterClient($client)){
   //Afficher que l'inscription fut un succès, ensuite va à la page login
-  header('Location: /Project-Ekah/affichage/global/login.php');
+  //header('Location: /Project-Ekah/affichage/global/login.php');
+  echo 'success - modifierMonProfil.php line : '.__LINE__;
 }
 ?>

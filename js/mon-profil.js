@@ -10,9 +10,6 @@
 
 var client_arr = null;
 var   user_courriel = null;
-//Lorsque le document est prêt
-
-
 
 // Appuie sur la touche ..
 $(window).keydown(function(event){
@@ -25,6 +22,7 @@ $(window).keydown(function(event){
   }
 });
 
+//Lorsque le document est prêt
 window.onload = function(){
   listInput = document.querySelectorAll("input");
 
@@ -142,6 +140,11 @@ window.onload = function(){
     if(verifieNomPrenom(ville)){
       inputUnrequired(ville, "Ville");
     }
+  });
+
+  // Set le onClick du bouton de confirmation de la fenêtre modale de confirmation
+  $('#modal-inscription-btn-confirm').click(function(){
+    location.reload(); // Reload la page
   });
 };
 
@@ -307,9 +310,13 @@ function setMonProfilChamps(){
 
 
    // Change l'attribut Action du Formulaire
-   $("#modal-inscription").css("display", "block");
-   $('#mickeymouse').attr('action', '../../php/script/Client/ajouterClient.php');
-   return true;
+
+//   $('#mickeymouse').attr('action', '../../php/script/Client/modifierMonProfil.php');
+  // return true;
+
+  updateProfil();
+
+  return true;
  }
 
  //Verifie que le nom de famille ou le prenom est valide (Regex)
@@ -538,3 +545,52 @@ function setMonProfilChamps(){
    });
    return bool;
  }
+
+ // Update le profil du client
+ function updateProfil(){
+//   if(valideFormProfil() == true){
+     var jour = $('#jour').val();
+     var mois = $('#mois').val();
+     var annee = $('#annee').val();
+     var date_naissance = null;
+
+
+
+     // Toutes les variables de la date de naissance sont entrées
+     if(jour && mois && annee){
+       var date_naissance = annee+"-"+mois+"-"+jour;
+     }
+
+     var dataClient = {
+       id_client: CLIENT.id,
+       id_adresse: CLIENT.id_adresse,
+       telephone: $('#telephone').val(),
+       date_naissance: date_naissance,
+       no_civique: $('#noAdresse').val(),
+       rue: $('#rue').val(),
+       ville: $('#ville').val(),
+       code_postal: $('#codePostal').val(),
+       pays: $('#pays').val(),
+       courriel: $('#courriel').val(),
+       nom: $('#nom').val(),
+       prenom: $('#prenom').val()
+     };
+
+     var dataClientJson = JSON.stringify(dataClient);
+
+     $.ajax({
+       url: "../../php/script/Client/updateProfilClient.php",
+       data: {data: dataClientJson},
+       async:false,
+       success: function(result){
+         console.log(result);
+         //location.reload();
+         //Affiche la fenêtre modale
+         $("#modal-inscription").css("display", "block");
+       },
+     });
+   }
+//   else{
+//     return false;
+//   }
+// }

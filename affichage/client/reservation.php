@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page de reservation generale pour choisir un service
  *
@@ -71,7 +72,7 @@ $activites = $gActivite->getAllActivite();
                     else*/if($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
                   }
 
-                  if($activite->getId_type() == 1 || $activite->getId_type() == 3){
+                  if($activite->getId_type() == 2 || $activite->getId_type() == 3){
                     echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
                   }
 
@@ -95,6 +96,15 @@ $activites = $gActivite->getAllActivite();
             <label class="label-reservation label-prix" for="prix">Prix</label>
             <p id="prix">120$</p>
           </div>
+
+          <div id="question-complementaire" style="display: none;">
+            <div class="group-input-inscr" >
+              <input type="text" name="noAdresse" id="noAdresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
+              <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
+              <input type="text" name="ville" id="ville" value="" class="input-inscr input-date second-input" placeholder="Ville">
+            </div>
+          </div>
+
           <div class="group-input-inscr">
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>
             <input type="checkbox" name="facilitateur" id="facilitateur" onclick="check()" value="">

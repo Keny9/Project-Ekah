@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
 * Page de reservation ou le client repond aux questions en lien avec le service choisi
 *
