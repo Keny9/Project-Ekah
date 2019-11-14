@@ -103,7 +103,13 @@ $activites = $gActivite->getAllActivite();
               <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
               <input type="text" name="ville" id="ville" value="" class="input-inscr input-date second-input" placeholder="Ville">
             </div>
+
+            <?php
+              // Afficher le select pour les régions
+              include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/printRegion.php';
+            ?>
           </div>
+
 
           <div class="group-input-inscr">
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>

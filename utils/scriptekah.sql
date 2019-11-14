@@ -294,6 +294,11 @@ content MEDIUMBLOB NOT NULL,
 PRIMARY KEY(id)
 );
 
+
+INSERT INTO region(id, nom) VALUES (1, "Estrie");
+INSERT INTO region(id, nom) VALUES (2, "Montérégie");
+INSERT INTO region(id, nom) VALUES (3, "Québec");
+
 INSERT INTO province(id, nom) VALUES (1, "Québec");
 INSERT INTO province(id, nom) VALUES (2, "Ontario");
 INSERT INTO province(id, nom) VALUES (3, "Nouvelle Écosse");
