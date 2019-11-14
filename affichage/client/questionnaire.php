@@ -1,5 +1,4 @@
 <?php
-session_start();
 /**
 * Page de reservation ou le client repond aux questions en lien avec le service choisi
 *
@@ -13,6 +12,8 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php';
+
+session_start();
 
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
@@ -55,7 +56,6 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     <script type="text/javascript" src="../../js/questionnaire.js"></script>
     <script type="text/javascript">
       const SUIVI_ID = <?php echo $_GET['res_id']; ?>;
-    //  alert(SUIVI_ID);
     </script>
     <title>Réservation - Questions</title>
   </head>

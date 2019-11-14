@@ -69,15 +69,9 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
       $conn->rollback();
       exit();
     }*/
-    // TODO: Gérer l'emplacement
-    $id_emplacement = 1;
 
     // Créer la réservation
     $reservation->setIdGroupe($id_groupe);
-    $reservation->setIdEmplacement($id_emplacement);
-
-
-
 
     // Insert la reservation, Rollback si erreur
     if(( $suivi_id = $this->reservationInsert($conn, $reservation) ) == false){
@@ -203,6 +197,23 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     }
 
     return $emplacement;
+  }
+
+  /**
+  * Insert un emplacement dans la BD
+  * Retourne l'id de l'emplacement inséré
+  */ // TODO: utiliser un objet Emplacement
+  public function insertEmplacement($noAdresse, $rue, $ville){
+    $conn = ($connexion = new Connexion())->do();
+
+    $id_type_emplacement = 1; // TODO: Gérer ça
+    $nom_lieu = $noAdresse." ".$rue.", ".$ville; // Concat l'adresse en un string
+    $request = "INSERT INTO emplacement (id_type_emplacement, nom_lieu) VALUES (?, ?);";
+    $stmt = $conn->prepare($request);
+    $stmt->bind_param('is', $id_type_emplacement, $nom_lieu);
+    $stmt->execute();
+
+    return $conn->insert_id;
   }
 
   /**

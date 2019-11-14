@@ -35,34 +35,44 @@
  $dateTime = $_GET['date_rendez_vous'];//$_GET['date_rendez_vous'];
  $id_facilitateur = $_GET['facilitateur_id'];//$_GET['facilitateur_id'];
  $id_dispo = $_GET['id_dispo'];
- // TODO: Pourrait créer le suivi ici et pass son id...
+ $no_adresse = $_POST['noAdresse'];
+ $rue = $_POST['rue'];
+ $ville = $_POST['ville'];
 
- if($id_facilitateur == -1){
+
+ if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
    $facilitateur = $gFacilitaeur->getDispo($id_dispo);
    $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
    print_r($facilitateur); /**********Si c'est print, le header() en bas ne fonctionnera pas sur web host **************/
  }
 
- $reservation = new Reservation(null, null, 1, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);
+// Set l'id de l'emplacement
+ $id_emplacement = null;
+ if(isset($no_adresse) && isset($rue) && isset($ville)){ // Champs remplis, donc service 'À domicile'; requiert un emplacement
+   $id_emplacement = $gReservation->insertEmplacement($no_adresse, $rue, $ville);
+ }
+
+ // Créer la réservation
+ $reservation = new Reservation(null, null, $id_emplacement, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);
  // Insert la reservation et get l'id de son suivi
  $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
 
-
 //Réserver la disponibilité
   $gHoraire->reserverDispo($id_dispo);
-
 
  // L'activité ne contient pas de questionnaire
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
    echo "Il n'y a pas de questionnaire pour cette activité\n";
    echo "Réservation complétée";
-   // TODO: redirect vers page appropriée
+   // TODO: redirect vers page appropriée.. message de confirmation.. Karl peux-tu faire quelque chose?
    exit();
  }
 
 // L'activité contient un questionnaire
 $questionnaire = $questionnaireArray[0];
 $_SESSION['questionnaire'] = $questionnaire;
+
+echo var_dump($questionnaire);
 
 header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
  ?>
