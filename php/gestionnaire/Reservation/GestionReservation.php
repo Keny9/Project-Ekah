@@ -21,13 +21,13 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activit
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php";
 
 class GestionReservation{
-  //Retourne touts les ateliers
+  //Retourne tous les ateliers
     public function getAllAteliers(){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
       $reservation = null;
 
-      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
+      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
                 INNER JOIN activite ON id_activite = activite.id
                 INNER JOIN type_activite ON id_type_activite = type_activite.id
                 WHERE type_activite.id = 1 AND id_etat = 1";
@@ -71,7 +71,7 @@ class GestionReservation{
                                          $row['id_emplacement'], $row['id_suivi'],
                                          $row['id_activite'], $row['id_groupe'],
                                          $row['date_rendez_vous'],
-                                         $row['heure_debut'], $row['heure_fin']);
+                                         $row['id_region'], $row['heure_fin']);
         }
       }
 
@@ -308,7 +308,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     $id_activite = $reservation->getIdActivite();
     $id_groupe = $reservation->getIdGroupe();
     $date_rendez_vous = $reservation->getDateRendezVous();
-    $heure_debut = $reservation->getHeureDebut();
+    $id_region = $reservation->getIdRegion();
     $heure_fin = $reservation->getHeureFin();
     $id_facilitateur = $reservation->getIdFacilitateur();
     $id_etat = 1;
@@ -325,8 +325,8 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
 
     /****************** Erreur sur 000webhost Cannot add or update a child row: a foreign key constraint fails (`id11534325_ekah`.`reservation`, CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_suivi`) REFERENCES `suivi` (`id`)) *******/
 
-    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin, id_facilitateur, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
-    $stmt->bind_param('iiiiisiiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur, $id_etat);
+    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin, id_facilitateur, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
+    $stmt->bind_param('iiiiisiiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur, $id_etat);
     $stmt->execute();
 
     if($conn->error){
@@ -355,7 +355,6 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   }
 
   /**
-  *
   * Retourne un enregistrement de la table Reservation;
   * Retourne NULL si aucun enregristrement trouvé.
   *
@@ -376,7 +375,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
                                      $row['id_emplacement'], $row['id_suivi'],
                                      $row['id_activite'], $row['id_groupe'],
                                      $row['date_rendez_vous'],
-                                     $row['heure_debut'], $row['heure_fin']);
+                                     $row['id_region'], $row['heure_fin']);
     }
     return $reservation;
   }
@@ -455,7 +454,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   */
 public function selectAll($user_id = null){
     $conn = ($connexion = new Connexion())->do();
-    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.id_facilitateur, r.date_rendez_vous, r.heure_debut, r.heure_fin, r.id_facilitateur FROM reservation AS r";
+    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.id_facilitateur, r.date_rendez_vous, r.id_region, r.heure_fin, r.id_facilitateur FROM reservation AS r";
 
 
     if ($user_id != null){
@@ -472,7 +471,7 @@ public function selectAll($user_id = null){
     $array = array();
     while($row = $result->fetch_assoc()){
       // Créer la réservation
-      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin'], $row['id_facilitateur']);
+      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['id_region'], $row['heure_fin'], $row['id_facilitateur']);
       // Créer l'emplacement
       $emp = $this->emplacementSelect($conn, $row['id_emplacement']);
       //Créer l'activité

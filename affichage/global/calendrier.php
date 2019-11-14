@@ -16,7 +16,7 @@
   <main>
 
     <select class="select-inscr" name="" id="dispo">
-      <option value="" disabled selected>Choissiez une date d'abord</option>
+      <option value="" disabled selected>Choisissez une date d'abord</option>
     </select>
 
 

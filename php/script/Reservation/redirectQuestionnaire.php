@@ -52,8 +52,14 @@
    $id_emplacement = $gReservation->insertEmplacement($no_adresse, $rue, $ville);
  }
 
+// Set l'id de la région
+$id_region = null;
+if(isset($_POST['region'])){
+  $id_region = $_POST['region'];
+}
+
  // Créer la réservation
- $reservation = new Reservation(null, null, $id_emplacement, null, $id_activite, null, $dateTime, 1, 1, $id_facilitateur);
+ $reservation = new Reservation(null, null, $id_emplacement, null, $id_activite, null, $dateTime, $id_region, 1, $id_facilitateur);
  // Insert la reservation et get l'id de son suivi
  $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
 

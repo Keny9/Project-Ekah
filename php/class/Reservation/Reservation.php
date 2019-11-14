@@ -21,12 +21,12 @@ class Reservation{
   private $id_groupe;
   private $id_facilitateur;
   private $date_rendez_vous;
-  private $heure_debut;
+  private $id_region;
   private $heure_fin;
   private $id_etat;
 
   function __construct($id, $id_paiement, $id_emplacement, $id_suivi,
-                       $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur = null){
+                       $id_activite, $id_groupe, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur = null){
     $this->setId($id);
     $this->setIdPaiement($id_paiement);
     $this->setIdEmplacement($id_emplacement);
@@ -34,7 +34,7 @@ class Reservation{
     $this->setIdActivite($id_activite);
     $this->setIdGroupe($id_groupe);
     $this->setDateRendezVous($date_rendez_vous);
-    $this->setHeureDebut($heure_debut);
+    $this->setIdRegion($id_region);
     $this->setHeureFin($heure_fin);
     $this->setIdFacilitateur($id_facilitateur);
   }
@@ -77,8 +77,8 @@ class Reservation{
   public function setDateRendezVous($val){
     $this->date_rendez_vous = $val;
   }
-  public function setHeureDebut($val){
-    $this->heure_debut = $val;
+  public function setIdRegion($val){
+    $this->id_region = $val;
   }
   public function setHeureFin($val){
     $this->heure_fin = $val;
@@ -114,8 +114,8 @@ class Reservation{
   public function getDateRendezVous(){
     return $this->date_rendez_vous;
   }
-  public function getHeureDebut(){
-    return $this->heure_debut;
+  public function getIdRegion(){
+    return $this->id_region;
   }
   public function getHeureFin(){
     return $this->heure_fin;
