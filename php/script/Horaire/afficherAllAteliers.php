@@ -17,7 +17,7 @@
 
   $reservation = $gestionReservation->getAllAteliers();
 
-  print_r($reservation);
+  // print_r($reservation);
 
 
   date_default_timezone_set('America/Toronto');
