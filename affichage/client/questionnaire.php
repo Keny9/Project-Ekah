@@ -13,8 +13,6 @@ session_start();
 * Date de la dernière modification : 2019-10-11
 */
 
-
-
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 

@@ -23,6 +23,7 @@ class Reservation{
   private $date_rendez_vous;
   private $heure_debut;
   private $heure_fin;
+  private $id_etat;
 
   function __construct($id, $id_paiement, $id_emplacement, $id_suivi,
                        $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur = null){
@@ -88,6 +89,9 @@ class Reservation{
   public function setIdFacilitateur($val){
     $this->id_facilitateur = $val;
   }
+  public function setIdEtat($idEtat){
+    $this->id_etat = $idEtat;
+  }
 
   /*
   * GETTEUR
@@ -121,6 +125,9 @@ class Reservation{
   }
   public function getIdFacilitateur(){
     return $this->id_facilitateur;
+  }
+  public function getIdEtat(){
+    return $this->id_etat;
   }
 }
 

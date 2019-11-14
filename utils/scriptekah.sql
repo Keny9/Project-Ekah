@@ -203,7 +203,6 @@ telephone VARCHAR(15),
 date_naissance date,
 date_inscription datetime default CURRENT_TIMESTAMP,
 photo VARCHAR(255), -- path vers la photo
-
 FOREIGN KEY (id_type_utilisateur) REFERENCES type_utilisateur(id),
 FOREIGN KEY (id_type_etat_dispo) REFERENCES type_etat_dispo(id),
 FOREIGN KEY (fk_id_adresse) REFERENCES adresse(id)
@@ -242,12 +241,15 @@ FOREIGN KEY (id_type_groupe) REFERENCES type_groupe(id)
 CREATE TABLE inscription (
 id_utilisateur INT NOT NULL,
 id_groupe INT NOT NULL,
-
 date_inscription datetime default CURRENT_TIMESTAMP,
-
 PRIMARY KEY (id_utilisateur, id_groupe),
 FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id),
 FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe)
+);
+
+CREATE TABLE etat_reservation (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE reservation (
@@ -261,12 +263,14 @@ id_facilitateur INT,
 date_rendez_vous DATETIME NOT NULL,
 heure_debut INT NOT NULL,
 heure_fin INT NOT NULL,
+id_etat INT NOT NULL,
 FOREIGN KEY (id_paiement) REFERENCES paiement(id),
 FOREIGN KEY (id_emplacement) REFERENCES emplacement(id),
 FOREIGN KEY (id_suivi) REFERENCES suivi(id),
 FOREIGN KEY (id_activite) REFERENCES activite(id),
 FOREIGN KEY (id_groupe) REFERENCES groupe(no_groupe),
-FOREIGN KEY (id_facilitateur) REFERENCES utilisateur(id)
+FOREIGN KEY (id_facilitateur) REFERENCES utilisateur(id),
+FOREIGN KEY (id_etat) REFERENCES etat_reservation(id)
 );
 
 CREATE TABLE region (
@@ -604,21 +608,24 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 14, '2020-05-15');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 15, '2020-05-23');
 
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-01-05 19:00', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (2, 2, 2, 2, 1, 2, 2, '2019-02-02 13:00', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (3, 3, 3, 3, 1, 3, 3, '2020-02-10 13:30', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (4, 4, 4, 4, 2, 4, 1, '2020-02-24 07:00', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (5, 5, 5, 5, 3, 5, 2, '2020-02-29 09:30', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (6, 6, 6, 6, 1, 6, 1, '2020-03-01 19:30', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (7, 7, 7, 7, 4, 7, 2, '2019-03-11 12:30', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (8, 8, 8, 8, 1, 8, 3, '2020-03-15 09:30', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (9, 9, 9, 9, 2, 9, 1, '2020-03-20 10:00', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (10, 10, 10, 10, 3, 10, 2, '2020-03-24 11:30', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (11, 11, 11, 11, 1, 11, 1, '2020-03-24 17:00', 8, 9);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (12, 12, 12, 12, 5, 12, 2, '2019-04-02 13:30', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (13, 13, 13, 13, 6, 13, 3, '2020-04-12 06:00', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (14, 14, 14, 14, 2, 14, 1, '2019-04-15 14:30', 13, 14);
-INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (15, 15, 15, 15, 3, 15, 2, '2020-04-15 15:40', 13, 14);
+INSERT INTO etat_reservation(id,nom) VALUES(1, 'actif');
+INSERT INTO etat_reservation(id,nom) VALUES(2, 'inactif');
+
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (1, 1, 1, 1, 1, 1, 1, '2019-01-05 19:00', 8, 9, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (2, 2, 2, 2, 1, 2, 2, '2019-02-02 13:00', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (3, 3, 3, 3, 1, 3, 3, '2020-02-10 13:30', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (4, 4, 4, 4, 2, 4, 1, '2020-02-24 07:00', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (5, 5, 5, 5, 3, 5, 2, '2020-02-29 09:30', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (6, 6, 6, 6, 1, 6, 1, '2020-03-01 19:30', 8, 9, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (7, 7, 7, 7, 4, 7, 2, '2019-03-11 12:30', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (8, 8, 8, 8, 1, 8, 3, '2020-03-15 09:30', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (9, 9, 9, 9, 2, 9, 1, '2020-03-20 10:00', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (10, 10, 10, 10, 3, 10, 2, '2020-03-24 11:30', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (11, 11, 11, 11, 1, 11, 1, '2020-03-24 17:00', 8, 9, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (12, 12, 12, 12, 5, 12, 2, '2019-04-02 13:30', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (13, 13, 13, 13, 6, 13, 3, '2020-04-12 06:00', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (14, 14, 14, 14, 2, 14, 1, '2019-04-15 14:30', 13, 14, 1);
+INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin, id_etat) VALUES (15, 15, 15, 15, 3, 15, 2, '2020-04-15 15:40', 13, 14, 1);
 
 /*
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (6, 2, 1, 6, 1, 2, 2, '2020-02-02', 13, 14);
