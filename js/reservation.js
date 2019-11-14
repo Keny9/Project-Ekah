@@ -11,8 +11,6 @@
  var calendrier = null;
 
 
-
-
  $(function(ready){
    // Set le onChange du select pour les services
    $("#service").change(function() {
@@ -355,6 +353,8 @@ function clickSuivant(){
     date_rendez_vous = "2000-01-01";
   }
 
+
+
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
   let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo;
@@ -365,6 +365,7 @@ function clickSuivant(){
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
+   console.log(e);
     e.style.borderBottomColor = "#ff0000";
     e.style.setProperty("--color", "#ff0000");
  }
@@ -376,7 +377,7 @@ function clickSuivant(){
 
 //Valider le formulaire de réservation
  function valideReservation(){
-   if(siSelectVide(service) || siSelectVide(dureeInput)){
+   if(siSelectVide(service) || siSelectVide(dureeInput) || calendrierVide()){
      indiqueChampVideReservation();
      document.querySelector('.reservation').scrollIntoView({ //Animation scroll smooth au debut du form
        behavior: 'smooth'
@@ -471,6 +472,7 @@ function sendEmail(){
 function indiqueChampVideReservation(){
   if(siSelectVide(service)){inputRequired(service);}
   if(siSelectVide(dureeInput)){inputRequired(dureeInput);}
+  if(calendrierVide()){inputRequired(document.getElementById("dispo"));}
 }
 
 //Verifie si le champ de l'element est vide
@@ -484,6 +486,15 @@ function siVide(e){
 //Verifie si la selection de la liste est vide
  function siSelectVide(e){
    if(e.options[e.selectedIndex].value == null || e.options[e.selectedIndex].value == "" || e.options[e.selectedIndex].value == "vide"){
+     return true;
+   }
+   return false;
+ }
+
+//Vérifie si une date et heure à bien été choisi
+ function calendrierVide(){
+   e = $('#dispo');
+   if(e.find('option:selected').val() == "" || e.find('option:selected').val() == -1 || e.find('option:selected').val() == null){
      return true;
    }
    return false;
