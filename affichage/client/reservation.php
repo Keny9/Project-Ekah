@@ -98,6 +98,17 @@ $activites = $gActivite->getAllActivite();
           </div>
 
           <div id="question-complementaire" style="display: none;">
+            <div class="">
+              <select class="" name="">
+                <option disabled selected value="">Nombre de participant</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option>
+              </select>
+            </div>
+
             <div class="group-input-inscr" >
               <input type="text" name="noAdresse" id="noAdresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
               <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
