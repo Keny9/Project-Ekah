@@ -71,7 +71,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
     <?php
                    require_once 'gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
-                   echo $gagr->getDureeActivite(1);
+                   echo $gagr->getDureeActivite(18);
                  ?>
 
 
