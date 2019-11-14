@@ -536,3 +536,9 @@ a.cal-event-week {
 .btnsCalandrier{
   float: right;
 }
+
+.mois{
+  padding-bottom: 9px;
+  margin: 5px 0 10px;
+  /* border-bottom: 1px solid #eeeeee; */
+}
