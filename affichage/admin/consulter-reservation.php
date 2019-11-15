@@ -80,6 +80,17 @@ session_start();
       </div>
     </div>
 
+    <div id="modal-cancel-already" class="modal-modif-reservation">
+      <div class="modal-content">
+        <div class="modal-align-middle-mr">
+          <div class="txt-reservation txt-bienv">Cette réservation est déjà annulé.</div>
+          <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
+            <button id="btn-already-cancel" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Retour</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
       <div class="reservation">
         <div class="txt-consulter">Listes des réservations</div>
 
@@ -93,7 +104,6 @@ session_start();
                 <th class="min-desktop">Date/Heure</th>
                 <th class="min-desktop">Coût</th>
                 <th class="all">Facilitateur</th>
-                <th class="all">Modifier</th>
                 <th class="all">Annuler</th>
               </tr>
             </thead>
