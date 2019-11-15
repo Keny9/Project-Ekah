@@ -60,3 +60,11 @@ button,textarea,input{
   font-size: 14px;
   background-color: #FFFFFF;
 }
+
+a:hover{
+  text-decoration: none;
+}
+
+li{
+  line-height: 10px;
+}

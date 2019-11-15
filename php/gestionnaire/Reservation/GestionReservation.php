@@ -30,7 +30,35 @@ class GestionReservation{
       $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
                 INNER JOIN activite ON id_activite = activite.id
                 INNER JOIN type_activite ON id_type_activite = type_activite.id
-                WHERE type_activite.id = 1";
+                WHERE type_activite.id = 1 AND id_etat = 1";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $reservation[] = new Reservation($row['id'], $row['id_paiement'],
+                                         $row['id_emplacement'], $row['id_suivi'],
+                                         $row['id_activite'], $row['id_groupe'],
+                                         $row['date_rendez_vous'],
+                                         $row['heure_debut'], $row['heure_fin']);
+        }
+      }
+
+      return $reservation;
+    }
+
+    public function getIdActiviteReservation($reservation){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $reservation = null;
+
+      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
+                INNER JOIN activite ON id_activite = activite.id
+                INNER JOIN type_activite ON id_type_activite = type_activite.id
+                WHERE type_activite.id = 1 AND id_etat = 1";
 
       $result = $conn->query($requete);
       if(!$result){
@@ -490,7 +518,9 @@ public function selectAll($user_id = null){
   public function getAllReservationData($id_client = null){
     $conn = ($connexion = new Connexion())->do();
 
-    $requete = "SELECT r.id, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS 'id_suivi', g.no_groupe, i.date_inscription, CONCAT(u.prenom,' ', u.nom) AS client, u.id AS client_id , CONCAT(f.prenom, ' ', f.nom) AS facilitateur FROM reservation r
+    $requete = "SELECT r.id, r.id_etat, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS id_suivi, g.no_groupe, i.date_inscription,
+                CONCAT(u.prenom, ' ' , u.nom) AS client, u.id AS client_id , CONCAT(f.prenom, ' ' , f.nom) AS facilitateur
+                FROM reservation r
                 LEFT JOIN utilisateur f ON r.id_facilitateur = f.id
                 LEFT JOIN activite a ON r.id_activite = a.id
                 LEFT JOIN emplacement e ON r.id_emplacement = e.id
@@ -498,7 +528,7 @@ public function selectAll($user_id = null){
                 LEFT JOIN suivi s ON r.id_suivi = s.id
                 LEFT JOIN groupe g ON r.id_groupe = g.no_groupe
                 LEFT JOIN inscription i ON g.no_groupe = i.id_groupe
-                LEFT JOIN utilisateur u ON i.id_utilisateur = u.id";
+                LEFT JOIN utilisateur u ON i.id_utilisateur = u.id;";
 
     if($id_client){
       $requete .= " WHERE u.id = $id_client;";
@@ -530,7 +560,26 @@ public function selectAll($user_id = null){
   return $arrReservation;
 }
 
+/**
+* Fonction qui permet d'annuler une réservation
+* @param id ID de la réservation à annuler
+*/
+public function cancelReservation($id){
+  $conn = ($connexion = new Connexion())->do();
 
+  $requete = "UPDATE reservation
+              SET id_etat = 2
+              WHERE id = ?;";
+
+  $stmt = $conn->prepare($requete);
+  $stmt->bind_param("i", $id);
+  $status = $stmt->execute();
+
+  if($status === false){
+    trigger_error($stmt->error, E_USER_ERROR);
+  }
+
+}
 
 
 
