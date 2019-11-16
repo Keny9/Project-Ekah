@@ -5,9 +5,9 @@
  *
  * Nom :         global.js
  * Catégorie :   JS
- * Auteur :      Maxime Lussier
- * Version :     1.0
- * Date de la dernière modification : 2019-10-03
+ * Auteur :      Karl Boutin et Maxime Lussier
+ * Version :     1.2
+ * Date de la dernière modification : 2019-11-16
  */
 var clickNav = 0; //Nombre de click sur l'icone mobile pour le menu
 var clickMenuMobile = 0; //Nombre de click sur le menu services mobile
@@ -16,6 +16,7 @@ var clickedElement;
 var resizeTimer;
 
 $(document).ready(function() {
+ typeMenu = $("#nav_m_type").val(); //Le titre de l'espace, soit client ou facilitateur selon le menu affiché
 
   //Afficher les sous-onglets avec une animation
   $("#folder_service").mouseenter(function(){
@@ -101,6 +102,22 @@ $("#folder_propos_m").click(function(){
   }
 });
 
+$("#folder_espace_m").click(function(){
+  checkIfOngletOuvert($("#folder_espace_m").attr('id'));
+  clickedElement = "folder_espace_m";
+  clickMenuMobile++;
+
+  if(clickMenuMobile % 2 == 0){
+    $("#espace_m").hide();
+    $("#folder_espace_m").text("+ ESPACE " + typeMenu);
+  }
+  else if(clickMenuMobile % 2 == 1){
+    $("#espace_m").show();
+    $("#folder_espace_m").text("- ESPACE " + typeMenu);
+  }
+});
+
+
 /*---------------------------------------------------------------*/
 
 //Click sur icone mobile pour afficher le menu
@@ -182,6 +199,8 @@ function checkIfOngletOuvert(id){
     $("#folder_retraite_m").text("+ RETRAITES");
     $("#propos_m").hide();
     $("#folder_propos_m").text("+ À PROPOS");
+    $("#espace_m").hide();
+    $("#folder_espace_m").text("+ ESPACE " + typeMenu);
     clickMenuMobile = 0;
   }
 }
