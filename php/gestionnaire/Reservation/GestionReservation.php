@@ -535,7 +535,7 @@ public function selectAll($user_id = null){
     }
 
     $stmt = $conn->prepare($requete);
-    $stmt->execute();
+    $status = $stmt->execute();
     $result = $stmt->get_result();
 
     if($result->num_rows == 0){
