@@ -153,5 +153,28 @@ class GestionClient{
       return $arrClient;
     }
 
+    /**
+    * Update le mot de passe d'un utilisateur
+    *
+    */
+    public function updateMotDePasse($user_id, $password){
+      $conn = ($connexion = new Connexion())->do();
+      $motDePasseHash = password_hash($password, PASSWORD_ARGON2I);
+
+
+      $request = "UPDATE compte_utilisateur
+                  SET mot_de_passe = ?
+                  WHERE fk_utilisateur = ?";
+      $stmt = $conn->prepare($request);
+      $stmt->bind_param('si', $motDePasseHash, $user_id);
+      $status = $stmt->execute();
+
+      if($status === false){
+        trigger_error($stmt->error, E_USER_ERROR);
+        return false;
+      }
+      return true;
+    }
+
 }
  ?>

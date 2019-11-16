@@ -22,6 +22,52 @@ $(window).keydown(function(event){
   }
 });
 
+// Apres que le document soit prêt (après le window.onload = function())
+$( document ).ready(function() {
+  // FENÊTRE MODALE modifier-mon-mot-de-passe
+  password_modal_close = $('#modifier-mon-mot-de-passe-btn-close');
+  password_modal_fermer = $('#modifier-mon-mot-de-passe-btn-fermer');
+  password_modal_sauvegarder = $('#modifier-mon-mot-de-passe-btn-sauvegarder');
+
+
+  password_modal_sauvegarder.click(updateMotDePasse);
+});
+
+function updateMotDePasse(){
+  var actualPassword = $('#mot-de-passe-actuel').val();
+  var newPassword = $('#mot-de-passe-nouveau').val();
+  var newPasswordConfirm = $('#mot-de-passe-confirmation').val();
+
+  // TODO: Si le mot de passe actuel n'est pas bon
+  
+
+  // Le nouveau mot de passe ne correspond pas avec celui de confirmation
+  if(newPassword != newPasswordConfirm){
+    // Le mentionner au client
+    alert("La confirmation du mot de passe ne correspond pas à celui entré.");
+    return;
+  }
+
+  var dataClient = {
+    id: CLIENT.id,
+    password: $('#mot-de-passe-nouveau').val()
+  };
+
+  var dataClientJson = JSON.stringify(dataClient);
+
+// Requête ajax pour update le mot de passe
+  $.ajax({
+    url: "../../php/script/Client/updateMotDePasse.php",
+    data: {data: dataClientJson},
+    async:false,
+    success: function(result){
+      console.log(result);
+      alert("good job brootha");
+    },
+  });
+
+}
+
 //Lorsque le document est prêt
 window.onload = function(){
   listInput = document.querySelectorAll("input");
@@ -67,8 +113,8 @@ window.onload = function(){
   ville = document.getElementById("ville");
   pays = document.getElementById("pays"); // C'est un select
 
-
   setMonProfilChamps();
+
 
   prenom.addEventListener("focusout", function(){
     if(verifieNomPrenom(prenom)){
