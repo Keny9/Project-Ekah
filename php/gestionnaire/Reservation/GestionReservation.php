@@ -519,7 +519,7 @@ public function selectAll($user_id = null){
     $conn = ($connexion = new Connexion())->do();
 
     $requete = "SELECT r.id, r.id_etat, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS id_suivi, g.no_groupe, i.date_inscription,
-                CONCAT(u.prenom, ' ' , u.nom) AS client, u.id AS client_id , CONCAT(f.prenom, ' ' , f.nom) AS facilitateur
+                CONCAT(u.prenom, ' ' , u.nom) AS client, u.id AS client_id, CONCAT(f.prenom, ' ' , f.nom) AS facilitateur
                 FROM reservation r
                 LEFT JOIN utilisateur f ON r.id_facilitateur = f.id
                 LEFT JOIN activite a ON r.id_activite = a.id
@@ -528,7 +528,7 @@ public function selectAll($user_id = null){
                 LEFT JOIN suivi s ON r.id_suivi = s.id
                 LEFT JOIN groupe g ON r.id_groupe = g.no_groupe
                 LEFT JOIN inscription i ON g.no_groupe = i.id_groupe
-                LEFT JOIN utilisateur u ON i.id_utilisateur = u.id;";
+                LEFT JOIN utilisateur u ON i.id_utilisateur = u.id";
 
     if($id_client){
       $requete .= " WHERE u.id = $id_client;";
