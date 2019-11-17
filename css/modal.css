@@ -42,3 +42,7 @@
     .modal-content{
       width: 100%;
     }
+
+p{
+  margin-bottom:0;
+}
