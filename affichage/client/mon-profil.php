@@ -27,7 +27,8 @@ session_start();
      <link rel="stylesheet" href="../../css/inscription.css">
      <link rel="stylesheet" href="../../css/modal.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+     
+<?php //<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> ?>
      <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -42,6 +43,24 @@ session_start();
    <body>
      <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
      <?php include "modifier-mon-mot-de-passe.php"; ?>
+     <div id="modal-inscription" class="modal-inscription">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-align-middle img-conf-insc">
+              <img src="../../img/crochet.png" alt="Confirmation inscription">
+           </div>
+           <div class="modal-align-middle txt-bravo">
+             <p>Changements faits</p>
+           </div>
+           <div class="modal-align-middle txt-modal-bienv">
+             <p>Modification effectutée avec succès</p>
+           </div>
+           <div class="modal-align-middle btn-modal-insc">
+           <button type="button" id="modal-inscription-btn-confirm" class="btn-confirmer input-court" name="button">Confirmer</button>
+           </div>
+         </div>
+       </div>
+     </div>
      <main>
        <div class="inscription">
          <div class="logo-inscr">
@@ -60,22 +79,7 @@ session_start();
          </div>
          <form class="form-inscr" id="mickeymouse" action="" method="post">
 
-           <div id="modal-inscription" class="modal-inscription">
-             <div class="modal-content">
-               <div class="modal-align-middle img-conf-insc">
-                  <img src="../../img/crochet.png" alt="Confirmation inscription">
-               </div>
-               <div class="modal-align-middle txt-bravo">
-                 <p>Changements faits</p>
-               </div>
-               <div class="modal-align-middle txt-modal-bienv">
-                 <p>Modification effectutée avec succès</p>
-               </div>
-               <div class="modal-align-middle btn-modal-insc">
-               <button type="button" id="modal-inscription-btn-confirm" class="btn-confirmer input-court" name="button">Confirmer</button>
-               </div>
-             </div>
-           </div>
+
 
            <div class="group-input-inscr">
              <div class="box-select">
