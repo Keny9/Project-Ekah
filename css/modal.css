@@ -2,6 +2,9 @@
   border: none;
   width: 100%;
 }
+.modal-inscription{
+  padding-top:0;
+}
 .modal-header{
   background-color: #034D54;
   color: #F05929;

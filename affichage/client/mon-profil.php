@@ -42,6 +42,24 @@ session_start();
    <body>
      <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
      <?php include "modifier-mon-mot-de-passe.php"; ?>
+     <div id="modal-inscription" class="modal-inscription">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-align-middle img-conf-insc">
+              <img src="../../img/crochet.png" alt="Confirmation inscription">
+           </div>
+           <div class="modal-align-middle txt-bravo">
+             <p>Changements faits</p>
+           </div>
+           <div class="modal-align-middle txt-modal-bienv">
+             <p>Modification effectutée avec succès</p>
+           </div>
+           <div class="modal-align-middle btn-modal-insc">
+           <button type="button" id="modal-inscription-btn-confirm" class="btn-confirmer input-court" name="button">Confirmer</button>
+           </div>
+         </div>
+       </div>
+     </div>
      <main>
        <div class="inscription">
          <div class="logo-inscr">
@@ -60,22 +78,7 @@ session_start();
          </div>
          <form class="form-inscr" id="mickeymouse" action="" method="post">
 
-           <div id="modal-inscription" class="modal-inscription">
-             <div class="modal-content">
-               <div class="modal-align-middle img-conf-insc">
-                  <img src="../../img/crochet.png" alt="Confirmation inscription">
-               </div>
-               <div class="modal-align-middle txt-bravo">
-                 <p>Changements faits</p>
-               </div>
-               <div class="modal-align-middle txt-modal-bienv">
-                 <p>Modification effectutée avec succès</p>
-               </div>
-               <div class="modal-align-middle btn-modal-insc">
-               <button type="button" id="modal-inscription-btn-confirm" class="btn-confirmer input-court" name="button">Confirmer</button>
-               </div>
-             </div>
-           </div>
+
 
            <div class="group-input-inscr">
              <div class="box-select">
