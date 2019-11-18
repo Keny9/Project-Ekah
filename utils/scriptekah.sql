@@ -279,6 +279,7 @@ nom varchar(30),
 PRIMARY KEY (id)
 );
 
+
 CREATE TABLE ta_disponibilite_specialiste (
 id_specialiste INT NOT NULL,
 id_disponibilite INT NOT NULL,

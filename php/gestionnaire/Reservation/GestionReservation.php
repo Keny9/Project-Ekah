@@ -27,7 +27,7 @@ class GestionReservation{
       $conn = $tempconn->getConnexion();
       $reservation = null;
 
-      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
+      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
                 INNER JOIN activite ON id_activite = activite.id
                 INNER JOIN type_activite ON id_type_activite = type_activite.id
                 WHERE type_activite.id = 1 AND id_etat = 1 AND date_rendez_vous >= now()";
@@ -43,7 +43,7 @@ class GestionReservation{
                                          $row['id_emplacement'], $row['id_suivi'],
                                          $row['id_activite'], $row['id_groupe'],
                                          $row['date_rendez_vous'],
-                                         $row['heure_debut'], $row['heure_fin']);
+                                         $row['id_region'], $row['heure_fin']);
         }
       }
 
@@ -73,7 +73,7 @@ class GestionReservation{
                                            $row['id_emplacement'], $row['id_suivi'],
                                            $row['id_activite'], $row['id_groupe'],
                                            $row['date_rendez_vous'],
-                                           $row['heure_debut'], $row['heure_fin']);
+                                           $row['id_region'], $row['heure_fin']);
           }
         }
 
@@ -145,7 +145,7 @@ class GestionReservation{
     $conn = $tempconn->getConnexion();
     $reservation = null;
 
-    $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
+    $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
               INNER JOIN activite ON id_activite = activite.id
               INNER JOIN type_activite ON id_type_activite = type_activite.id
               WHERE type_activite.id = 1 AND id_etat = 1";
@@ -228,7 +228,7 @@ class GestionReservation{
      $conn->commit();
      return $suivi_id;
    }
-   
+
 
   /**
   * Insert un groupe dans la BD
