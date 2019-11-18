@@ -1,18 +1,14 @@
 
 <?php
-//2019-10-27
-//Maxime
+// Script qui sert à valider la connexion d'un utilisateur
+// 2019-10-27
+// Maxime
 
 include_once  $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Client/GestionLogin.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 $gestionLogin = new GestionLogin();
-
-// Le paramètre 'type' contient le user_type_id de restriction
-
-
 
 // La session contient un utilisateur
 if (isset($_SESSION['logged_in_user_id']) && !empty($_SESSION['logged_in_user_id'])){

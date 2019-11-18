@@ -152,5 +152,27 @@ class GestionActivite{
     }
   }
 
+  /**
+  * Retourne le id_type_activite de l'activite, ou null
+  *
+  **/
+  public function getActiviteTypeId($id){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+
+    $requete= "SELECT id_type_activite FROM activite WHERE id = ?;";
+    $stmt=$conn->prepare($requete);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $id_type_activite = null;
+    if ($row = $result->fetch_assoc()){ // Il y a un résultat
+      $id_type_activite = $row['id_type_activite'];
+    }
+
+    return $id_type_activite;
+  }
+
 }
 ?>

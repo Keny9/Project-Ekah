@@ -9,6 +9,119 @@
  */
 
 var client_arr = null;
+var   user_courriel = null;
+
+// Appuie sur la touche ..
+$(window).keydown(function(event){
+  // .. Enter
+  if(event.keyCode == 13) {
+    event.preventDefault();
+    // Fait l'action d'un clique sur le bouton 'Sauvegarder'
+    $('#btnSauvegarder').click();
+    return false;
+  }
+});
+
+// Apres que le document soit prêt (après le window.onload = function())
+$( document ).ready(function() {
+  // FENÊTRE MODALE modifier-mon-mot-de-passe
+  password_modal_close = document.getElementById('modifier-mon-mot-de-passe-btn-close');
+  password_modal_fermer = document.getElementById('modifier-mon-mot-de-passe-btn-fermer');
+  password_modal_sauvegarder = document.getElementById('modifier-mon-mot-de-passe-btn-sauvegarder');
+
+  password_modal_close.removeAttribute("data-dismiss");
+  password_modal_fermer.removeAttribute("data-dismiss");
+  password_modal_sauvegarder.removeAttribute("data-dismiss");
+
+  password_modal_sauvegarder.setAttribute("onclick", "updateMotDePasse()");
+  modalDataDismiss(password_modal_close);
+  modalDataDismiss(password_modal_fermer);
+
+  $("#modifier-mon-mot-de-passe-modal").on('hidden.bs.modal', function(){
+    // Reset les champs
+    document.getElementById('mot-de-passe-actuel').value='';
+    document.getElementById('mot-de-passe-nouveau').value='';
+    document.getElementById('mot-de-passe-confirmation').value='';
+  });
+
+});
+
+function updateMotDePasse(){
+  var actualPassword = document.getElementById('mot-de-passe-actuel');
+  var newPassword = document.getElementById('mot-de-passe-nouveau');
+  var newPasswordConfirm = document.getElementById('mot-de-passe-confirmation');
+
+  // mot de passe actuel est bien le bon
+  if(!actualPasswordValid(CLIENT['id'], actualPassword.value)){
+    alert("Le mot de passe actuel ne correspond pas à votre mot de passe actuel.")
+    return;
+  }
+
+  // test regex du nouveau mot de passe
+  if(!verifieMotDePasse(newPassword)){
+    console.log("newPassword regex failed");
+    alert("Le nouveau mot de passe doit contenir :\n au minimum 1 majuscule;\n au minimum 1 chiffre;\n au minimum 8 caractères.")
+    return;
+  }
+
+  // Le mot de passe de confirmation n'est pas le même que le nouveau mot de passe
+  if(newPassword.value != newPasswordConfirm.value){
+    // Le mentionner au client
+    console.log("Le nouveau mot de passe et la confirmation de celui-ci ne correspondent pas.");
+    alert("Le nouveau mot de passe et la confirmation de celui-ci ne correspondent pas.");
+    return;
+  }
+
+ var dataClient = {
+    id: CLIENT.id,
+    password: $('#mot-de-passe-nouveau').val()
+  };
+
+  var dataClientJson = JSON.stringify(dataClient);
+
+// Requête ajax pour update le mot de passe
+  $.ajax({
+    url: "../../php/script/Client/updateMotDePasse.php",
+    data: {data: dataClientJson},
+    async:false,
+    success: function(result){
+      console.log(result);
+      alert("Modification du mot de passe effectuée avec succès.");
+    },
+  });
+
+  password_modal_close.setAttribute("data-dismiss", "modal");
+  password_modal_fermer.setAttribute("data-dismiss", "modal");
+  password_modal_sauvegarder.setAttribute("data-dismiss", "modal");
+}
+
+// Set l'attribut data-dismiss à modal. e = element html
+function modalDataDismiss(e){
+  e.setAttribute("data-dismiss", "modal");
+}
+
+function actualPasswordValid(client_id, mot_de_passe){
+  var reponse = false;
+  $.ajax({
+    url: "../../php/script/Client/comparerMotDePasse.php",
+    data: {client_id: client_id,
+           mot_de_passe : mot_de_passe},
+    async:false,
+    success: function(result){
+      if(result == "true"){
+        console.log("actualPasswordValid : true");
+        reponse = true;
+      }
+      else if (result == "false"){
+        console.log("actualPasswordValid : false");
+      }
+      else{
+        console.log("actualPasswordValid : else");
+      }
+    },
+  });
+  return reponse;
+}
 
 //Lorsque le document est prêt
 window.onload = function(){
@@ -45,7 +158,7 @@ window.onload = function(){
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
   telephone = document.getElementById("telephone");
-  motDePasse = document.getElementById("motDePasse");
+  //motDePasse = document.getElementById("motDePasse");
   codePostal = document.getElementById("codePostal");
   jour = document.getElementById("jour");
   mois = document.getElementById("mois"); //C'est un select
@@ -56,6 +169,7 @@ window.onload = function(){
   pays = document.getElementById("pays"); // C'est un select
 
   setMonProfilChamps();
+
 
   prenom.addEventListener("focusout", function(){
     if(verifieNomPrenom(prenom)){
@@ -81,11 +195,11 @@ window.onload = function(){
     }
   });
 
-  motDePasse.addEventListener("focusout", function(){
+/*  motDePasse.addEventListener("focusout", function(){
     if(verifieMotDePasse(motDePasse)){
       inputUnrequired(motDePasse, "Mot de passe");
     }
-  });
+  });*/
 
   jour.addEventListener("focusout", function(){
     if(verifieJour(jour)){
@@ -128,6 +242,11 @@ window.onload = function(){
       inputUnrequired(ville, "Ville");
     }
   });
+
+  // Set le onClick du bouton de confirmation de la fenêtre modale de confirmation
+  $('#modal-inscription-btn-confirm').click(function(){
+    location.reload(); // Reload la page
+  });
 };
 
 // Initialise les champs avec les infos du client
@@ -147,29 +266,13 @@ function setMonProfilChamps(){
   rue.value = CLIENT['rue'];
   ville.value = CLIENT['ville'];
   pays.value = CLIENT['pays'];
+  user_courriel = CLIENT['courriel'];
 
   // Enlève le 0 de trop dans le mois de naissance
   if(parseInt(date_naissance[1]) < 10){
     mois.value = date_naissance[1].substr(1);
   }
 }
-
-//Retourne un array d'info du client, ou null si erreur
-/*function getInfoClient(){
-  $.ajax({
-    async: false,
-    url: "../../php/script/Client/getMonProfil.php",
-    data: {"courriel": $('#courriel').val()},
-    success: function(result){
-      if(result == 'false'){
-        bool = false;
-      }
-    },
-    error: function (jQXHR, textStatus, errorThrown) {
-        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
-    }
-  });
-}*/
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
@@ -212,7 +315,7 @@ function setMonProfilChamps(){
    groupAdressEmpty = true; //Adresse ne sont pas rempli
 
    //Verification des elements qui sont *required
-   if(siVide(prenom) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(motDePasse)){
+   if(siVide(prenom) || siVide(nom) || siVide(courriel) || siVide(telephone)/* || siVide(motDePasse)*/){
      indiqueChampVide();
      document.getElementById("error-blank").style.display = "block";
      return false;
@@ -250,7 +353,7 @@ function setMonProfilChamps(){
    document.getElementById("error-blank").style.display = "none";
 
    //Verification des input avec les regex qui sont *required
-   if(!verifieNomPrenom(prenom) || !verifieNomPrenom(nom) || !verifieCourriel(courriel) || !verifieTelephone(telephone) || !verifieMotDePasse(motDePasse)){
+   if(!verifieNomPrenom(prenom) || !verifieNomPrenom(nom) || !verifieCourriel(courriel) || !verifieTelephone(telephone)/* || !verifieMotDePasse(motDePasse)*/){
      indiqueChampInvalide();
      return false;
    }
@@ -279,17 +382,25 @@ function setMonProfilChamps(){
      }
    }
 
-   // Si le courriel existe déjà dans la BD
-   if(courrielExiste()){
-     inputRequired(courriel);
-     document.getElementById("error-courriel").style.display = "block";
-     return false;
+   // si le courriel entré est différent de celui utilisé
+   if(user_courriel != courriel.value){
+     // Si le courriel existe déjà dans la BD
+     if(courrielExiste()){
+       inputRequired(courriel);
+       document.getElementById("error-courriel").style.display = "block";
+       return false;
+     }
    }
 
+
    // Change l'attribut Action du Formulaire
-   $("#modal-inscription").css("display", "block");
-   $('#mickeymouse').attr('action', '../../php/script/Client/ajouterClient.php');
-   return true;
+
+//   $('#mickeymouse').attr('action', '../../php/script/Client/modifierMonProfil.php');
+  // return true;
+
+  updateProfil();
+
+  return true;
  }
 
  //Verifie que le nom de famille ou le prenom est valide (Regex)
@@ -363,10 +474,10 @@ function setMonProfilChamps(){
      inputRequired(telephone);
    }
 
-   if(siVide(motDePasse)){
+/*   if(siVide(motDePasse)){
      inputRequired(motDePasse);
    }
-
+*/
  }
 
 //Indique quels champs sont vide pour la date de naissance
@@ -426,12 +537,12 @@ function setMonProfilChamps(){
      telephone.placeholder = "Téléphone invalide *";
    }
 
-   if(!verifieMotDePasse(motDePasse)){
+/*   if(!verifieMotDePasse(motDePasse)){
      inputRequired(motDePasse);
      motDePasse.value = null;
      motDePasse.placeholder = "Mot de passe invalide *";
      document.getElementById("block-requis").style.border = "1px solid #eb0909";
-   }
+   }*/
  }
 
 //Si les champs sont remplis, indique lesquels sont invalides
@@ -518,3 +629,52 @@ function setMonProfilChamps(){
    });
    return bool;
  }
+
+ // Update le profil du client
+ function updateProfil(){
+//   if(valideFormProfil() == true){
+     var jour = $('#jour').val();
+     var mois = $('#mois').val();
+     var annee = $('#annee').val();
+     var date_naissance = null;
+
+
+
+     // Toutes les variables de la date de naissance sont entrées
+     if(jour && mois && annee){
+       var date_naissance = annee+"-"+mois+"-"+jour;
+     }
+
+     var dataClient = {
+       id_client: CLIENT.id,
+       id_adresse: CLIENT.id_adresse,
+       telephone: $('#telephone').val(),
+       date_naissance: date_naissance,
+       no_civique: $('#noAdresse').val(),
+       rue: $('#rue').val(),
+       ville: $('#ville').val(),
+       code_postal: $('#codePostal').val(),
+       pays: $('#pays').val(),
+       courriel: $('#courriel').val(),
+       nom: $('#nom').val(),
+       prenom: $('#prenom').val()
+     };
+
+     var dataClientJson = JSON.stringify(dataClient);
+
+     $.ajax({
+       url: "../../php/script/Client/updateProfilClient.php",
+       data: {data: dataClientJson},
+       async:false,
+       success: function(result){
+         console.log(result);
+         //location.reload();
+         //Affiche la fenêtre modale
+         $("#modal-inscription").css("display", "block");
+       },
+     });
+   }
+//   else{
+//     return false;
+//   }
+// }

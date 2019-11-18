@@ -1,23 +1,88 @@
+// var calendar = null;
+//Fonction pour afficher les events du calendrier dans le calendrier
+function callAjax(){
 
-$(document).ready(function() {
+  var idFacilitateur = null;
+  idFacilitateur = $('#facilitateur').val();
+  // idFacilitateur = 1;
+
+  if(idFacilitateur == "vide"){
+    idFacilitateur = -1;
+  }
+
+  return $.ajax({
+    type: "POST",
+    async: false,
+    dataType: "json",
+    url: "../../php/script/Horaire/afficherHoraireFacilitateur.php",
+    data: {idFacilitateur: idFacilitateur}
+  });
+}
+
+//Les event onclick pour les boutons
+function calendrierReady(calendar){
   $( "#month" ).click(function() {
     var $this = $(this);
     calendar.view($this.data('calendar-view'));
-  });
-  $( "#day" ).click(function() {
-    var $this = $(this);
-    calendar.view($this.data('calendar-view'));
+
+    getEvents();
+    apresAjax();
+    calendar.view();
   });
 
   $( "#next" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
-
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
   });
+}
+
+//Load le calendrier avec tous les events (De base)
+function loadCalendrier(events){
+  // console.log("Load");
+ calendar = $("#calendar").calendar(
+    {
+      tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+      weekbox: false,
+      events_source: events,
+
+      onAfterViewLoad: function(view) {
+        $('.page-header h3').text(this.getTitle());
+      }
+    });
+    calendrierReady(calendar);
+
+    return calendar;
+}
+
+//Afficher les dispo du facilitateur choisi
+function getEvents(){
+  callAjax();
+}
+
+//Toujours mettre après getEvents
+function apresAjax(){
+  $.when(callAjax()).done(function(response){
+    calendar = loadCalendrier(response.result);
+    calendar.view();
+    return calendar;
+  });
+}
+
+$(document).ready(function() {
+  calendar = apresAjax();
+  getEvents();
+  // calendar.view();
+
+  $("#facilitateur").change(function() {
+    getEvents();
+    apresAjax();
+    calendar.view();
+  });
+
 
   var i = 0;
   $.each($('.cal-day-hour-part'), function(index, $event){
@@ -34,9 +99,6 @@ $(document).ready(function() {
 
       var heure = heureElm.text();
       var date = $(".h3").text();
-
-      // console.log(heure);
-      // console.log(date);
 
       var couleur = $this.css("background-color");
 
@@ -55,8 +117,6 @@ $(document).ready(function() {
 
 //Ajouter une nouvelle disponibilite à la base de données
 function envoyeDispo(heure, date){
-  console.log(heure + " " + date);
-
   var dates = date.split(" ");
   var jour = dates[1];
   var annee = dates[3];
@@ -67,13 +127,14 @@ function envoyeDispo(heure, date){
   var moment = new Date(annee, mois, jour, heures[0], heures[1]);
   moment = new Date(moment.getTime() + 30*60000);
 
-  // console.log(moment);
-
   var heure_debut = heure;
   var heure_fin = "" + moment.getHours() + ":" + moment.getMinutes();
 
-   console.log(annee + " " + mois + " " + jour + " " + heure_debut + " " + heure_fin);
+  var idFacilitateur = null;
+  idFacilitateur = $('#facilitateur').val();
 
+  var region = null;
+  region = $('#region').val();
 
   $.ajax({
     type: "POST",
@@ -83,7 +144,9 @@ function envoyeDispo(heure, date){
            "mois": mois,
            "jour": jour,
            "heure_debut": heure_debut,
-           "heure_fin": heure_fin
+           "heure_fin": heure_fin,
+           "idFacilitateur": idFacilitateur,
+           "region": region
          },
     success: function(result){
         bool = true;
@@ -113,8 +176,10 @@ function supprimerDispo(heure, date){
   var heure_debut = heure;
   var heure_fin = "" + moment.getHours() + ":" + moment.getMinutes();
 
-   // console.log(annee + " " + mois + " " + jour + " " + heure_debut + " " + heure_fin);
+  var idFacilitateur = null;
+  idFacilitateur = $('#facilitateur').val();
 
+  // console.log(idFacilitateur);
 
   $.ajax({
     type: "POST",
@@ -125,11 +190,11 @@ function supprimerDispo(heure, date){
            "mois": mois,
            "jour": jour,
            "heure_debut": heure_debut,
-           "heure_fin": heure_fin
+           "heure_fin": heure_fin,
+           "idFacilitateur": idFacilitateur
          },
     success: function(data){
         bool = true;
-        console.log("Suppression");
         console.log(data);
     },
     error: function (jQXHR, textStatus, errorThrown) {

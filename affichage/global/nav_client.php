@@ -1,7 +1,7 @@
 <div id="side_menu" class="side-menu">
   <ul class="list-menu">
     <li class="li-menu">
-      <a class="link-menu" href="#">
+      <a class="link-menu" href="/Project-Ekah/affichage/client/mon-profil.php">
         <span id="icon-compte" class="picto-menu"></span>
         <span class="text-menu"><p>Mon profil</p></span>
       </a>
@@ -27,9 +27,9 @@
     </li>
     <hr class="hr-menu">
     <li class="li-menu">
-      <a class="link-menu" href="#">
+      <a class="link-menu" href="../global/login.php">
         <span id="icon-direction" class="picto-menu"></span>
-        <span class="text-menu"><p>Se déconnecter</p></span>
+        <span class="text-menu" ><p>Se déconnecter</p></span>
       </a>
     </li>
   </ul>

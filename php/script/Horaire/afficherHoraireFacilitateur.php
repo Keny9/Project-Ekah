@@ -10,14 +10,18 @@
  */
 
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
 
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
  if (session_status() === PHP_SESSION_NONE){session_start();}
 
-// $id = 1;
-$id = $_SESSION['logged_in_user_id'];
+// $id = 2;
+$id = $_POST['idFacilitateur'];
+
+if($id == -1){
+  $id = $_SESSION['logged_in_user_id'];
+}
 // print_r($id);
 
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page 'mon-profil'. Le client peut modifier ses informations personnelles
  * ici.
@@ -9,13 +10,9 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-11-03
  */
-
  $page_type=1;
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
-
- //$client_id = $_SESSION['logged_in_user_id'];
-
 
  ?>
 
@@ -24,30 +21,53 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-     <link rel="stylesheet" href="../../css/inscription.css">
+     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href="../../css/main.css">
-     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
-     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="../../css/inscription.css">
+     <link rel="stylesheet" href="../../css/modal.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+     
+<?php //<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> ?>
      <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="../../js/global.js"></script>
      <script type="text/javascript">
        // variable qui contient un array JSON des informations du client
        const CLIENT = <?php echo $client_json ?>;
      </script>
      <script type="text/javascript" src="../../js/mon-profil.js"></script>
-     <title>Inscription</title>
+     <title>Mon profil</title>
    </head>
    <body>
      <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
+     <?php include "modifier-mon-mot-de-passe.php"; ?>
+     <div id="modal-inscription" class="modal-inscription">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-align-middle img-conf-insc">
+              <img src="../../img/crochet.png" alt="Confirmation inscription">
+           </div>
+           <div class="modal-align-middle txt-bravo">
+             <p>Changements faits</p>
+           </div>
+           <div class="modal-align-middle txt-modal-bienv">
+             <p>Modification effectutée avec succès</p>
+           </div>
+           <div class="modal-align-middle btn-modal-insc">
+           <button type="button" id="modal-inscription-btn-confirm" class="btn-confirmer input-court" name="button">Confirmer</button>
+           </div>
+         </div>
+       </div>
+     </div>
      <main>
        <div class="inscription">
          <div class="logo-inscr">
            <img src="../../img/logo_ekah_header.png" alt="Ekah">
          </div>
          <div class="txt-inscr">
-           <p>Créer un compte</p>
-         </div>
-         <div class="txt-bienv">
-           <p>Nous désirons mieux vous connaître.</p>
+           <p>Mon profil</p>
          </div>
          <div class="error" id="error-blank">
            <div class="icon-error">
@@ -59,22 +79,7 @@
          </div>
          <form class="form-inscr" id="mickeymouse" action="" method="post">
 
-           <div id="modal-inscription" class="modal-inscription">
-             <div class="modal-content">
-               <div class="modal-align-middle img-conf-insc">
-                  <img src="../../img/crochet.png" alt="Confirmation inscription">
-               </div>
-               <div class="modal-align-middle txt-bravo">
-                 <p>Félicitations !</p>
-               </div>
-               <div class="modal-align-middle txt-modal-bienv">
-                 <p>Bienvenue dans la famille Ekah !</p>
-               </div>
-               <div class="modal-align-middle btn-modal-insc">
-                 <button type="submit" class="btn-confirmer input-court" name="button">Se connecter</button>
-               </div>
-             </div>
-           </div>
+
 
            <div class="group-input-inscr">
              <div class="box-select">
@@ -114,7 +119,7 @@
              <input type="text" name="codePostal" id="codePostal" value="" class="input-inscr input-long" placeholder="Code postal">
            </div>
            <div class="group-input-inscr">
-             <input type="text" name="noAdresse" id="noAdresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
+             <input type="text" name="noAdresse" id="noAdresse" title="Numéro d'adresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
              <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
              <input type="text" name="ville" id="ville" value="" class="input-inscr input-date second-input" placeholder="Ville">
            </div>
@@ -127,6 +132,9 @@
              </div>
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
+
+<<<<<<< HEAD
+<!--
            <div class="group-input-inscr">
              <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
              <div id="block-requis" class="block-requis-psw">
@@ -135,16 +143,18 @@
                <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 lettre majuscule.</p><br><br>
              </div>
            </div>
+-->
+          <div class="group-input-inscr">
+            <button type="button" id="modifier-mon-mot-de-passe-toggle" class="btn btn-link" data-toggle="modal" data-target="#modifier-mon-mot-de-passe-modal">Modifier mon mot de passe</button>
+          </div>
            <div class="group-input-inscr">
-             <button type="button" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
-           </div>
-           <div class="group-input-inscr btn-espace">
-            <a href="./login.php"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>
+             <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="validerFormInscription()">Sauvegarder</button>
            </div>
          </form>
        </div>
 
      </main>
 
+     <?php include "../global/footer.php"; ?>
    </body>
  </html>

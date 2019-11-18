@@ -10,11 +10,21 @@
 
  var calendrier = null;
 
+
+ $(function(ready){
+   // Set le onChange du select pour les services
+   $("#service").change(function() {
+     $.ajax({url: "/Project-Ekah/php/script/Client/reservationInputComplementaire.php",
+     data: {service_id : $("#service").val()},
+     success: function(result){
+       $("#question-complementaire").css("display", result);
+     }});
+   });
+ });
+
  //Fonction pour afficher les events du calendrier dans le calendrier
  function callAjax(){
-   // console.log("Ajax");
 
-//
    var idFacilitateur = null;
    idFacilitateur = $('.facilitateur-select').attr("id");
    // idFacilitateur = 1;
@@ -296,7 +306,7 @@ $(document).ready(function() {
   dureeInput = document.getElementById("duree");
 
   //Input de la page reservation groupe
-  serviceGroupe = document.getElementById("service-groupe");
+  serviceGroupeInput = document.getElementById("serviceGroupe");
   entreprise = document.getElementById("entreprise");
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
@@ -334,7 +344,12 @@ $(document).ready(function() {
 function clickSuivant(){
   let facilitateur_id = $('.facilitateur-select').attr("id");
   let date_rendez_vous = $('.selectionne').children().data('calDate');
+  let heure = $('#dispo').find('option:selected').text();
   let id_dispo = $('#dispo').find('option:selected').val();
+  let id_region = $('#region').find('option:selected').val();
+  console.log(id_region);
+
+  // console.log(heure);
 
   if(facilitateur_id == null){
     facilitateur_id = -1;
@@ -343,9 +358,13 @@ function clickSuivant(){
     date_rendez_vous = "2000-01-01";
   }
 
+  date_rendez_vous = date_rendez_vous + " " + heure;
+  // console.log(date_rendez_vous);
+
+
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
-  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo;
+  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
   $('#form-reservation').attr('action', urlRedirectQuestionnaire);
   $('#form-reservation').submit();
@@ -353,6 +372,7 @@ function clickSuivant(){
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
+   console.log(e);
     e.style.borderBottomColor = "#ff0000";
     e.style.setProperty("--color", "#ff0000");
  }
@@ -364,7 +384,7 @@ function clickSuivant(){
 
 //Valider le formulaire de réservation
  function valideReservation(){
-   if(siSelectVide(service) || siSelectVide(dureeInput)){
+   if(siSelectVide(service) || siSelectVide(dureeInput) || siRegionVide() || calendrierVide()){
      indiqueChampVideReservation();
      document.querySelector('.reservation').scrollIntoView({ //Animation scroll smooth au debut du form
        behavior: 'smooth'
@@ -376,8 +396,8 @@ function clickSuivant(){
 
 //Lors de l'envoi d'une demande pour une reservation de groupe.
 function sendEmail(){
-
-  if(siSelectVide(serviceGroupe) || siVide(entreprise) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(vous) || siVide(message)){
+  serviceGroupeInput = document.getElementById("serviceGroupe");
+  if(siSelectVide(serviceGroupeInput) || siVide(entreprise) || siVide(nom) || siVide(courriel) || siVide(telephone) || siVide(vous) || siVide(message)){
     indiqueChampVideGroupe();
     return false;
   }
@@ -393,7 +413,7 @@ function sendEmail(){
     dataType: 'json',
     contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
-      service: serviceGroupe.options[serviceGroupe.selectedIndex].value,
+      service: serviceGroupeInput.options[serviceGroupeInput.selectedIndex].value,
       entreprise: entreprise.value,
       nom: nom.value,
       courriel: courriel.value,
@@ -408,6 +428,11 @@ function sendEmail(){
         $('#modal-demande').css("display", "block");
         $("#form-reservation-groupe").css("display", "block");
       }
+      else{
+        $("#loader").css("display", "none");
+        alert("Il y a eu un problème lors de l'envoi du courriel.");
+        window.location.href = "/Project-Ekah/affichage/client/reservation_groupe.php";
+      }
     }, error: function(response){
       console.log(response);
       $("#loader").css("display", "none");
@@ -421,8 +446,8 @@ function sendEmail(){
 //Indique quels champs sont vides à l'utilisateur
  function indiqueChampVideGroupe(){
 
-   if(siSelectVide(serviceGroupe)){
-    inputRequired(serviceGroupe);
+   if(siSelectVide(serviceGroupeInput)){
+    inputRequired(serviceGroupeInput);
    }
 
    if(siVide(entreprise)){
@@ -454,6 +479,8 @@ function sendEmail(){
 function indiqueChampVideReservation(){
   if(siSelectVide(service)){inputRequired(service);}
   if(siSelectVide(dureeInput)){inputRequired(dureeInput);}
+  if(siRegionVide()){inputRequired(document.getElementById("region"));}
+  if(calendrierVide()){inputRequired(document.getElementById("dispo"));}
 }
 
 //Verifie si le champ de l'element est vide
@@ -467,6 +494,24 @@ function siVide(e){
 //Verifie si la selection de la liste est vide
  function siSelectVide(e){
    if(e.options[e.selectedIndex].value == null || e.options[e.selectedIndex].value == "" || e.options[e.selectedIndex].value == "vide"){
+     return true;
+   }
+   return false;
+ }
+
+ //Verifie si la région a été choisi
+  function siRegionVide(){
+    e = document.getElementById("region");
+    if(e.options[e.selectedIndex].value == null || e.options[e.selectedIndex].value == 0 || e.options[e.selectedIndex].value == "0"){
+      return true;
+    }
+    return false;
+  }
+
+//Vérifie si une date et heure à bien été choisi
+ function calendrierVide(){
+   e = $('#dispo');
+   if(e.find('option:selected').val() == "" || e.find('option:selected').val() == -1 || e.find('option:selected').val() == null){
      return true;
    }
    return false;

@@ -15,16 +15,21 @@
 <body>
   <main>
 
-    <select class="" name="" id="dispo" ></select>
+    <select class="select-inscr" name="dispo" id="dispo" onchange="changeListe(this);">
+      <option value="" disabled selected>Choisissez une date d'abord</option>
+    </select>
 
-    <div class="page-header">
-      <h3 class=" h3"></h3>
-    </div>
 
+    <div class="">
+      <div class="page-header">
+        <h3 class=" h3"></h3>
+      </div>
       <div class="btnsCalandrier">
         <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
         <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
       </div>
+    </div>
+
 
 <br><br>
 

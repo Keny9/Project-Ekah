@@ -1,5 +1,14 @@
+/**
+ * Page consulter-reservation.php, un client consulte toutes ses réservations
+ *
+ * Nom :        consulter-reservation.js
+ * Catégorie :   JS script
+ * Auteur :      Karl Boutin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-30
+ */
+
 $(document).ready( function () {
-//  getReservations();
 
 $('#table_reservation').DataTable({
   "ajax":{
@@ -16,7 +25,7 @@ $('#table_reservation').DataTable({
   "language":{
     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
   },
-  responsive: true
+  responsive: false
 });
 
 } );

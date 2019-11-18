@@ -8,9 +8,9 @@
     </li>
     <hr class="hr-menu">
     <li>
-      <a class="link-menu" href="#">
+      <a class="link-menu" href="/Project-Ekah/affichage/admin/gestion-facilitateur.php">
         <span id="icon-compte" class="picto-menu"></span>
-        <span class="text-menu"><p>Gestion des spécialistes</p></span>
+        <span class="text-menu"><p>Les facilitateurs</p></span>
       </a>
     </li>
     <li>
@@ -47,7 +47,7 @@
     </li>
     <hr class="hr-menu">
     <li>
-      <a class="link-menu" href="#">
+      <a class="link-menu" href="../global/login.php">
         <span id="icon-direction" class="picto-menu"></span>
         <span class="text-menu"><p>Se déconnecter</p></span>
       </a>

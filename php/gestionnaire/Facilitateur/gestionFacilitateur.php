@@ -14,6 +14,7 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/disponibilite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Region/Region.php";
 
 
 class GestionFacilitateur{
@@ -96,7 +97,6 @@ class GestionFacilitateur{
 
       $requete= "SELECT * FROM utilisateur
                   INNER JOIN compte_utilisateur ON fk_utilisateur = id
-
                  WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1
                 ";
 
@@ -229,13 +229,12 @@ class GestionFacilitateur{
         $conn = $tempconn->getConnexion();
         $disponibilite[] = null;
 
-        $requete= "SELECT utilisateur.id, nom, prenom, date_inscription, date_naissance, telephone, courriel, photo FROM `utilisateur`
+        $requete= "SELECT utilisateur.id, nom, prenom, date_inscription, date_naissance, telephone, courriel, photo FROM utilisateur
                     INNER JOIN ta_disponibilite_specialiste ON id_specialiste = utilisateur.id
                     INNER JOIN disponibilite ON id_disponibilite = disponibilite.id
                     INNER JOIN compte_utilisateur ON fk_utilisateur = utilisateur.id
-                    WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = ".$idFacilitateur."
-                    GROUP BY utilisateur.id
-                  ";
+                    WHERE disponibilite.id_etat = 1 AND id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = '".$idFacilitateur."'
+                    GROUP BY utilisateur.id;";
 
         $result = $conn->query($requete);
         if(!$result){
@@ -316,6 +315,7 @@ class GestionFacilitateur{
     $heure_debut = $disponibilite->getHeureDebut();
     $heure_fin = $disponibilite->getHeureFin();
     $etat = $disponibilite->getEtat();
+    $region = $disponibilite->getRegion();
 
     $idFacilitateur = $facilitateur->getId();
 
@@ -336,9 +336,9 @@ class GestionFacilitateur{
 
         // Crée un enregistrement dans la table ta_disponibilite_specialiste de la BD
         $stmt = $conn->do()->prepare("INSERT INTO ta_disponibilite_specialiste
-          (id_specialiste, id_disponibilite)
-          VALUES (?, ?);");
-          $stmt->bind_param('ii', $idFacilitateur, $disponibiliteId);
+          (id_specialiste, id_disponibilite, id_region)
+          VALUES (?, ?, ?);");
+          $stmt->bind_param('iii', $idFacilitateur, $disponibiliteId, $region->getId());
           $stmt->execute();
 
         // Commit la transaction
@@ -399,6 +399,122 @@ class GestionFacilitateur{
         trigger_error($conn->error);
       }
     }
+
+    //Retourne un facilitateur avec l'id de sa dispo
+    public function getDispo($id){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+
+      //Il manque le WHERE facilitateur actif
+      $requete= "SELECT * FROM utilisateur
+                   INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
+                   INNER JOIN compte_utilisateur ON fk_utilisateur = id
+                   WHERE id_disponibilite = '".$id."' AND id_type_utilisateur = 2;"; /*************Cette requete ne retourne aucun resultat ?*************/
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      $disponibilite = null;
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $facilitateur = new Facilitateur(
+                                $row['id'],  /*********Juste id ? Serveur web: erreur undefined index utilisateur.id*************/
+                                $row['nom'],
+                                $row['prenom'],
+                                $row['date_inscription'],
+                                $row['courriel'],
+                                $row['date_naissance'],
+                                $row['telephone'],
+                                "actif",
+                                $disponibilite
+                              );
+        }
+      }
+      return $facilitateur;
+    }
+
+    //Retourne une liste de toutes les régions
+    public function getRegion(){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $region = null;
+
+      $requete= "SELECT * FROM region";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $region[] = new Region(
+                                    $row['id'],
+                                    $row['nom']
+                                  );
+        }
+      }
+      return $region;
+    }
+
+    //Retourne la region avec id
+    public function getRegionId($id){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $region = null;
+
+      $requete= "SELECT * FROM region WHERE id = ".$id."";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $region = new Region(
+                                $row['id'],
+                                $row['nom']
+                              );
+        }
+      }
+      return $region;
+    }
+
+    /**
+    * Permet d'obtenir tous les facilitateurs faisant partie de la base de donnée
+    */
+    public function getAllFacilitateur(){
+      $conn = ($connexion = new Connexion())->do();
+
+      $requete = "SELECT u.id, u.nom, u.prenom, u.telephone, c.courriel, e.nom AS etat FROM utilisateur AS u
+                  INNER JOIN compte_utilisateur c ON c.fk_utilisateur = u.id
+                  INNER JOIN etat_disponible e ON e.id = u.id_type_etat_dispo
+                  WHERE id_type_utilisateur = 2;";
+
+      $stmt = $conn->prepare($requete);
+      $status = $stmt->execute();
+      $result = $stmt->get_result();
+
+      if($status === false){
+        trigger_error($stmt->error, E_USER_ERROR);
+      }
+
+      if($result->num_rows == 0){
+        $arrFacilitateur = [];
+        return $arrFacilitateur;
+      }
+
+      while($row = $result->fetch_assoc()){
+        $arrFacilitateur[] = $row;
+      }
+
+      return $arrFacilitateur;
+    }
+
   }
 
  ?>

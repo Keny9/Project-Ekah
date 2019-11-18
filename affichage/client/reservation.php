@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page de reservation generale pour choisir un service
  *
@@ -58,18 +59,23 @@ $activites = $gActivite->getAllActivite();
               <select class="select-inscr input-long" name="service" id="service" onchange="changeListe(this);">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
                 <?php
+                // TODO: cleaner ça
                 $separator = 1;
-                echo "<option disabled class=\"select-section\">EN ATELIER</option>";
+              //  echo "<option disabled class=\"select-section\">EN ATELIER</option>";
+                echo "<option disabled class=\"select-section\">À DOMICILE</option>";
                 foreach ($activites as $activite){
                   if ($activite->getId_type() == 4) break;
 
                   if ($activite->getId_type() != $separator){
                     $separator = $activite->getId_type();
-                    if($separator == 2) echo "<option disabled class=\"select-section\">À DOMICILE</option>";
-                    elseif($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
+                    /*if($separator == 1) echo "<option disabled class=\"select-section\">À DOMICILE</option>";
+                    else*/if($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
                   }
 
-                  echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
+                  if($activite->getId_type() == 2 || $activite->getId_type() == 3){
+                    echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
+                  }
+
                 }
                 ?>
               </select>
@@ -86,10 +92,53 @@ $activites = $gActivite->getAllActivite();
               </select>
             </div>
           </div>
+
+          <div class="group-input-inscr">
+            <label class="label-reservation label-col" for="durree">Région</label>
+            <div class="box-select">
+              <select class="select-inscr input" name="region" id="region">
+                <?php
+                  echo "<option class=\"option-vide\" value=\"0\" selected=\"selected\">Choisir une région</option>";
+                  require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
+                  $gad = new GestionAffichageDispo();
+                  echo $gad->getAllRegion();
+                ?>
+              </select>
+            </div>
+          </div>
+
           <div class="group-input-inscr">
             <label class="label-reservation label-prix" for="prix">Prix</label>
             <p id="prix">120$</p>
           </div>
+
+          <div id="question-complementaire" style="display: none;">
+            <div class="group-input-inscr">
+              <div class="box-select">
+                <select class="select-inscr input-long" name="nbParticipant" id="nbParticipant" onchange="changeListe(this);">
+                  <option disabled selected value="">Nombre de participant</option>
+                  <option value="1">1</option>
+                  <option value="1">2</option>
+                  <option value="1">3</option>
+                  <option value="1">4</option>
+                  <option value="1">5</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="group-input-inscr" >
+              <input type="text" name="noAdresse" id="noAdresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
+              <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
+              <input type="text" name="ville" id="ville" value="" class="input-inscr input-date second-input" placeholder="Ville">
+            </div>
+
+            <?php
+              // Afficher le select pour les régions
+              include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/printRegion.php';
+            ?>
+          </div>
+
+
           <div class="group-input-inscr">
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>
             <input type="checkbox" name="facilitateur" id="facilitateur" onclick="check()" value="">

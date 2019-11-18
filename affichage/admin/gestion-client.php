@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
 * Page pour qu'un admin puisse gérer les clients
 *
@@ -11,6 +12,13 @@
 
 $page_type=2;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
+
+if(isset($_GET['client'])){ //Un client a été sélectionné à partir de la page consulter les réservations
+  $idClient = $_GET['client'];
+}
+else{
+  $idClient = -1; 
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +47,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   <main>
     <div class="reservation">
       <div class="txt-consulter">Gestion des clients</div>
-
+      <input type="hidden" name="idClient" id="idClient" value="<?php echo $idClient; ?>">
       <div class="block-tbl">
         <table id="table_client" class="cell-border hover row-border">
           <thead>

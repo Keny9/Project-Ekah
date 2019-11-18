@@ -8,8 +8,19 @@
  * Date de la dernière modification : 2019-09-30
  */
 
-//Lorsque le document est prêt
 
+ // Appuie sur la touche ..
+ $(window).keydown(function(event){
+   // .. Enter
+   if(event.keyCode == 13) {
+     event.preventDefault();
+     // Fait l'action d'un clique sur le bouton 'Créer un compte'
+     $('#btnInscription').click();
+     return false;
+   }
+ });
+
+//Lorsque le document est prêt
 window.onload = function(){
   listInput = document.querySelectorAll("input");
 
@@ -25,6 +36,7 @@ window.onload = function(){
       e.style.borderBottomColor = "#9E9E9E";
     });
   });
+
 
   prenom = document.getElementById("prenom");
   nom = document.getElementById("nom");
