@@ -1,3 +1,12 @@
+/**
+ * Page consulter-reservation.php, un admin consulte toutes les réservations d'un client
+ *
+ * Nom :        consulter-reservation_client.js
+ * Catégorie :   JS script
+ * Auteur :      Karl Boutin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-30
+ */
 
 $(document).ready(function(){
   selectedLine = null; //La ligne sélectionné

@@ -484,6 +484,36 @@ class GestionFacilitateur{
       return $region;
     }
 
+    /**
+    * Permet d'obtenir tous les facilitateurs faisant partie de la base de donnée
+    */
+    public function getAllFacilitateur(){
+      $conn = ($connexion = new Connexion())->do();
+
+      $requete = "SELECT u.id, u.nom, u.prenom, u.telephone, c.courriel, e.nom AS etat FROM utilisateur AS u
+                  INNER JOIN compte_utilisateur c ON c.fk_utilisateur = u.id
+                  INNER JOIN etat_disponible e ON e.id = u.id_type_etat_dispo
+                  WHERE id_type_utilisateur = 2;";
+
+      $stmt = $conn->prepare($requete);
+      $status = $stmt->execute();
+      $result = $stmt->get_result();
+
+      if($status === false){
+        trigger_error($stmt->error, E_USER_ERROR);
+      }
+
+      if($result->num_rows == 0){
+        $arrFacilitateur = [];
+        return $arrFacilitateur;
+      }
+
+      while($row = $result->fetch_assoc()){
+        $arrFacilitateur[] = $row;
+      }
+
+      return $arrFacilitateur;
+    }
 
   }
 
