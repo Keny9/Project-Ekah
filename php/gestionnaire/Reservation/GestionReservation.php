@@ -21,7 +21,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activit
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php";
 
 class GestionReservation{
-  //Retourne touts les ateliers
+  //Retourne tous les ateliers
     public function getAllAteliers(){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
@@ -30,7 +30,7 @@ class GestionReservation{
       $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
                 INNER JOIN activite ON id_activite = activite.id
                 INNER JOIN type_activite ON id_type_activite = type_activite.id
-                WHERE type_activite.id = 1 AND id_etat = 1";
+                WHERE type_activite.id = 1 AND id_etat = 1 AND date_rendez_vous >= now()";
 
       $result = $conn->query($requete);
       if(!$result){
@@ -50,34 +50,94 @@ class GestionReservation{
       return $reservation;
     }
 
-    public function getIdActiviteReservation($reservation){
-      $tempconn = new Connexion();
-      $conn = $tempconn->getConnexion();
-      $reservation = null;
+    //Retourne un atelier à l'aide d'un id
+      public function getAtelier($id){
+        $conn = ($connexion = new Connexion())->do();
+        $reservation = null;
 
-      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
-                INNER JOIN activite ON id_activite = activite.id
-                INNER JOIN type_activite ON id_type_activite = type_activite.id
-                WHERE type_activite.id = 1 AND id_etat = 1";
+        $requete= "SELECT * FROM reservation
+                  WHERE id = ?";
 
-      $result = $conn->query($requete);
-      if(!$result){
-        trigger_error($conn->error);
-      }
+        $stmt = $conn->prepare($requete);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-      if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-          $reservation[] = new Reservation($row['id'], $row['id_paiement'],
-                                         $row['id_emplacement'], $row['id_suivi'],
-                                         $row['id_activite'], $row['id_groupe'],
-                                         $row['date_rendez_vous'],
-                                         $row['heure_debut'], $row['heure_fin']);
+        if(!$result){
+          trigger_error($conn->error);
         }
+
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            $reservation = new Reservation($row['id'], $row['id_paiement'],
+                                           $row['id_emplacement'], $row['id_suivi'],
+                                           $row['id_activite'], $row['id_groupe'],
+                                           $row['date_rendez_vous'],
+                                           $row['heure_debut'], $row['heure_fin']);
+          }
+        }
+
+        return $reservation;
       }
 
-      return $reservation;
-    }
+    //Retourne l'emplacement d'une reservation à l'aide d'un id
+      public function getEmplacementAtelier($id){
+        $conn = ($connexion = new Connexion())->do();
+        $emplacement = null;
 
+        $requete= "SELECT * FROM emplacement
+                  INNER JOIN reservation ON emplacement.id = id_emplacement
+                  WHERE reservation.id = ?";
+
+        $stmt = $conn->prepare($requete);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if(!$result){
+          trigger_error($conn->error);
+        }
+
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            $emplacement = new Emplacement($row['id'], $row['id_type_emplacement'], $row['nom_lieu']);
+          }
+        }
+
+        return $emplacement;
+      }
+
+
+    //Retourne l'activite d'une reservation à l'aide d'un id
+      public function getActiviteReservation($id){
+        $conn = ($connexion = new Connexion())->do();
+        $activite = null;
+
+        $requete= "SELECT * FROM activite
+                  INNER JOIN reservation ON activite.id = id_activite
+                  WHERE reservation.id = ?";
+
+        $stmt = $conn->prepare($requete);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if(!$result){
+          trigger_error($conn->error);
+        }
+
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            $activite = new Activite( $row['id'],
+                                      $row['id_type_activite'],
+                                      $row['nom'],
+                                      $row['description_breve'],
+                                      $row['description_longue']);
+          }
+        }
+
+        return $activite;
+      }
 
   /**
   *
