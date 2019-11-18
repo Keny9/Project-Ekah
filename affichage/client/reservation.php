@@ -92,6 +92,21 @@ $activites = $gActivite->getAllActivite();
               </select>
             </div>
           </div>
+
+          <div class="group-input-inscr">
+            <label class="label-reservation label-col" for="durree">Région</label>
+            <div class="box-select">
+              <select class="select-inscr input" name="region" id="region">
+                <?php
+                  echo "<option class=\"option-vide\" value=\"0\" selected=\"selected\">Choisir une région</option>";
+                  require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
+                  $gad = new GestionAffichageDispo();
+                  echo $gad->getAllRegion();
+                ?>
+              </select>
+            </div>
+          </div>
+
           <div class="group-input-inscr">
             <label class="label-reservation label-prix" for="prix">Prix</label>
             <p id="prix">120$</p>

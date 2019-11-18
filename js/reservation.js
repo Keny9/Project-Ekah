@@ -346,6 +346,8 @@ function clickSuivant(){
   let date_rendez_vous = $('.selectionne').children().data('calDate');
   let heure = $('#dispo').find('option:selected').text();
   let id_dispo = $('#dispo').find('option:selected').val();
+  let id_region = $('#region').find('option:selected').val();
+  console.log(id_region);
 
   // console.log(heure);
 
@@ -362,7 +364,7 @@ function clickSuivant(){
 
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
-  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo;
+  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
   $('#form-reservation').attr('action', urlRedirectQuestionnaire);
   $('#form-reservation').submit();
@@ -477,6 +479,7 @@ function sendEmail(){
 function indiqueChampVideReservation(){
   if(siSelectVide(service)){inputRequired(service);}
   if(siSelectVide(dureeInput)){inputRequired(dureeInput);}
+  if(siRegionVide()){inputRequired(document.getElementById("region"));}
   if(calendrierVide()){inputRequired(document.getElementById("dispo"));}
 }
 
@@ -495,6 +498,15 @@ function siVide(e){
    }
    return false;
  }
+
+ //Verifie si la région a été choisi
+  function siRegionVide(){
+    e = document.getElementById("region");
+    if(e.options[e.selectedIndex].value == null || e.options[e.selectedIndex].value == 0 || e.options[e.selectedIndex].value == "0"){
+      return true;
+    }
+    return false;
+  }
 
 //Vérifie si une date et heure à bien été choisi
  function calendrierVide(){

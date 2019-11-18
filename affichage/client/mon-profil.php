@@ -27,7 +27,7 @@ session_start();
      <link rel="stylesheet" href="../../css/inscription.css">
      <link rel="stylesheet" href="../../css/modal.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-
+     
 <?php //<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> ?>
      <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -133,11 +133,19 @@ session_start();
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
 
+<<<<<<< HEAD
+<!--
+           <div class="group-input-inscr">
+             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
+             <div id="block-requis" class="block-requis-psw">
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 8 charactères.</p><br><br>
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 nombre et une lettre.</p><br><br>
+               <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 lettre majuscule.</p><br><br>
+             </div>
+           </div>
+-->
           <div class="group-input-inscr">
             <button type="button" id="modifier-mon-mot-de-passe-toggle" class="btn btn-link" data-toggle="modal" data-target="#modifier-mon-mot-de-passe-modal">Modifier mon mot de passe</button>
-          </div>
-          <div class="group-input-inscr">
-            <button type="button" id="ajouter-fichier-perso-toggle" class="btn btn-link" data-toggle="modal" data-target="#ajouter-fichier-perso-modal">Ajouter un fichier personnel</button>
           </div>
            <div class="group-input-inscr">
              <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="validerFormInscription()">Sauvegarder</button>
