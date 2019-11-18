@@ -35,19 +35,16 @@
         }
  }
 
- function afficherDuree(){
+ async function afficherDuree(){
+   await sleep(100);
    for(i=0;i<5;i++){
    let divSelectionner = document.getElementById("Duree-"+i);
    divSelectionner.classList.remove("selectionne");
  }
  let divVer=null;
      for(i=30;i<180;i+=30){
-       console.log("etape2");
      if(document.getElementById("Durees-"+i) !== null){
-       console.log(document.getElementById("Durees-"+i));
-       console.log("etape3");
      divVer = document.getElementById("Durees-"+i).value;
-     console.log(divVer);
 
      if(divVer.includes("30")){
          let divSelectionner = document.getElementById("Duree-0");
@@ -76,6 +73,11 @@
      }
    }
  }
+
+ function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
  function clearFields(){
 document.getElementById('nom').innerHTML = "";
