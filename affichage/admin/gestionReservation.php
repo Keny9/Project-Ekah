@@ -44,9 +44,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
       <h2 class="reservez texteEkha">Réservez dès maintenant</h2></br>
       <h6 class="choisirServ texteEkha">Choisir un service:</h6>
       <h6 class="choisirDuree texteEkha">Quelles durées sont acceptées:</h6></br></br>
-      <textarea class="boxService" name="service" id="nom">
-        Soins a domicile
-      </textarea>
+      <textarea class="boxService" name="service" id="nom">Soins a domicile</textarea>
       <div class="tableauDuree">
       <?php
                      require_once 'gestionAffichageGestionReservation.php';
