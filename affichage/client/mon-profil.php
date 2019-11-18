@@ -136,9 +136,6 @@ session_start();
           <div class="group-input-inscr">
             <button type="button" id="modifier-mon-mot-de-passe-toggle" class="btn btn-link" data-toggle="modal" data-target="#modifier-mon-mot-de-passe-modal">Modifier mon mot de passe</button>
           </div>
-          <div class="group-input-inscr">
-            <button type="button" id="ajouter-fichier-perso-toggle" class="btn btn-link" data-toggle="modal" data-target="#ajouter-fichier-perso-modal">Ajouter un fichier personnel</button>
-          </div>
            <div class="group-input-inscr">
              <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="validerFormInscription()">Sauvegarder</button>
            </div>

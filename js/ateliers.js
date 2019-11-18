@@ -42,14 +42,13 @@ var calendar = null;
          // console.log("click");
          if($(this).hasClass("selectionne")){
            $(this).toggleClass("selectionne");
-           $("#dispo").empty();
-
+           closeModal();
          }else{
            $('.selectionne').toggleClass("selectionne");
            $(this).toggleClass("selectionne");
 
-           if($("#dispo").is(':empty')){
-             $("#dispo").append($("<option></option>").val("-1").html("Aucune disponibilité"));
+           if($(this).find('div').hasClass('events-list')){
+             openModal();
            }
          }
        });
@@ -96,4 +95,55 @@ $(document).ready(function() {
   changerBackground();
   enleverDayView();
   selectionnerJour();
+
+  
 });
+
+//Fermer la fenetre modale de modification d'une réservation
+function closeModal(){
+  $("#modal").css("display", "none");
+  $('.selectionne').toggleClass('selectionne');
+}
+
+//Ouvrir la fenêtre modal
+function openModal(){
+  getInfoModal();
+  $("#modal").css("display", "block");
+}
+
+
+//Recevoir les infos à mettre dans la modal
+function getInfoModal(){
+
+  let id = $('.selectionne').find('a').data("eventId");
+
+  $.ajax({
+    type: "POST",
+    async: false,
+    dataType: "json",
+    url: "../../php/script/Horaire/afficherInfoAtelierModal.php",
+    data: {"id": id},
+    success: function(data){
+        bool = true;
+        // console.log(data);
+
+        $('#modal-titre').text(data.title);
+        $('#modal-description').text(data.description);
+        $('#modal-date').text("Date : " + data.date);
+
+
+        $('#modal-start').text("Heure : " + data.heure);
+        $('#modal-fin').text("Duree : " + data.duree + " minutes");
+
+        $('#modal-adresse').text("Lieu : " + data.emplacement);
+        $('#modal-prix').text("Prix : " + data.prix + "$");
+
+
+
+    },
+    error: function (jQXHR, textStatus, errorThrown) {
+        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+    }
+  });
+  return bool;
+}

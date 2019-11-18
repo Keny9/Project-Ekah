@@ -1,8 +1,8 @@
 /**
- * Page consulter-reservation.php, un admin consulte les réservations
+ * Page consulter-reservation.php, un admin consulte les réservations de tous les clients
  *
- * Nom :        consulter-reservation.php
- * Catégorie :   Page
+ * Nom :        consulter-reservation_admin.js
+ * Catégorie :   script JS
  * Auteur :      Karl Boutin
  * Version :     1.0
  * Date de la dernière modification : 2019-10-30

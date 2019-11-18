@@ -46,7 +46,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
       <select class="select-inscr input" name="region" id="region">
         <?php
           echo "<option class=\"option-vide\" value=\"0\" selected=\"selected\">Choisir une région</option>";
-          require_once 'GestionAffichageDispo.php';
+          require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
           $gad = new GestionAffichageDispo();
           echo $gad->getAllRegion();
         ?>
@@ -65,7 +65,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <select class="select-inscr input" name="facilitateur" id="facilitateur">
           <?php
             echo "<option class=\"option-vide\" value=".$_SESSION['logged_in_user_id']." selected=\"selected\">Choisir un facilitateur</option>";
-            require_once 'GestionAffichageDispo.php';
+            require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
             $gad = new GestionAffichageDispo();
             echo $gad->getAllFacilitateur();
           ?>

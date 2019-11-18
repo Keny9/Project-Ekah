@@ -409,7 +409,7 @@ class GestionFacilitateur{
       $requete= "SELECT * FROM utilisateur
                    INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
                    INNER JOIN compte_utilisateur ON fk_utilisateur = id
-                   WHERE id_disponibilite = '".$id."' AND id_type_utilisateur = 2;"; /*************Cette requete ne retourne aucun resultat ?*************/
+                   WHERE id_disponibilite = '".$id."' AND id_type_utilisateur = 2;";
 
       $result = $conn->query($requete);
       if(!$result){
@@ -484,6 +484,136 @@ class GestionFacilitateur{
       return $region;
     }
 
+    /**
+    * Permet d'obtenir tous les facilitateurs faisant partie de la base de donnée
+    */
+    public function getAllFacilitateur(){
+      $conn = ($connexion = new Connexion())->do();
+
+      $requete = "SELECT u.id, u.nom, u.prenom, u.telephone, c.courriel, e.nom AS etat FROM utilisateur AS u
+                  INNER JOIN compte_utilisateur c ON c.fk_utilisateur = u.id
+                  INNER JOIN etat_disponible e ON e.id = u.id_type_etat_dispo
+                  WHERE id_type_utilisateur = 2;";
+
+      $stmt = $conn->prepare($requete);
+      $status = $stmt->execute();
+      $result = $stmt->get_result();
+
+      if($status === false){
+        trigger_error($stmt->error, E_USER_ERROR);
+      }
+
+      if($result->num_rows == 0){
+        $arrFacilitateur = [];
+        return $arrFacilitateur;
+      }
+
+      while($row = $result->fetch_assoc()){
+        $arrFacilitateur[] = $row;
+      }
+
+      return $arrFacilitateur;
+    }
+
+    /**
+    * Fonction permettant d'ajouter un facilitateurs
+    * Particularité de la fonction: crée un facilitateur avec seulement les champs requis
+    * - nom, prenom, telephone, courriel, mot de passe
+    */
+    public function addFacilitateur($facilitateur, $motDePasse){
+      $conn = ($connexion = new Connexion())->do();
+
+      // Variables pour Adresse
+      $noCivique = null;
+      $rue = null;
+      $codePostal = null;
+      $pays = null;
+      $ville = null;
+
+      // Variables pour Utilisateur
+      $idTypeUtilisateur = 2;
+      $idTypeEtat = 1;
+      $fkIdAdresse;
+      $nom = $facilitateur->getNom();
+      $prenom = $facilitateur->getPrenom();
+      $telephone = $facilitateur->getTelephone();
+      $dateNaissance = $facilitateur->getDateNaissance();
+
+      // Variables pour Compte_utilisateur
+      $utilisateurId;
+      $courriel = $facilitateur->getCourriel();
+      $motDePasseHash = password_hash($motDePasse, PASSWORD_ARGON2I);
+
+      try {
+        $conn->begin_transaction();
+
+        // Crée un enregistrement de l'adresse du Facilitateur dans la BD.
+        $stmt = $conn->prepare("INSERT INTO adresse
+          (no_civique, rue, code_postal, pays, ville)
+          VALUES (?, ?, ?, ?, ?);");
+        $stmt->bind_param('issss', $noCivique, $rue, $codePostal, $pays, $ville);
+        $stmt->execute();
+
+        // Va chercher le primary key de l'adresse précédement enregistrée dans la BD.
+        $adresseId = $conn->insert_id;
+
+        // Crée un enregistrement dans la table Utilisateur de la BD pour le facilitateur.
+        $stmt = $conn->prepare("INSERT INTO utilisateur
+          (id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, telephone, date_naissance)
+          VALUES (?, ?, ?, ?, ?, ?, ?);");
+        $stmt->bind_param('iiissss', $idTypeUtilisateur, $idTypeEtat, $adresseId, $nom, $prenom, $telephone, $dateNaissance);
+        $stmt->execute();
+
+        // Va chercher le primary key de l'utilisateur précédement enregistrée dans la BD.
+        $utilisateurId = $conn->insert_id;
+
+        // Vérifie si le courriel existe dans la BD.
+        // Si oui, lance une exception.
+        if($this->courrielExisteDeja($courriel)){
+          throw new Exception('Le courriel existe déjà.');
+        }
+
+        // Crée un enregistrement dans la table Compte_utilisateur de la BD
+        // pour le Facilitateur.
+        $stmt = $conn->prepare("INSERT INTO compte_utilisateur
+          (fk_utilisateur, courriel, mot_de_passe)
+          VALUES (?, ?, ?);");
+        $stmt->bind_param('iss', $utilisateurId, $courriel, $motDePasseHash);
+        $stmt->execute();
+
+        // Commit la transaction
+        $conn->commit();
+        return true;
+      } catch (Exception $e) {
+        // Rollback la transaction
+        $conn->rollback();
+        echo "Erreur try-catch : ".$e."<br>";
+        return false;
+      }
+    }
+
+    //Retourne vrai si le courriel en paramètre existe dans la BD
+    public function courrielExisteDeja($courriel){
+      $conn = new Connexion();
+
+      $stmt = $conn->do()->prepare("SELECT fk_utilisateur
+        FROM compte_utilisateur
+        WHERE courriel = ?");
+        $stmt->bind_param('s', $courriel);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+          $stmt->close();
+          return true;
+        }
+        else{
+          $stmt->close();
+          return false;
+        }
+
+        $stmt->close();
+      }
 
   }
 

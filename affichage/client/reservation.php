@@ -92,21 +92,24 @@ $activites = $gActivite->getAllActivite();
               </select>
             </div>
           </div>
+
           <div class="group-input-inscr">
             <label class="label-reservation label-prix" for="prix">Prix</label>
             <p id="prix">120$</p>
           </div>
 
           <div id="question-complementaire" style="display: none;">
-            <div class="">
-              <select class="" name="">
-                <option disabled selected value="">Nombre de participant</option>
-                <option value="1">1</option>
-                <option value="1">2</option>
-                <option value="1">3</option>
-                <option value="1">4</option>
-                <option value="1">5</option>
-              </select>
+            <div class="group-input-inscr">
+              <div class="box-select">
+                <select class="select-inscr input-long" name="nbParticipant" id="nbParticipant" onchange="changeListe(this);">
+                  <option disabled selected value="">Nombre de participant</option>
+                  <option value="1">1</option>
+                  <option value="1">2</option>
+                  <option value="1">3</option>
+                  <option value="1">4</option>
+                  <option value="1">5</option>
+                </select>
+              </div>
             </div>
 
             <div class="group-input-inscr" >

@@ -35,19 +35,17 @@
         }
  }
 
- function afficherDuree(){
+ async function afficherDuree(){
+   await sleep(100);
    for(i=0;i<5;i++){
-     console.log(i);
    let divSelectionner = document.getElementById("Duree-"+i);
    divSelectionner.classList.remove("selectionne");
  }
  let divVer=null;
      for(i=30;i<180;i+=30){
-     console.log(i);
      if(document.getElementById("Durees-"+i) !== null){
      divVer = document.getElementById("Durees-"+i).value;
-     console.log(divVer);
-      
+
      if(divVer.includes("30")){
          let divSelectionner = document.getElementById("Duree-0");
          divSelectionner.classList.add("selectionne");
@@ -76,6 +74,11 @@
    }
  }
 
+ function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
  function clearFields(){
 document.getElementById('nom').innerHTML = "";
 document.getElementById('titre').innerHTML = "Nom du Service";
@@ -97,33 +100,39 @@ function remplirNom(x){
                   data: myData,
                   success: function(data) {
 
+                    var titre=document.getElementById("titre");
+                    var nom=document.getElementById("nom");
+                    titre.innerHTML=data;
+                    nom.innerHTML=data;
+                    titre.innerHTML = titre.innerHTML.replace(/"/g, '');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e9/g, 'é');
+                    titre.innerHTML = titre.innerHTML.replace(/\\/g, '');
+                    titre.innerHTML = titre.innerHTML.replace(/u2019/g, '\'');
+                    titre.innerHTML = titre.innerHTML.replace(/u00ea/g, 'ê');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e7/g, 'ç');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e0/g, 'à');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e2/g, 'â');
+                    titre.innerHTML = titre.innerHTML.replace(/u00ee/g, 'î');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e8/g, 'è');
+                    titre.innerHTML = titre.innerHTML.replace(/u00c9/g, 'É');
+                    console.log(titre.innerHTML);
+                    let titreValue = document.getElementById("titre").innerHTML;
+                    document.getElementById("titre").innerHTML=titreValue;
 
-                    document.getElementById("titre").innerHTML=data;
-                    document.getElementById("nom").innerHTML=data;
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/"/g, '');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e9/g, 'é');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/\\/g, '');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u2019/g, '\'');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ea/g, 'ê');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e7/g, 'ç');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e0/g, 'à');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e2/g, 'â');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ee/g, 'î');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e8/g, 'è');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00c9/g, 'É');
-
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/"/g, '');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e9/g, 'é');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/\\/g, '');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u2019/g, '\'');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ea/g, 'ê');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e7/g, 'ç');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e0/g, 'à');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e2/g, 'â');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ee/g, 'î');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e8/g, 'è');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00c9/g, 'É');
-
+                    nom.innerHTML = nom.innerHTML.replace(/"/g, '');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e9/g, 'é');
+                    nom.innerHTML = nom.innerHTML.replace(/\\/g, '');
+                    nom.innerHTML = nom.innerHTML.replace(/u2019/g, '\'');
+                    nom.innerHTML = nom.innerHTML.replace(/u00ea/g, 'ê');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e7/g, 'ç');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e0/g, 'à');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e2/g, 'â');
+                    nom.innerHTML = nom.innerHTML.replace(/u00ee/g, 'î');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e8/g, 'è');
+                    nom.innerHTML = nom.innerHTML.replace(/u00c9/g, 'É');
+                    console.log(nom.innerHTML);
+                    let nomValue = document.getElementById("nom").innerHTML;
+                    document.getElementById("nom").innerHTML=nomValue;
 
                   } ,
                   error: function() {
@@ -210,6 +219,8 @@ function remplirQuestion(x){
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/"/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/select/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/<>/g, '');
+
+                    //document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/>/g, '');
                     //document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/&gt;/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/V/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/\\/g, '');
@@ -563,41 +574,42 @@ function ajouterQuestionQuestionnaire(id){
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/ajouterActivite.php";
-   for (i = 0; i <= divFin; i++){
-     let divAjout = document.getElementById("AjoutActivite");
-     if(divAjout.classList.contains("selectionne")){
-       var id = i+1;
-     }
-   }
+
    var nom = document.getElementById('nom').value;
    var idType = document.getElementById('type').value;
    console.log(idType);
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
   var cout=0;
+  for (i = 0; i <= divFin; i++){
+    let divAjout = document.getElementById("AjoutActivite");
+    if(divAjout.classList.contains("selectionne")){
+      var id = i+1;
+      $(function($) {
+          $.ajax({
+            url: url,
+            type:"POST",
+            async: false,
+            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
+            success: function(data) {
+              console.log(data);
+              if(!data){
+                  //alert("La modification s'est effectuée avec succès!");
+              }
+              else{
+                //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+                  console.log(data);
+              }
+            } ,
+            error: function() {
+              alert('Error occured');
+            }
+          });
+        });
+        window.location.reload();
+    }
+  }
 
-   $(function($) {
-       $.ajax({
-         url: url,
-         type:"POST",
-         async: false,
-         data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
-         success: function(data) {
-           console.log(data);
-           if(!data){
-               //alert("La modification s'est effectuée avec succès!");
-           }
-           else{
-             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-               console.log(data);
-           }
-         } ,
-         error: function() {
-           alert('Error occured');
-         }
-       });
-     });
-     window.location.reload();
  }
 
  function modifier(){
@@ -606,40 +618,42 @@ function ajouterQuestionQuestionnaire(id){
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/modifierActivite.php";
-   for (i = 0; i < divFin; i++){
-     let divSelection = document.getElementById("Activite-"+i);
-     if(divSelection.classList.contains("selectionne")){
-       var id = i+1;
-     }
-   }
+
    var nom = document.getElementById('nom').value;
    var idType = document.getElementById('type').value;
    console.log(idType);
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
+  for (i = 0; i < divFin; i++){
+    let divSelection = document.getElementById("Activite-"+i);
+    if(divSelection.classList.contains("selectionne")){
+      var id = i+1;
+      $(function($) {
+          $.ajax({
+            url: url,
+            type:"POST",
+            async: false,
+            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL},
+            success: function(data) {
+              console.log(data);
+              if(!data){
+                  //alert("La modification s'est effectuée avec succès!");
+              }
+              else{
+                //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+                  console.log(data);
+              }
+            } ,
+            error: function() {
+              alert('Error occured');
+            }
+          });
+        });
+        window.location.reload();
+    }
+  }
 
-   $(function($) {
-       $.ajax({
-         url: url,
-         type:"POST",
-         async: false,
-         data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL},
-         success: function(data) {
-           console.log(data);
-           if(!data){
-               //alert("La modification s'est effectuée avec succès!");
-           }
-           else{
-             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-               console.log(data);
-           }
-         } ,
-         error: function() {
-           alert('Error occured');
-         }
-       });
-     });
-     window.location.reload();
+
  }
  function supprime(){
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
@@ -651,29 +665,30 @@ function ajouterQuestionQuestionnaire(id){
      let divSelection = document.getElementById("Activite-"+i);
      if(divSelection.classList.contains("selectionne")){
        var id = i+1;
+       $(function($) {
+           $.ajax({
+             url: url,
+             type:"POST",
+             async: false,
+             data: {id: id},
+             success: function(data) {
+               console.log(data);
+               if(!data){
+                   //alert("La modification s'est effectuée avec succès!");
+               }
+               else{
+                 //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+                   console.log(data);
+               }
+             } ,
+             error: function() {
+               alert('Error occured');
+             }
+           });
+         });
+         window.location.reload();
      }
    }
 
-   $(function($) {
-       $.ajax({
-         url: url,
-         type:"POST",
-         async: false,
-         data: {id: id},
-         success: function(data) {
-           console.log(data);
-           if(!data){
-               //alert("La modification s'est effectuée avec succès!");
-           }
-           else{
-             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-               console.log(data);
-           }
-         } ,
-         error: function() {
-           alert('Error occured');
-         }
-       });
-     });
-     window.location.reload();
+
 }

@@ -32,13 +32,9 @@
   padding-bottom: 3px;
 }
 
-#modifier-mon-mot-de-passe-toggle, #ajouter-fichier-perso-toggle{
+#modifier-mon-mot-de-passe-toggle{
   color: #F05929;
   padding: 0;
-}
-
-.custom-file-label::after{
-  content:"Parcourir";
 }
 
 

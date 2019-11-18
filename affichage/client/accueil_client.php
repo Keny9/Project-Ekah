@@ -16,9 +16,13 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/inscription.css">
+    <link rel="stylesheet" href="../../css/accueil_client.css">
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/fix.css">
+    <link rel="stylesheet" href="../../css/consulter-reservation.css">
+    <link rel="stylesheet" href="../../css/atelier.css">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
@@ -69,24 +73,27 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         </script>
 
 <!-- MODAL -->
-        <div id="modal-modif-reservation" class="modal-modif-reservation">
+        <div id="modal" class="modal-modif-reservation">
           <div class="modal-content">
               <div class="modal-align-middle-mr">
-                 <label class="label-reservation" for="activite">Facilitateur</label>
-                 <div class="box-select">
-                   <select class="select-inscr input-long" name="service" id="service" onchange="changeListe(this);">
-                     <option class="option-vide" value="vide" selected="selected">Facilitateur</option>
-                     <?php
-                     foreach ($arrFacilitateur as $facilitateur){
-                       echo "<option value=\"".$facilitateur->getId()."\">".$facilitateur->getPrenom()." ".$facilitateur->getNom()."</option>";
-                     }
-                     ?>
-                   </select>
-                 </div>
+
+                <img src="../../img/activite/relaxe.jpg" class="img-modal" alt="Image">
+
+                <h3 id="modal-titre" class="modal-titre">Titre</h3>
+
+                <textarea readonly name="description" class="modal-description" id="modal-description" rows="8" cols="80">Description courte</textarea>
+
+                <p id="modal-date">Date</p>
+                <p id=modal-start>Heure</p>
+                <p id="modal-fin">Duree</p>
+
+                <p id="modal-adresse">Adresse</p>
+                <p id="modal-prix">Prix</p>
+
               </div>
             <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-              <button type="submit" class="btn-confirmer input-court btn-coller" name="button">Sauvegarder</button>
-              <button id="btn-annuler" type="button" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
+              <button type="submit" class="btn-confirmer input-court btn-coller" name="button">S'inscrire</button>
+              <button id="btn-annuler" type="button" onClick="closeModal()" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
             </div>
           </div>
         </div>

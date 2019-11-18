@@ -31,7 +31,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
   <h1 class="titreReservation">Gestion des Réservation</h1>
     <div class="tableauActivite">
     <?php
-                   require_once 'gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllActivite();
                  ?>
@@ -42,16 +42,14 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
     <div class="reservationMain">
       <div class="reservationHeader"><img class="imgHeader"src="../../img/logo_ekah_header.png" alt="Ekah"></div>
-      <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg" id="titre">Soins a domicile</div></div>
+      <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg" id="titre"></div></div>
       <h2 class="reservez texteEkha">Réservez dès maintenant</h2></br>
       <h6 class="choisirServ texteEkha">Choisir un service:</h6>
       <h6 class="choisirDuree texteEkha">Quelles durées sont acceptées:</h6></br></br>
-      <textarea class="boxService" name="service" id="nom">
-        Soins a domicile
-      </textarea>
+      <textarea class="boxService" name="service" id="nom"></textarea>
       <div class="tableauDuree">
       <?php
-                     require_once 'gestionAffichageGestionReservation.php';
+                     require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                      $gagr = new GestionAffichageGestionReservation();
                      echo $gagr->getAllDuree();
                    ?>
@@ -60,7 +58,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
     <h6 class="choisirType texteEkha">Quelle est le type de l'activité:</h6></br></br>
     <?php
-                   require_once 'gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllTypeActivite();
                  ?>
@@ -71,20 +69,16 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     </div>
     <h6 class="duree texteEkha">Duree:</h6>
     <?php
-                   require_once 'gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getDureeActivite(18);
                  ?>
-
-
-    <h6 class="prix texteEkha">Prix:</h6>
-    <input class="boxDuree" type="text" name="prix" min="0" value="Non fonctionelle scrum 1"></input>
     <h6 class="descriptionC texteEkha">Description du service:</h6>
     <textarea class="boxDescription" type="text" name="descriptionC" cols="40" rows="5" id="descriptionC"></textarea>
     <br />
     <h6 class="descriptionC texteEkha">Questions de l'activité:</h6>
     <?php
-                    require_once 'gestionAffichageGestionReservation.php';
+                    require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                     $gagr = new GestionAffichageGestionReservation();
                     echo $gagr->getQuestionActivite(1);
                   ?>
