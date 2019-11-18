@@ -317,10 +317,20 @@ INSERT INTO province(id, nom) VALUES (4, "Nouveau Brunswick");
 -- INSERT INTO ville(id, nom) VALUES (3, "Montréal");
 -- INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, "Sherbrooke", 454, "Terril", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (2, 1, "Magog", 454, "Magog St", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (3, 1, "Montreal", 454, "Boul Montreal", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (4, 1, "Québec", 454, "Quebec St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, "Sherbrooke", 454, "Rue Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (2, 1, "Magog", 454, "Rue Champlain", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (3, 1, "Montreal", 454, "Rue Garnier", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (4, 1, "Québec", 454, "Rue Ferrant", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (5, 1, "Montreal", 454, "Rue de Bullion", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (6, 1, "Sherbrooke", 454, "Rue Saint-Louis", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (7, 1, "Sherbrooke", 454, "Rue Wood", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (8, 1, "Bromont", 454, "Rue de Beauce", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (9, 1, "Granby", 454, "Rue Mercier", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (10, 1, "Montreal", 454, "Rue Duschesneau", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (11, 1, "Québec", 454, "Rue Aragon", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (12, 1, "Sherbrooke", 454, "Rue Major", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (13, 1, "Magog", 454, "Rue Tupper", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (14, 1, "Québec", 454, "Rue Ménard", "J1J 1J1", "Canada");
 
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
@@ -516,21 +526,43 @@ INSERT INTO type_utilisateur(id, nom, description) VALUES (2, "Facilitateur", "U
 INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (1, "Disponible");
 INSERT INTO type_etat_dispo(id, etat_disponible) VALUES (2, "Non Disponible");
 
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 1, "Facilitateur", "Gabriel", NOW(), "img1.jpg");
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 2, "Facilitateur", "Raphaël", NOW(), "img2.jpg");
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 3, "Facilitateur", "Claudie", NOW(), "img3.jpg");
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 4, "Client", "Annie", NOW(), "1995-09-01");
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 1, "Client", "Beatrice", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 2, "Client", "Charlotte", NOW());
-INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription) VALUES (1, null, 3, "Client", "David", NOW());
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 1, "Admin", "Gabriel", NOW(), "img1.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 2, "Admin", "Raphaël", NOW(), "img2.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, photo) VALUES (2, 1, 3, "Admine", "Claudie", NOW(), "img3.jpg");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 4, "Cliente", "Annie", NOW(), "1995-09-01");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 1, "Cliente", "Beatrice", NOW(), "1984-02-14");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 2, "Cliente", "Charlotte", NOW(), "1991-03-03");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 3, "Client", "David", NOW(), "1974-10-21");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 5, "Cliente", "Jade", NOW(), "1988-01-08");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 6, "Cliente", "Audrey", NOW(), "1989-06-17");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 7, "Client", "Mathieu", NOW(), "1964-12-04");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 8, "Cliente", "Camille", NOW(), "1979-09-02");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 9, "Cliente", "Rosalie", NOW(), "1981-05-19");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 10, "Client", "Frank", NOW(), "1971-11-09");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 11, "Cliente", "Laura", NOW(), "1969-04-27");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 12, "Cliente", "Peach", NOW(), "1999-09-22");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 13, "Client", "Antoine", NOW(), "1987-03-23");
+INSERT INTO utilisateur(id_type_utilisateur, id_type_etat_dispo, fk_id_adresse, nom, prenom, date_inscription, date_naissance) VALUES (1, null, 14, "Cliente", "Daisy", NOW(), "1956-07-29");
 
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "admin1@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "admin2@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (3, "admin3@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4, "annie@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (5, "beatrice@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (6, "charlotte@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
-INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (7, "david@ekah.ca", '$argon2i$v=19$m=1024,t=2,p=2$Z2ZYQ0RyWU5JYWxCZ3ZKbA$Htc8SVQQh++zeYvyjYwQCLUCyrSLhIlzsskG6f4Euos');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "admin1@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (2, "admin2@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (3, "admin3@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (4, "annie@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (5, "beatrice@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (6, "charlotte@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (8, "jade@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (9, "audrey@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (10, "mathieu@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (11, "camille@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (12, "rosalie@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (13, "frank@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (14, "laura@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (15, "peach@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (16, "antoine@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (17, "daisy@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
+
+/*INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (1, "test1@admin.ca", "abc123");
+INSERT INTO compte_utilisateur(fk_utilisateur, courriel, mot_de_passe) VALUES (7, "david@ekah.ca", '$argon2id$v=19$m=1024,t=2,p=2$TG1YR0JRVWllcVZOa2dQdQ$VHBGynvnI+xenbiO/BSP7rZYEObfMegH5PFwsLnqcIQ');
 
 INSERT INTO fichier_perso(id, fichier, description) VALUES (1, "abc123", "Fichier");
 
