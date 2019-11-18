@@ -44,27 +44,14 @@
 
            <span>Formulaire médical</span>
            <div class="custom-file">
-             <input type="file" class="custom-file-input" id="formulaire-medical-fichier">
+             <input type="file" class="custom-file-input" id="formulaire-medical-fichier" name="fichier_un">
              <label class="custom-file-label" id="formulaire-medical-label" for="formulaire-medical-fichier">Choisir fichier...</label>
              <div class="invalid-feedback">Example invalid custom file feedback</div>
            </div>
 
-           <script type="text/javascript">
-             let fichier = document.getElementById('formulaire-medical-fichier');
-             let label = document.getElementById('formulaire-medical-label');
-             let nomfichier;
-             let nomFichierSplit;
-             let nomFichierFullPath;
-             fichier.addEventListener('change', function(){
-            //   .split('\\', '/');
-               nomfichierFullPath = fichier.value;
-               nomfichierSplit = nomfichierFullPath.split("\\", '/');
-               nomfichier = nomfichierFullPath[nomfichierFullPath.length];
-               alert(nomfichierFullPath);
-               alert(nomfichierSplit[1]);
-               label.innerHTML = nomfichier;
-             });
-           </script>
+
+
+
 
 
 <!--
@@ -83,3 +70,67 @@
        </div>
      </div>
    </div>
+
+   <script type="text/javascript">
+    // Ce script affiche le nom du fichier dans le label pour la selection
+    var fichier = document.getElementById('formulaire-medical-fichier');
+    var label = document.getElementById('formulaire-medical-label');
+    var nomfichier;
+    fichier.addEventListener('change', function(){
+       let nomfichierFullPath = fichier.value;
+
+       if(nomfichierFullPath){
+         nomfichierFullPath = nomfichierFullPath.replace(/\//g, '\\');
+         let nomfichierSplit = nomfichierFullPath.split("\\");
+         nomfichier = nomfichierSplit[nomfichierSplit.length-1];
+         alert(nomfichier);
+         label.innerHTML = nomfichier;
+       }
+       else{
+         label.innerHTML="Choisir fichier...";
+       }
+     });
+   </script>
+
+   <script type="text/javascript">
+   let btn_sauvegarder = document.getElementById('ajouter-fichier-perso-btn-sauvegarder');
+
+   btn_sauvegarder.addEventListener('click', function(event){
+     var xhr = new XMLHttpRequest();
+
+     // Setup our listener to process completed requests
+     xhr.onload = function () {
+
+       // Process our return data
+       if (xhr.status >= 200 && xhr.status < 300) {
+         // This will run when the request is successful
+         console.log('success!', xhr);
+       } else {
+         // This will run when it's not
+         console.log('The request failed!');
+       }
+
+       // This will run either way
+       // All three of these are optional, depending on what you're trying to do
+       console.log('This always runs...');
+     };
+
+     // Lorsque la xhr recoit une réponse
+     xhr.onreadystatechange = function(){
+       if (this.readyState == 4 && this.status == 200) {
+         console.log(this.responseText);
+         alert("done");
+       }
+     };
+
+     // Create and send a GET request
+     // The first argument is the post type (GET, POST, PUT, DELETE, etc.)
+     // The second argument is the endpoint URL
+  //   let nom_fichier = nomfichier;
+     xhr.open('GET',
+              '../../php/script/Client/ajouterFichierPerso.php?nom_fichier='+nomfichier,
+              false
+              );
+     xhr.send();
+   });
+   </script>
