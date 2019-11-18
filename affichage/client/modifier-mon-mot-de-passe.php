@@ -1,3 +1,15 @@
+<?php
+/*
+* Page à insérer qui contient une fenêtre modale pour la modification d'un mot de passe
+*
+*
+*
+*
+*
+* Auteur : Maxime Lussier
+*/
+
+ ?>
 <!DOCTYPE html>
 <!--
   <head>
