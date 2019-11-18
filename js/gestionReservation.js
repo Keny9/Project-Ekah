@@ -37,7 +37,6 @@
 
  function afficherDuree(){
    for(i=0;i<5;i++){
-     console.log(i);
    let divSelectionner = document.getElementById("Duree-"+i);
    divSelectionner.classList.remove("selectionne");
  }
