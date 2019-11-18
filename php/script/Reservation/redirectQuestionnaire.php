@@ -39,7 +39,6 @@
  $rue = $_POST['rue'];
  $ville = $_POST['ville'];
 
-
  if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
    $facilitateur = $gFacilitaeur->getDispo($id_dispo);
    $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
@@ -55,7 +54,7 @@
 // Set l'id de la région
 $id_region = null;
 if(isset($_POST['region'])){
-  $id_region = $_POST['region'];
+  $id_region = $_GET['id_region'];
 }
 
  // Créer la réservation
