@@ -25,7 +25,12 @@ session_start();
      <link rel="stylesheet" href="../../css/main.css">
      <link rel="stylesheet" href="../../css/inscription.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<<<<<<< HEAD
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+=======
+
+<?php //<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> ?>
+>>>>>>> Maxime
      <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
      <script type="text/javascript" src="../../js/global.js"></script>
      <script type="text/javascript">
@@ -124,6 +129,7 @@ session_start();
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>
 
+<<<<<<< HEAD
 <!--
            <div class="group-input-inscr">
              <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
@@ -134,6 +140,14 @@ session_start();
              </div>
            </div>
 -->
+=======
+          <div class="group-input-inscr">
+            <button type="button" id="modifier-mon-mot-de-passe-toggle" class="btn btn-link" data-toggle="modal" data-target="#modifier-mon-mot-de-passe-modal">Modifier mon mot de passe</button>
+          </div>
+          <div class="group-input-inscr">
+            <button type="button" id="ajouter-fichier-perso-toggle" class="btn btn-link" data-toggle="modal" data-target="#ajouter-fichier-perso-modal">Ajouter un fichier personnel</button>
+          </div>
+>>>>>>> Maxime
            <div class="group-input-inscr">
              <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="validerFormInscription()">Sauvegarder</button>
            </div>
