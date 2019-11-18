@@ -22,107 +22,6 @@ $(window).keydown(function(event){
   }
 });
 
-// Apres que le document soit prêt (après le window.onload = function())
-$( document ).ready(function() {
-  // FENÊTRE MODALE modifier-mon-mot-de-passe
-  password_modal_close = document.getElementById('modifier-mon-mot-de-passe-btn-close');
-  password_modal_fermer = document.getElementById('modifier-mon-mot-de-passe-btn-fermer');
-  password_modal_sauvegarder = document.getElementById('modifier-mon-mot-de-passe-btn-sauvegarder');
-
-  password_modal_close.removeAttribute("data-dismiss");
-  password_modal_fermer.removeAttribute("data-dismiss");
-  password_modal_sauvegarder.removeAttribute("data-dismiss");
-
-  password_modal_sauvegarder.setAttribute("onclick", "updateMotDePasse()");
-  modalDataDismiss(password_modal_close);
-  modalDataDismiss(password_modal_fermer);
-
-  $("#modifier-mon-mot-de-passe-modal").on('hidden.bs.modal', function(){
-    // Reset les champs
-    document.getElementById('mot-de-passe-actuel').value='';
-    document.getElementById('mot-de-passe-nouveau').value='';
-    document.getElementById('mot-de-passe-confirmation').value='';
-  });
-
-});
-
-function updateMotDePasse(){
-  var actualPassword = document.getElementById('mot-de-passe-actuel');
-  var newPassword = document.getElementById('mot-de-passe-nouveau');
-  var newPasswordConfirm = document.getElementById('mot-de-passe-confirmation');
-
-  // mot de passe actuel est bien le bon
-  if(!actualPasswordValid(CLIENT['id'], actualPassword.value)){
-    alert("Le mot de passe actuel ne correspond pas à votre mot de passe actuel.")
-    return;
-  }
-
-  // test regex du nouveau mot de passe
-  if(!verifieMotDePasse(newPassword)){
-    console.log("newPassword regex failed");
-    alert("Le nouveau mot de passe doit contenir :\n au minimum 1 majuscule;\n au minimum 1 chiffre;\n au minimum 8 caractères.")
-    return;
-  }
-
-  // Le mot de passe de confirmation n'est pas le même que le nouveau mot de passe
-  if(newPassword.value != newPasswordConfirm.value){
-    // Le mentionner au client
-    console.log("Le nouveau mot de passe et la confirmation de celui-ci ne correspondent pas.");
-    alert("Le nouveau mot de passe et la confirmation de celui-ci ne correspondent pas.");
-    return;
-  }
-
- var dataClient = {
-    id: CLIENT.id,
-    password: $('#mot-de-passe-nouveau').val()
-  };
-
-  var dataClientJson = JSON.stringify(dataClient);
-
-// Requête ajax pour update le mot de passe
-  $.ajax({
-    url: "../../php/script/Client/updateMotDePasse.php",
-    data: {data: dataClientJson},
-    async:false,
-    success: function(result){
-      console.log(result);
-      alert("Modification du mot de passe effectuée avec succès.");
-    },
-  });
-
-  password_modal_close.setAttribute("data-dismiss", "modal");
-  password_modal_fermer.setAttribute("data-dismiss", "modal");
-  password_modal_sauvegarder.setAttribute("data-dismiss", "modal");
-}
-
-// Set l'attribut data-dismiss à modal. e = element html
-function modalDataDismiss(e){
-  e.setAttribute("data-dismiss", "modal");
-}
-
-function actualPasswordValid(client_id, mot_de_passe){
-  var reponse = false;
-  $.ajax({
-    url: "../../php/script/Client/comparerMotDePasse.php",
-    data: {client_id: client_id,
-           mot_de_passe : mot_de_passe},
-    async:false,
-    success: function(result){
-      if(result == "true"){
-        console.log("actualPasswordValid : true");
-        reponse = true;
-      }
-      else if (result == "false"){
-        console.log("actualPasswordValid : false");
-      }
-      else{
-        console.log("actualPasswordValid : else");
-      }
-    },
-  });
-  return reponse;
-}
-
 //Lorsque le document est prêt
 window.onload = function(){
   listInput = document.querySelectorAll("input");
@@ -158,7 +57,7 @@ window.onload = function(){
   nom = document.getElementById("nom");
   courriel = document.getElementById("courriel");
   telephone = document.getElementById("telephone");
-  //motDePasse = document.getElementById("motDePasse");
+  motDePasse = document.getElementById("motDePasse");
   codePostal = document.getElementById("codePostal");
   jour = document.getElementById("jour");
   mois = document.getElementById("mois"); //C'est un select
@@ -168,8 +67,8 @@ window.onload = function(){
   ville = document.getElementById("ville");
   pays = document.getElementById("pays"); // C'est un select
 
-  setMonProfilChamps();
 
+  setMonProfilChamps();
 
   prenom.addEventListener("focusout", function(){
     if(verifieNomPrenom(prenom)){
@@ -273,6 +172,23 @@ function setMonProfilChamps(){
     mois.value = date_naissance[1].substr(1);
   }
 }
+
+//Retourne un array d'info du client, ou null si erreur
+/*function getInfoClient(){
+  $.ajax({
+    async: false,
+    url: "../../php/script/Client/getMonProfil.php",
+    data: {"courriel": $('#courriel').val()},
+    success: function(result){
+      if(result == 'false'){
+        bool = false;
+      }
+    },
+    error: function (jQXHR, textStatus, errorThrown) {
+        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+    }
+  });
+}*/
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){

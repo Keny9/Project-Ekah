@@ -98,31 +98,12 @@ $activites = $gActivite->getAllActivite();
           </div>
 
           <div id="question-complementaire" style="display: none;">
-            <div class="group-input-inscr">
-              <div class="box-select">
-                <select class="select-inscr input-long" name="nbParticipant" id="nbParticipant" onchange="changeListe(this);">
-                  <option disabled selected value="">Nombre de participant</option>
-                  <option value="1">1</option>
-                  <option value="1">2</option>
-                  <option value="1">3</option>
-                  <option value="1">4</option>
-                  <option value="1">5</option>
-                </select>
-              </div>
-            </div>
-
             <div class="group-input-inscr" >
               <input type="text" name="noAdresse" id="noAdresse" value="" class="input-inscr input-date" placeholder="No. Adresse">
               <input type="text" name="rue" id="rue" value="" class="input-inscr input-date second-input" placeholder="Rue">
               <input type="text" name="ville" id="ville" value="" class="input-inscr input-date second-input" placeholder="Ville">
             </div>
-
-            <?php
-              // Afficher le select pour les régions
-              include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/printRegion.php';
-            ?>
           </div>
-
 
           <div class="group-input-inscr">
             <label class="label-reservation" for="facilitateur" id="label-facilitateur">Choisir un facilitateur</label>

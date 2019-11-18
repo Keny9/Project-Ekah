@@ -13,7 +13,7 @@
        else{
          for ($i = 0; $i < sizeof($activite); $i++){
            $html .= "
-               <div class=\"sectionActivite\">
+               <div class=\"sectionActivite\" >
                <div class=\"titreActivite\">".$activite[$i]->getNom()."</div>
                <div onclick='selectionne($i);' class=\"boiteSelection\" id='Activite-$i'></div>
                </div>
@@ -69,7 +69,7 @@
              $j=$i+1;
 
              $html .= "
-               <option id='Durees-".$duree_activite[$i]->getTemps()."' value=".$duree_activite[$i]->getTemps()." >".$duree_activite[$i]->getTemps()." minutes</option>
+               <option id='Duree-$i' value=\"$j\" >".$duree_activite[$i]->getTemps()." minutes</option>
              ";
            }
            $html .= "</select>";

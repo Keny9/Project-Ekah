@@ -67,15 +67,11 @@ else{
       <div id="contactNav" class="btn-header">
         <a href="https://ekah.co/contact-1">CONTACT</a>
       </div>
-      <?php
-        if (!isset($_SESSION['logged_in_user_id'])){
-          echo "<div id='seConnecter' class='btn-header btn-header-m'>
-            <a href='".$seConnecterRedirect.">'>ESPACE CLIENT</a>
-          </div>";
-        }
-      ?>
-      <div class='dropdown_button'>
-        <span id='header_drop' class='header_drop'></span>
+      <div id="seConnecter" class="btn-header">
+        <a href="<?php echo $seConnecterRedirect; ?>">ESPACE CLIENT</a>
+      </div>
+      <div class="dropdown_button">
+        <span id="header_drop" class="header_drop"></span>
       </div>
       <nav id="header_nav">
         <?php
@@ -134,30 +130,11 @@ else{
               </div>
             </div>
           </div>
-          <?php
-            if(isset($page_type)){
-              if($page_type == 1){
-                include "nav_client_m.php";
-              }
-              else if($page_type == 2){
-                include "nav_admin_m.php";
-              }
-            }
-           ?>
           <div id="contactNav" class="btn-header btn-header-m">
             <a href="https://ekah.co/contact-1">CONTACT</a>
           </div>
-          <?php
-            if (!isset($_SESSION['logged_in_user_id'])){
-              echo "<div id='seConnecter' class='btn-header btn-header-m'>
-                <a href='".$seConnecterRedirect.">'>ESPACE CLIENT</a>
-              </div>";
-            }
-          ?>
-          <div class="onglet onglet-m">
-            <div class="folder" id="folder_accueil_m">
-              <a href="../global/login.php">SE DÉCONNECTER</a>
-            </div>
+          <div id="seConnecter" class="btn-header btn-header-m">
+            <a href="<?php echo $seConnecterRedirect; ?>">ESPACE CLIENT</a>
           </div>
         </div>
       </div>

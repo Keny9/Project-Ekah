@@ -51,7 +51,7 @@ session_start();
             <div class="modal-align-middle-mr">
                <label class="label-reservation" for="activite">Facilitateur</label>
                <div class="box-select">
-                 <select class="select-inscr input-long" name="facilitateur" id="facilitateur" onchange="changeFacilitateur(this);">
+                 <select class="select-inscr input-long" name="service" id="service" onchange="changeListe(this);">
                    <option class="option-vide" value="vide" selected="selected">Facilitateur</option>
                    <?php
                    foreach ($arrFacilitateur as $facilitateur){
@@ -68,29 +68,6 @@ session_start();
         </div>
       </div>
 
-      <div id="modal-cancel-reservation" class="modal-modif-reservation">
-        <div class="modal-content">
-          <div class="modal-align-middle-mr">
-            <div class="txt-reservation txt-bienv">Êtes-vous sûr de vouloir annuler la réservation ?</div>
-            <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-              <button id="btn-confirm-cancel" type="submit" class="btn-confirmer input-court btn-coller" name="button">Confirmer</button>
-              <button id="btn-annuler-cancel" type="button" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
-            </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="modal-cancel-already" class="modal-modif-reservation">
-      <div class="modal-content">
-        <div class="modal-align-middle-mr">
-          <div class="txt-reservation txt-bienv">Cette réservation est déjà annulé.</div>
-          <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-            <button id="btn-already-cancel" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Retour</button>
-          </div>
-      </div>
-    </div>
-  </div>
-
       <div class="reservation">
         <div class="txt-consulter">Listes des réservations</div>
 
@@ -104,7 +81,7 @@ session_start();
                 <th class="min-desktop">Date/Heure</th>
                 <th class="min-desktop">Coût</th>
                 <th class="all">Facilitateur</th>
-                <th class="all">Annuler</th>
+                <th class="all">Modifier</th>
               </tr>
             </thead>
             <tbody>

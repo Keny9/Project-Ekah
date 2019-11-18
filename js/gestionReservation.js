@@ -10,6 +10,7 @@
  function selectionne(x){
 
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+   console.log(divFin);
    for (i = 0; i < divFin; i++){
      let divSelection = document.getElementById("Activite-"+i);
      divSelection.classList.remove("selectionne");
@@ -31,48 +32,7 @@
        remplirType(x);
        remplirDuree(x);
        remplirQuestion(x);
-       afficherDuree();
         }
- }
-
- function afficherDuree(){
-   for(i=0;i<5;i++){
-   let divSelectionner = document.getElementById("Duree-"+i);
-   divSelectionner.classList.remove("selectionne");
- }
- let divVer=null;
-     for(i=30;i<180;i+=30){
-     console.log(i);
-     if(document.getElementById("Durees-"+i) !== null){
-     divVer = document.getElementById("Durees-"+i).value;
-     console.log(divVer);
-
-     if(divVer.includes("30")){
-         let divSelectionner = document.getElementById("Duree-0");
-         divSelectionner.classList.add("selectionne");
-       }
-
-       else if(divVer.includes("60")){
-         let divSelectionner = document.getElementById("Duree-1");
-         divSelectionner.classList.add("selectionne");
-       }
-
-     else if(divVer.includes("90")){
-         let divSelectionner = document.getElementById("Duree-2");
-         divSelectionner.classList.add("selectionne");
-       }
-
-     else if(divVer.includes("120")){
-         let divSelectionner = document.getElementById("Duree-3");
-         divSelectionner.classList.add("selectionne");
-       }
-
-     else if(divVer.includes("150")){
-         let divSelectionner = document.getElementById("Duree-4");
-         divSelectionner.classList.add("selectionne");
-       }
-     }
-   }
  }
 
  function clearFields(){
@@ -186,6 +146,8 @@ function remplirDuree(x){
                     document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/&gt;rn/g, '');
                     document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/option             &gt;<\/option><option>/g, '');
                     document.getElementById("duree").innerHTML = document.getElementById("duree").innerHTML.replace(/option             rn               <\/option><option>/g, '');
+
+                    console.log(document.getElementById("duree").innerHTML);
                   } ,
                   error: function() {
                     alert('Error occured');
@@ -204,6 +166,7 @@ function remplirQuestion(x){
                   async: false,
                   data: myData,
                   success: function(data) {
+                    console.log(data);
 
                     document.getElementById("questionnaire").innerHTML=data;
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/"/g, '');
@@ -285,7 +248,6 @@ function remplirType(x){
               });
 }
  function selectionneDuree(x){
-
 
    let divSelection = document.getElementById("Duree-"+x);
 
@@ -562,42 +524,41 @@ function ajouterQuestionQuestionnaire(id){
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/ajouterActivite.php";
-
+   for (i = 0; i <= divFin; i++){
+     let divAjout = document.getElementById("AjoutActivite");
+     if(divAjout.classList.contains("selectionne")){
+       var id = i+1;
+     }
+   }
    var nom = document.getElementById('nom').value;
    var idType = document.getElementById('type').value;
    console.log(idType);
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
   var cout=0;
-  for (i = 0; i <= divFin; i++){
-    let divAjout = document.getElementById("AjoutActivite");
-    if(divAjout.classList.contains("selectionne")){
-      var id = i+1;
-      $(function($) {
-          $.ajax({
-            url: url,
-            type:"POST",
-            async: false,
-            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
-            success: function(data) {
-              console.log(data);
-              if(!data){
-                  //alert("La modification s'est effectuée avec succès!");
-              }
-              else{
-                //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-                  console.log(data);
-              }
-            } ,
-            error: function() {
-              alert('Error occured');
-            }
-          });
-        });
-        window.location.reload();
-    }
-  }
 
+   $(function($) {
+       $.ajax({
+         url: url,
+         type:"POST",
+         async: false,
+         data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
+         success: function(data) {
+           console.log(data);
+           if(!data){
+               //alert("La modification s'est effectuée avec succès!");
+           }
+           else{
+             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+               console.log(data);
+           }
+         } ,
+         error: function() {
+           alert('Error occured');
+         }
+       });
+     });
+     window.location.reload();
  }
 
  function modifier(){
@@ -606,42 +567,40 @@ function ajouterQuestionQuestionnaire(id){
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
    var url="../../php/script/Activite/modifierActivite.php";
-
+   for (i = 0; i < divFin; i++){
+     let divSelection = document.getElementById("Activite-"+i);
+     if(divSelection.classList.contains("selectionne")){
+       var id = i+1;
+     }
+   }
    var nom = document.getElementById('nom').value;
    var idType = document.getElementById('type').value;
    console.log(idType);
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
-  for (i = 0; i < divFin; i++){
-    let divSelection = document.getElementById("Activite-"+i);
-    if(divSelection.classList.contains("selectionne")){
-      var id = i+1;
-      $(function($) {
-          $.ajax({
-            url: url,
-            type:"POST",
-            async: false,
-            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL},
-            success: function(data) {
-              console.log(data);
-              if(!data){
-                  //alert("La modification s'est effectuée avec succès!");
-              }
-              else{
-                //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-                  console.log(data);
-              }
-            } ,
-            error: function() {
-              alert('Error occured');
-            }
-          });
-        });
-        window.location.reload();
-    }
-  }
 
-
+   $(function($) {
+       $.ajax({
+         url: url,
+         type:"POST",
+         async: false,
+         data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL},
+         success: function(data) {
+           console.log(data);
+           if(!data){
+               //alert("La modification s'est effectuée avec succès!");
+           }
+           else{
+             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+               console.log(data);
+           }
+         } ,
+         error: function() {
+           alert('Error occured');
+         }
+       });
+     });
+     window.location.reload();
  }
  function supprime(){
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
@@ -653,30 +612,29 @@ function ajouterQuestionQuestionnaire(id){
      let divSelection = document.getElementById("Activite-"+i);
      if(divSelection.classList.contains("selectionne")){
        var id = i+1;
-       $(function($) {
-           $.ajax({
-             url: url,
-             type:"POST",
-             async: false,
-             data: {id: id},
-             success: function(data) {
-               console.log(data);
-               if(!data){
-                   //alert("La modification s'est effectuée avec succès!");
-               }
-               else{
-                 //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-                   console.log(data);
-               }
-             } ,
-             error: function() {
-               alert('Error occured');
-             }
-           });
-         });
-         window.location.reload();
      }
    }
 
-
+   $(function($) {
+       $.ajax({
+         url: url,
+         type:"POST",
+         async: false,
+         data: {id: id},
+         success: function(data) {
+           console.log(data);
+           if(!data){
+               //alert("La modification s'est effectuée avec succès!");
+           }
+           else{
+             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
+               console.log(data);
+           }
+         } ,
+         error: function() {
+           alert('Error occured');
+         }
+       });
+     });
+     window.location.reload();
 }
