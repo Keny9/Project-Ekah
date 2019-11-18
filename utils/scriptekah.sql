@@ -318,10 +318,20 @@ INSERT INTO province(id, nom) VALUES (4, "Nouveau Brunswick");
 -- INSERT INTO ville(id, nom) VALUES (3, "Montréal");
 -- INSERT INTO ville(id, nom) VALUES (4, "Québec");
 
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, "Sherbrooke", 454, "Terril", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (2, 1, "Magog", 454, "Magog St", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (3, 1, "Montreal", 454, "Boul Montreal", "J1J 1J1", "Canada");
-INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (4, 1, "Québec", 454, "Quebec St", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (1, 1, "Sherbrooke", 454, "Rue Terril", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (2, 1, "Magog", 454, "Rue Champlain", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (3, 1, "Montreal", 454, "Rue Garnier", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (4, 1, "Québec", 454, "Rue Ferrant", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (5, 1, "Montreal", 454, "Rue de Bullion", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (6, 1, "Sherbrooke", 454, "Rue Saint-Louis", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (7, 1, "Sherbrooke", 454, "Rue Wood", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (8, 1, "Bromont", 454, "Rue de Beauce", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (9, 1, "Granby", 454, "Rue Mercier", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (10, 1, "Montreal", 454, "Rue Duschesneau", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (11, 1, "Québec", 454, "Rue Aragon", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (12, 1, "Sherbrooke", 454, "Rue Major", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (13, 1, "Magog", 454, "Rue Tupper", "J1J 1J1", "Canada");
+INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (14, 1, "Québec", 454, "Rue Ménard", "J1J 1J1", "Canada");
 
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
@@ -657,7 +667,6 @@ INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, 
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, id_region, heure_fin, id_etat) VALUES (14, 14, 14, 14, 2, 14, 1, '2019-04-15 14:30', 1, '2019-04-15 15:30', 1);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, id_region, heure_fin, id_etat) VALUES (15, 15, 15, 15, 3, 15, 2, '2020-04-15 15:30', 3, '2020-04-15 16:30', 1);
 
-<<<<<<< HEAD
 /*
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (6, 2, 1, 6, 1, 2, 2, '2020-02-02', 13, 14);
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (7, 3, 2, 7, 1, 3, 3, '2020-02-02', 13, 14);
@@ -669,9 +678,6 @@ INSERT INTO region(id, nom) VALUES (1, "Estrie");
 INSERT INTO region(id, nom) VALUES (2, "Québec");
 INSERT INTO region(id, nom) VALUES (3, "Montérégie");
 
-
-=======
->>>>>>> Karl
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
 
 
