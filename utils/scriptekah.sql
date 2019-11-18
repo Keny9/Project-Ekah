@@ -634,6 +634,9 @@ INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, 
 INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, heure_debut, heure_fin) VALUES (9, 5, 2, 3, 3, 5, 2, '2020-02-02', 13, 14);
 */
 
+INSERT INTO region(id, nom) VALUES (1, "Estrie");
+INSERT INTO region(id, nom) VALUES (2, "Québec");
+INSERT INTO region(id, nom) VALUES (3, "Montérégie");
 
 
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);

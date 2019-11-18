@@ -35,6 +35,7 @@
  $dateTime = $_GET['date_rendez_vous'];//$_GET['date_rendez_vous'];
  $id_facilitateur = $_GET['facilitateur_id'];//$_GET['facilitateur_id'];
  $id_dispo = $_GET['id_dispo'];
+ $region = $_GET['id_region'];
  // TODO: Pourrait créer le suivi ici et pass son id...
 
  if($id_facilitateur == -1){

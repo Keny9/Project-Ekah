@@ -95,6 +95,8 @@ $(document).ready(function() {
   changerBackground();
   enleverDayView();
   selectionnerJour();
+
+  
 });
 
 //Fermer la fenetre modale de modification d'une réservation
