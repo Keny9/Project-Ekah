@@ -104,14 +104,10 @@ header{
   padding: 8.25px 11px;
 }
 
-.onglet .folder:visited{
+/*.onglet .folder:visited{
   color: #FFFFFF;
   color: rgba(255,255,255,.9);
-}
-
-.onglet .folder:hover{
-  color:#f0592a;
-}
+}*/
 
 .onglet a{
   color: #FFFFFF;
@@ -124,10 +120,6 @@ header{
 .onglet a:visited{
   color: #FFFFFF;
   color: rgba(255,255,255,.9);
-}
-
-.onglet a:hover{
-  color:#f0592a;
 }
 
 .btn-header{
@@ -311,6 +303,14 @@ header{
   content: '\f0d7';
 }
 
+.onglet a:hover{
+  color:#f0592a;
+}
+
+.onglet .folder:hover{
+  color:#f0592a;
+}
+
 /*************---------Menu navigation------------*********/
 nav{
   display: none;
@@ -362,6 +362,7 @@ nav{
 
 .link-menu:hover{
   background-color: #02AEE0;
+  text-decoration: none;
 }
 
 .picto-menu{

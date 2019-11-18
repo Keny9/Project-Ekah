@@ -27,7 +27,7 @@ class GestionReservation{
       $conn = $tempconn->getConnexion();
       $reservation = null;
 
-      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin FROM reservation
+      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
                 INNER JOIN activite ON id_activite = activite.id
                 INNER JOIN type_activite ON id_type_activite = type_activite.id
                 WHERE type_activite.id = 1 AND id_etat = 1 AND date_rendez_vous >= now()";
@@ -186,15 +186,9 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
       $conn->rollback();
       exit();
     }*/
-    // TODO: Gérer l'emplacement
-    $id_emplacement = 1;
 
     // Créer la réservation
     $reservation->setIdGroupe($id_groupe);
-    $reservation->setIdEmplacement($id_emplacement);
-
-
-
 
     // Insert la reservation, Rollback si erreur
     if(( $suivi_id = $this->reservationInsert($conn, $reservation) ) == false){
@@ -323,6 +317,23 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   }
 
   /**
+  * Insert un emplacement dans la BD
+  * Retourne l'id de l'emplacement inséré
+  */ // TODO: utiliser un objet Emplacement
+  public function insertEmplacement($noAdresse, $rue, $ville){
+    $conn = ($connexion = new Connexion())->do();
+
+    $id_type_emplacement = 1; // TODO: Gérer ça
+    $nom_lieu = $noAdresse." ".$rue.", ".$ville; // Concat l'adresse en un string
+    $request = "INSERT INTO emplacement (id_type_emplacement, nom_lieu) VALUES (?, ?);";
+    $stmt = $conn->prepare($request);
+    $stmt->bind_param('is', $id_type_emplacement, $nom_lieu);
+    $stmt->execute();
+
+    return $conn->insert_id;
+  }
+
+  /**
   * Select une activite selon son ID
   * Retourne une Activite
   */
@@ -357,7 +368,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
     $id_activite = $reservation->getIdActivite();
     $id_groupe = $reservation->getIdGroupe();
     $date_rendez_vous = $reservation->getDateRendezVous();
-    $heure_debut = $reservation->getHeureDebut();
+    $id_region = $reservation->getIdRegion();
     $heure_fin = $reservation->getHeureFin();
     $id_facilitateur = $reservation->getIdFacilitateur();
     $id_etat = 1;
@@ -374,8 +385,8 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
 
     /****************** Erreur sur 000webhost Cannot add or update a child row: a foreign key constraint fails (`id11534325_ekah`.`reservation`, CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_suivi`) REFERENCES `suivi` (`id`)) *******/
 
-    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, heure_debut, heure_fin, id_facilitateur, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
-    $stmt->bind_param('iiiiisiiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $heure_debut, $heure_fin, $id_facilitateur, $id_etat);
+    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin, id_facilitateur, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
+    $stmt->bind_param('iiiiisiiii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur, $id_etat);
     $stmt->execute();
 
     if($conn->error){
@@ -404,7 +415,6 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   }
 
   /**
-  *
   * Retourne un enregistrement de la table Reservation;
   * Retourne NULL si aucun enregristrement trouvé.
   *
@@ -425,7 +435,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
                                      $row['id_emplacement'], $row['id_suivi'],
                                      $row['id_activite'], $row['id_groupe'],
                                      $row['date_rendez_vous'],
-                                     $row['heure_debut'], $row['heure_fin']);
+                                     $row['id_region'], $row['heure_fin']);
     }
     return $reservation;
   }
@@ -504,7 +514,7 @@ public function insertReservationIndividuelle($groupe, $reservation, $client_id/
   */
 public function selectAll($user_id = null){
     $conn = ($connexion = new Connexion())->do();
-    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.id_facilitateur, r.date_rendez_vous, r.heure_debut, r.heure_fin, r.id_facilitateur FROM reservation AS r";
+    $requete = "SELECT r.id, r.id_paiement, r.id_emplacement, r.id_suivi, r.id_activite, r.id_groupe, r.id_facilitateur, r.date_rendez_vous, r.id_region, r.heure_fin, r.id_facilitateur FROM reservation AS r";
 
 
     if ($user_id != null){
@@ -521,7 +531,7 @@ public function selectAll($user_id = null){
     $array = array();
     while($row = $result->fetch_assoc()){
       // Créer la réservation
-      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['heure_debut'], $row['heure_fin'], $row['id_facilitateur']);
+      $res = new Reservation($row['id'], $row['id_paiement'], $row['id_emplacement'], $row['id_suivi'], $row['id_activite'], $row['id_groupe'], $row['date_rendez_vous'], $row['id_region'], $row['heure_fin'], $row['id_facilitateur']);
       // Créer l'emplacement
       $emp = $this->emplacementSelect($conn, $row['id_emplacement']);
       //Créer l'activité
@@ -568,7 +578,9 @@ public function selectAll($user_id = null){
   public function getAllReservationData($id_client = null){
     $conn = ($connexion = new Connexion())->do();
 
-    $requete = "SELECT r.id, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS 'id_suivi', g.no_groupe, i.date_inscription, CONCAT(u.prenom,' ', u.nom) AS client, u.id AS client_id , CONCAT(f.prenom, ' ', f.nom) AS facilitateur FROM reservation r
+    $requete = "SELECT r.id, r.id_etat, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS id_suivi, g.no_groupe, i.date_inscription,
+                CONCAT(u.prenom, ' ' , u.nom) AS client, u.id AS client_id, CONCAT(f.prenom, ' ' , f.nom) AS facilitateur
+                FROM reservation r
                 LEFT JOIN utilisateur f ON r.id_facilitateur = f.id
                 LEFT JOIN activite a ON r.id_activite = a.id
                 LEFT JOIN emplacement e ON r.id_emplacement = e.id
@@ -583,7 +595,7 @@ public function selectAll($user_id = null){
     }
 
     $stmt = $conn->prepare($requete);
-    $stmt->execute();
+    $status = $stmt->execute();
     $result = $stmt->get_result();
 
     if($result->num_rows == 0){
@@ -608,7 +620,26 @@ public function selectAll($user_id = null){
   return $arrReservation;
 }
 
+/**
+* Fonction qui permet d'annuler une réservation
+* @param id ID de la réservation à annuler
+*/
+public function cancelReservation($id){
+  $conn = ($connexion = new Connexion())->do();
 
+  $requete = "UPDATE reservation
+              SET id_etat = 2
+              WHERE id = ?;";
+
+  $stmt = $conn->prepare($requete);
+  $stmt->bind_param("i", $id);
+  $status = $stmt->execute();
+
+  if($status === false){
+    trigger_error($stmt->error, E_USER_ERROR);
+  }
+
+}
 
 
 
