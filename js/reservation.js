@@ -347,9 +347,8 @@ function clickSuivant(){
   let heure = $('#dispo').find('option:selected').text();
   let id_dispo = $('#dispo').find('option:selected').val();
   let id_region = $('#region').find('option:selected').val();
-  console.log(id_region);
+  let duree = $('#duree').find('option:selected').val();
 
-  // console.log(heure);
 
   if(facilitateur_id == null){
     facilitateur_id = -1;
@@ -364,7 +363,7 @@ function clickSuivant(){
 
   let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
-  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region;
+  let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region+'&duree='+duree;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
   $('#form-reservation').attr('action', urlRedirectQuestionnaire);
   $('#form-reservation').submit();

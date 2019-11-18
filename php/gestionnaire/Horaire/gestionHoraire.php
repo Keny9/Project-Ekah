@@ -41,13 +41,46 @@ class GestionHoraire{
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
           $disponibilite[] = new Disponibilite(
-                                    $row['id_disponibilite'],
-                                    $row['heure_debut'],
-                                    $row['heure_fin']);
+                                $row['id_disponibilite'],
+                                $row['heure_debut'],
+                                $row['heure_fin'],
+                                $row['id_etat']);
         }
       }
       return $disponibilite;
     }
+
+    /*
+      Retourne une dispo grace à son id
+    */
+      public function getDispo($id){
+        $tempconn = new Connexion();
+        $conn = $tempconn->getConnexion();
+        $activite = null;
+
+        //Il manque le WHERE facilitateur actif
+        $requete= "SELECT * FROM utilisateur
+                     INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
+                     INNER JOIN disponibilite ON disponibilite.id = id_disponibilite
+                     WHERE disponibilite.id = ".$id."
+                  ";
+
+        $result = $conn->query($requete);
+        if(!$result){
+          trigger_error($conn->error);
+        }
+
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            $disponibilite = new Disponibilite(
+                                  $row['id_disponibilite'],
+                                  $row['heure_debut'],
+                                  $row['heure_fin'],
+                                  $row['id_etat']);
+          }
+        }
+        return $disponibilite;
+      }
 
 
     /*
@@ -74,9 +107,10 @@ class GestionHoraire{
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             $disponibilite[] = new Disponibilite(
-                                      $row['id_disponibilite'],
-                                      $row['heure_debut'],
-                                      $row['heure_fin']);
+                                  $row['id_disponibilite'],
+                                  $row['heure_debut'],
+                                  $row['heure_fin'],
+                                  $row['id_etat']);
           }
         }
         return $disponibilite;
