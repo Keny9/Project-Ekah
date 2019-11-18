@@ -174,7 +174,7 @@ class GestionReservation{
    * pour une réservation individuelle
    * Retourne l'id du suivi
    */
-  public function insertReservationIndividuelle($groupe, $reservation, $client_id, $emplacement){
+ public function insertReservationIndividuelle($groupe, $reservation, $client_id/*, $emplacement*/){
      $connexion = new Connexion();
      $conn = $connexion->do();
      $id_utilisateur = $client_id;
@@ -202,7 +202,7 @@ class GestionReservation{
        exit();
      }
 
-     // Insert emplacement, rollback si erreur
+    /* // Insert emplacement, rollback si erreur
      if($this->emplacementInsert($conn, $emplacement) == false){
        $conn->rollback();
        exit();
@@ -214,7 +214,7 @@ class GestionReservation{
      if($id_emplacement == null){
        $conn->rollback();
        exit();
-     }
+     }*/
 
      // Créer la réservation
      $reservation->setIdGroupe($id_groupe);

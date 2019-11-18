@@ -384,7 +384,7 @@ function clickSuivant(){
 
 //Valider le formulaire de réservation
  function valideReservation(){
-   if(siSelectVide(service) || siSelectVide(dureeInput) || calendrierVide()){
+   if(siSelectVide(service) || siSelectVide(dureeInput) || siRegionVide() || calendrierVide()){
      indiqueChampVideReservation();
      document.querySelector('.reservation').scrollIntoView({ //Animation scroll smooth au debut du form
        behavior: 'smooth'
