@@ -514,6 +514,11 @@ INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (1, 3);
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (2, 2);
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 1);
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 2);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 1);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 2);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 3);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 4);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 5);
 
 
 INSERT INTO type_groupe(id, type_groupe) VALUES (1, "Réservation individuelle");

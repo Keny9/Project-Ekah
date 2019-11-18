@@ -42,8 +42,10 @@
  }
  let divVer=null;
      for(i=30;i<180;i+=30){
-     console.log(i);
+       console.log("etape2");
      if(document.getElementById("Durees-"+i) !== null){
+       console.log(document.getElementById("Durees-"+i));
+       console.log("etape3");
      divVer = document.getElementById("Durees-"+i).value;
      console.log(divVer);
 
@@ -96,33 +98,39 @@ function remplirNom(x){
                   data: myData,
                   success: function(data) {
 
+                    var titre=document.getElementById("titre");
+                    var nom=document.getElementById("nom");
+                    titre.innerHTML=data;
+                    nom.innerHTML=data;
+                    titre.innerHTML = titre.innerHTML.replace(/"/g, '');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e9/g, 'é');
+                    titre.innerHTML = titre.innerHTML.replace(/\\/g, '');
+                    titre.innerHTML = titre.innerHTML.replace(/u2019/g, '\'');
+                    titre.innerHTML = titre.innerHTML.replace(/u00ea/g, 'ê');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e7/g, 'ç');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e0/g, 'à');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e2/g, 'â');
+                    titre.innerHTML = titre.innerHTML.replace(/u00ee/g, 'î');
+                    titre.innerHTML = titre.innerHTML.replace(/u00e8/g, 'è');
+                    titre.innerHTML = titre.innerHTML.replace(/u00c9/g, 'É');
+                    console.log(titre.innerHTML);
+                    let titreValue = document.getElementById("titre").innerHTML;
+                    document.getElementById("titre").innerHTML=titreValue;
 
-                    document.getElementById("titre").innerHTML=data;
-                    document.getElementById("nom").innerHTML=data;
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/"/g, '');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e9/g, 'é');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/\\/g, '');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u2019/g, '\'');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ea/g, 'ê');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e7/g, 'ç');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e0/g, 'à');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e2/g, 'â');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00ee/g, 'î');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00e8/g, 'è');
-                    document.getElementById("titre").innerHTML = document.getElementById("titre").innerHTML.replace(/u00c9/g, 'É');
-
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/"/g, '');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e9/g, 'é');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/\\/g, '');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u2019/g, '\'');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ea/g, 'ê');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e7/g, 'ç');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e0/g, 'à');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e2/g, 'â');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00ee/g, 'î');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00e8/g, 'è');
-                    document.getElementById("nom").innerHTML = document.getElementById("nom").innerHTML.replace(/u00c9/g, 'É');
-
+                    nom.innerHTML = nom.innerHTML.replace(/"/g, '');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e9/g, 'é');
+                    nom.innerHTML = nom.innerHTML.replace(/\\/g, '');
+                    nom.innerHTML = nom.innerHTML.replace(/u2019/g, '\'');
+                    nom.innerHTML = nom.innerHTML.replace(/u00ea/g, 'ê');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e7/g, 'ç');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e0/g, 'à');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e2/g, 'â');
+                    nom.innerHTML = nom.innerHTML.replace(/u00ee/g, 'î');
+                    nom.innerHTML = nom.innerHTML.replace(/u00e8/g, 'è');
+                    nom.innerHTML = nom.innerHTML.replace(/u00c9/g, 'É');
+                    console.log(nom.innerHTML);
+                    let nomValue = document.getElementById("nom").innerHTML;
+                    document.getElementById("nom").innerHTML=nomValue;
 
                   } ,
                   error: function() {
@@ -209,6 +217,8 @@ function remplirQuestion(x){
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/"/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/select/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/<>/g, '');
+
+                    //document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/>/g, '');
                     //document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/&gt;/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/V/g, '');
                     document.getElementById("questionnaire").innerHTML = document.getElementById("questionnaire").innerHTML.replace(/\\/g, '');

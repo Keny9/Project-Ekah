@@ -31,7 +31,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
   <h1 class="titreReservation">Gestion des Réservation</h1>
     <div class="tableauActivite">
     <?php
-                   require_once 'gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllActivite();
                  ?>
@@ -49,7 +49,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
       <textarea class="boxService" name="service" id="nom"></textarea>
       <div class="tableauDuree">
       <?php
-                     require_once 'gestionAffichageGestionReservation.php';
+                     require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                      $gagr = new GestionAffichageGestionReservation();
                      echo $gagr->getAllDuree();
                    ?>
@@ -58,7 +58,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
     <h6 class="choisirType texteEkha">Quelle est le type de l'activité:</h6></br></br>
     <?php
-                   require_once 'gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllTypeActivite();
                  ?>
@@ -69,7 +69,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     </div>
     <h6 class="duree texteEkha">Duree:</h6>
     <?php
-                   require_once 'gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getDureeActivite(18);
                  ?>
@@ -78,7 +78,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     <br />
     <h6 class="descriptionC texteEkha">Questions de l'activité:</h6>
     <?php
-                    require_once 'gestionAffichageGestionReservation.php';
+                    require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                     $gagr = new GestionAffichageGestionReservation();
                     echo $gagr->getQuestionActivite(1);
                   ?>
