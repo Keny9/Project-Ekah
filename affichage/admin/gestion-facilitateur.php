@@ -12,7 +12,6 @@
   $page_type=2;
   include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
-
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +38,28 @@
   <body>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
 
+    <div id="modal-modif-reservation" class="modal-modif-reservation">
+      <div class="modal-content">
+        <div class="modal-align-middle-mr">
+           <label class="label-reservation" for="activite">Facilitateur</label>
+           <div class="box-select">
+             <select class="select-inscr input-long" name="facilitateur" id="facilitateur" onchange="changeFacilitateur(this);">
+               <option class="option-vide" value="vide" selected="selected">Facilitateur</option>
+               <?php
+               foreach ($arrFacilitateur as $facilitateur){
+                 echo "<option value=\"".$facilitateur->getId()."\">".$facilitateur->getPrenom()." ".$facilitateur->getNom()."</option>";
+               }
+               ?>
+             </select>
+           </div>
+        </div>
+        <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
+          <button type="submit" class="btn-confirmer input-court btn-coller" name="button">Sauvegarder</button>
+          <button id="btn-annuler" type="button" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
+        </div>
+      </div>
+    </div>
+
     <main>
       <div class="reservation">
         <div class="txt-consulter">Les Facilitateurs</div>
@@ -52,12 +73,76 @@
                 <th>Téléphone</th>
                 <th>État</th>
                 <th>Agenda</th>
-                <th></th>
+                <th>Modifier</th>
               </tr>
             </thead>
-            <tbody>
-            </tbody>
           </table>
+        </div>
+
+        <p id="link-c-f" class="link-facilitateur">Créer un facilitateur</p>
+
+        <div class="profil" id="profil">
+          <div class="txt-consulter">Créer un facilitateur</div>
+
+          <div class="inscription">
+            <div class="logo-inscr">
+              <img src="../../img/logo_ekah_header.png" alt="Ekah">
+            </div>
+            <div class="error" id="error-blank">
+              <div class="icon-error">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <div class="text-error">
+                Ces champs ne peuvent pas être vide.
+              </div>
+            </div>
+            <form class="form-inscr" id="mickeymouse" action="" method="post">
+
+              <div id="modal-inscription" class="modal-inscription">
+                <div class="modal-content">
+                  <div class="modal-align-middle img-conf-insc">
+                     <img src="../../img/crochet.png" alt="Confirmation inscription">
+                  </div>
+                  <div class="modal-align-middle txt-bravo">
+                    <p>Félicitations !</p>
+                  </div>
+                  <div class="modal-align-middle txt-modal-bienv">
+                    <p>Bienvenue dans l'équipe !</p>
+                  </div>
+                  <div class="modal-align-middle btn-modal-insc">
+                    <button type="submit" class="btn-confirmer input-court" name="button">Terminer</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="group-input-inscr">
+                <input type="text" name="prenom" id="prenom" class="input-inscr" placeholder="Prénom" value="">
+                <input type="text" name="nom" id="nom" class="input-inscr second-input" placeholder="Nom de famille"value="">
+              </div>
+              <div class="group-input-inscr">
+                <input type="text" name="telephone" id="telephone" class="input-inscr input-long" placeholder="Téléphone" value="">
+              </div>
+              <div class="group-input-inscr">
+                <div class="error-courriel" id="error-courriel">
+                  <p>Cette adresse courriel est déjà utilisé.*</p>
+                </div>
+                <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
+              </div>
+              <div class="group-input-inscr">
+                <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
+                <div id="block-requis" class="block-requis-psw">
+                  <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 8 charactères.</p><br><br>
+                  <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 nombre et une lettre.</p><br><br>
+                  <i class="fas fa-exclamation-circle"></i><p>Utiliser au moins 1 lettre majuscule.</p><br><br>
+                </div>
+              </div>
+              <div class="group-input-inscr">
+                <button type="button" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer le facilitateur</button>
+              </div>
+
+            </form>
+          </div>
+
         </div>
       </div>
 

@@ -16,6 +16,7 @@
    border:1px solid;
    border-color:#000;
    background-color:#D3D3D3;
+   resize:none;
  }
  .boxDuree{
    width:250px;
@@ -79,6 +80,7 @@
    border:1px solid;
    border-color:#000;
    background-color:#D3D3D3;
+   resize:none;
  }
  .reservez{
    margin-top:10px;
