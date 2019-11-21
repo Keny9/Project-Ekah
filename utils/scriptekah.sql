@@ -682,13 +682,13 @@ INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, 
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
 
 
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,1);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,7);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,8);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,9);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,10);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,11);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,12);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,13);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,14);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,15);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,1, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,7, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,8, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (2,9, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (2,10, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (2,11, 2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,12, 2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,13, 2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,14, 3);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,15, 3);
