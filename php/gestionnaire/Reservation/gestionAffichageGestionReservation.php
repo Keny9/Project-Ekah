@@ -12,7 +12,7 @@
        }
        else{
          for ($i = 0; $i < sizeof($activite); $i++){
-           if($ga->getActiviteEtatId($i)==2)
+           if($ga->getActiviteEtatId($i+1)==2)
            {
              $html .= "
                  <div class=\"sectionActivite\">
@@ -22,6 +22,7 @@
                    ";
            }
            else{
+
            $html .= "
                <div class=\"sectionActivite\">
                <div class=\"titreActivite\">".$activite[$i]->getNom()."</div>
