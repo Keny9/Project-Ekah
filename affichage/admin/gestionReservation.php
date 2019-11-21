@@ -36,7 +36,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                    echo $gagr->getAllActivite();
                  ?>
                  <input type="button" class="submitSupprimer" onclick="supprime();" value="Désactivé" />
-                 <input type="button" class="submitAjout" onclick="ajouter();" value="Ajouter" /></br>
+                 <input type="button" class="submitAjout" onclick="ajouterActive();" value="Ajouter" /></br>
                  <input type="button" class="submitModifier" onclick="modifier();" value="Modifier" />
     </div>
 
