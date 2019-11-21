@@ -23,11 +23,13 @@
    $jour = null;
    $heure_debut = null;
    $heure_fin = null;
+   $regionid = null;
 
    $idFacilitateur = $_POST['idFacilitateur'];
    if($idFacilitateur == null){
      $idFacilitateur = $_SESSION['logged_in_user_id'];
    }
+
    $annee = $_POST['annee'];
    $mois = $_POST['mois'];
    $jour = $_POST['jour'];
@@ -35,13 +37,18 @@
    $heure_fin = $_POST['heure_fin'];
    $regionid = $_POST['region'];
 
+   if($regionid == 0){
+     $regionid = 1;
+   }
+
    // $annee = "2019";
    // $mois = "11";
-   // $jour = "14";
+   // $jour = "28";
    // $heure_debut = "11:30";
    // $heure_fin = "12:00";
+   // $regionid = 1;
 
-   echo $annee . "-" . $mois . "-" . $jour . " " . $heure_debut . ":00";
+   // echo $annee . "-" . $mois . "-" . $jour . " " . $heure_debut . ":00";
 
 
   $gestionFacilitateur = new GestionFacilitateur();
@@ -59,16 +66,18 @@
   $region = $gestionFacilitateur->getRegionId($regionid);
   $disponibilite->setRegion($region);
 
-  echo "<br />";
+  // echo "<br />";
 
   //print_r($facilitateur);
 
   // print_r($disponibilite);
 
-  echo "<br />";
-  echo $facilitateur->getId();
+  // echo "<br />";
+  // echo $facilitateur->getId();
+  //
+  // echo "<br />";
 
-  echo "<br />";
+  // print_r($disponibilite);
 
   echo $gestionFacilitateur->ajouterHoraire($facilitateur, $disponibilite);
 
