@@ -111,6 +111,17 @@ function openModal(){
   $("#modal").css("display", "block");
 }
 
+//Fermer la fenetre modale de modification d'une réservation
+function closeModalFin(){
+  $("#modal-inscription").css("display", "none");
+  $('.selectionne').toggleClass('selectionne');
+}
+
+//Ouvrir la fenêtre modal
+function openModalFin(){
+  $("#modal-inscription").css("display", "block");
+}
+
 
 //Recevoir les infos à mettre dans la modal
 function getInfoModal(){
@@ -155,6 +166,8 @@ function inscrireAtelier(){
     data: {"id": id},
     success: function(data){
         bool = true;
+        closeModal();
+        openModalFin();
     },
     error: function (jQXHR, textStatus, errorThrown) {
         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
