@@ -12,13 +12,23 @@
        }
        else{
          for ($i = 0; $i < sizeof($activite); $i++){
+           if($ga->getActiviteEtatId($i)==2)
+           {
+             $html .= "
+                 <div class=\"sectionActivite\">
+                 <div class=\"titreActivite\">".$activite[$i]->getNom()."</div>
+                 <div onclick='selectionne($i);' class=\"boiteSelection desactive\" id='Activite-$i'></div>
+                 </div>
+                   ";
+           }
+           else{
            $html .= "
                <div class=\"sectionActivite\">
                <div class=\"titreActivite\">".$activite[$i]->getNom()."</div>
                <div onclick='selectionne($i);' class=\"boiteSelection\" id='Activite-$i'></div>
                </div>
                  ";
-
+               }
          }
          $j=sizeof($activite);
          $html.="

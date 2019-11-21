@@ -577,7 +577,7 @@ function ajouterQuestionQuestionnaire(id){
 
    var nom = document.getElementById('nom').value;
    var idType = document.getElementById('type').value;
-   console.log(idType);
+   var idEtat = 1;
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
   var cout=0;
@@ -590,7 +590,7 @@ function ajouterQuestionQuestionnaire(id){
             url: url,
             type:"POST",
             async: false,
-            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
+            data: {id:id,nom: nom, idType:idType, idEtat:idEtat, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
             success: function(data) {
               console.log(data);
               if(!data){
@@ -598,7 +598,7 @@ function ajouterQuestionQuestionnaire(id){
               }
               else{
                 //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-                  console.log(data);
+                  //console.log(data);
               }
             } ,
             error: function() {
@@ -620,9 +620,11 @@ function ajouterQuestionQuestionnaire(id){
    var url="../../php/script/Activite/modifierActivite.php";
 
    var nom = document.getElementById('nom').value;
+   nom = nom.replace(/'/g, "\\'");
    var idType = document.getElementById('type').value;
-   console.log(idType);
+   var idEtat = 1;
   var descriptionC = document.getElementById('descriptionC').value;
+  descriptionC = descriptionC.replace(/'/g, "\\'");
   var descriptionL = "LONGUE";
   for (i = 0; i < divFin; i++){
     let divSelection = document.getElementById("Activite-"+i);
@@ -633,7 +635,7 @@ function ajouterQuestionQuestionnaire(id){
             url: url,
             type:"POST",
             async: false,
-            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL},
+            data: {id:id,nom: nom, idType:idType, idEtat:idEtat, descriptionC: descriptionC, descriptionL: descriptionL},
             success: function(data) {
               console.log(data);
               if(!data){
@@ -641,7 +643,7 @@ function ajouterQuestionQuestionnaire(id){
               }
               else{
                 //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-                  console.log(data);
+                  //console.log(data);
               }
             } ,
             error: function() {
@@ -664,7 +666,7 @@ function ajouterQuestionQuestionnaire(id){
    for (i = 0; i < divFin; i++){
      let divSelection = document.getElementById("Activite-"+i);
      if(divSelection.classList.contains("selectionne")){
-       var id = i+1;
+       var id = i;
        $(function($) {
            $.ajax({
              url: url,
