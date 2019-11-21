@@ -247,6 +247,7 @@
    margin-left:3px;
    margin-top: 12px;
    float:left;
+   font-size: 15px;
  }
  .boiteSelection{
    width:20px;
@@ -260,4 +261,7 @@
  }
 .selectionne{
   background-color:#008000;
+}
+.desactive{
+  background-color:#FF0000;
 }
