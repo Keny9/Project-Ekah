@@ -657,7 +657,6 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 10, '2020-03-22');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 11, '2020-03-28');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (7, 12, '2020-04-03');
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 13, '2020-05-09');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 14, '2020-05-15');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 15, '2020-05-23');
 
