@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/type_activite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/ta_duree_activite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/etat_activite.php";
 
 class GestionActivite{
 /*
@@ -24,6 +25,7 @@ class GestionActivite{
       while($row = $result->fetch_assoc()) {
         $activite[] = new Activite( $row['id'],
                                   $row['id_type_activite'],
+                                  $row['id_etat_activite'],
                                   $row['nom'],
                                   $row['description_breve'],
                                   $row['description_longue']);
@@ -48,7 +50,7 @@ class GestionActivite{
 
     if($result->num_rows > 0){
       $row = $result->fetch_assoc();
-      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue']);
+      $activite = new Activite($row['id'], $row['id_type_activite'],$row['id_etat_activite'], $row['nom'], $row['description_breve'], $row['description_longue']);
     }
     return $activite;
   }
@@ -74,6 +76,28 @@ class GestionActivite{
     return $type_activite;
   }
 
+  public function getAllEtatActivite(){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+    $activite = null;
+
+    $requete= "SELECT * FROM etat_activite";
+
+    $result = $conn->query($requete);
+    if(!$result){
+      trigger_error($conn->error);
+    }
+
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $type_activite[] = new Etat_activite( $row['id'],
+                                  $row['nom'],);
+      }
+    }
+
+    return $type_activite;
+  }
+
 
   public function ajouterActivite($activite){
       $tempconn = new Connexion();
@@ -83,6 +107,7 @@ class GestionActivite{
       $requete= "INSERT INTO activite VALUES(
                   '".$activite->getIdentifiant()."',
                   '".$activite->getId_type()."',
+                  '".$activite->getId_etat()."',
                   '".$activite->getNom()."',
                   '".$activite->getDescriptionC()."',
                   '".$activite->getDescriptionL()."',
@@ -118,6 +143,7 @@ class GestionActivite{
       $requete= "UPDATE activite
                 SET id = '".$activite->getIdentifiant()."',
                 id_type_activite = '".$activite->getId_type()."',
+                id_etat_activite = '".$activite->getId_etat()."',
                 nom = '".$activite->getNom()."',
                 description_breve = '".$activite->getDescriptionC()."',
                 description_longue = '".$activite->getDescriptionL()."'
@@ -132,8 +158,11 @@ class GestionActivite{
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
 
-    $requete= "DELETE FROM activite
-              WHERE id = '$idActivite';";
+    $requete= "UPDATE activite
+               SET
+               id_etat_activite = 2
+               WHERE id = '$idActivite';";
+
     $result = $conn->query($requete);
     if(!$result){
       trigger_error($conn->error);
@@ -172,6 +201,23 @@ class GestionActivite{
     }
 
     return $id_type_activite;
+  }
+  public function getActiviteEtatId($id){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+
+    $requete= "SELECT id_etat_activite FROM activite WHERE id = ?;";
+    $stmt=$conn->prepare($requete);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $id_etat_activite = null;
+    if ($row = $result->fetch_assoc()){ // Il y a un résultat
+      $id_etat_activite = $row['id_etat_activite'];
+    }
+
+    return $id_etat_activite;
   }
 
 }
