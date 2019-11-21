@@ -12,11 +12,13 @@
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
-  $idFacilitateur = $_POST['idFacilitateur'];
-  $duree = $_POST['duree'];
+  // $idFacilitateur = $_POST['idFacilitateur'];
+  // $duree = $_POST['duree'];
+  // $region = $_POST['region'];
 
-  // $idFacilitateur = -1;
-  // $duree = "90";
+  $idFacilitateur = -1;
+  $duree = "30";
+  $region = 3;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -27,8 +29,6 @@
   }else{
     $facilitateur = $gestionFacilitateur->getFacilitateurActifAvecDispoGroup($idFacilitateur);
   }
-
-  // print_r($facilitateur);
 
 
   date_default_timezone_set('America/Toronto');
@@ -54,18 +54,10 @@
           for ($k=0; $k < sizeof($dispo); $k++) {
             if ($duree == "60") {
               if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "60";
-                // echo "<br />";
                 $dispo[$j]->setEtat(0);
               }
             }elseif ($duree == "90") {
               if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+60 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "90";
-                // echo "<br />";
                 $dispo[$j]->setEtat(0);
               }
             }else{
@@ -78,7 +70,10 @@
         $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
         $end = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureFin()));
 
-        if($dispo[$j]->getEtat() == 0){
+        print_r($dispo[$j]->getRegion() . "  ==  " . $region);
+        echo "<br />";
+
+        if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
           $out[] = array(
             'id' => $dispo[$j]->getId(),
             'title' => $dispo[$j]->getId(),

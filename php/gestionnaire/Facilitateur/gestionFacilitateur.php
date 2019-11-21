@@ -81,6 +81,7 @@ class GestionFacilitateur{
                                     $row['heure_debut'],
                                     $row['heure_fin'],
                                     $row['id_etat']);
+            $disponibilite[]->setRegion($row['region']);
           }
         }
         return $disponibilite;

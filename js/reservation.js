@@ -34,14 +34,14 @@
    }
 
    duree = $('#duree').val();
-
+   region = $('#region').val();
 
    return $.ajax({
      type: "POST",
      async: false,
      dataType: "json",
      url: "../../php/script/Horaire/afficherAllEvents.php",
-     data: {idFacilitateur: idFacilitateur, duree: duree}
+     data: {idFacilitateur: idFacilitateur, duree: duree, region: region}
    });
  }
 
@@ -272,9 +272,16 @@ $(document).ready(function() {
     changerBackground();
     enleverDayView();
     selectionnerJour();
-});
+  });
 
-
+  $("#region").change(function() {
+    getEvents();
+    apresAjax();
+    calendrier.view();
+    changerBackground();
+    enleverDayView();
+    selectionnerJour();
+  });
 
   listInput = document.querySelectorAll("input, textarea, select");
 
