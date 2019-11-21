@@ -318,6 +318,7 @@ class GestionFacilitateur{
     $region = $disponibilite->getRegion();
 
     $idFacilitateur = $facilitateur->getId();
+    $regionId = $region->getId();
 
     try {
       $conn->do()->begin_transaction();
@@ -338,7 +339,7 @@ class GestionFacilitateur{
         $stmt = $conn->do()->prepare("INSERT INTO ta_disponibilite_specialiste
           (id_specialiste, id_disponibilite, id_region)
           VALUES (?, ?, ?);");
-          $stmt->bind_param('iii', $idFacilitateur, $disponibiliteId, $region->getId());
+          $stmt->bind_param('iii', $idFacilitateur, $disponibiliteId, $regionId);
           $stmt->execute();
 
         // Commit la transaction

@@ -92,8 +92,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
               </div>
             <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-              <button type="submit" class="btn-confirmer input-court btn-coller" name="button">S'inscrire</button>
               <button id="btn-annuler" type="button" onClick="closeModal()" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
+              <button type="submit" class="btn-confirmer input-court btn-coller" onclick="inscrireAtelier()" name="button">S'inscrire</button>
             </div>
           </div>
         </div>
