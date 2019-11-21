@@ -12,7 +12,6 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Client/GestionClientAjout.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
-$preMessageErreur = "script ajouterClient mouru : ";
 
 $gestion = new GestionClientAjout();
 $client;
@@ -48,19 +47,19 @@ if(!empty($dateNaissance)){$dateNaissanceString = $dateNaissance->format('Y-m-d'
 */
 
 if (isset($_POST['prenom'])) {$prenom = $_POST['prenom'];}
-else {die($preMessageErreur."Le prenom est vide");}
+else {die("Le prenom est vide");}
 
 if (isset($_POST['nom'])) {$nom = $_POST['nom'];}
-else {die($preMessageErreur."Le nom est vide");}
+else {die("Le nom est vide");}
 
 if (isset($_POST['courriel'])) {$courriel = $_POST['courriel'];}
-else {die($preMessageErreur."Le courriel est vide");}
+else {die("Le courriel est vide");}
 
 if (isset($_POST['motDePasse'])) {$motDePasse = $_POST['motDePasse'];}
-else {die($preMessageErreur."Le mot de passe est vide");}
+else {die("Le mot de passe est vide");}
 
 if (isset($_POST['telephone'])) {$telephone = $_POST['telephone'];}
-else {die($preMessageErreur."Le telephone est vide");}
+else {die("Le telephone est vide");}
 
 
 $client = new Client(NULL, $nom, $prenom, NULL, $courriel,

@@ -1,21 +1,26 @@
 <?php
+session_start();
 /**
  * Ajoute un fichier sur le serveur
  *
  * Nom :         ajouterFichierPerso.php
  * Catégorie :   script
  * Auteur :      Maxime Lussier
- * Version :     1.0
- * Date de la dernière modification : 2019-11-03
+ * Version :     1.1
+ * Date de la dernière modification : 2019-11-21
  */
 
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
+//include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 
-$nom_fichier =  $_GET['nom_fichier'];
-
-echo $nom_fichier;
-
-
+if($_FILES["file"]["name"] != '')
+{
+ $test = explode('.', $_FILES["file"]["name"]);
+ $ext = end($test);
+ $name = $_SESSION['logged_in_user_id']."_form-medical" . '.' . $ext;
+ $location = '../../../upload/client/' . $name;
+ move_uploaded_file($_FILES["file"]["tmp_name"], $location);
+ echo '<img src="'.$location.'" height="150" width="225" class="img-thumbnail" />';
+}
 
 
 
