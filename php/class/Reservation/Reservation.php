@@ -9,7 +9,7 @@
  * Catégorie :   Classe
  * Auteur :      Maxime Lussier
  * Version :     1.1
- * Date de la dernière modification : 2019-10-12
+ * Date de la dernière modification : 2019-11-21
  */
 
 class Reservation{
@@ -43,18 +43,18 @@ class Reservation{
   * Méthode print
   * echo le contenu des variables de la classe
   */
-  public function print(){
-    echo "
-    Id :               ".$this->getId()."<br>
-    id_paiement :      ".$this->getIdPaiement()."<br>
-    id_emplacement :   ".$this->getIdEmplacement()."<br>
-    id_suivi :         ".$this->getIdSuivi()."<br>
-    id_activite :      ".$this->getIdActivite()."<br>
-    id_groupe :        ".$this->getIdGroupe()."<br>
-    date_rendez_vous : ".$this->getDateRendezVous()."<br>
-    heure_debut :      ".$this->getHeureDebut()."<br>
-    heure_fin :        ".$this->getHeureFin()."<br>";
-  }
+  // public function print(){
+  //   echo "
+  //   Id :               ".$this->getId()."<br>
+  //   id_paiement :      ".$this->getIdPaiement()."<br>
+  //   id_emplacement :   ".$this->getIdEmplacement()."<br>
+  //   id_suivi :         ".$this->getIdSuivi()."<br>
+  //   id_activite :      ".$this->getIdActivite()."<br>
+  //   id_groupe :        ".$this->getIdGroupe()."<br>
+  //   date_rendez_vous : ".$this->getDateRendezVous()."<br>
+  //   heure_debut :      ".$this->getHeureDebut()."<br>
+  //   heure_fin :        ".$this->getHeureFin()."<br>";
+  // }
 
   /*
   * SETTEUR

@@ -74,6 +74,33 @@ var calendar = null;
  //Change les couleurs de background (vert quand dispo et enleve vert pour today)
  function changerBackground(){
    //Changer la couleur du background si y'a des dispos
+   // $.ajax({
+   //   type: "POST",
+   //   async: false,
+   //   dataType: "json",
+   //   url: "../../php/script/Reservation/afficherAtelierPasInscrit.php",
+   //   data: {"id": id},
+   //   success: function(data){
+   //       bool = true;
+   //       // console.log(data);
+   //
+   //       $('#modal-titre').text(data.title);
+   //       $('#modal-description').text(data.description);
+   //       $('#modal-date').text("Date : " + data.date);
+   //
+   //
+   //       $('#modal-start').text("Heure : " + data.heure);
+   //       $('#modal-fin').text("Duree : " + data.duree + " minutes");
+   //
+   //       $('#modal-adresse').text("Lieu : " + data.emplacement);
+   //       $('#modal-prix').text("Prix : " + data.prix + "$");
+   //
+   //   },
+   //   error: function (jQXHR, textStatus, errorThrown) {
+   //       alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+   //   }
+   // });
+
      $.each($('.events-list'), function(index, $event){
        var $this = $(this);
        $this.parent().css("background-color", "#e8fde7");
@@ -96,7 +123,7 @@ $(document).ready(function() {
   enleverDayView();
   selectionnerJour();
 
-  
+
 });
 
 //Fermer la fenetre modale de modification d'une réservation
@@ -114,9 +141,7 @@ function openModal(){
 
 //Recevoir les infos à mettre dans la modal
 function getInfoModal(){
-
   let id = $('.selectionne').find('a').data("eventId");
-
   $.ajax({
     type: "POST",
     async: false,
@@ -138,8 +163,25 @@ function getInfoModal(){
         $('#modal-adresse').text("Lieu : " + data.emplacement);
         $('#modal-prix').text("Prix : " + data.prix + "$");
 
+    },
+    error: function (jQXHR, textStatus, errorThrown) {
+        alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+    }
+  });
+  return bool;
+}
 
-
+//S'inscrire à l'atelier
+function inscrireAtelier(){
+  let id = $('.selectionne').find('a').data("eventId");
+  $.ajax({
+    type: "POST",
+    async: false,
+    dataType: "json",
+    url: "../../php/script/Reservation/inscrireAtelier.php",
+    data: {"id": id},
+    success: function(data){
+        bool = true;
     },
     error: function (jQXHR, textStatus, errorThrown) {
         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);

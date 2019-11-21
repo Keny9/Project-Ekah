@@ -12,6 +12,7 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/Gestionnaire/Groupe/gestionGroupe.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Inscription/Inscription.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
@@ -140,33 +141,48 @@ class GestionReservation{
       }
 
 
-  public function getIdActiviteReservation($reservation){
-    $tempconn = new Connexion();
-    $conn = $tempconn->getConnexion();
-    $reservation = null;
+//Inscrire un client à un atelier
+  public function inscrireAtelier($reservation, $id_User){
+    $conn = new Connexion();
+    $gGroupe = new GestionGroupe();
 
-    $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
-              INNER JOIN activite ON id_activite = activite.id
-              INNER JOIN type_activite ON id_type_activite = type_activite.id
-              WHERE type_activite.id = 1 AND id_etat = 1";
+    // $groupe = new Groupe(3, NULL, NULL, 0);
 
-    $result = $conn->query($requete);
-    if(!$result){
-      trigger_error($conn->error);
-    }
+    $id = $reservation->getId();
+    $groupe = $gGroupe->getGroupeReservation($id);
+    $no_groupe = $groupe->getNoGroupe();
 
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $reservation[] = new Reservation($row['id'], $row['id_paiement'],
-                                       $row['id_emplacement'], $row['id_suivi'],
-                                       $row['id_activite'], $row['id_groupe'],
-                                       $row['date_rendez_vous'],
-                                       $row['id_region'], $row['heure_fin']);
+    try {
+      $conn->do()->begin_transaction();
+
+      // Ajoute une inscription dans la table inscription
+      $stmt = $conn->do()->prepare("INSERT INTO inscription (id_utilisateur, id_groupe, date_inscription)
+        VALUES (?, ?, NOW());");
+
+        $stmt->bind_param('ii', $id_User, $no_groupe);
+        $stmt->execute();
+
+        $nb_participant = $groupe->getNbParticipant() + 1;
+
+        // Change le nombre de participant dans la table groupe
+        $stmt = $conn->do()->prepare("UPDATE groupe SET nb_participant = ? WHERE no_groupe = ?");
+
+        $stmt->bind_param('ii', $nb_participant, $no_groupe);
+        $stmt->execute();
+
+        // Commit la transaction
+        $conn->do()->commit();
+        return true;
+      } catch (Exception $e) {
+        // Rollback la transaction
+        $conn->do()->rollback();
+        echo "Erreur try-catch : ".$e."<br>";
+        return false;
       }
     }
 
-    return $reservation;
-  }
+
+
 
   /**
    *
