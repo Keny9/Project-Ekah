@@ -23,15 +23,18 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireRes
 
 class GestionReservation{
   //Retourne tous les ateliers
-    public function getAllAteliers(){
+    public function getAllAteliers($id){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
       $reservation = null;
 
-      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
+      $requete= "SELECT reservation.id, id_paiement, id_emplacement, id_suivi, id_activite, reservation.id_groupe, date_rendez_vous, id_region, heure_fin FROM reservation
                 INNER JOIN activite ON id_activite = activite.id
                 INNER JOIN type_activite ON id_type_activite = type_activite.id
+                INNER JOIN groupe ON reservation.id_groupe = no_groupe
                 WHERE type_activite.id = 1 AND id_etat = 1 AND date_rendez_vous >= now()";
+                // INNER JOIN inscription ON no_groupe = inscription.id_groupe
+                // AND inscription.id_utilisateur <> ".$id."
 
       $result = $conn->query($requete);
       if(!$result){
