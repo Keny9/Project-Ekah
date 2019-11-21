@@ -78,6 +78,9 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
               echo $stringQuestions;
             ?>
           </div>
+          <div class="information">
+            <p>*Ces informations resteront confidentielles au Collectif Ekah</p>
+          </div>
           <div class="group-input-inscr">
             <p class="label-question">Signez et datez la déclaration</p>
             <div class="group-input-inscr">

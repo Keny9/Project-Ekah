@@ -21,7 +21,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
     <link rel="stylesheet" href="../../css/fix.css">
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="../../css/atelier.css">
-
+    <!-- <link rel="stylesheet" href="../../css/inscription.css"> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
@@ -41,6 +41,22 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 
     <main>
+      <div id="modal-inscription" class="modal-inscription">
+        <div class="modal-content">
+          <div class="modal-align-middle-insc img-conf-insc">
+             <img src="../../img/crochet.png" alt="Confirmation inscription">
+          </div>
+          <div class="modal-align-middle-insc txt-bravo-insc">
+            <p>Félicitations !</p>
+          </div>
+          <div class="modal-align-middle-insc txt-modal-bienv-insc">
+            <p>Vous êtes désormais inscrit à cet atelier !</p>
+          </div>
+          <div class="modal-align-middle-insc btn-modal-insc">
+            <button type="submit" onclick="closeModalFin()" class="btn-confirmer input-court" name="button">Fermer</button>
+          </div>
+        </div>
+      </div>
 
       <div class="reservation">
         <div class="">
@@ -92,8 +108,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
               </div>
             <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-              <button type="submit" class="btn-confirmer input-court btn-coller" name="button">S'inscrire</button>
               <button id="btn-annuler" type="button" onClick="closeModal()" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
+              <button type="submit" class="btn-confirmer input-court btn-coller" onclick="inscrireAtelier()" name="button">S'inscrire</button>
             </div>
           </div>
         </div>

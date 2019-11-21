@@ -22,7 +22,6 @@ html,body{
   padding: 0;
   background-color: #FFFFFF;
   background-color: rgba(255,255,255,.9);
-  z-index: -1;
 }
 
 /*--------
@@ -35,6 +34,7 @@ colors:
 
 /*--------------HEADER v2.0------------------------------------*/
 header{
+  display: block;
   background-color: #034e54;
   height:83px;
   max-height: 83px;
@@ -416,11 +416,15 @@ nav{
 }
 
 #icon-book:before{
-  content :'\f518';
+  content:'\f518';
 }
 
 #icon-horaire:before{
-  content :'\f017';
+  content:'\f017';
+}
+
+#icon-atelier:before{
+  content: '\f6ec';
 }
 
 .footer-main{

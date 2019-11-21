@@ -161,9 +161,10 @@ $("#icon-mobile-menu").click(function(){
 $(document).mouseup(function(e)
 {
   //Cacher la boite de recherche lorsqu'il y a un click a l'exterieur
-    if ($(e.target).closest("#side_menu").length === 0 && $("#header_nav").css('display') == "block"){
+    if ($(e.target).closest("#side_menu").length === 0 && $(e.target).closest("#header_drop").length === 0 && $("#header_nav").css('display') == "block"){
         $("#header_nav").removeClass('nav_show');
         $("#header_nav").addClass('nav_hidden');
+        clickDropHeader--; //Ajustement du click, si on ne le fait pas, deux click vont être requis pour ouvrir le menu
     }
 });
 

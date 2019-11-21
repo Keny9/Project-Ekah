@@ -20,13 +20,12 @@ else{
 
  ?>
 <header>
-  <div id="logoWrapper" class="logo">
-    <a class="link-logo" href="https://ekah.co">
-      <img id='logoHeader' src="../../img/logo_ekah_header.png" alt="Ekah">
-    </a>
-  </div>
-
   <nav class="navi-header">
+    <div id="logoWrapper" class="logo">
+      <a class="link-logo" href="https://ekah.co">
+        <img id='logoHeader' src="../../img/logo_ekah_header.png" alt="Ekah">
+      </a>
+    </div>
     <div class="inner-header">
       <div class="onglet">
         <a href="https://ekah.co">ACCUEIL</a>

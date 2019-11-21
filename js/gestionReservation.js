@@ -115,7 +115,7 @@ function remplirNom(x){
                     titre.innerHTML = titre.innerHTML.replace(/u00ee/g, 'î');
                     titre.innerHTML = titre.innerHTML.replace(/u00e8/g, 'è');
                     titre.innerHTML = titre.innerHTML.replace(/u00c9/g, 'É');
-                    console.log(titre.innerHTML);
+                    //console.log(titre.innerHTML);
                     let titreValue = document.getElementById("titre").innerHTML;
                     document.getElementById("titre").innerHTML=titreValue;
 
@@ -130,7 +130,7 @@ function remplirNom(x){
                     nom.innerHTML = nom.innerHTML.replace(/u00ee/g, 'î');
                     nom.innerHTML = nom.innerHTML.replace(/u00e8/g, 'è');
                     nom.innerHTML = nom.innerHTML.replace(/u00c9/g, 'É');
-                    console.log(nom.innerHTML);
+                    //console.log(nom.innerHTML);
                     let nomValue = document.getElementById("nom").innerHTML;
                     document.getElementById("nom").innerHTML=nomValue;
 
@@ -567,6 +567,25 @@ function ajouterQuestionQuestionnaire(id){
       });
     });
 }
+function ajouterActive(){
+  let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+  divFin=divFin-1;
+  for (i = 0; i <= divFin; i++){
+    let divSelection = document.getElementById("Activite-"+i);
+    if(divSelection.classList.contains("selectionne")){
+      if(divSelection.classList.contains("desactive")){
+        active(i);
+      }
+    }
+  }
+  ajouter();
+}
+
+function active(id){
+  let divActive = document.getElementById("Activite-"+id);
+  divActive.classList.remove("desactive");
+  modifier();
+}
 
  function ajouter(){
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
@@ -577,7 +596,7 @@ function ajouterQuestionQuestionnaire(id){
 
    var nom = document.getElementById('nom').value;
    var idType = document.getElementById('type').value;
-   console.log(idType);
+   var idEtat = 1;
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
   var cout=0;
@@ -590,7 +609,7 @@ function ajouterQuestionQuestionnaire(id){
             url: url,
             type:"POST",
             async: false,
-            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
+            data: {id:id,nom: nom, idType:idType, idEtat:idEtat, descriptionC: descriptionC, descriptionL: descriptionL, cout:cout},
             success: function(data) {
               console.log(data);
               if(!data){
@@ -598,7 +617,7 @@ function ajouterQuestionQuestionnaire(id){
               }
               else{
                 //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-                  console.log(data);
+                  //console.log(data);
               }
             } ,
             error: function() {
@@ -609,7 +628,38 @@ function ajouterQuestionQuestionnaire(id){
         window.location.reload();
     }
   }
+}
+  function siVide(e){
+    if(e == null || e == ""){
+      return true;
+    }
+    return false;
+  }
+  function verifieNom(e){
+    var nomRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:’ '-]+$/;
+    console.log(nomRegex.test(e));
+    return nomRegex.test(e);
+  }
 
+ function valideForm(){
+   var nom = document.getElementById('nom').value;
+   var descriptionC = document.getElementById('descriptionC').value;
+  if(siVide(nom) || siVide(descriptionC)){
+    console.log("vide");
+    return false;
+  }
+  if(!verifieNom(nom)){
+    console.log("mauvais nom");
+    return false;
+  }
+  if(!verifieNom(descriptionC)){
+    console.log("mauvais description");
+    return false;
+  }
+
+  nom = nom.replace(/'/g, "\\'");
+ descriptionC = descriptionC.replace(/'/g, "\\'");
+ return true;
  }
 
  function modifier(){
@@ -620,10 +670,13 @@ function ajouterQuestionQuestionnaire(id){
    var url="../../php/script/Activite/modifierActivite.php";
 
    var nom = document.getElementById('nom').value;
+   nom = nom.replace(/'/g, "\\'");
    var idType = document.getElementById('type').value;
-   console.log(idType);
+   var idEtat = 1;
   var descriptionC = document.getElementById('descriptionC').value;
+  descriptionC = descriptionC.replace(/'/g, "\\'");
   var descriptionL = "LONGUE";
+  if(valideForm()==true){
   for (i = 0; i < divFin; i++){
     let divSelection = document.getElementById("Activite-"+i);
     if(divSelection.classList.contains("selectionne")){
@@ -633,7 +686,7 @@ function ajouterQuestionQuestionnaire(id){
             url: url,
             type:"POST",
             async: false,
-            data: {id:id,nom: nom, idType:idType, descriptionC: descriptionC, descriptionL: descriptionL},
+            data: {id:id,nom: nom, idType:idType, idEtat:idEtat, descriptionC: descriptionC, descriptionL: descriptionL},
             success: function(data) {
               console.log(data);
               if(!data){
@@ -641,7 +694,7 @@ function ajouterQuestionQuestionnaire(id){
               }
               else{
                 //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-                  console.log(data);
+                  //console.log(data);
               }
             } ,
             error: function() {
@@ -652,9 +705,8 @@ function ajouterQuestionQuestionnaire(id){
         window.location.reload();
     }
   }
-
-
- }
+}
+}
  function supprime(){
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
    // Create our XMLHttpRequest object

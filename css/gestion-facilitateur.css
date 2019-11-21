@@ -1,3 +1,7 @@
+main{
+  display: inline-block;
+}
+
 .txt-consulter{
   margin-top: 30px;
   color: #034e54;
@@ -129,4 +133,9 @@ th{
   .dataTables_scroll{
     overflow-x:auto;
   }
+
+  .link-facilitateur{
+    margin-top: 20px;
+  }
+
 }

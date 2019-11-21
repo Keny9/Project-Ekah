@@ -13,14 +13,16 @@
   class Activite{
     private $identifiant;
     private $idType;
+    private $idEtat;
     private $nom;
     private $descriptionC;
     private $descriptionL;
     private $cout;
 
-    function __construct( $identifiant,$idType,$nom,$descriptionC,$descriptionL, $cout=null){
+    function __construct( $identifiant,$idType,$idEtat,$nom,$descriptionC,$descriptionL, $cout=null){
       $this->setIdentifiant($identifiant);
-      $this->setId_type($idType);
+      $this->setId_Type($idType);
+      $this->setId_Etat($idEtat);
       $this->setNom($nom);
       $this->setDescriptionC($descriptionC);
       $this->setDescriptionL($descriptionL);
@@ -54,6 +56,14 @@
 
     public function setId_Type($idType){
       $this->idType = $idType;
+    }
+
+    public function getId_etat(){
+      return $this->idEtat;
+    }
+
+    public function setId_Etat($idEtat){
+      $this->idEtat = $idEtat;
     }
 
     public function getNom(){
