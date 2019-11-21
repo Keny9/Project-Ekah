@@ -7,7 +7,10 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Minimum Setup</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+  <title>Mon Horaire</title>
+  <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
   <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
 	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
@@ -28,6 +31,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" href="../../css/fix.css">
   <script type="text/javascript" src="../../js/global.js"></script>
 
 </head>
@@ -36,6 +40,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   <?php include '../global/header.php' ?>
 
   <main class="reservation">
+    <div class="txt-consulter">Mon horaire</div>
     <br>
 
     <div class="page-header">

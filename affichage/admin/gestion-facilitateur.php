@@ -73,7 +73,6 @@
                 <th>Téléphone</th>
                 <th>État</th>
                 <th>Agenda</th>
-                <th>Modifier</th>
               </tr>
             </thead>
           </table>
