@@ -20,6 +20,12 @@
       </a>
     </li>
     <li class="li-menu">
+      <a class="link-menu" href="/Project-Ekah/affichage/client/accueil_client.php">
+        <span id="icon-atelier" class="picto-menu"></span>
+        <span class="text-menu"><p>Ateliers</p></span>
+      </a>
+    </li>
+    <li class="li-menu">
       <a class="link-menu" href="/Project-Ekah/affichage/client/reservation_groupe.php">
         <span id="icon-groupe" class="picto-menu"></span>
         <span class="text-menu"><p>Demande de groupe</p></span>

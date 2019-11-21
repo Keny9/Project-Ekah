@@ -77,10 +77,6 @@ $(document).ready(function(){
           // Set la référence vers l'agenda d'un facilitateur
           return '<a href="../admin/disponibilite.php?id='+data.id+'" target="_blank"><span class="calendar"></span></a>';
         }},
-        {"data": null,
-        render: function(data, type, row){
-          return '<span class="cog" id=modif'+data.id+' onclick="openModal()"></span>';
-        }},
       ],
       "language":{
         "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"

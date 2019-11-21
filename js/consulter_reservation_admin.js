@@ -115,6 +115,8 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#cefdce";
 
+        child[6].children[0].onclick = function(){alreadyDone();}; //Fenêtre modal
+
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");
           },function(){
@@ -125,7 +127,7 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#ffc2b3";
 
-        child[6].children[0].onclick = function(){alreadyCancelled();};
+        child[6].children[0].onclick = function(){alreadyCancelled();}; //Fenêtre modal
 
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");
@@ -147,8 +149,10 @@ $(document).ready(function(){
     $("#btn-annuler-cancel").click(closeCancelModal);
     $("#btn-confirm-cancel").click(cancelReservation);
     $("#btn-already-cancel").click(closeAlreadyModal);
+    $("#btn-already-done").click(closeAlreadyDoneModal);
 });
 
+//Afficher les informations du suivi dans les textarea
 function printSuivi(id_suivi){
   $.ajax({
     url: "../../php/script/Reservation/dataSuivi.php",
@@ -227,14 +231,23 @@ function alreadyCancelled(){
   $("#modal-cancel-already").css("display", "block");
 }
 
+//La réservation est déjà complété
+function alreadyDone(){
+  $("#modal-done-already").css("display", "block");
+}
+
 //La réservation est déjà annulé : Fermer fenetre modale.
 function closeAlreadyModal(){
   $("#modal-cancel-already").css("display", "none");
 }
 
+//La réservation est déjà complété : Fermer fenetre modale.
+function closeAlreadyDoneModal(){
+  $("#modal-done-already").css("display", "none");
+}
+
 //Fonction qui annule une réservations
 function cancelReservation(){
-  console.log("Allo");
   $.ajax({
     url: "../../php/script/Reservation/cancelReservation.php",
     type: "post",
