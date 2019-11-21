@@ -18,7 +18,7 @@ $region_array = $gRegion->selectAllRegion();
 $html =
 "<div class='group-input-inscr'>
   <div class='box-select'>
-    <select class=\"select-inscr input-long\" name=\"region\" id=\"region\">";
+    <select class=\"select-inscr input-long\" name=\"region\" id=\"region\" onchange='changeListe(this);'>";
     foreach($region_array as $region){
       $html .= "<option value=\"".$region['id']."\">".$region['nom']."</option>";
     }
