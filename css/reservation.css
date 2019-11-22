@@ -147,6 +147,10 @@ textarea:focus{
   border-radius: 0px;
 }
 
+#modal-complete-reservation{
+  display: block;
+}
+
 @media only screen and (min-width: 768px){
   .top-img{
     font-size: 64px;

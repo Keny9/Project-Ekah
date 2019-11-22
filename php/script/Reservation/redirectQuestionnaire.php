@@ -43,7 +43,6 @@
  if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
    $facilitateur = $gFacilitaeur->getDispo($id_dispo);
    $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
-   //print_r($facilitateur); /**********Si c'est print, le header() en bas ne fonctionnera pas sur web host **************/
  }
 
 // Set l'id de l'emplacement
@@ -75,15 +74,11 @@ $heure_fin = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+".$duree.
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
    echo "Il n'y a pas de questionnaire pour cette activité\n";
    echo "Réservation complétée";
-   // TODO: redirect vers page appropriée.. message de confirmation.. Karl peux-tu faire quelque chose?
-   exit();
  }
 
 // L'activité contient un questionnaire
 $questionnaire = $questionnaireArray[0];
 $_SESSION['questionnaire'] = $questionnaire;
-
-//echo var_dump($questionnaire);
 
 header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
  ?>

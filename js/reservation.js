@@ -337,6 +337,8 @@ $(document).ready(function() {
     window.location.href = "/Project-Ekah/affichage/client/accueil_client.php";
   });
 
+  $("#btn-confirm-reservation").click(closeModal); //Click pour fermer la fenetre modal
+
 });
 
 
@@ -371,7 +373,6 @@ function clickSuivant(){
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
-   console.log(e);
     e.style.borderBottomColor = "#ff0000";
     e.style.setProperty("--color", "#ff0000");
  }
@@ -537,4 +538,14 @@ function siVide(e){
    else{
      document.getElementById("photo-facilitateur").style.display = "none";
    }
+ }
+
+ //Fermer la fenetre modale de modification d'une réservation
+ function closeModal(){
+   $("#modal-complete-reservation").css("display", "none");
+ }
+
+ //Ouvrir la fenêtre modal
+ function openModal(){
+   $("#modal-complete-reservation").css("display", "block");
  }
