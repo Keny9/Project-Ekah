@@ -37,6 +37,7 @@ $activites = $gActivite->getAllActivite();
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
     <script type="text/javascript" src="../../js/reservation.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <title>Réservation</title>
   </head>
   <body>
@@ -139,6 +140,32 @@ $activites = $gActivite->getAllActivite();
             <!--<img id="calendrier" src="../../img/calendar.JPG" alt="Calendrier">-->
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php'; ?>
           </div>
+
+          <!--   BLOC PAIEMENT    -->
+          <form action="charge.php" method="post" id="payment-form">
+            <div class="form-row">
+              <label for="card-element">
+                Credit or debit card
+              </label>
+              <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
+              </div>
+              <div id="prix">
+                <input type="number" name="total" value="">
+              </div>
+
+              <!-- Used to display Element errors. -->
+              <div id="card-errors" role="alert"></div>
+            </div>
+
+            <button>Submit Payment</button>
+          </form>
+
+
+
+
+
+
           <div class="group-input-inscr">
             <label for="commentaire" class="label-reservation">Commentaire</label>
             <textarea name="commentaire" class="commentaire" id="commentaire"></textarea>
@@ -150,6 +177,10 @@ $activites = $gActivite->getAllActivite();
            <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>
           </div>
         </form>
+
+
+
+
 
       </div>
 
