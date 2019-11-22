@@ -12,7 +12,7 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/Gestionnaire/Groupe/gestionGroupe.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Groupe/gestionGroupe.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Inscription/Inscription.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
@@ -427,15 +427,16 @@ class GestionReservation{
         // TODO: faire une méthode pour ça
         // Insert le suivi vide
     $suivi_contenu = "";
-    $stmt = $conn->prepare("INSERT INTO suivi (fait) VALUES (?)"); /*********Sur 000webhost ca ne se produit pas puisque la colonne commentaire est a not null et dans ce cas ci rien est inséré*********/
-    $stmt->bind_param('s', $suivi_contenu);
+    $commentaire = "";
+    $stmt = $conn->prepare("INSERT INTO suivi (fait,commentaire) VALUES (?,?)"); /*********Sur 000webhost ca ne se produit pas puisque la colonne commentaire est a not null et dans ce cas ci rien est inséré*********/
+    $stmt->bind_param('ss', $suivi_contenu, $commentaire);
     $stmt->execute();
     $id_suivi = $conn->insert_id;
 
     /****************** Erreur sur 000webhost Cannot add or update a child row: a foreign key constraint fails (`id11534325_ekah`.`reservation`, CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_suivi`) REFERENCES `suivi` (`id`)) *******/
 
-    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, date_rendez_vous, id_region, heure_fin, id_facilitateur, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
-    $stmt->bind_param('iiiiisisii', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur, $id_etat);
+    $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, id_region, heure_fin, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
+    $stmt->bind_param('iiiiiisisi', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $id_facilitateur, $date_rendez_vous, $id_region, $heure_fin, $id_etat);
     $stmt->execute();
 
     if($conn->error){

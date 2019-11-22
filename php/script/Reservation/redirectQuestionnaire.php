@@ -12,7 +12,7 @@
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
- include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php';
+ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php';
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
@@ -43,7 +43,7 @@
  if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
    $facilitateur = $gFacilitaeur->getDispo($id_dispo);
    $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
-   print_r($facilitateur); /**********Si c'est print, le header() en bas ne fonctionnera pas sur web host **************/
+   //print_r($facilitateur); /**********Si c'est print, le header() en bas ne fonctionnera pas sur web host **************/
  }
 
 // Set l'id de l'emplacement
@@ -83,7 +83,7 @@ $heure_fin = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+".$duree.
 $questionnaire = $questionnaireArray[0];
 $_SESSION['questionnaire'] = $questionnaire;
 
-echo var_dump($questionnaire);
+//echo var_dump($questionnaire);
 
 header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
  ?>
