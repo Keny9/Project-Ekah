@@ -428,12 +428,10 @@ class GestionReservation{
         // Insert le suivi vide
     $suivi_contenu = "";
     $commentaire = "";
-    $stmt = $conn->prepare("INSERT INTO suivi (fait,commentaire) VALUES (?,?)"); /*********Sur 000webhost ca ne se produit pas puisque la colonne commentaire est a not null et dans ce cas ci rien est inséré*********/
+    $stmt = $conn->prepare("INSERT INTO suivi (fait,commentaire) VALUES (?,?)");
     $stmt->bind_param('ss', $suivi_contenu, $commentaire);
     $stmt->execute();
     $id_suivi = $conn->insert_id;
-
-    /****************** Erreur sur 000webhost Cannot add or update a child row: a foreign key constraint fails (`id11534325_ekah`.`reservation`, CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`id_suivi`) REFERENCES `suivi` (`id`)) *******/
 
     $stmt = $conn->prepare("INSERT INTO reservation (id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, id_region, heure_fin, id_etat) VALUES (?,?,?,?,?,?,?,?,?,?);"); /*******Erreur sur 000webhost puisque dans le insert les colonnes ne sont pas dans le meme ordre que la bd*******/
     $stmt->bind_param('iiiiiisisi', $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $id_facilitateur, $date_rendez_vous, $id_region, $heure_fin, $id_etat);

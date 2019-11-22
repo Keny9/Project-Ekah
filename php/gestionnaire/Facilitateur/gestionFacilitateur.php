@@ -490,9 +490,9 @@ class GestionFacilitateur{
     public function getAllFacilitateur(){
       $conn = ($connexion = new Connexion())->do();
 
-      $requete = "SELECT u.id, u.nom, u.prenom, u.telephone, c.courriel, e.nom AS etat FROM utilisateur AS u
+      $requete = "SELECT u.id, u.nom, u.prenom, u.telephone, c.courriel, e.etat_disponible AS etat FROM utilisateur AS u
                   INNER JOIN compte_utilisateur c ON c.fk_utilisateur = u.id
-                  INNER JOIN etat_disponible e ON e.id = u.id_type_etat_dispo
+                  INNER JOIN type_etat_dispo e ON e.id = u.id_type_etat_dispo
                   WHERE id_type_utilisateur = 2;";
 
       $stmt = $conn->prepare($requete);
@@ -614,6 +614,55 @@ class GestionFacilitateur{
 
         $stmt->close();
       }
+
+    /**
+    * Obtenir tous les états possible que les facilitateurs peuvent avoir
+    */
+    public function getAllEtat(){
+      $conn = ($connexion = new Connexion())->do();
+
+      $requete = "SELECT * FROM type_etat_dispo;";
+
+      $stmt = $conn->prepare($requete);
+      $status = $stmt->execute();
+      $result = $stmt->get_result();
+
+      if($status === false){
+        trigger_error($stmt->error, E_USER_ERROR);
+      }
+
+      if($result->num_rows == 0){
+        $arrEtat = [];
+        return $arrEtat;
+      }
+
+      while($row = $result->fetch_assoc()){
+        $arrEtat[] = $row;
+      }
+
+      return $arrEtat;
+    }
+
+  /**
+  * Mettre a jour l'etat d'un facilitateur dans la base de donnee
+  *
+  */
+  public function updateEtatFacilitateur($idFacilitateur, $idEtat){
+    $conn = ($connexion = new Connexion())->do();
+
+    $requete = "UPDATE utilisateur
+                SET id_type_etat_dispo = ?
+                WHERE id = ?;";
+
+    $stmt = $conn->prepare($requete);
+    $stmt->bind_param('ii', $idEtat, $idFacilitateur);
+    $status = $stmt->execute();
+
+    if($status === false){
+      trigger_error($stmt->error, E_USER_ERROR);
+    }
+
+  }
 
   }
 
