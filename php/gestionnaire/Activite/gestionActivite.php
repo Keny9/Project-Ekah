@@ -69,7 +69,7 @@ class GestionActivite{
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
         $type_activite[] = new Type_activite( $row['id'],
-                                  $row['nom'],);
+                                  $row['nom']);
       }
     }
 
@@ -91,7 +91,7 @@ class GestionActivite{
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
         $type_activite[] = new Etat_activite( $row['id'],
-                                  $row['nom'],);
+                                  $row['nom']);
       }
     }
 
