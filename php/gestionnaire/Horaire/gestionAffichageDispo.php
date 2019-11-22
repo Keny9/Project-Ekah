@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/Gestionnaire/Facilitateur/GestionFacilitateur.php';
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php';
 
   class GestionAffichageDispo
   {
