@@ -407,7 +407,7 @@ function sendEmail(){
   $("#form-reservation-groupe").css("display", "none");
 
   $.ajax({
-    url: '../../php/script/Reservation/demandeGroupe.php',
+    url: '../../php/script/Reservation/mail_groupe.php',
     method: 'POST',
     dataType: 'json',
     contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -422,7 +422,7 @@ function sendEmail(){
       message: message.value
     }, success: function(response){
       console.log(response);
-      if(response.status == "success"){
+      if(response['success']['response'] == "Message has been sent"){
         $("#loader").css("display", "none");
         $('#modal-demande').css("display", "block");
         $("#form-reservation-groupe").css("display", "block");
