@@ -46,7 +46,9 @@ $activites = $gActivite->getAllActivite();
 
     <main>
 
+
       <?php
+      // TODO: Dans ce modal,indiquer au client l'url pour son recu avec $_SESSION['recu_paiement_url']
         if(isset($_GET['rComplete']) && $_GET['rComplete'] == 1){
           echo "<div id='modal-complete-reservation' class='modal-modif-reservation'>
             <div class='modal-content'>
@@ -159,45 +161,15 @@ $activites = $gActivite->getAllActivite();
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php'; ?>
           </div>
 
-          <!--   BLOC PAIEMENT    -->
-          <form action="charge.php" method="post" id="payment-form">
-            <div class="form-row">
-              <label for="card-element">
-                Credit or debit card
-              </label>
-              <div id="card-element">
-                <!-- A Stripe Element will be inserted here. -->
-              </div>
-              <div id="prix">
-                <input type="number" name="total" value="">
-              </div>
-
-              <!-- Used to display Element errors. -->
-              <div id="card-errors" role="alert"></div>
-            </div>
-
-            <button>Submit Payment</button>
-          </form>
-
-
-
-
-
-
           <div class="group-input-inscr">
             <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>
           </div>
+
           <div class="group-input-inscr">
            <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>
           </div>
         </form>
-
-
-
-
-
       </div>
-
     </main>
 
     <?php include "../global/footer.php"; ?>

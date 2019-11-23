@@ -21,8 +21,7 @@
 
  if (session_status() === PHP_SESSION_NONE){session_start();}
 
-$paiement_effectue = false;
-
+$paiement_effectue = true;
 
 /****   BLOC POUR LE PAIEMENT ****/
 require $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/stripe-php-7.13.0/vendor/autoload.php';
@@ -40,11 +39,9 @@ $charge = \Stripe\Charge::create([
     'description' => 'Example charge',
     'source' => $token,
 ]);
+$_SESSION['recu_paiement_url'] = $charge['receipt_url'];
 
-
-print_r($charge);
 /****   FIN BLOC PAIEMENT  ****/
-?>
 
 if($paiement_effectue == true){
   $gReservation = new GestionReservation();
@@ -57,14 +54,15 @@ if($paiement_effectue == true){
 
   //Créer la réservation
   $groupe = new Groupe(null, 1, null, null, 1);
-  $id_activite = $_POST['service'];
-  $dateTime = $_GET['date_rendez_vous'];//$_GET['date_rendez_vous'];
-  $id_facilitateur = $_GET['facilitateur_id'];//$_GET['facilitateur_id'];
-  $id_dispo = $_GET['id_dispo'];
-  $no_adresse = $_POST['noAdresse'];
-  $rue = $_POST['rue'];
-  $ville = $_POST['ville'];
-  $duree = $_GET['duree'];
+  $id_activite = $_SESSION['id_activite'];
+  $date_rendez_vous = $_SESSION['date_rendez_vous'];
+  $id_facilitateur = $_SESSION['id_facilitateur'];
+  $id_dispo = $_SESSION['id_dispo'];
+  $no_adresse = $_SESSION['no_adresse'];
+  $rue = $_SESSION['rue'];
+  $ville = $_SESSION['ville'];
+  $duree = $_SESSION['duree'];
+  $id_region = $_SESSION['id_region'];
 
   if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
     $facilitateur = $gFacilitaeur->getDispo($id_dispo);
@@ -77,11 +75,7 @@ if($paiement_effectue == true){
     $id_emplacement = $gReservation->insertEmplacement($no_adresse, $rue, $ville);
   }
 
- // Set l'id de la région
- $id_region = null;
- if(isset($_POST['region'])){
-   $id_region = $_GET['id_region'];
- }
+
 
  //Calculer l'heure_fin de la réservation
  $dispo = $gHoraire->getDispo($id_dispo);
@@ -89,7 +83,7 @@ if($paiement_effectue == true){
 
 
   // Créer la réservation
-  $reservation = new Reservation(null, null, $id_emplacement, null, $id_activite, null, $dateTime, $id_region, $heure_fin, $id_facilitateur);
+  $reservation = new Reservation(null, null, $id_emplacement, null, $id_activite, null, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur);
   // Insert la reservation et get l'id de son suivi
   $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
 
@@ -100,12 +94,20 @@ if($paiement_effectue == true){
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
    echo "Il n'y a pas de questionnaire pour cette activité\n";
    echo "Réservation complétée";
+
+   // Redirect
  }
 
- // L'activité contient un questionnaire
- $questionnaire = $questionnaireArray[0];
- $_SESSION['questionnaire'] = $questionnaire;
+// L'activité contient un questionnaire
+   $questionnaire = $questionnaireArray[0];
+   $_SESSION['questionnaire'] = $questionnaire;
 
- header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
+   header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
+
+}
+else{ // Le payement n'est pas effectué
+  echo "Le paiement n'est pas effectuée";
+
+  // redirect
 }
  ?>
