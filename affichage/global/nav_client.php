@@ -28,7 +28,7 @@
     <li class="li-menu">
       <a class="link-menu" href="/Project-Ekah/affichage/client/reservation_groupe.php">
         <span id="icon-groupe" class="picto-menu"></span>
-        <span class="text-menu"><p>Demande de groupe</p></span>
+        <span class="text-menu"><p>Réserver pour un groupe</p></span>
       </a>
     </li>
     <hr class="hr-menu">

@@ -16,17 +16,14 @@ $(document).ready(function() {
     // TODO: ajouter la réservation avec ajax
     redirect();
   });
+
+  $('#btn-confirm-reservation').click(closeModal);
+
 });
-
-function submitForm(){
-  // TODO: Affiche un message de confirmation de la réservation
-
-}
 
 // Redirect le client après avoir fait sa réservation
 function redirect(){
   submitQuestionnaire();
-  //window.location = "/Project-Ekah/affichage/client/accueil_client.php";
 }
 
 // Soumet les infos à la BD
@@ -40,7 +37,6 @@ function submitQuestionnaire(){
     suivi_string += "\n\n";
   });
 
-alert(suivi_string);
 // TODO: faire l'url
 // TODO: remettre le script redirectionQuestionnaire À défaut
   $.ajax({
@@ -50,12 +46,21 @@ alert(suivi_string);
            commentaire: "",
            id_suivi: SUIVI_ID},
     success: function(data) {
-      console.log(data);
-      alert("Votre réservation a été transmise!");
-      window.location = "/Project-Ekah/affichage/client/accueil_client.php";
+      openModal();
     } ,
     error: function() {
       alert('Error occured');
     }
   });
+}
+
+//Fermer la fenetre modale de modification d'une réservation
+function closeModal(){
+  $("#modal-question-reservation").css("display", "none");
+  window.location = "/Project-Ekah/affichage/client/accueil_client.php";
+}
+
+//Ouvrir la fenêtre modal
+function openModal(){
+  $("#modal-question-reservation").css("display", "block");
 }

@@ -106,13 +106,13 @@ session_start();
         <div class="txt-consulter">Listes des réservations</div>
         <div class="legende">
           <div class="legende-carr">
-            <div id="carre1" class="carre"></div><span class="txt-legende">Réservation annulé</span>
+            <div id="carre1" class="carre"></div><span class="txt-legende">Réservation annulée</span>
           </div>
           <div class="legende-carr">
-            <div id="carre2" class="carre"></div><span class="txt-legende">Réservation complété</span>
+            <div id="carre2" class="carre"></div><span class="txt-legende">Réservation complétée</span>
           </div>
           <div class="legende-carr">
-            <div id="carre3" class="carre"></div><span class="txt-legende">Ligne sélectionné</span>
+            <div id="carre3" class="carre"></div><span class="txt-legende">Ligne sélectionnée</span>
           </div>
           <div class="legende-carr">
             <div id="carre4" class="carre"></div><span class="txt-legende">Réservation à venir</span>

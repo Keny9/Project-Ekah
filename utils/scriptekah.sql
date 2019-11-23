@@ -180,7 +180,7 @@ FOREIGN KEY (id_province) REFERENCES province(id)
 
 CREATE TABLE type_etat_dispo (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-etat_disponible VARCHAR(10) NOT NULL
+etat_disponible VARCHAR(100) NOT NULL
 );
 
 

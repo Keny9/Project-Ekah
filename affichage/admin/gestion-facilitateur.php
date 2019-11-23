@@ -11,6 +11,11 @@
   */
   $page_type=2;
   include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
+  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
+  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+
+  $gestionFacilitateur = new GestionFacilitateur();
+  $arrEtat = $gestionFacilitateur->getAllEtat();
 
 ?>
 
@@ -41,20 +46,21 @@
     <div id="modal-modif-reservation" class="modal-modif-reservation">
       <div class="modal-content">
         <div class="modal-align-middle-mr">
-           <label class="label-reservation" for="activite">Facilitateur</label>
+          <div class="txt-reservation txt-bienv">Changer l'état du facilitateur</div>
+           <label class="label-reservation" for="activite">État du facilitateur</label>
            <div class="box-select">
-             <select class="select-inscr input-long" name="facilitateur" id="facilitateur" onchange="changeFacilitateur(this);">
-               <option class="option-vide" value="vide" selected="selected">Facilitateur</option>
+             <select class="select-inscr input-long" name="etat" id="etat" onchange="changeFacilitateur(this);">
+               <option class="option-vide" value="vide" selected="selected">État</option>
                <?php
-               foreach ($arrFacilitateur as $facilitateur){
-                 echo "<option value=\"".$facilitateur->getId()."\">".$facilitateur->getPrenom()." ".$facilitateur->getNom()."</option>";
+               foreach ($arrEtat as $etat){
+                 echo "<option value='".$etat['id']."'>".$etat['etat_disponible']."</option>";
                }
                ?>
              </select>
            </div>
         </div>
         <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-          <button type="submit" class="btn-confirmer input-court btn-coller" name="button">Sauvegarder</button>
+          <button type="submit" class="btn-confirmer input-court btn-coller" id="btn-sauvegarder" name="button">Sauvegarder</button>
           <button id="btn-annuler" type="button" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
         </div>
       </div>
@@ -73,6 +79,7 @@
                 <th>Téléphone</th>
                 <th>État</th>
                 <th>Agenda</th>
+                <th>Modifier</th>
               </tr>
             </thead>
           </table>

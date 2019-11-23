@@ -46,8 +46,6 @@ print_r($charge);
 /****   FIN BLOC PAIEMENT  ****/
 ?>
 
-
-<?php
 if($paiement_effectue == true){
   $gReservation = new GestionReservation();
   $gAffichageReservation = new GestionAffichageReservation();
@@ -71,7 +69,6 @@ if($paiement_effectue == true){
   if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
     $facilitateur = $gFacilitaeur->getDispo($id_dispo);
     $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
-    //print_r($facilitateur); /**********Si c'est print, le header() en bas ne fonctionnera pas sur web host **************/
   }
 
  // Set l'id de l'emplacement
@@ -99,21 +96,16 @@ if($paiement_effectue == true){
  //Réserver la disponibilité
    $gHoraire->reserverDispo($id_dispo);
 
-  // L'activité ne contient pas de questionnaire
-  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
-    echo "Il n'y a pas de questionnaire pour cette activité\n";
-    echo "Réservation complétée";
-    // TODO: redirect vers page appropriée.. message de confirmation.. Karl peux-tu faire quelque chose?
-    exit();
-  }
+ // L'activité ne contient pas de questionnaire
+ if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
+   echo "Il n'y a pas de questionnaire pour cette activité\n";
+   echo "Réservation complétée";
+ }
 
  // L'activité contient un questionnaire
  $questionnaire = $questionnaireArray[0];
  $_SESSION['questionnaire'] = $questionnaire;
 
- //echo var_dump($questionnaire);
-
  header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
 }
-
  ?>

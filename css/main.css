@@ -24,6 +24,12 @@ html,body{
   background-color: rgba(255,255,255,.9);
 }
 
+main{
+  background-color: #FFFFFF;
+  width: 100%;
+  position: relative;
+}
+
 /*--------
   HEADER
 colors:
@@ -635,5 +641,11 @@ footer{
 @media only screen and (min-width: 1100px){
   .side-nav{
     display: none;
+  }
+}
+
+@media only screen and (min-height: 768px){
+  main{
+    min-height: 65%;
   }
 }
