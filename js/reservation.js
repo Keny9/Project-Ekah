@@ -272,7 +272,7 @@ $(document).ready(function() {
     changerBackground();
     enleverDayView();
     selectionnerJour();
-  });
+});
 
 
 
@@ -337,10 +337,6 @@ $(document).ready(function() {
     window.location.href = "/Project-Ekah/affichage/client/accueil_client.php";
   });
 
-  $("#btn-confirm-reservation").click(closeModal); //Click pour fermer la fenetre modal
-
-
-  initStripe(); // Init en lien avec le paiement
 });
 
 
@@ -365,7 +361,8 @@ function clickSuivant(){
   // console.log(date_rendez_vous);
 
 
-  let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
+  // let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
+  let urlRedirectQuestionnaire = 'paiement.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
   let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region+'&duree='+duree;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
@@ -375,6 +372,7 @@ function clickSuivant(){
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
+   console.log(e);
     e.style.borderBottomColor = "#ff0000";
     e.style.setProperty("--color", "#ff0000");
  }
@@ -539,72 +537,5 @@ function siVide(e){
    }
    else{
      document.getElementById("photo-facilitateur").style.display = "none";
-   }
- }
-
- //Fermer la fenetre modale de modification d'une réservation
- function closeModal(){
-   $("#modal-complete-reservation").css("display", "none");
- }
-
- //Ouvrir la fenêtre modal
- function openModal(){
-   $("#modal-complete-reservation").css("display", "block");
- }
-
-
-/**
-* Initialise les variables et events propre au paiement
-*
-*/
- function initStripe(){
-   var stripe = Stripe('pk_test_nexEKdAh5yqBBuHujvFYAwpq00HQmYWpWf');
-   var elements = stripe.elements();
-
-
-
-   // Custom styling can be passed to options when creating an Element.
-   var style = {
-     base: {
-       // Add your base input styles here. For example:
-       fontSize: '16px',
-       color: "#32325d",
-     }
-   };
-
-   // Create an instance of the card Element.
-   var card = elements.create('card', {style: style});
-
-   // Add an instance of the card Element into the `card-element` <div>.
-   card.mount('#card-element');
-
-   // Create a token or display an error when the form is submitted.
-   var form = document.getElementById('payment-form');
-   form.addEventListener('submit', function(event) {
-     event.preventDefault();
-
-     stripe.createToken(card).then(function(result) {
-       if (result.error) {
-         // Inform the customer that there was an error.
-         var errorElement = document.getElementById('card-errors');
-         errorElement.textContent = result.error.message;
-       } else {
-         // Send the token to your server.
-         stripeTokenHandler(result.token);
-       }
-     });
-   });
-
-   function stripeTokenHandler(token) {
-     // Insert the token ID into the form so it gets submitted to the server
-     var form = document.getElementById('payment-form');
-     var hiddenInput = document.createElement('input');
-     hiddenInput.setAttribute('type', 'hidden');
-     hiddenInput.setAttribute('name', 'stripeToken');
-     hiddenInput.setAttribute('value', token.id);
-     form.appendChild(hiddenInput);
-
-     // Submit the form
-     form.submit();
    }
  }

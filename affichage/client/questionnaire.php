@@ -64,6 +64,9 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
     <main>
 
+
+
+
       <div id="modal-question-reservation" class="modal-modif-reservation">
         <div class="modal-content">
           <div class="modal-align-middle-mr">
@@ -82,8 +85,10 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
       </div>
 
       <div class="reservation">
+        <p>Bravo, votre inscription est faite.</p>
+        <p>Vous pouvez télécharger votre facture en cliquant sur ce lien : <a href="<?php echo $_SESSION['recu_paiement_url']; ?>">Télécharger reçu</a> </p>
         <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>
-        <div class="txt-explication">Avant de faire une réservation, nous aimerions apprendre à mieux vous connaître.</div>
+        <div class="txt-explication">À titre préparatif, nous aimerions apprendre à mieux vous connaître.</div>
 
         <form class="form-reservation-question" id="form-reservation-question" action="#" method="post">
           <div id="form-questions">
