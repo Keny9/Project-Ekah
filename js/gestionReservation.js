@@ -600,6 +600,7 @@ function active(id){
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
   var cout=0;
+  if(valideForm()==true){
   for (i = 0; i <= divFin; i++){
     let divAjout = document.getElementById("AjoutActivite");
     if(divAjout.classList.contains("selectionne")){
@@ -629,6 +630,7 @@ function active(id){
     }
   }
 }
+}
   function siVide(e){
     if(e == null || e == ""){
       return true;
@@ -636,7 +638,7 @@ function active(id){
     return false;
   }
   function verifieNom(e){
-    var nomRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:’ '-]+$/;
+    var nomRegex = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:’ '-]+$/;
     console.log(nomRegex.test(e));
     return nomRegex.test(e);
   }
