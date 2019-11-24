@@ -386,18 +386,18 @@ function ajoutDuree(x){
    function supprimerQuestion(){
      var hr = new XMLHttpRequest();
      var url="../../php/script/Question/supprimerQuestion.php";
-     let divSelection = document.getElementById("idQuestionSupprimer").value;
-     console.log(divSelection);
-     var id=divSelection;
+
+     var sel = document.getElementById('questionnaire');
+     var id=sel.value;
+     id = id.replace(/"/g, '');
+
      let divFin = document.getElementById("AjoutActivite").getAttribute('value');
      for (i = 0; i < divFin; i++){
        let divSelection = document.getElementById("Activite-"+i);
        if(divSelection.classList.contains("selectionne")){
-         var idActivite = i+1;
+         var idActivite = i+2;
        }
      }
-     console.log(divSelection);
-     console.log(idActivite);
 
      $(function($) {
          $.ajax({

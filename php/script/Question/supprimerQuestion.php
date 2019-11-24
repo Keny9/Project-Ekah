@@ -4,5 +4,5 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Question/
 
 $gq = new GestionQuestion();
 $gq->supprimerQuestionQuestionnaire($_POST['idQuestionnaire'],$_POST['id']);
-$gq->supprimerQuestion($_POST['id']);
+//$gq->supprimerQuestion($_POST['id']);
  ?>
