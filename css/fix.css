@@ -1,3 +1,7 @@
+body{
+  line-height: normal;
+}
+
 label{
   cursor: auto !important;
 }
@@ -44,9 +48,6 @@ button,textarea,input{
   margin: 0;
 }
 
-.li-menu{
-  line-height: 0;
-}
 
 .input-date{
   width: 32%;
@@ -75,9 +76,17 @@ a:hover{
 }
 
 li{
-  line-height: 10px;
+  line-height: 20px;
 }
 
 input[type="text"]{
   margin-bottom: 0;
+}
+
+[class^="icon-"], [class*=" icon-"]{
+  background-image: none;
+}
+
+p{
+  margin: 0;
 }

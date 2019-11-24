@@ -32,6 +32,10 @@
   padding-bottom: 3px;
 }
 
+.list-menu{
+  margin-bottom: 0;
+}
+
 #modifier-mon-mot-de-passe-toggle, #ajouter-fichier-perso-toggle{
   color: #F05929;
   padding: 0;
@@ -46,6 +50,7 @@
     .modal-content{
       width: 100%;
     }
+}
 
 p{
   margin-bottom:0;
