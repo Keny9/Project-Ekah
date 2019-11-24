@@ -386,18 +386,18 @@ function ajoutDuree(x){
    function supprimerQuestion(){
      var hr = new XMLHttpRequest();
      var url="../../php/script/Question/supprimerQuestion.php";
-     let divSelection = document.getElementById("idQuestionSupprimer").value;
-     console.log(divSelection);
-     var id=divSelection;
+
+     var sel = document.getElementById('questionnaire');
+     var id=sel.value;
+     id = id.replace(/"/g, '');
+
      let divFin = document.getElementById("AjoutActivite").getAttribute('value');
      for (i = 0; i < divFin; i++){
        let divSelection = document.getElementById("Activite-"+i);
        if(divSelection.classList.contains("selectionne")){
-         var idActivite = i+1;
+         var idActivite = i+2;
        }
      }
-     console.log(divSelection);
-     console.log(idActivite);
 
      $(function($) {
          $.ajax({
@@ -600,6 +600,7 @@ function active(id){
   var descriptionC = document.getElementById('descriptionC').value;
   var descriptionL = "LONGUE";
   var cout=0;
+  if(valideForm()==true){
   for (i = 0; i <= divFin; i++){
     let divAjout = document.getElementById("AjoutActivite");
     if(divAjout.classList.contains("selectionne")){
@@ -629,6 +630,7 @@ function active(id){
     }
   }
 }
+}
   function siVide(e){
     if(e == null || e == ""){
       return true;
@@ -636,7 +638,7 @@ function active(id){
     return false;
   }
   function verifieNom(e){
-    var nomRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:’ '-]+$/;
+    var nomRegex = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:’ '-]+$/;
     console.log(nomRegex.test(e));
     return nomRegex.test(e);
   }

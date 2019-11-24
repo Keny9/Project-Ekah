@@ -98,6 +98,28 @@ class GestionActivite{
     return $type_activite;
   }
 
+  public function getAllEtatActivite(){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+    $activite = null;
+
+    $requete= "SELECT * FROM etat_activite";
+
+    $result = $conn->query($requete);
+    if(!$result){
+      trigger_error($conn->error);
+    }
+
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $type_activite[] = new Etat_activite( $row['id'],
+                                  $row['nom'],);
+      }
+    }
+
+    return $type_activite;
+  }
+
 
   public function ajouterActivite($activite){
       $tempconn = new Connexion();

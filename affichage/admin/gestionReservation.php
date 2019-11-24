@@ -82,10 +82,8 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                     $gagr = new GestionAffichageGestionReservation();
                     echo $gagr->getQuestionActivite(1);
                   ?>
-    <h4 class="descriptionC texteEkha">Supprimer des questions specifique</h6>
-      <input class="inputId" type="text"  placeholder="Id" id="idQuestionSupprimer"></input>
       <input type="button" class="submitSupprimerQuestion" onclick="supprimerQuestion();" value="Supprimer" />
-    <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h6>
+    <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h4>
       <input class="inputId" type="text"  placeholder="Id" id="idQuestion"></input>
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
