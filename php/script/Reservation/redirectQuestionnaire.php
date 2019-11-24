@@ -8,7 +8,7 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-10-14
  */
-
+ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/connexion.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
  include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
@@ -52,7 +52,7 @@ if($paiement_effectue == true){
   $questionnaireArray = null;
   $questionnaire = null;
 
-  //Créer la réservation
+  // Init les variables
   $groupe = new Groupe(null, 1, null, null, 1);
   $id_activite = $_SESSION['id_activite'];
   $date_rendez_vous = $_SESSION['date_rendez_vous'];
@@ -63,6 +63,19 @@ if($paiement_effectue == true){
   $ville = $_SESSION['ville'];
   $duree = $_SESSION['duree'];
   $id_region = $_SESSION['id_region'];
+  $type_paiement_id = 1;
+  $now = date('Y-m-d H:i:s');
+  $recu_url = $charge['receipt_url'];
+
+  //Insert paiement
+  $conn = ($connexion = new Connexion())->do();
+  $requ = "INSERT INTO paiement (id_type_paiement, montant, date_paiement, recu_url)
+          VALUES (?,?,?,?)";
+  $stmt = $conn->prepare($requ);
+  $stmt->bind_param('iiss', $type_paiement_id, $prix, $now, $recu_url);
+  $stmt->execute();
+  $id_paiement = $conn->insert_id;
+
 
   if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
     $facilitateur = $gFacilitaeur->getDispo($id_dispo);
@@ -83,7 +96,7 @@ if($paiement_effectue == true){
 
 
   // Créer la réservation
-  $reservation = new Reservation(null, null, $id_emplacement, null, $id_activite, null, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur);
+  $reservation = new Reservation(null, $id_paiement, $id_emplacement, null, $id_activite, null, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur);
   // Insert la reservation et get l'id de son suivi
   $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
 

@@ -418,6 +418,7 @@ class GestionReservation{
     $id_groupe = $reservation->getIdGroupe();
     $date_rendez_vous = $reservation->getDateRendezVous();
     $id_region = $reservation->getIdRegion();
+    if($id_region == null) $id_region = 0;
     $heure_fin = $reservation->getHeureFin();
     $id_facilitateur = $reservation->getIdFacilitateur();
     $id_etat = 1;
