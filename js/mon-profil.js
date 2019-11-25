@@ -95,6 +95,10 @@ function updateMotDePasse(){
   password_modal_sauvegarder.setAttribute("data-dismiss", "modal");
 }
 
+function ajouterFichierPerso(){
+  
+}
+
 // Set l'attribut data-dismiss à modal. e = element html
 function modalDataDismiss(e){
   e.setAttribute("data-dismiss", "modal");
@@ -219,6 +223,14 @@ window.onload = function(){
     }
   });
 
+  if(mois.options[mois.selectedIndex].value != "vide"){
+    mois.style.color = "#000000";
+  }
+
+  if(pays.options[pays.selectedIndex].value != "vide"){
+    pays.style.color = "#000000";
+  }
+
   codePostal.addEventListener("focusout", function(){
     if(verifieCodePostal(codePostal)){
       inputUnrequired(codePostal, "Code postal");
@@ -251,7 +263,12 @@ window.onload = function(){
 
 // Initialise les champs avec les infos du client
 function setMonProfilChamps(){
-  let date_naissance = CLIENT['date_naissance'].split('-');
+  if(CLIENT.date_naissance == null){
+    date_naissance = null;
+  }
+  else{
+    date_naissance = CLIENT['date_naissance'].split('-');
+  }
 
   prenom.value = CLIENT['prenom'];
   nom.value = CLIENT['nom'];
@@ -259,19 +276,25 @@ function setMonProfilChamps(){
   telephone.value = CLIENT['telephone'];
   //motDePasse.value = CLIENT[''];
   codePostal.value = CLIENT['code_postal'];
-  jour.value = date_naissance[2];
-  mois.value = date_naissance[1];
-  annee.value = date_naissance[0];
+
+  if(date_naissance != null){
+    jour.value = date_naissance[2];
+    mois.value = date_naissance[1];
+    annee.value = date_naissance[0];
+
+    // Enlève le 0 de trop dans le mois de naissance
+    if(parseInt(date_naissance[1]) < 10){
+      mois.value = date_naissance[1].substr(1);
+    }
+  }
+
   adresse.value = CLIENT['no_civique'];
   rue.value = CLIENT['rue'];
   ville.value = CLIENT['ville'];
   pays.value = CLIENT['pays'];
   user_courriel = CLIENT['courriel'];
 
-  // Enlève le 0 de trop dans le mois de naissance
-  if(parseInt(date_naissance[1]) < 10){
-    mois.value = date_naissance[1].substr(1);
-  }
+
 }
 
 //Fonction si input vide qui montre que le champ est requis
@@ -391,12 +414,6 @@ function setMonProfilChamps(){
        return false;
      }
    }
-
-
-   // Change l'attribut Action du Formulaire
-
-//   $('#mickeymouse').attr('action', '../../php/script/Client/modifierMonProfil.php');
-  // return true;
 
   updateProfil();
 
@@ -537,12 +554,6 @@ function setMonProfilChamps(){
      telephone.placeholder = "Téléphone invalide *";
    }
 
-/*   if(!verifieMotDePasse(motDePasse)){
-     inputRequired(motDePasse);
-     motDePasse.value = null;
-     motDePasse.placeholder = "Mot de passe invalide *";
-     document.getElementById("block-requis").style.border = "1px solid #eb0909";
-   }*/
  }
 
 //Si les champs sont remplis, indique lesquels sont invalides

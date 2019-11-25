@@ -21,7 +21,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 // Si le questionnaire n'est pas set
 if (!isset($_SESSION['questionnaire'])){
   // Redirect sur la page de réservation
-  header('Location: /Project-Ekah/affichage/client/reservation.php');
+  header('Location: /Project-Ekah/affichage/client/reservation.php?rComplete=1');
   exit();
 }
 
@@ -46,6 +46,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/reservation_questionnaire.css">
@@ -62,21 +63,41 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
   <body>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
     <main>
+
+
+
+
+      <div id="modal-question-reservation" class="modal-modif-reservation">
+        <div class="modal-content">
+          <div class="modal-align-middle-mr">
+            <div class="txt-reservation txt-bienv">Réservation complétée. <br> Merci de faire confiance à l'équipe d'Ekah. </div>
+            <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
+              <button id="btn-confirm-reservation" type="submit" class="btn-confirmer input-court btn-coller" name="button">Terminer</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
       <div class="top-img">
         <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
-        <p class="txt-centered"><?php echo $questionnaire_nom ?></p>
+        <p class="txt-centered"><?php echo $questionnaire_nom; ?></p>
       </div>
 
       <div class="reservation">
+        <p>Bravo, votre inscription est faite.</p>
+        <p>Vous pouvez télécharger votre facture en cliquant sur ce lien : <a href="<?php echo $_SESSION['recu_paiement_url']; ?>">Télécharger reçu</a> </p>
         <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>
-        <div class="txt-explication">Avant de faire une réservation, nous aimerions apprendre à mieux vous connaître.</div>
+        <div class="txt-explication">À titre préparatif, nous aimerions apprendre à mieux vous connaître.</div>
 
         <form class="form-reservation-question" id="form-reservation-question" action="#" method="post">
           <div id="form-questions">
             <?php
               echo $stringQuestions;
             ?>
+          </div>
+          <div class="information">
+            <p>*Ces informations resteront confidentielles au Collectif Ekah</p>
           </div>
           <div class="group-input-inscr">
             <p class="label-question">Signez et datez la déclaration</p>

@@ -22,7 +22,12 @@ html,body{
   padding: 0;
   background-color: #FFFFFF;
   background-color: rgba(255,255,255,.9);
-  z-index: -1;
+}
+
+main{
+  background-color: #FFFFFF;
+  width: 100%;
+  position: relative;
 }
 
 /*--------
@@ -35,6 +40,7 @@ colors:
 
 /*--------------HEADER v2.0------------------------------------*/
 header{
+  display: block;
   background-color: #034e54;
   height:83px;
   max-height: 83px;
@@ -416,11 +422,15 @@ nav{
 }
 
 #icon-book:before{
-  content :'\f518';
+  content:'\f518';
 }
 
 #icon-horaire:before{
-  content :'\f017';
+  content:'\f017';
+}
+
+#icon-atelier:before{
+  content: '\f6ec';
 }
 
 .footer-main{
@@ -631,5 +641,11 @@ footer{
 @media only screen and (min-width: 1100px){
   .side-nav{
     display: none;
+  }
+}
+
+@media only screen and (min-height: 768px){
+  main{
+    min-height: 65%;
   }
 }

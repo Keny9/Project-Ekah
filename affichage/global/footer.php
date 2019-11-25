@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="ekah-txt">
-      <p>Collectif Ekah 2019</p>
+      <p>Collectif Ekah <?php echo date("Y"); ?></p>
     </div>
   </div>
 </footer>

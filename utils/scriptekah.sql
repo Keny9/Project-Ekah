@@ -11,9 +11,10 @@ description VARCHAR(400)
 
 CREATE TABLE paiement (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	id_type_paiement INTEGER NOT NULL,
-	montant decimal(10,2) NOT NULL,
+	id_type_paiement INT NOT NULL,
+	montant INT NOT NULL,
     date_paiement date NOT NULL,
+    recu_url VARCHAR(200),
 	FOREIGN KEY (id_type_paiement) REFERENCES type_paiement(id)
 );
 
@@ -180,7 +181,7 @@ FOREIGN KEY (id_province) REFERENCES province(id)
 
 CREATE TABLE type_etat_dispo (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-etat_disponible VARCHAR(10) NOT NULL
+etat_disponible VARCHAR(100) NOT NULL
 );
 
 
@@ -308,7 +309,7 @@ content MEDIUMBLOB NOT NULL,
 PRIMARY KEY(id)
 );
 
-
+INSERT INTO region(id, nom) VALUES (0, "Aucune");
 INSERT INTO region(id, nom) VALUES (1, "Estrie");
 INSERT INTO region(id, nom) VALUES (2, "Montérégie");
 INSERT INTO region(id, nom) VALUES (3, "Québec");
@@ -341,21 +342,21 @@ INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) 
 
 INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
 
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (1, 1, 45.25, '2019-01-01');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (2, 1, 50.00, '2019-05-13');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (3, 1, 25.00, '2019-06-21');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (4, 1, 28.00, '2019-06-26');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (5, 1, 35.00, '2019-06-28');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (6, 1, 45.25, '2019-01-01');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (7, 1, 50.00, '2019-05-13');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (8, 1, 25.00, '2019-06-21');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (9, 1, 28.00, '2019-06-26');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (10, 1, 35.00, '2019-06-28');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (11, 1, 45.25, '2019-01-01');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (12, 1, 50.00, '2019-05-13');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (13, 1, 25.00, '2019-06-21');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (14, 1, 28.00, '2019-06-26');
-INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (15, 1, 35.00, '2019-06-28');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (1, 1, 4525, '2019-01-01');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (2, 1, 5000, '2019-05-13');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (3, 1, 2500, '2019-06-21');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (4, 1, 2800, '2019-06-26');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (5, 1, 3500, '2019-06-28');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (6, 1, 4525, '2019-01-01');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (7, 1, 5000, '2019-05-13');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (8, 1, 2500, '2019-06-21');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (9, 1, 2800, '2019-06-26');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (10, 1, 3500, '2019-06-28');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (11, 1, 4525, '2019-01-01');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (12, 1, 5000, '2019-05-13');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (13, 1, 2500, '2019-06-21');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (14, 1, 2800, '2019-06-26');
+INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (15, 1, 3500, '2019-06-28');
 
 INSERT INTO type_emplacement(id, type_emplacement) VALUES (1, "Café");
 INSERT INTO type_emplacement(id, type_emplacement) VALUES (2, "Maison");
@@ -657,7 +658,6 @@ INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 10, '2020-03-22');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 11, '2020-03-28');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (7, 12, '2020-04-03');
-INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (4, 13, '2020-05-09');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (5, 14, '2020-05-15');
 INSERT INTO inscription(id_utilisateur, id_groupe, date_inscription) VALUES (6, 15, '2020-05-23');
 
@@ -683,13 +683,13 @@ INSERT INTO reservation(id, id_paiement, id_emplacement, id_suivi, id_activite, 
 INSERT INTO ta_specialite_utilisateur(id_specialite, id_utilisateur) VALUES (1, 1);
 
 
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,1);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,7);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,8);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,9);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,10);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (2,11);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,12);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,13);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,14);
-INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite) VALUES (1,15);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,1, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,7, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,8, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (2,9, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (2,10, 1);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (2,11, 2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,12, 2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,13, 2);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,14, 3);
+INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,15, 3);

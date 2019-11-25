@@ -91,9 +91,33 @@ session_start();
     </div>
   </div>
 
+  <div id="modal-done-already" class="modal-modif-reservation">
+    <div class="modal-content">
+      <div class="modal-align-middle-mr">
+        <div class="txt-reservation txt-bienv">Cette réservation a été complété. <br> Elle ne peut pas être annulé.</div>
+        <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
+          <button id="btn-already-done" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Retour</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
       <div class="reservation">
         <div class="txt-consulter">Listes des réservations</div>
-
+        <div class="legende">
+          <div class="legende-carr">
+            <div id="carre1" class="carre"></div><span class="txt-legende">Réservation annulée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre2" class="carre"></div><span class="txt-legende">Réservation complétée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre3" class="carre"></div><span class="txt-legende">Ligne sélectionnée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre4" class="carre"></div><span class="txt-legende">Réservation à venir</span>
+          </div>
+        </div>
         <div class="block-tbl">
           <table id="table_reservation" class="cell-border hover row-border">
             <thead>

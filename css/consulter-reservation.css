@@ -115,9 +115,51 @@ th{
   margin-bottom: 30px;
 }
 
+.commentaire{
+  height: 350px;
+}
+
+.legende{
+  display: inline-block;
+  margin-top: 30px;
+}
+
+.legende-carr{
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.carre{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #000000;
+}
+
+#carre1{
+  background-color: #ffc2b3;
+}
+
+#carre2{
+  background-color: #cefdce;
+}
+
+#carre3{
+  background-color: #b0bed9;
+}
+
+#carre4{
+  background-color: #FFFFFF;
+}
+
+.txt-legende{
+  font-size: 12px;
+  margin-left: 5px;
+}
+
 @media only screen and (min-width: 768px){
   .reservation {
-      width: 700px;
+      width: 710px;
   }
 
   .top-img{

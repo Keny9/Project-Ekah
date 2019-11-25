@@ -8,13 +8,6 @@
  * Date de la dernière modification : 2019-10-11
  */
 
-main{
-  background-color: #FFFFFF;
-  width: 100%;
-  min-height: 100%;
-  position: relative;
-}
-
 .top-img{
   position: relative;
   width: 100%;
@@ -145,6 +138,10 @@ textarea:focus{
 .selectionne{
   border: 2px solid #000000;
   border-radius: 0px;
+}
+
+#modal-complete-reservation{
+  display: block;
 }
 
 @media only screen and (min-width: 768px){

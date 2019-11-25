@@ -59,6 +59,21 @@ if(!isset($_GET['id'])){ // Retour à la page précédente
       <div class="reservation">
         <div class="txt-consulter">Listes des réservations <br> </div>
 
+        <div class="legende">
+          <div class="legende-carr">
+            <div id="carre1" class="carre"></div><span class="txt-legende">Réservation annulée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre2" class="carre"></div><span class="txt-legende">Réservation complétée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre3" class="carre"></div><span class="txt-legende">Ligne sélectionnée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre4" class="carre"></div><span class="txt-legende">Réservation à venir</span>
+          </div>
+        </div>
+
         <div class="block-tbl">
           <table id="table_reservation_client" class="cell-border hover row-border">
             <thead>
@@ -84,11 +99,11 @@ if(!isset($_GET['id'])){ // Retour à la page précédente
 
           <div class="group-input-inscr">
             <label for="commentaire" class="label-consulter">Suggestions pour la prochaine rencontre :</label>
-            <textarea name="suggestion" class="commentaire" id="suggestion"></textarea>
+            <textarea name="suggestion" class="commentaire" id="commentaire"></textarea>
           </div>
 
           <div class="group-input-inscr">
-            <button type="button" name="btnSauvegarde" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
+            <button type="button" name="btnSauvegarde" onclick="sauvegarder()" id="btnSauvegarde" class="btn-confirmer input-long">Sauvegarder</button>
           </div>
         </div>
 

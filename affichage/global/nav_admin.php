@@ -6,10 +6,16 @@
         <span class="text-menu"><p>Mon horaire</p></span>
       </a>
     </li>
+    <li>
+      <a class="link-menu" href="/Project-Ekah/affichage/admin/mon-profil.php">
+        <span id="icon-compte" class="picto-menu"></span>
+        <span class="text-menu"><p>Mon profil</p></span>
+      </a>
+    </li>
     <hr class="hr-menu">
     <li>
       <a class="link-menu" href="/Project-Ekah/affichage/admin/gestion-facilitateur.php">
-        <span id="icon-compte" class="picto-menu"></span>
+        <span id="icon-groupe" class="picto-menu"></span>
         <span class="text-menu"><p>Les facilitateurs</p></span>
       </a>
     </li>
@@ -27,22 +33,9 @@
       </a>
     </li>
     <li>
-      <a class="link-menu" href="#">
-        <span id="icon-groupe" class="picto-menu"></span>
-        <span class="text-menu"><p>Gestion des groupes</p></span>
-      </a>
-    </li>
-    <hr class="hr-menu">
-    <li>
       <a class="link-menu" href="/Project-Ekah/affichage/admin/consulter-reservation.php">
         <span id="icon-book" class="picto-menu"></span>
         <span class="text-menu"><p>Consulter les réservations</p></span>
-      </a>
-    </li>
-    <li>
-      <a class="link-menu" href="#">
-        <span id="icon-stat" class="picto-menu"></span>
-        <span class="text-menu"><p>Statistiques</p></span>
       </a>
     </li>
     <hr class="hr-menu">
