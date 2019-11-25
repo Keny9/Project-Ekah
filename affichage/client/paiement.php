@@ -3,6 +3,10 @@ session_start();
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
+// Get les infos du client
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
+$me = json_decode($client_json, TRUE);
+
 $id_activite = $_POST['service'];
 $date_rendez_vous = $_GET['date_rendez_vous'];
 $id_facilitateur = $_GET['facilitateur_id'];
@@ -25,6 +29,12 @@ $_SESSION['ville'] = $ville;
 $_SESSION['duree'] = $duree;
 $_SESSION['id_region'] = $id_region;
 
+$dt = new DateTime($date_rendez_vous);
+$date = $dt->format('m/d/Y');
+$time = $dt->format('H:i');
+if ($no_adresse){
+  $emplacement = $no_adresse." ".$rue.", ".$ville;
+}else $emplacement = "";
 // Pour les tests
 echo nl2br("$id_activite
 $date_rendez_vous
@@ -35,7 +45,10 @@ $rue
 $ville
 $duree
 $prix
-$id_region");
+$id_region
+");
+
+echo $me['prenom'];
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -53,7 +66,31 @@ $id_region");
   </head>
   <body>
     <form action="/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?" method="post" id="payment-form">
+
+      <div class="info-client">
+        <label>Prénom :</label>
+        <span><?php echo $client['prenom'] ?></span>
+        <label>Nom :</label>
+        <span><?php echo $client['nom'] ?></span>
+        <label>Service :</label>
+        <span><?php echo "" ?></span>
+        <label>Date :</label>
+        <span><?php echo $date ?></span>
+        <label>Heure :</label>
+        <span><?php echo $time ?></span>
+        <label>Emplacement :</label>
+        <span><?php echo $emplacement ?></span>
+        <label>Avec :</label>
+        <span><?php echo "" ?></span>
+        <label>Montant :</label>
+        <span><?php echo "" ?></span>
+      </div>
+
+
+
       <div class="form-row">
+
+        <br>
         <label for="card-element">
           Crédit ou débit
         </label>
