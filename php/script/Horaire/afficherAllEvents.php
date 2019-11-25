@@ -10,15 +10,20 @@
    */
 
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
+   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
   $idFacilitateur = $_POST['idFacilitateur'];
   $duree = $_POST['duree'];
   $region = $_POST['region'];
+  $service = $_POST['service'];
 
   // $idFacilitateur = -1;
   // $duree = "30";
   // $region = 3;
+  // $service = "14";
+
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -30,10 +35,17 @@
     $facilitateur = $gestionFacilitateur->getFacilitateurActifAvecDispoGroup($idFacilitateur);
   }
 
-
   date_default_timezone_set('America/Toronto');
 
   $out = null;
+
+  if($service == "vide"){
+    $service = 1;
+  }
+
+  $ga = new GestionActivite();
+  $activite = $ga->getActivite($service);
+
   $dispo = $facilitateur[0]->getDisponibilite();
   // print_r($dispo);
 
@@ -68,22 +80,33 @@
           }
         }
 
-
         $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
         $end = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureFin()));
 
-
-        // print_r($dispo[$j]->getRegion() . "  ==  " . $region);
-        // echo "<br />";
-
-        if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
-          $out[] = array(
-            'id' => $dispo[$j]->getId(),
-            'title' => $dispo[$j]->getId(),
-            'url' => "URL",
-            'start' => strtotime($start) . '000',
-            'end' => strtotime($end) .'000'
-          );
+        if($activite->getId_type() == 3){                   //Si c'est en ligne
+          if($dispo[$j]->getEtat() == 0){
+            $out[] = array(
+              'id' => $dispo[$j]->getId(),
+              'title' => $dispo[$j]->getId(),
+              'url' => "URL",
+              'start' => strtotime($start) . '000',
+              'end' => strtotime($end) .'000',
+              'date_debut' => $dispo[$j]->getHeureDebut(),
+              'date_fin' => $dispo[$j]->getHeureFin()
+            );
+          }
+        }else{                                            //Si c'est pas en ligne, pas besoin de la region dans le if
+          if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
+            $out[] = array(
+              'id' => $dispo[$j]->getId(),
+              'title' => $dispo[$j]->getId(),
+              'url' => "URL",
+              'start' => strtotime($start) . '000',
+              'end' => strtotime($end) .'000',
+              'date_debut' => $dispo[$j]->getHeureDebut(),
+              'date_fin' => $dispo[$j]->getHeureFin()
+            );
+          }
         }
       }
     }
