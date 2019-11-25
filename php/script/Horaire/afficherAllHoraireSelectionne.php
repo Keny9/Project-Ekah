@@ -88,30 +88,31 @@
         //Pour retourner que les journées qui corresponde à la journée sélectionné
         $startTemp = DateTime::createFromFormat('Y-m-d H:i:s', $start)->format('Y-m-d');
 
-
-        if($activite->getId_type() == 3){                   //Si c'est en ligne, pas de region dans le if
-          if($startTemp == $date && $dispo[$j]->getEtat() == 0){
-            $out[] = array(
-              'id' => $dispo[$j]->getId(),
-              'title' => $dispo[$j]->getId(),
-              'url' => "URL",
-              'start' => strtotime($start) . '000',
-              'end' => strtotime($end) .'000',
-              'date_debut' => $dispo[$j]->getHeureDebut(),
-              'date_fin' => $dispo[$j]->getHeureFin()
-            );
-          }
-        }else{                                              //Si pas en ligne, ajouter region
-          if($startTemp == $date && $dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
-            $out[] = array(
-              'id' => $dispo[$j]->getId(),
-              'title' => $dispo[$j]->getId(),
-              'url' => "URL",
-              'start' => strtotime($start) . '000',
-              'end' => strtotime($end) .'000',
-              'date_debut' => $dispo[$j]->getHeureDebut(),
-              'date_fin' => $dispo[$j]->getHeureFin()
-            );
+        if($activite != null){
+          if($activite->getId_type() == 3){                   //Si c'est en ligne, pas de region dans le if
+            if($startTemp == $date && $dispo[$j]->getEtat() == 0){
+              $out[] = array(
+                'id' => $dispo[$j]->getId(),
+                'title' => $dispo[$j]->getId(),
+                'url' => "URL",
+                'start' => strtotime($start) . '000',
+                'end' => strtotime($end) .'000',
+                'date_debut' => $dispo[$j]->getHeureDebut(),
+                'date_fin' => $dispo[$j]->getHeureFin()
+              );
+            }
+          }else{                                              //Si pas en ligne, ajouter region
+            if($startTemp == $date && $dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
+              $out[] = array(
+                'id' => $dispo[$j]->getId(),
+                'title' => $dispo[$j]->getId(),
+                'url' => "URL",
+                'start' => strtotime($start) . '000',
+                'end' => strtotime($end) .'000',
+                'date_debut' => $dispo[$j]->getHeureDebut(),
+                'date_fin' => $dispo[$j]->getHeureFin()
+              );
+            }
           }
         }
       }
