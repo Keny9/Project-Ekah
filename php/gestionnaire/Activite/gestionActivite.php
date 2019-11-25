@@ -14,7 +14,7 @@ class GestionActivite{
     $conn = $tempconn->getConnexion();
     $activite = null;
 
-    $requete= "SELECT * FROM activite";
+    $requete= "SELECT * FROM activite ORDER BY id_type_activite";
 
     $result = $conn->query($requete);
     if(!$result){
