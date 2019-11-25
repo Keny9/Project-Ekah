@@ -10,12 +10,15 @@
    */
 
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
+   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
   $idFacilitateur = $_POST['idFacilitateur'];
   $date = $_POST['date'];
   $duree = $_POST['duree'];
   $region = $_POST['region'];
+  $service = $_POST['service'];
 
   // $idFacilitateur = -1;
   // $date = "2019-11-29";
@@ -36,6 +39,8 @@
   date_default_timezone_set('America/Toronto');
 
   $out = null;
+  $ga = new GestionActivite();
+  $activite = $ga->getActivite($service);
 
   for ($i=0; $i < sizeof($facilitateur); $i++) {
     $dispo = $facilitateur[$i]->getDisponibilite();
@@ -71,8 +76,6 @@
           }
         }
 
-
-
         // $date = "2019-10-31";
         $date = strtotime($date);
         $date = date('Y-m-d', $date);
@@ -85,16 +88,31 @@
         //Pour retourner que les journées qui corresponde à la journée sélectionné
         $startTemp = DateTime::createFromFormat('Y-m-d H:i:s', $start)->format('Y-m-d');
 
-        if($startTemp == $date && $dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
-          $out[] = array(
-            'id' => $dispo[$j]->getId(),
-            'title' => $dispo[$j]->getId(),
-            'url' => "URL",
-            'start' => strtotime($start) . '000',
-            'end' => strtotime($end) .'000',
-            'date_debut' => $dispo[$j]->getHeureDebut(),
-            'date_fin' => $dispo[$j]->getHeureFin()
-          );
+
+        if($activite->getId_type() == 3){                   //Si c'est en ligne, pas de region dans le if
+          if($startTemp == $date && $dispo[$j]->getEtat() == 0){
+            $out[] = array(
+              'id' => $dispo[$j]->getId(),
+              'title' => $dispo[$j]->getId(),
+              'url' => "URL",
+              'start' => strtotime($start) . '000',
+              'end' => strtotime($end) .'000',
+              'date_debut' => $dispo[$j]->getHeureDebut(),
+              'date_fin' => $dispo[$j]->getHeureFin()
+            );
+          }
+        }else{                                              //Si pas en ligne, ajouter region
+          if($startTemp == $date && $dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
+            $out[] = array(
+              'id' => $dispo[$j]->getId(),
+              'title' => $dispo[$j]->getId(),
+              'url' => "URL",
+              'start' => strtotime($start) . '000',
+              'end' => strtotime($end) .'000',
+              'date_debut' => $dispo[$j]->getHeureDebut(),
+              'date_fin' => $dispo[$j]->getHeureFin()
+            );
+          }
         }
       }
     }
