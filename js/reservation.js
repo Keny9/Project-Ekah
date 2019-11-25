@@ -76,6 +76,7 @@
    // console.log("Load");
   calendrier = $("#calendar").calendar(
      {
+       language: 'fr-FR',
        tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
        weekbox: false,
        events_source: events,
