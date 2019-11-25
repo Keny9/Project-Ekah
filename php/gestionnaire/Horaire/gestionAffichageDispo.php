@@ -33,7 +33,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/g
           $html .= "Aucun resultat trouvé.";
         }
         else{
-          for ($i = 0; $i < sizeof($region);$i++){
+          for ($i = 1; $i < sizeof($region);$i++){
             $html .= "
               <option id='Region-$i' value=".$region[$i]->getId()." >".$region[$i]->getNom()."</option>
             ";
