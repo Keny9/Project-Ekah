@@ -12,13 +12,13 @@
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
-  // $idFacilitateur = $_POST['idFacilitateur'];
-  // $duree = $_POST['duree'];
-  // $region = $_POST['region'];
+  $idFacilitateur = $_POST['idFacilitateur'];
+  $duree = $_POST['duree'];
+  $region = $_POST['region'];
 
-  $idFacilitateur = -1;
-  $duree = "30";
-  $region = 3;
+  // $idFacilitateur = -1;
+  // $duree = "30";
+  // $region = 3;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -39,6 +39,8 @@
 
   for ($i=0; $i < sizeof($facilitateur); $i++) {
     $dispo = $facilitateur[$i]->getDisponibilite();
+    // print_r($dispo);
+
 
     if (isset($dispo)) {
       for ($j=0; $j < sizeof($facilitateur[$i]->getDisponibilite()); $j++) {
@@ -70,8 +72,9 @@
         $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
         $end = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureFin()));
 
-        print_r($dispo[$j]->getRegion() . "  ==  " . $region);
-        echo "<br />";
+
+        // print_r($dispo[$j]->getRegion() . "  ==  " . $region);
+        // echo "<br />";
 
         if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
           $out[] = array(

@@ -41,6 +41,7 @@ class GestionFacilitateur{
         trigger_error($conn->error);
       }
 
+      $i = 0;
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
 
@@ -49,6 +50,8 @@ class GestionFacilitateur{
                                   $row['heure_debut'],
                                   $row['heure_fin'],
                                   $row['id_etat']);
+          $disponibilite[$i]->setRegion($row['id_region']);
+          $i++;
         }
       }
       return $disponibilite;
@@ -74,6 +77,7 @@ class GestionFacilitateur{
           trigger_error($conn->error);
         }
 
+        $i = 0;
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             $disponibilite[] = new Disponibilite(
@@ -81,7 +85,8 @@ class GestionFacilitateur{
                                     $row['heure_debut'],
                                     $row['heure_fin'],
                                     $row['id_etat']);
-            $disponibilite[]->setRegion($row['region']);
+            $disponibilite[$i]->setRegion($row['id_region']);
+            $i++;
           }
         }
         return $disponibilite;
