@@ -22,7 +22,7 @@
   // $idFacilitateur = -1;
   // $duree = "30";
   // $region = 3;
-  // $service = "14";
+  // $service = "1";
 
 
   $gestionFacilitateur = new GestionFacilitateur();
