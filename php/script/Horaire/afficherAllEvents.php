@@ -16,9 +16,9 @@
   $duree = $_POST['duree'];
   $region = $_POST['region'];
 
-  $idFacilitateur = 2;
-  $duree = "30";
-  $region = 3;
+  // $idFacilitateur = -1;
+  // $duree = "30";
+  // $region = 3;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -89,6 +89,15 @@
     }
   }
 
+  if($out == null){
+    $out[] = array(
+      'id' => 0,
+      'title' => 0,
+      'url' => "URL",
+      'start' => '2556075600000',
+      'end' => '2556077400000'
+    );
+  }
 
   echo json_encode(array('success' => 1, 'result' => $out));
   exit;
