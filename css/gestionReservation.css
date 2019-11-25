@@ -83,7 +83,7 @@
    resize:none;
  }
  .reservez{
-   margin-top:10px;
+   margin-top:80px;
  }
  .submitAjout{
   font-size: 15px;
@@ -125,6 +125,10 @@
 .btn-confirmer{
   display: block;
   margin: 0 auto;
+}
+.mainReservation{
+  width:100%;
+  margin:auto;
 }
 .submitRetour{
   font-size: 15px;
@@ -189,7 +193,7 @@
  .reservationMain{
    width:800px;
    height:40px;
-   margin-left:450px;
+   margin-left:500px;
    margin-bottom:1200px;
  }
  .reservationHeader{
@@ -198,6 +202,9 @@
  .imgHeader{
    width:100px;
    height:40px;
+ }
+ .reservationImg{
+   height:200px;
  }
  .imgPrincipal{
    width:800px;
@@ -215,6 +222,7 @@
  }
  .titreReservation{
    margin-left:10px;
+   color:#034E54;
  }
  .duree{
    margin-top:30px;
