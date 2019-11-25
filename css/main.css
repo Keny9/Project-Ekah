@@ -30,6 +30,10 @@ main{
   position: relative;
 }
 
+.main-calendar{
+  margin-top: 0;
+}
+
 /*--------
   HEADER
 colors:
@@ -652,6 +656,10 @@ footer{
 @media only screen and (min-width: 1100px){
   .side-nav{
     display: none;
+  }
+
+  main{
+    margin-top: 83px;
   }
 
   header{
