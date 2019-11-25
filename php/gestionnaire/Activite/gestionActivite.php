@@ -98,7 +98,6 @@ class GestionActivite{
     return $type_activite;
   }
 
-
   public function ajouterActivite($activite){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
