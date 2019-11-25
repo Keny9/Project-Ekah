@@ -31,18 +31,40 @@ $activites = $gActivite->getAllActivite();
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/inscription.css">
+    <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/fix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
     <script type="text/javascript" src="../../js/reservation.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <title>Réservation</title>
   </head>
   <body>
     <?php include "../global/header.php"; ?>
 
     <main>
+
+
+      <?php
+      // TODO: Dans ce modal,indiquer au client l'url pour son recu avec $_SESSION['recu_paiement_url']
+        if(isset($_GET['rComplete']) && $_GET['rComplete'] == 1){
+          echo "<div id='modal-complete-reservation' class='modal-modif-reservation'>
+            <div class='modal-content'>
+              <div class='modal-align-middle-mr'>
+                <div class='txt-reservation txt-bienv'>Réservation complétée. <br><br> Merci de faire confiance à l'équipe d'Ekah. </div>
+                  <div class='modal-align-middle btn-modal-insc modal-align-middle-mr'>
+                    <button id='btn-confirm-reservation' type='submit' class='btn-confirmer input-court btn-coller' name='button'>Terminer</button>
+                  </div>
+                </div>
+              </div>
+            </div>";
+        }
+
+      ?>
+
+
       <div class="top-img">
         <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
@@ -136,23 +158,18 @@ $activites = $gActivite->getAllActivite();
 
           <div class="group-input-inscr">
             <label class="label-reservation label-long">Sélectionner la date et l'heure désiré</label>
-            <!--<img id="calendrier" src="../../img/calendar.JPG" alt="Calendrier">-->
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php'; ?>
           </div>
-          <div class="group-input-inscr">
-            <label for="commentaire" class="label-reservation">Commentaire</label>
-            <textarea name="commentaire" class="commentaire" id="commentaire"></textarea>
-          </div>
+
           <div class="group-input-inscr">
             <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">SUIVANT</button>
           </div>
-          <div class="group-input-inscr btn-espace">
+
+          <div class="group-input-inscr">
            <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">RETOUR</button></a>
           </div>
         </form>
-
       </div>
-
     </main>
 
     <?php include "../global/footer.php"; ?>

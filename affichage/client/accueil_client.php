@@ -16,12 +16,13 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
     <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/accueil_client.css">
     <link rel="stylesheet" href="../../css/reservation.css">
-    <link rel="stylesheet" href="../../css/fix.css">
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
     <link rel="stylesheet" href="../../css/atelier.css">
-    <!-- <link rel="stylesheet" href="../../css/inscription.css"> -->
+    <link rel="stylesheet" href="../../css/fix.css">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>

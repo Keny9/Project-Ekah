@@ -77,6 +77,10 @@ $(document).ready(function(){
           // Set la référence vers l'agenda d'un facilitateur
           return '<a href="../admin/disponibilite.php?id='+data.id+'" target="_blank"><span class="calendar"></span></a>';
         }},
+        {"data": null,
+        render: function(data, type, row){
+          return '<span class="cog" id='+data.id+' onclick="openModal(this)"></span>';
+        }},
       ],
       "language":{
         "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
@@ -99,6 +103,9 @@ $(document).ready(function(){
     $("#btn-annuler").click(function(){
       closeModal();
     });
+
+    //Ajouter le click qui permet de changer l'etat d'un facilitateur
+    $("#btn-sauvegarder").click(sauvegarde);
 
 });
 
@@ -251,6 +258,16 @@ $(document).ready(function(){
    return false;
  }
 
+ //Change la couleur du texte lorsqu'on sélectionne un élément de la liste etat
+  function changeFacilitateur(){
+    var list = document.getElementById("etat");
+    var selectedValue = list.options[list.selectedIndex].value;
+
+    if(selectedValue != "vide"){
+      list.style.color = "#000000";
+    }
+  }
+
 //Affiche les exigences du mot de passe
  function afficheExigence(){
    document.getElementById("block-requis").style.display = "block";
@@ -276,6 +293,27 @@ $(document).ready(function(){
    return bool;
  }
 
+//Enregistrer le nouvel etat d'un facilitateur
+ function sauvegarde(){
+   selectedEtat = $("#etat").val();
+   if(!siSelectVide(document.getElementById("etat"))){
+     $.ajax({
+       type: "POST",
+       url: "../../php/script/Facilitateur/updateEtatFacilitateur.php",
+       data: {"idFacilitateur": selectedFacilitateur, "idEtat": selectedEtat},
+       success: function(response){
+         location.reload();
+       },
+       error: function (jQXHR, textStatus, errorThrown) {
+           alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+       }
+     });
+   }
+   else{
+     inputRequired(document.getElementById("etat"));
+   }
+ }
+
 
 //Fermer la fenetre modale de modification d'une réservation
 function closeModal(){
@@ -283,6 +321,7 @@ function closeModal(){
 }
 
 //Ouvrir la fenêtre modal
-function openModal(){
+function openModal(e){
+  selectedFacilitateur = e.id;
   $("#modal-modif-reservation").css("display", "block");
 }

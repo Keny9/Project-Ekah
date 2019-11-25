@@ -95,6 +95,10 @@ function updateMotDePasse(){
   password_modal_sauvegarder.setAttribute("data-dismiss", "modal");
 }
 
+function ajouterFichierPerso(){
+  
+}
+
 // Set l'attribut data-dismiss à modal. e = element html
 function modalDataDismiss(e){
   e.setAttribute("data-dismiss", "modal");

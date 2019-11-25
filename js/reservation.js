@@ -368,7 +368,8 @@ function clickSuivant(){
   // console.log(date_rendez_vous);
 
 
-  let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
+  // let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
+  let urlRedirectQuestionnaire = 'paiement.php?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
   let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region+'&duree='+duree;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
@@ -414,7 +415,7 @@ function sendEmail(){
   $("#form-reservation-groupe").css("display", "none");
 
   $.ajax({
-    url: '../../php/script/Reservation/demandeGroupe.php',
+    url: '../../php/script/Reservation/mail_groupe.php',
     method: 'POST',
     dataType: 'json',
     contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -429,7 +430,7 @@ function sendEmail(){
       message: message.value
     }, success: function(response){
       console.log(response);
-      if(response.status == "success"){
+      if(response['success']['response'] == "Message has been sent"){
         $("#loader").css("display", "none");
         $('#modal-demande').css("display", "block");
         $("#form-reservation-groupe").css("display", "block");

@@ -65,6 +65,10 @@ class GestionClient{
   public function updateClient($array){
     $conn = ($connexion = new Connexion())->do();
 
+    if($array['no_civique'] == ""){
+      $array['no_civique'] = null;
+    }
+
     // Update l'adresse
     $requete = "UPDATE adresse
                 SET ville = ?,
@@ -74,12 +78,10 @@ class GestionClient{
                     pays = ?
                 WHERE id = ?";
     $stmt = $conn->prepare($requete);
-    $stmt->bind_param('sssssi', $array['ville'], $array['no_civique'], $array['rue'], $array['code_postal'], $array['pays'], $array['id_adresse']);
+    $stmt->bind_param('sisssi', $array['ville'], $array['no_civique'], $array['rue'], $array['code_postal'], $array['pays'], $array['id_adresse']);
     $stmt->execute();
 
-
     // Update client
-
     $requete = "UPDATE utilisateur
                 SET telephone = ?,
                     date_naissance = ?";
@@ -107,8 +109,7 @@ class GestionClient{
     $stmt->bind_param('si', $array['courriel'], $array['id_client']);
     $stmt->execute();
 
-    $date = $array['date_naissance'];
-    echo $date;
+    echo $conn->error;
   }
 
     /**

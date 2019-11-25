@@ -43,6 +43,7 @@ session_start();
    <body>
      <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php'; ?>
      <?php include "modifier-mon-mot-de-passe.php"; ?>
+     <?php include "ajouter-fichier-perso.php"; ?>
      <div id="modal-inscription" class="modal-inscription">
        <div class="modal-dialog">
          <div class="modal-content">
@@ -61,6 +62,7 @@ session_start();
          </div>
        </div>
      </div>
+
      <main>
        <div class="inscription">
          <div class="logo-inscr">
@@ -135,6 +137,9 @@ session_start();
 
           <div class="group-input-inscr">
             <button type="button" id="modifier-mon-mot-de-passe-toggle" class="btn btn-link" data-toggle="modal" data-target="#modifier-mon-mot-de-passe-modal">Modifier mon mot de passe</button>
+          </div>
+          <div class="group-input-inscr">
+            <button type="button" id="ajouter-fichier-perso-toggle" class="btn btn-link" data-toggle="modal" data-target="#ajouter-fichier-perso-modal">Ajouter un fichier personnel</button>
           </div>
            <div class="group-input-inscr">
              <button type="button" name="btnSauvegarder" id="btnSauvegarder" class="btn-confirmer input-long btn-compte-existant" onclick="validerFormInscription()">Sauvegarder</button>

@@ -32,9 +32,17 @@
   padding-bottom: 3px;
 }
 
-#modifier-mon-mot-de-passe-toggle{
+.list-menu{
+  margin-bottom: 0;
+}
+
+#modifier-mon-mot-de-passe-toggle, #ajouter-fichier-perso-toggle{
   color: #F05929;
   padding: 0;
+}
+
+.custom-file-label::after{
+  content:"Parcourir";
 }
 
 
@@ -42,6 +50,7 @@
     .modal-content{
       width: 100%;
     }
+}
 
 p{
   margin-bottom:0;

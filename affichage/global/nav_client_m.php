@@ -14,7 +14,7 @@
       <a href="/Project-Ekah/affichage/client/accueil_client.php">ATELIERS</a>
     </div>
     <div class="collection_m">
-      <a href="/Project-Ekah/affichage/client/reservation_groupe.php">DEMANDE DE GROUPE</a>
+      <a href="/Project-Ekah/affichage/client/reservation_groupe.php">RÉSERVER POUR UN GROUPE</a>
     </div>
   <input type="hidden" id="nav_m_type" name="" value="CLIENT">
 </div>

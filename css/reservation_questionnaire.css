@@ -79,6 +79,15 @@
   margin-top: 50px;
 }
 
+.information{
+  margin-top: 10px;
+}
+
+.information p{
+  font-size: 13px;
+  color: #034E53;
+}
+
 @media only screen and (min-width: 910px){
   .input-question{
     width: 900px;
