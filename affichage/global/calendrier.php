@@ -8,6 +8,7 @@
 
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/calendar.js"></script>
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/app.js"></script>
+  <script type="text/javascript" src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
@@ -25,8 +26,8 @@
         <h3 class=" h3"></h3>
       </div>
       <div class="btnsCalandrier">
-        <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
-        <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
+        <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Precedent</button>
+        <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Suivant >></button>
       </div>
     </div>
 

@@ -25,9 +25,6 @@ function calendrierReady(calendar){
     var $this = $(this);
     calendar.view($this.data('calendar-view'));
 
-    getEvents();
-    apresAjax();
-    calendar.view();
   });
 
   $( "#next" ).click(function() {
@@ -45,6 +42,7 @@ function loadCalendrier(events){
   // console.log("Load");
  calendar = $("#calendar").calendar(
     {
+      language: 'fr-FR',
       tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
       weekbox: false,
       events_source: events,
@@ -72,6 +70,7 @@ function apresAjax(){
   });
 }
 
+//Document ready
 $(document).ready(function() {
   calendar = apresAjax();
   getEvents();
@@ -91,7 +90,6 @@ $(document).ready(function() {
     $this.attr('id', i);
     i++;
   });
-
 
   $(document).on('click','.cal-day-hour-part', function(){
       var $this = $(this);
@@ -208,7 +206,7 @@ function supprimerDispo(heure, date){
 
 
 
-
+//Fonction pour convertir le mois
 function convertirMois(mois){
   switch(mois) {
   case "January,":
