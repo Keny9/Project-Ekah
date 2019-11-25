@@ -12,14 +12,15 @@
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
-
   $idFacilitateur = $_POST['idFacilitateur'];
   $date = $_POST['date'];
   $duree = $_POST['duree'];
+  $region = $_POST['region'];
 
-  // $idFacilitateur = 1;
-  // $date = "2019-12-20";
+  // $idFacilitateur = -1;
+  // $date = "2019-11-29";
   // $duree = "60";
+  // $region = 1;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -84,7 +85,7 @@
         //Pour retourner que les journées qui corresponde à la journée sélectionné
         $startTemp = DateTime::createFromFormat('Y-m-d H:i:s', $start)->format('Y-m-d');
 
-        if($startTemp == $date && $dispo[$j]->getEtat() == 0){
+        if($startTemp == $date && $dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
           $out[] = array(
             'id' => $dispo[$j]->getId(),
             'title' => $dispo[$j]->getId(),

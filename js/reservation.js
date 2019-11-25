@@ -36,7 +36,7 @@
    duree = $('#duree').val();
    region = $('#region').val();
 
-   console.log(idFacilitateur + " " + duree + " " + region);
+   // console.log(idFacilitateur + " " + duree + " " + region);
 
    return $.ajax({
      type: "POST",
@@ -165,6 +165,7 @@
    var idFacilitateur = null;
    var date = null;
    var duree = null;
+   var region = null;
 
    idFacilitateur = $('.facilitateur-select').attr("id");
    // idFacilitateur = 1;
@@ -182,6 +183,8 @@
      date = "2000-01-01";
    }
 
+   region = $('#region').val();
+
    $.ajax({
      type: "POST",
      async: false,
@@ -189,7 +192,8 @@
      url: "../../php/script/Horaire/afficherAllHoraireSelectionne.php",
      data: {idFacilitateur: idFacilitateur,
              date: date,
-             duree: duree
+             duree: duree,
+             region: region
           },
      success: function(data){
          // console.log(data);
@@ -274,6 +278,7 @@ $(document).ready(function() {
     changerBackground();
     enleverDayView();
     selectionnerJour();
+    $("#dispo").empty();
   });
 
   $("#region").change(function() {
@@ -283,6 +288,7 @@ $(document).ready(function() {
     changerBackground();
     enleverDayView();
     selectionnerJour();
+    $("#dispo").empty();
   });
 
   listInput = document.querySelectorAll("input, textarea, select");
