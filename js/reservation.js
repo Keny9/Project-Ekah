@@ -34,14 +34,18 @@
    }
 
    duree = $('#duree').val();
+   region = $('#region').val();
+   service = $('#service').val();
 
+
+   // console.log(idFacilitateur + " " + duree + " " + region);
 
    return $.ajax({
      type: "POST",
      async: false,
      dataType: "json",
      url: "../../php/script/Horaire/afficherAllEvents.php",
-     data: {idFacilitateur: idFacilitateur, duree: duree}
+     data: {idFacilitateur: idFacilitateur, duree: duree, region: region, service: service}
    });
  }
 
@@ -163,6 +167,7 @@
    var idFacilitateur = null;
    var date = null;
    var duree = null;
+   var region = null;
 
    idFacilitateur = $('.facilitateur-select').attr("id");
    // idFacilitateur = 1;
@@ -180,6 +185,10 @@
      date = "2000-01-01";
    }
 
+   region = $('#region').val();
+   service = $('#service').val();
+
+
    $.ajax({
      type: "POST",
      async: false,
@@ -187,7 +196,9 @@
      url: "../../php/script/Horaire/afficherAllHoraireSelectionne.php",
      data: {idFacilitateur: idFacilitateur,
              date: date,
-             duree: duree
+             duree: duree,
+             region: region,
+             service: service
           },
      success: function(data){
          // console.log(data);
@@ -272,9 +283,18 @@ $(document).ready(function() {
     changerBackground();
     enleverDayView();
     selectionnerJour();
-});
+    $("#dispo").empty();
+  });
 
-
+  $("#region").change(function() {
+    getEvents();
+    apresAjax();
+    calendrier.view();
+    changerBackground();
+    enleverDayView();
+    selectionnerJour();
+    $("#dispo").empty();
+  });
 
   listInput = document.querySelectorAll("input, textarea, select");
 
