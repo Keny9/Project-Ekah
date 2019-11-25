@@ -36,6 +36,8 @@
    duree = $('#duree').val();
    region = $('#region').val();
 
+   console.log(idFacilitateur + " " + duree + " " + region);
+
    return $.ajax({
      type: "POST",
      async: false,

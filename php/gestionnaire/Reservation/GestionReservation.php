@@ -134,6 +134,7 @@ class GestionReservation{
           while($row = $result->fetch_assoc()) {
             $activite = new Activite( $row['id'],
                                       $row['id_type_activite'],
+                                      $row['id_etat'],
                                       $row['nom'],
                                       $row['description_breve'],
                                       $row['description_longue']);
@@ -395,7 +396,7 @@ class GestionReservation{
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()){
-      $activite = new Activite($row['id'], $row['id_type_activite'], $row['nom'], $row['description_breve'], $row['description_longue'], $row['cout']); // get l'id du groupe
+      $activite = new Activite($row['id'], $row['id_type_activite'], $row['id_etat'], $row['nom'], $row['description_breve'], $row['description_longue'], $row['cout']); // get l'id du groupe
     }
     if($conn->error){
       echo "activiteSelect : ".$conn->error;

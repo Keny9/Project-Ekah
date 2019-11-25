@@ -16,9 +16,9 @@
   $duree = $_POST['duree'];
   $region = $_POST['region'];
 
-  // $idFacilitateur = -1;
-  // $duree = "30";
-  // $region = 3;
+  $idFacilitateur = 2;
+  $duree = "30";
+  $region = 3;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
