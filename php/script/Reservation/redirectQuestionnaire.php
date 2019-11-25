@@ -36,7 +36,7 @@ $prix = $_POST['total'];
 $charge = \Stripe\Charge::create([
     'amount' => $prix,
     'currency' => 'cad',
-    'description' => 'Example charge',
+    'description' => 'Facturation d\'une réservation',
     'source' => $token,
 ]);
 $_SESSION['recu_paiement_url'] = $charge['receipt_url'];

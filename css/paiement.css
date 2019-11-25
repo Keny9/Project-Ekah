@@ -4,3 +4,14 @@ form{
   margin: auto;
   border: 1px solid purple;
 }
+
+.info-client label{
+
+  display: inline-block;
+  width:40%;
+  clear:both;
+}
+.info-client span::after{
+  content: "\A";
+  white-space: pre;
+}
