@@ -86,7 +86,7 @@ $activites = $gActivite->getAllActivite();
               //  echo "<option disabled class=\"select-section\">EN ATELIER</option>";
                 echo "<option disabled class=\"select-section\">À DOMICILE</option>";
                 foreach ($activites as $activite){
-                  if ($activite->getId_type() == 4) break;
+                  if ($activite->getId_type() == 4) continue;
 
                   if ($activite->getId_type() != $separator){
                     $separator = $activite->getId_type();
