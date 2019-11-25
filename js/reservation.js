@@ -35,7 +35,7 @@
 
    duree = $('#duree').val();
    region = $('#region').val();
-   service = $('#service').val();
+   id_service = $('#service').val();
 
 
    // console.log(idFacilitateur + " " + duree + " " + region);
@@ -45,7 +45,7 @@
      async: false,
      dataType: "json",
      url: "../../php/script/Horaire/afficherAllEvents.php",
-     data: {idFacilitateur: idFacilitateur, duree: duree, region: region, service: service}
+     data: {idFacilitateur: idFacilitateur, duree: duree, region: region, service: id_service}
    });
  }
 
@@ -186,7 +186,7 @@
    }
 
    region = $('#region').val();
-   service = $('#service').val();
+   id_service = $('#service').val();
 
 
    $.ajax({
@@ -198,7 +198,7 @@
              date: date,
              duree: duree,
              region: region,
-             service: service
+             service: id_service
           },
      success: function(data){
          // console.log(data);
