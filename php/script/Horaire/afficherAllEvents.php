@@ -14,9 +14,11 @@
 
   $idFacilitateur = $_POST['idFacilitateur'];
   $duree = $_POST['duree'];
+  $region = $_POST['region'];
 
-  // $idFacilitateur = -1;
-  // $duree = "90";
+  $idFacilitateur = 2;
+  $duree = "30";
+  $region = 3;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -28,8 +30,6 @@
     $facilitateur = $gestionFacilitateur->getFacilitateurActifAvecDispoGroup($idFacilitateur);
   }
 
-  // print_r($facilitateur);
-
 
   date_default_timezone_set('America/Toronto');
 
@@ -39,6 +39,8 @@
 
   for ($i=0; $i < sizeof($facilitateur); $i++) {
     $dispo = $facilitateur[$i]->getDisponibilite();
+    // print_r($dispo);
+
 
     if (isset($dispo)) {
       for ($j=0; $j < sizeof($facilitateur[$i]->getDisponibilite()); $j++) {
@@ -54,18 +56,10 @@
           for ($k=0; $k < sizeof($dispo); $k++) {
             if ($duree == "60") {
               if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "60";
-                // echo "<br />";
                 $dispo[$j]->setEtat(0);
               }
             }elseif ($duree == "90") {
               if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+60 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "90";
-                // echo "<br />";
                 $dispo[$j]->setEtat(0);
               }
             }else{
@@ -78,7 +72,11 @@
         $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
         $end = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureFin()));
 
-        if($dispo[$j]->getEtat() == 0){
+
+        // print_r($dispo[$j]->getRegion() . "  ==  " . $region);
+        // echo "<br />";
+
+        if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
           $out[] = array(
             'id' => $dispo[$j]->getId(),
             'title' => $dispo[$j]->getId(),
