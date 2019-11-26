@@ -19,7 +19,7 @@ else{
 }
 
  ?>
-<header>
+<header id="header">
   <nav class="navi-header">
     <div id="logoWrapper" class="logo">
       <a class="link-logo" href="https://ekah.co">

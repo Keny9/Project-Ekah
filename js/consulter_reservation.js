@@ -9,6 +9,7 @@
  */
 
 $(document).ready( function () {
+  $('#txtConsulter').css('margin-top',30);
 
 $('#table_reservation').DataTable({
   "ajax":{

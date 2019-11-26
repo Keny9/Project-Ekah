@@ -14,7 +14,7 @@
 
 </head>
 <body>
-  <main>
+  <main class="main-calendar">
 
     <select class="select-inscr" name="dispo" id="dispo" onchange="changeListe(this);">
       <option value="" disabled selected>Choisissez une date d'abord</option>

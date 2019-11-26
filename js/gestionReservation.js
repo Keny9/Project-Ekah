@@ -7,6 +7,20 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-09-30
  */
+
+async function ouvrir(){
+  let divFin = document.getElementById("AjoutActivite").getAttribute('value');
+  divFin=parseInt(divFin);
+  for (i = 0; i < divFin; i++){
+    await sleep(100);
+    let divSelection = document.getElementById("Activite-"+i);
+    divSelection.classList.add("ouverture");
+    await sleep(100);
+    divSelection.classList.remove("ouverture");
+
+  }
+}
+
  function selectionne(x){
 
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
@@ -80,12 +94,16 @@
 
 
  function clearFields(){
-document.getElementById('nom').innerHTML = "";
-document.getElementById('titre').innerHTML = "Nom du Service";
+document.getElementById('nom').value = "";
+document.getElementById('titre').innerHTML = "";
 //document.getElementById("Type-"+2).attr('selected','selected');
-document.getElementById('descriptionC').innerHTML = "";
-document.getElementById('duree').innerHTML = "";
+document.getElementById('descriptionC').value = "";
+document.getElementById('duree').value = "";
+for(i=0;i<5;i++){
+let divSelectionner = document.getElementById("Duree-"+i);
+divSelectionner.classList.remove("selectionne");
 document.getElementById('nom').focus();
+}
 }
 
 function remplirNom(x){
@@ -297,8 +315,6 @@ function remplirType(x){
               });
 }
  function selectionneDuree(x){
-
-
    let divSelection = document.getElementById("Duree-"+x);
 
    if(divSelection.classList.contains("selectionne")){
@@ -321,7 +337,12 @@ function ajoutDuree(x){
     if(divSelection.classList.contains("selectionne")){
       var id = i+1;
     }
+    else{
+      divFin = parseInt(divFin)
+      var id =divFin+1;
+    }
   }
+  console.log(id);
   var idDuree=x+1;
 
   $(function($) {
@@ -581,13 +602,13 @@ function ajouterActive(){
   ajouter();
 }
 
-function active(id){
+ function active(id){
   let divActive = document.getElementById("Activite-"+id);
   divActive.classList.remove("desactive");
   modifier();
 }
 
- function ajouter(){
+ async function ajouter(){
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
@@ -601,10 +622,11 @@ function active(id){
   var descriptionL = "LONGUE";
   var cout=0;
   if(valideForm()==true){
-  for (i = 0; i <= divFin; i++){
     let divAjout = document.getElementById("AjoutActivite");
     if(divAjout.classList.contains("selectionne")){
-      var id = i+1;
+      divFin =parseInt(divFin);
+      var id = divFin+1;
+      console.log(id);
       $(function($) {
           $.ajax({
             url: url,
@@ -626,9 +648,17 @@ function active(id){
             }
           });
         });
+        await sleep(100);
+        for (i = 0; i <= 4; i++){
+          let divSelection= document.getElementById("Duree-"+i)
+        if(divSelection.classList.contains("selectionne")){
+          console.log(i);
+          ajoutDuree(i);
+        }
+     }
+
         window.location.reload();
     }
-  }
 }
 }
   function siVide(e){
@@ -639,7 +669,7 @@ function active(id){
   }
   function verifieNom(e){
     var nomRegex = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:’ '-]+$/;
-    console.log(nomRegex.test(e));
+    //console.log(nomRegex.test(e));
     return nomRegex.test(e);
   }
 
@@ -743,6 +773,4 @@ function active(id){
          window.location.reload();
      }
    }
-
-
 }

@@ -15,6 +15,12 @@ var clickDropHeader = 0; //Nombre de click sur le dropdown menu du header
 var clickedElement;
 var resizeTimer;
 
+//Scroll du header qui s'affiche
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = 83;
+
 $(document).ready(function() {
  typeMenu = $("#nav_m_type").val(); //Le titre de l'espace, soit client ou facilitateur selon le menu affiché
 
@@ -140,7 +146,9 @@ $("#icon-mobile-menu").click(function(){
   });
 
 /*Click sur le dropdown menu du header pour un client ou un admin*/
-  $("#header_drop").click(function(){
+  $("#header_drop").click(clickMenu);
+
+  function clickMenu(){
     clickDropHeader++;
 
     if(clickDropHeader % 2 == 0){ //Ferme le nav
@@ -152,8 +160,44 @@ $("#icon-mobile-menu").click(function(){
       $("#header_nav").addClass('nav_show');
       $("#header_nav").focus();
     }
+  }
 
+  // on scroll, let the interval function know the user has scrolled
+  $(window).scroll(function(event){
+    didScroll = true;
   });
+
+  // run hasScrolled() and reset didScroll status
+  setInterval(function() {
+    if (didScroll) {
+      hasScrolled();
+      didScroll = false;
+    }
+  }, 250);
+
+  function hasScrolled() {
+    console.log(navbarHeight);
+    var st = $(this).scrollTop();
+
+    if (Math.abs(lastScrollTop - st) <= delta)
+      return;
+
+    // If current position > last position AND scrolled past navbar...
+  if (st > lastScrollTop && st > navbarHeight){
+    // Scroll Down
+    $('header').removeClass('nav-down').addClass('nav-up');
+    if(clickDropHeader % 2 == 1){ //Ferme le nav
+      clickMenu();
+    }
+  } else {
+      // Scroll Up
+      // If did not scroll past the document (possible on mac)...
+      if(st + $(window).height() < $(document).height()) {
+        $('header').removeClass('nav-up').addClass('nav-down');
+      }
+    }
+    lastScrollTop = st;
+  }
 
 });
 

@@ -25,7 +25,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
   <title>Gestion Reservation</title>
 </head>
 
-<body>
+<body onload="ouvrir()">
   <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 <main class="mainReservation">
   <h1 class="titreReservation">Gestion des Réservation</h1>
