@@ -80,6 +80,8 @@
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 15px;
+
+  width: 129px;
 }
 
 .photo-facilitateur{
@@ -89,11 +91,15 @@
   height: 75px;
   margin-right: 15px;
   cursor: pointer;
+
+  width: 125px;
+  height: 125px;
 }
 
 .block-photo-nom{
   width: 279px;
   /* margin: 0 auto; */
+  width: 430px;
 }
 
 .photo-nom{
@@ -103,6 +109,9 @@
   font-size: 12px;
   text-align: center;
   color: #034E53;
+
+  width: 125px;
+  font-size: 15px;
 }
 
 #calendrier{
@@ -148,6 +157,10 @@ textarea:focus{
   display: block;
 }
 
+.date-heure{
+  padding-right: 222px;
+}
+
 @media only screen and (min-width: 768px){
   .top-img{
     font-size: 64px;
@@ -155,10 +168,6 @@ textarea:focus{
 
   .reservation{
     width: 500px;
-  }
-
-  .label-reservation{
-    width: 150px;
   }
 
   #prix{
@@ -186,28 +195,10 @@ textarea:focus{
     width: 100%;
   }
 
-  .block-photo-facilitateur{
-    /* width: 430px; */
-    width: 129px;
+  .date-heure{
+    padding-right: 50px;
   }
 
-  .photo-facilitateur{
-    width: 125px;
-    height: 125px;
-  }
-
-  .block-photo-nom{
-    width: 430px;
-  }
-
-  .photo-nom{
-    width: 125px;
-    font-size: 15px;
-  }
-}
-
-.date-heure{
-  padding-right: 50px;
 }
 
 .facilitateur-select{
