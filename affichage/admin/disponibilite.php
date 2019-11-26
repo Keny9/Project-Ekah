@@ -39,47 +39,50 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
   <?php include '../global/header.php' ?>
 
-  <main class="reservation">
-    <div class="txt-consulter">Mon horaire</div>
-    <br>
+  <main>
+    <div class="reservation">
+      <div class="txt-consulter">Mon horaire</div>
+      <br>
 
-    <div class="page-header">
-      <h3 class="h3"></h3>
-    </div>
-
-    <div class="">
-      <select class="select-inscr input" name="region" id="region">
-        <?php
-          echo "<option class=\"option-vide\" value=\"0\" selected=\"selected\">Choisir une région</option>";
-          require_once '../../php/gestionnaire/Horaire/gestionAffichageDispo.php';
-          $gad = new GestionAffichageDispo();
-          echo $gad->getAllRegion();
-        ?>
-      </select>
-    </div>
-
-      <div class="btnsCalandrier">
-        <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
-        <button type="button" class="bouton-re-que" name="button" id="month"  data-calendar-view="month">MONTH</button>
-        <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
+      <div class="page-header">
+        <h3 class="h3"></h3>
       </div>
 
-<br><br>
-
       <div class="">
-        <select class="select-inscr input" name="facilitateur" id="facilitateur">
+        <select class="select-inscr input" name="region" id="region">
           <?php
-            echo "<option class=\"option-vide\" value=".$_SESSION['logged_in_user_id']." selected=\"selected\">Choisir un facilitateur</option>";
+            echo "<option class=\"option-vide\" value=\"0\" selected=\"selected\">Choisir une région</option>";
             require_once '../../php/gestionnaire/Horaire/gestionAffichageDispo.php';
             $gad = new GestionAffichageDispo();
-            echo $gad->getAllFacilitateur();
+            echo $gad->getAllRegion();
           ?>
         </select>
-      </div><br>
+      </div>
 
-      <div id="calendar"></div>
+        <div class="btnsCalandrier">
+          <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
+          <button type="button" class="bouton-re-que" name="button" id="month"  data-calendar-view="month">MONTH</button>
+          <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
+        </div>
 
         <br><br>
+
+        <div class="">
+          <select class="select-inscr input" name="facilitateur" id="facilitateur">
+            <?php
+              echo "<option class=\"option-vide\" value=".$_SESSION['logged_in_user_id']." selected=\"selected\">Choisir un facilitateur</option>";
+              require_once '../../php/gestionnaire/Horaire/gestionAffichageDispo.php';
+              $gad = new GestionAffichageDispo();
+              echo $gad->getAllFacilitateur();
+            ?>
+          </select>
+        </div><br>
+
+        <div id="calendar"></div>
+
+          <br><br>
+        </div>
+
       </main>
 
     <?php include '../global/footer.php' ?>

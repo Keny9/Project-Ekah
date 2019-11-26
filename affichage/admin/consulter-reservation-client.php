@@ -84,6 +84,7 @@ if(!isset($_GET['id'])){ // Retour à la page précédente
                 <th class="min-desktop">Date/Heure</th>
                 <th class="min-desktop">Coût</th>
                 <th class="all">Facilitateur</th>
+                <th class="all">Facture</th>
               </tr>
             </thead>
             <tbody>

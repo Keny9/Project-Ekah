@@ -35,8 +35,20 @@ $(document).ready(function(){
       }},
       {"data": "nom_lieu"},
       {"data": "date_rendez_vous"},
-      {"data": "montant"},
+      {"data": null,
+      render: function(data, type, row){
+        return data.montant + " $";
+      }},
       {"data": "facilitateur"},
+      {"data": null,
+      render: function(data, type, row){
+        if(data.recu_url != null){
+          return '<a class="link-client" href="'+data.recu_url+'" target="_blank">Reçu</a>';
+        }
+        else{
+          return 'Paiement Test';
+        }
+      }},
       {"data": null,
       render: function(data, type, row){
         return '<span class="cancel" id=cancel'+data.id+' onclick="openCancelModal('+data.id+');"></span>';
@@ -115,7 +127,7 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#cefdce";
 
-        child[6].children[0].onclick = function(){alreadyDone();}; //Fenêtre modal
+        child[7].children[0].onclick = function(){alreadyDone();}; //Fenêtre modal
 
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");
@@ -127,7 +139,7 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#ffc2b3";
 
-        child[6].children[0].onclick = function(){alreadyCancelled();}; //Fenêtre modal
+        child[7].children[0].onclick = function(){alreadyCancelled();}; //Fenêtre modal
 
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");

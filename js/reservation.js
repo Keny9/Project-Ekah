@@ -41,7 +41,6 @@
    region = $('#region').val();
    id_service = $('#service').val();
 
-
    // console.log(idFacilitateur + " " + duree + " " + region);
 
    return $.ajax({
@@ -81,6 +80,7 @@
    // console.log("Load");
   calendrier = $("#calendar").calendar(
      {
+       language: 'fr-FR',
        tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
        weekbox: false,
        events_source: events,
@@ -236,6 +236,23 @@
 
 //Click pour choisir un facilitateur
 function choisirFacilitateur(){
+
+  $('#facilitateur').on('click', function(){
+    let $this = $('.facilitateur-select');
+    // console.log($this.length);
+    if($this.length > 0){
+      $this.toggleClass("facilitateur-select");
+      getEvents();
+      apresAjax();
+      calendrier.view();
+      changerBackground();
+      enleverDayView();
+      selectionnerJour();
+      $("#dispo").empty();
+    }
+  });
+
+
   $(".block-photo-facilitateur").each(function(index) {
 
     $(this).on("click", function(){
@@ -268,17 +285,24 @@ function choisirFacilitateur(){
  ///////////////////////////////////////////////
 //Page est chargé
 $(document).ready(function() {
-  apresAjax();
+  apresAjax();                //Envent listener When sur la fonction ajax
+  getEvents();                //Appel la fonction ajax
+  calendrier.view();          //Refresh le calendrier (les events)
+  changerBackground();        //Change le css
+  enleverDayView();           //Enleve la possibilité d'aller sur le calendrier en mode "jour"
+  selectionnerJour();         //Permettre de cliquer sur une journée
 
-  getEvents();
+  choisirFacilitateur();      //Events pour choisir le facilitateur
 
-  calendrier.view();
-
-  changerBackground();
-  enleverDayView();
-  selectionnerJour();
-
-  choisirFacilitateur();
+  $("#service").change(function() {
+    getEvents();
+    apresAjax();
+    calendrier.view();
+    changerBackground();
+    enleverDayView();
+    selectionnerJour();
+    $("#dispo").empty();
+  });
 
   $("#duree").change(function() {
     getEvents();

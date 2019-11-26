@@ -67,6 +67,11 @@
   font-size: 14px;
   text-align: center;
   font-weight: lighter;
+  cursor: pointer;
+}
+
+.bouton-re-que:hover{
+  opacity: 0.8;
 }
 
 #confirmerQuestion{

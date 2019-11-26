@@ -128,6 +128,7 @@ session_start();
                 <th class="min-desktop">Date/Heure</th>
                 <th class="min-desktop">Coût</th>
                 <th class="all">Facilitateur</th>
+                <th class="all">Facture</th>
                 <th class="all">Annuler</th>
               </tr>
             </thead>

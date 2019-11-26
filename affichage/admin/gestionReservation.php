@@ -25,9 +25,9 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
   <title>Gestion Reservation</title>
 </head>
 
-<body>
+<body onload="ouvrir()">
   <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
-<main>
+<main class="mainReservation">
   <h1 class="titreReservation">Gestion des Réservation</h1>
     <div class="tableauActivite">
     <?php
@@ -41,11 +41,13 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     </div>
 
     <div class="reservationMain">
+      <h2 class="texteEkha">Aperçu de la reservation</h2>
       <div class="reservationHeader"><img class="imgHeader"src="../../img/logo_ekah_header.png" alt="Ekah"></div>
       <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg" id="titre"></div></div>
-      <h2 class="reservez texteEkha">Réservez dès maintenant</h2></br>
+      <h3 class="reservez texteEkha">Réservez dès maintenant</h3></br>
       <h6 class="choisirServ texteEkha">Choisir un service:</h6>
       <h6 class="choisirDuree texteEkha">Quelles durées sont acceptées:</h6></br></br>
+
       <textarea class="boxService" name="service" id="nom"></textarea>
       <div class="tableauDuree">
       <?php
@@ -91,7 +93,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />
 
       <div class="group-input-inscr btn-espace">
-       <a href="/Project-Ekah/affichage/admin/accueil_admin.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer submitRetour">RETOUR</button></a>
+       <a href="/Project-Ekah/affichage/admin/accueil_admin.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer submitRetour">Retour</button></a>
       </div>
 
 </main>

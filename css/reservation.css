@@ -74,8 +74,14 @@
 }
 
 .block-photo-facilitateur{
-  width: 279px;
+  width: 430px;
   margin: 0 auto;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 15px;
+
+  width: 129px;
 }
 
 .photo-facilitateur{
@@ -85,11 +91,15 @@
   height: 75px;
   margin-right: 15px;
   cursor: pointer;
+
+  width: 125px;
+  height: 125px;
 }
 
 .block-photo-nom{
   width: 279px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  width: 430px;
 }
 
 .photo-nom{
@@ -99,6 +109,9 @@
   font-size: 12px;
   text-align: center;
   color: #034E53;
+
+  width: 125px;
+  font-size: 15px;
 }
 
 #calendrier{
@@ -144,17 +157,13 @@ textarea:focus{
   display: block;
 }
 
-@media only screen and (min-width: 768px){
-  .top-img{
-    font-size: 64px;
-  }
+.date-heure{
+  /* padding-right: 222px; */
+}
+
 
   .reservation{
-    width: 500px;
-  }
-
-  .label-reservation{
-    width: 150px;
+    width: 530px;
   }
 
   #prix{
@@ -182,26 +191,118 @@ textarea:focus{
     width: 100%;
   }
 
-  .block-photo-facilitateur{
-    width: 430px;
+  .date-heure{
+    padding-right: 50px;
   }
 
-  .photo-facilitateur{
-    width: 125px;
-    height: 125px;
-  }
-
-  .block-photo-nom{
-    width: 430px;
-  }
-
-  .photo-nom{
-    width: 125px;
-    font-size: 15px;
-  }
+}
 
 .facilitateur-select{
-  border: 2px solid #000000;
+  outline: 2px solid #000000;
   border-radius: 0px;
 }
+
+.btnCalandrier{
+  float: right;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  height: 45px;
+}
+.bouton-nav{
+  float: right;
+}
+
+#next{
+  margin-left: 10px;
+}
+
+h3{
+  font-size: 23.5px;
+  line-height: normal;
+  margin: 0px;
+}
+.page-header{
+  padding-bottom: 0px;
+  margin: 0px;
+  border: none;
+  float: left;
+  margin: auto;
+  position: absolute;
+  margin-top: 6px;
+  left: 23%;
+  top: 65px;
+}
+
+.legend{
+  float: left;
+  margin-right: 0px;
+}
+.legend-vert{
+  background-color: #e8fde7;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: 8px;
+}
+.legend-txt{
+  float: left;
+  margin-left: 5px;
+  margin-top: 14px;
+  font-size: 13px;
+}
+
+#calendar{
+  top:10px;
+}
+
+@media only screen and (min-width: 768px){
+  .top-img{
+    font-size: 64px;
+  }
+
+  .reservation{
+    width: 530px;
+  }
+
+  #prix{
+    margin-left: 0;
+  }
+
+  #calendrier{
+    width: 450px;
+    height: 450px;
+  }
+
+  #label-facilitateur{
+    width: 175px;
+  }
+
+  .label-prix{
+    width: 50px;
+  }
+
+  .label-long{
+    width: 300px;
+  }
+
+  .label-col{
+    width: 100%;
+  }
+
+  .date-heure{
+    padding-right: 50px;
+  }
+
+  .legend{
+    margin-right: 33%;
+  }
+  .page-header{
+    top: 36px;
+  }
+}
+
+.facilitateur-select{
+  outline: 2px solid #000000;
+  border-radius: 0px;
 }

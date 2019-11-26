@@ -629,7 +629,7 @@ public function selectAll($user_id = null){
     public function getAllReservationData($id_client = null){
       $conn = ($connexion = new Connexion())->do();
 
-      $requete = "SELECT r.id, r.id_etat, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, s.id AS id_suivi, g.no_groupe, i.date_inscription,
+      $requete = "SELECT r.id, r.id_etat, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, p.recu_url, s.id AS id_suivi, g.no_groupe, i.date_inscription,
                   CONCAT(u.prenom, ' ' , u.nom) AS client, u.id AS client_id, CONCAT(f.prenom, ' ' , f.nom) AS facilitateur
                   FROM reservation r
                   LEFT JOIN utilisateur f ON r.id_facilitateur = f.id
@@ -656,9 +656,8 @@ public function selectAll($user_id = null){
 
       while($row = $result->fetch_assoc()){
         // Format le montant
-        $montant = $row['montant'];
-        $montant = str_pad($montant, 20/*, " ", STR_PAD_RIGHT*/);
-        $montantFormat = sprintf("%s%s", $montant, "$");
+        $montant = $row['montant'] * 0.01;
+        $montantFormat = number_format($montant, 2, '.', '');
         $row['montant'] = $montantFormat;
 
         // Format le datetime
