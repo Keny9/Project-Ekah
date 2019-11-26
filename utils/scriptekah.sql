@@ -309,6 +309,18 @@ content MEDIUMBLOB NOT NULL,
 PRIMARY KEY(id)
 );
 
+CREATE TABLE activite_prix(
+activite_id INT,
+duree_id INT,
+facilitateur_id INT,
+prix INT,
+PRIMARY KEY (activite_id, duree_id, facilitateur_id),
+FOREIGN KEY (activite_id) REFERENCES activite(id),
+FOREIGN KEY (duree_id) REFERENCES duree(id),
+FOREIGN KEY (facilitateur_id) REFERENCES utilisateur(id)
+);
+
+
 INSERT INTO region(id, nom) VALUES (0, "Aucune");
 INSERT INTO region(id, nom) VALUES (1, "Estrie");
 INSERT INTO region(id, nom) VALUES (2, "Montérégie");
@@ -520,15 +532,15 @@ INSERT INTO duree(id, temps) VALUES (4, 120);
 INSERT INTO duree(id, temps) VALUES (5, 150);
 
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (1, 1);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (1, 3);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (2, 2);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (1, 2);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (2, 1);
 INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 1);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (3, 2);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 1);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 2);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 3);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 4);
-INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (18, 5);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (4, 1);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (11, 1);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (12, 1);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (13, 1);
+INSERT INTO ta_duree_activite(id_activite, id_duree) VALUES (14, 1);
+
 
 
 INSERT INTO type_groupe(id, type_groupe) VALUES (1, "Réservation individuelle");
@@ -693,3 +705,32 @@ INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_re
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,13, 2);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,14, 3);
 INSERT INTO ta_disponibilite_specialiste(id_specialiste, id_disponibilite, id_region) VALUES (1,15, 3);
+
+
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (1, 1, 1, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (1, 1, 2, 5500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (1, 1, 3, 5000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (1, 2, 1, 7000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (1, 2, 2, 6500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (1, 2, 3, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (2, 1, 1, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (2, 1, 2, 5500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (2, 1, 3, 5000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (3, 2, 1, 7000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (3, 2, 2, 6500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (3, 2, 3, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (4, 1, 1, 7000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (4, 1, 2, 6500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (4, 1, 3, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (11, 1, 1, 7000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (11, 1, 2, 6500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (11, 1, 3, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (12, 1, 1, 7000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (12, 1, 2, 6500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (12, 1, 3, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (13, 1, 1, 7000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (13, 1, 2, 6500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (13, 1, 3, 6000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 1, 7000);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 2, 6500);
+INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 3, 6000);

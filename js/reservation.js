@@ -19,6 +19,9 @@
      success: function(result){
        $("#question-complementaire").css("display", result);
      }});
+
+     // Met à jour les durées
+     $('#duree').load('/Project-Ekah/php/script/Reservation/printActiviteDuree.php?activite_id='+$('#service').val());
    });
  });
 
