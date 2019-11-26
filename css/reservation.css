@@ -158,7 +158,62 @@ textarea:focus{
 }
 
 .date-heure{
-  padding-right: 222px;
+  /* padding-right: 222px; */
+}
+
+
+.btnCalandrier{
+  float: right;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  height: 45px;
+}
+.bouton-nav{
+  float: right;
+}
+
+#next{
+  margin-left: 10px;
+}
+
+h3{
+  font-size: 23.5px;
+  line-height: normal;
+  margin: 0px;
+}
+.page-header{
+  padding-bottom: 0px;
+  margin: 0px;
+  border: none;
+  float: left;
+  margin: auto;
+  position: absolute;
+  margin-top: 6px;
+  left: 23%;
+  top: 65px;
+}
+
+.legend{
+  float: left;
+  margin-right: 0px;
+}
+.legend-vert{
+  background-color: #e8fde7;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: 8px;
+}
+.legend-txt{
+  float: left;
+  margin-left: 5px;
+  margin-top: 14px;
+  font-size: 13px;
+}
+
+#calendar{
+  top:10px;
 }
 
 @media only screen and (min-width: 768px){
@@ -167,7 +222,7 @@ textarea:focus{
   }
 
   .reservation{
-    width: 500px;
+    width: 530px;
   }
 
   #prix{
@@ -199,58 +254,15 @@ textarea:focus{
     padding-right: 50px;
   }
 
+  .legend{
+    margin-right: 33%;
+  }
+  .page-header{
+    top: 36px;
+  }
 }
 
 .facilitateur-select{
   outline: 2px solid #000000;
   border-radius: 0px;
-}
-
-.btnCalandrier{
-  float: right;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
-.bouton-nav{
-  float: right;
-}
-
-#next{
-  margin-left: 10px;
-}
-
-h3{
-  font-size: 23.5px;
-  line-height: normal;
-  margin: 0px;
-}
-.page-header{
-  padding-bottom: 0px;
-  margin: 0px;
-  border: none;
-  float: left;
-  margin: auto;
-  position: absolute;
-  margin-top: 6px;
-  left: 23%;
-}
-
-.legend{
-  float: left;
-  margin-right: 33%;
-
-}
-.legend-vert{
-  background-color: #e8fde7;
-  width: 25px;
-  height: 25px;
-  float: left;
-  margin-top: 8px;
-}
-.legend-txt{
-  float: left;
-  margin-left: 5px;
-  margin-top: 14px;
-  font-size: 13px;
 }

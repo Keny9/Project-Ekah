@@ -112,12 +112,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
                 <textarea readonly name="description" class="modal-description" id="modal-description" rows="8" cols="80">Description courte</textarea>
 
-                <p id="modal-date">Date</p>
-                <p id=modal-start>Heure</p>
-                <p id="modal-fin">Duree</p>
+                <p id="modal-date">Date</p><br>
+                <p id=modal-start>Heure</p><br>
+                <p id="modal-fin">Duree</p><br>
 
-                <p id="modal-adresse">Adresse</p>
-                <p id="modal-prix">Prix</p>
+                <p id="modal-adresse">Adresse</p><br>
+                <p id="modal-prix">Prix</p><br>
 
               </div>
             <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
