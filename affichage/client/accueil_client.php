@@ -3,11 +3,10 @@ session_start();
 // Accueil du client
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Accueil</title>
@@ -43,6 +42,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
     <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 
     <main>
+      <div class="top-img">
+        <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
+        <div class="shade"></div>
+        <p class="txt-centered">Les ateliers</p>
+      </div>
+
       <div id="modal-inscription" class="modal-inscription">
         <div class="modal-content">
           <div class="modal-align-middle-insc img-conf-insc">
@@ -61,15 +66,20 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
       </div>
 
       <div class="reservation">
-        <div class="">
+        <div class="btnCalandrier">
+          <div class="legend">
+            <div class="legend-vert"></div>
+            <p class="legend-txt">= Atelier</p>
+          </div>
           <div class="page-header">
             <h3 class=" h3"></h3>
           </div>
-          <div class="btnsCalandrier">
-            <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
-            <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
+          <div class="">
+            <button type="button" class="bouton-re-que bouton-nav" name="button" id="next"  data-calendar-nav="next">Suivant >></button>
+            <button type="button" class="bouton-re-que bouton-nav" name="button" id="prev"  data-calendar-nav="prev"><< Précédent</button>
           </div>
         </div>
+
         <br><br>
 
         <div id="calendar"></div>
