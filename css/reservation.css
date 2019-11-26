@@ -74,8 +74,12 @@
 }
 
 .block-photo-facilitateur{
-  width: 279px;
+  width: 430px;
   margin: 0 auto;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 15px;
 }
 
 .photo-facilitateur{
@@ -89,7 +93,7 @@
 
 .block-photo-nom{
   width: 279px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .photo-nom{
@@ -183,7 +187,8 @@ textarea:focus{
   }
 
   .block-photo-facilitateur{
-    width: 430px;
+    /* width: 430px; */
+    width: 129px;
   }
 
   .photo-facilitateur{
@@ -199,9 +204,62 @@ textarea:focus{
     width: 125px;
     font-size: 15px;
   }
+}
+
+.date-heure{
+  padding-right: 50px;
+}
 
 .facilitateur-select{
-  border: 2px solid #000000;
+  outline: 2px solid #000000;
   border-radius: 0px;
 }
+
+.btnCalandrier{
+  float: right;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.bouton-nav{
+  float: right;
+}
+
+#next{
+  margin-left: 10px;
+}
+
+h3{
+  font-size: 23.5px;
+  line-height: normal;
+  margin: 0px;
+}
+.page-header{
+  padding-bottom: 0px;
+  margin: 0px;
+  border: none;
+  float: left;
+  margin: auto;
+  position: absolute;
+  margin-top: 6px;
+  left: 23%;
+}
+
+.legend{
+  float: left;
+  margin-right: 33%;
+
+}
+.legend-vert{
+  background-color: #e8fde7;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: 8px;
+}
+.legend-txt{
+  float: left;
+  margin-left: 5px;
+  margin-top: 14px;
+  font-size: 13px;
 }

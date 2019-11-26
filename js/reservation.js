@@ -237,7 +237,6 @@ function choisirFacilitateur(){
     let $this = $('.facilitateur-select');
     // console.log($this.length);
     if($this.length > 0){
-      console.log("Pas null");
       $this.toggleClass("facilitateur-select");
       getEvents();
       apresAjax();

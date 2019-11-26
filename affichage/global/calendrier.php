@@ -17,17 +17,20 @@
   <main class="main-calendar">
 
     <select class="select-inscr" name="dispo" id="dispo" onchange="changeListe(this);">
-      <option value="" disabled selected>Choisissez une date d'abord</option>
+      <option value="" disabled selected>Commencer par choisir une date!</option>
     </select>
 
-
-    <div class="">
+    <div class="btnCalandrier">
+      <div class="legend">
+        <div class="legend-vert"></div>
+        <p class="legend-txt">= Disponible</p>
+      </div>
       <div class="page-header">
         <h3 class=" h3"></h3>
       </div>
-      <div class="btnsCalandrier">
-        <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Precedent</button>
-        <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Suivant >></button>
+      <div class="">
+        <button type="button" class="bouton-re-que bouton-nav" name="button" id="next"  data-calendar-nav="next">Suivant >></button>
+        <button type="button" class="bouton-re-que bouton-nav" name="button" id="prev"  data-calendar-nav="prev"><< Précédent</button>
       </div>
     </div>
 
