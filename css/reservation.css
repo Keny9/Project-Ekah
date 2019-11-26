@@ -158,13 +158,9 @@ textarea:focus{
 }
 
 .date-heure{
-  padding-right: 222px;
+  /* padding-right: 222px; */
 }
 
-@media only screen and (min-width: 768px){
-  .top-img{
-    font-size: 64px;
-  }
 
   .reservation{
     width: 530px;
@@ -211,6 +207,7 @@ textarea:focus{
   width: 100%;
   margin-top: 10px;
   margin-bottom: 15px;
+  height: 45px;
 }
 .bouton-nav{
   float: right;
@@ -234,12 +231,12 @@ h3{
   position: absolute;
   margin-top: 6px;
   left: 23%;
+  top: 65px;
 }
 
 .legend{
   float: left;
-  margin-right: 33%;
-
+  margin-right: 0px;
 }
 .legend-vert{
   background-color: #e8fde7;
@@ -253,4 +250,59 @@ h3{
   margin-left: 5px;
   margin-top: 14px;
   font-size: 13px;
+}
+
+#calendar{
+  top:10px;
+}
+
+@media only screen and (min-width: 768px){
+  .top-img{
+    font-size: 64px;
+  }
+
+  .reservation{
+    width: 530px;
+  }
+
+  #prix{
+    margin-left: 0;
+  }
+
+  #calendrier{
+    width: 450px;
+    height: 450px;
+  }
+
+  #label-facilitateur{
+    width: 175px;
+  }
+
+  .label-prix{
+    width: 50px;
+  }
+
+  .label-long{
+    width: 300px;
+  }
+
+  .label-col{
+    width: 100%;
+  }
+
+  .date-heure{
+    padding-right: 50px;
+  }
+
+  .legend{
+    margin-right: 33%;
+  }
+  .page-header{
+    top: 36px;
+  }
+}
+
+.facilitateur-select{
+  outline: 2px solid #000000;
+  border-radius: 0px;
 }
