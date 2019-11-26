@@ -175,8 +175,7 @@ $("#icon-mobile-menu").click(function(){
     }
   }, 250);
 
-  function hasScrolled() {
-    console.log(navbarHeight);
+  function hasScrolled(){
     var st = $(this).scrollTop();
 
     if (Math.abs(lastScrollTop - st) <= delta)
