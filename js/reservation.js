@@ -19,6 +19,10 @@
      success: function(result){
        $("#question-complementaire").css("display", result);
      }});
+
+     // Met à jour les durées
+     $('#duree').load('/Project-Ekah/php/script/Reservation/printActiviteDuree.php?activite_id='+$('#service').val());
+     $("#prix").html("");
    });
  });
 
@@ -308,6 +312,8 @@ $(document).ready(function() {
     enleverDayView();
     selectionnerJour();
     $("#dispo").empty();
+
+    $("#prix").load('/Project-Ekah/php/script/Reservation/printPrix.php?activite_id='+$('#service').val()+'&duree='+$('#duree').val());
   });
 
   $("#region").change(function() {

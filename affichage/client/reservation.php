@@ -117,7 +117,7 @@ $activites = $gActivite->getAllActivite();
 
           <div class="group-input-inscr">
             <label class="label-reservation label-prix" for="prix">Prix</label>
-            <p id="prix">120$</p>
+            <p id="prix"></p>
           </div>
 
           <div id="question-complementaire" style="display: none;">

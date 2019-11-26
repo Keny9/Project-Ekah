@@ -1,17 +1,59 @@
-form{
-  max-width:350px;
-  min-width:350px;
+#payment-form{
   margin: auto;
-  border: 1px solid purple;
+}
+
+.paiement-form-header{
+  background-color: rgba(3, 77, 84); /*vert */
+  color: #F05929; /* orange */
+  padding: 10px;
+}
+.paiement-form-main{
+  background-color: rgba(3, 77, 84, 0.25); /*vert */
+  padding: 10px;
+}
+.paiement-form-footer{
+  padding: 10px;
+  background-color: rgba(3, 77, 84); /*vert */
+  color: #F05929; /* orange */
+}
+
+.paiement-form-header p:nth-of-type(1){
+  margin: 0px 0px 3px 0px;
+}
+.paiement-form-header p:nth-of-type(2){
+  margin: 3px 0px 0px 0px;
 }
 
 .info-client label{
-
   display: inline-block;
-  width:40%;
+  width:130px;
   clear:both;
 }
 .info-client span::after{
   content: "\A";
   white-space: pre;
+}
+
+button{
+  background-color: #F05929;
+  border: none;
+  padding: 5px 10px;
+  margin-top:5px;
+  border-radius: 70px;
+  color: #FFF;
+  cursor: pointer;
+  height: auto;
+  font-size: 16px;
+}
+
+.CardField-child:after{
+  content: "\A";
+  white-space: pre;
+}
+
+
+.form-row { /* BOOTSTRAP FIX
+              Problème avec form-row pour stripe*/
+  display: inherit;
+  width:500px;
 }
