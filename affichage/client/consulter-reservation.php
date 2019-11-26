@@ -56,6 +56,7 @@ session_start();
                     <th>Lieu</th>
                     <th>Coût</th>
                     <th>Facilitateur</th>
+                    <th>Facture</th>
                 </tr>
             </thead>
             <tbody id="tbody">
