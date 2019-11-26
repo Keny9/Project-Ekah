@@ -1,7 +1,9 @@
 $(document).ready(function(){
 
   var stripe = Stripe('pk_test_nexEKdAh5yqBBuHujvFYAwpq00HQmYWpWf');
-  var elements = stripe.elements();
+  var elements = stripe.elements({
+    locale: 'fr',
+  });
 
   function stripeTokenHandler(token) {
     // Insert the token ID into the form so it gets submitted to the server
@@ -22,12 +24,15 @@ $(document).ready(function(){
     base: {
       // Add your base input styles here. For example:
       fontSize: '16px',
-      color: "#32325d",
-    }
+      color: "#00000",
+    },
   };
 
   // Create an instance of the card Element.
-  var card = elements.create('card', {style: style});
+  var card = elements.create('card', {
+    style: style,
+    iconStyle: 'solid',
+  });
 
   // Add an instance of the card Element into the `card-element` <div>.
   card.mount('#card-element');
