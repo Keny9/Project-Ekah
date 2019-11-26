@@ -11,9 +11,10 @@
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 
-$activite_id = $_GET['activite_id'];
-$duree = $_GET['duree'];
-$duree_id = ($duree / 30);
+if(!isset($activite_id)) $activite_id = $_GET['activite_id'];
+
+if(!isset($duree)) $duree = $_GET['duree'];
+if (!isset($duree_id)) $duree_id = ($duree / 30);
 $facilitateur_id = 1;
 
 
@@ -29,9 +30,9 @@ if($result->num_rows == 0){
 }
 else{
   if($row = $result->fetch_assoc()){
-    $html .= $row['prix']." $ CAD";
+    $html .= $row['prix'];
   }
 }
-
+$paiement_prix = $html;
 echo $html;
 ?>
