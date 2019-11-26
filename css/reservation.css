@@ -74,8 +74,12 @@
 }
 
 .block-photo-facilitateur{
-  width: 279px;
+  width: 430px;
   margin: 0 auto;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 15px;
 }
 
 .photo-facilitateur{
@@ -89,7 +93,7 @@
 
 .block-photo-nom{
   width: 279px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .photo-nom{
@@ -183,7 +187,8 @@ textarea:focus{
   }
 
   .block-photo-facilitateur{
-    width: 430px;
+    /* width: 430px; */
+    width: 129px;
   }
 
   .photo-facilitateur{
@@ -199,11 +204,15 @@ textarea:focus{
     width: 125px;
     font-size: 15px;
   }
+}
+
+.date-heure{
+  padding-right: 50px;
+}
 
 .facilitateur-select{
-  border: 2px solid #000000;
+  outline: 2px solid #000000;
   border-radius: 0px;
-}
 }
 
 .btnCalandrier{

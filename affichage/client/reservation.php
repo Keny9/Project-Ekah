@@ -157,7 +157,7 @@ $activites = $gActivite->getAllActivite();
           </div>
 
           <div class="group-input-inscr">
-            <label class="label-reservation label-long">Sélectionner la date et l'heure désiré</label>
+            <label class="label-reservation date-heure label-long">Sélectionner la date et l'heure désiré</label>
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php'; ?>
           </div>
 
