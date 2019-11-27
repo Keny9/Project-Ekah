@@ -313,7 +313,16 @@ $(document).ready(function() {
     selectionnerJour();
     $("#dispo").empty();
 
-    $("#prix").load('/Project-Ekah/php/script/Reservation/printPrix.php?activite_id='+$('#service').val()+'&duree='+$('#duree').val());
+    $("#prix").load('/Project-Ekah/php/script/Reservation/printPrix.php?activite_id='+$('#service').val()+'&duree='+$('#duree').val(), function() {
+      // callback du load
+      // Set le prix
+      let prix = $("#prix").text();
+      let prixDecimal = prix.slice(prix.length-2, prix.length);
+      let prixEntier = prix.slice(0, prix.length-2);
+      let prixFormat = prixEntier+','+prixDecimal;
+      $('#prix').html(prixFormat + " $ CAD");
+    });
+
   });
 
   $("#region").change(function() {

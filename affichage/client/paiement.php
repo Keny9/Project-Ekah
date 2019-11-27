@@ -6,15 +6,15 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 // Get les infos du client
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
 
-$id_activite = $_POST['service'];
+$id_activite = $activite_id = $_POST['service'];
 $date_rendez_vous = $_GET['date_rendez_vous'];
-$id_facilitateur = $_GET['facilitateur_id'];
+$id_facilitateur = $facilitateur_id = $_GET['facilitateur_id'];
 $id_dispo = $_GET['id_dispo'];
 $no_adresse = $_POST['noAdresse'];
 $rue = $_POST['rue'];
 $ville = $_POST['ville'];
 $duree = $_GET['duree'];
-$prix = 10000;//formule magique
+/*$prix = */include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/printPrix.php';//10000;//formule magique
 if(isset($_POST['region'])){ $id_region = $_GET['id_region'];}
 else{$id_region = null;}
 // TODO: faire les validations des variables pour être sûr que la Réservation puisse se créer sans erreur après le paiement
@@ -54,7 +54,9 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/paiement
 // $id_region
 // ");
 
-
+//Format le prix
+$paiement_prix = 123456;
+$paiement_prix_format = number_format($paiement_prix*0.01, 2, ',', '');
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -68,7 +70,7 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/paiement
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
-      const prix = <?php echo $prix; ?>;
+      const prix = <?php echo $paiement_prix; ?>;
     </script>
     <script type="text/javascript" src="../../js/paiement.js"></script>
   </head>
@@ -98,7 +100,7 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/paiement
           <label>Emplacement :</label>
           <span><?php echo $emplacement ?></span>
           <label>Montant :</label>
-          <span><?php echo $prix." $ CAD" ?></span>
+          <span><?php echo $paiement_prix_format." $ CAD" ?></span>
         </div>
       </div>
 

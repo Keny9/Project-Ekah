@@ -162,6 +162,46 @@ textarea:focus{
 }
 
 
+  .reservation{
+    width: 530px;
+  }
+
+  #prix{
+    margin-left: 0;
+  }
+
+  #calendrier{
+    width: 450px;
+    height: 450px;
+  }
+
+  #label-facilitateur{
+    width: 175px;
+  }
+
+  .label-prix{
+    width: 50px;
+  }
+
+  .label-long{
+    width: 300px;
+  }
+
+  .label-col{
+    width: 100%;
+  }
+
+  .date-heure{
+    padding-right: 50px;
+  }
+
+}
+
+.facilitateur-select{
+  outline: 2px solid #000000;
+  border-radius: 0px;
+}
+
 .btnCalandrier{
   float: right;
   width: 100%;
