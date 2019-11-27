@@ -2,6 +2,15 @@
 session_start();
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
+$gh = new GestionHoraire();
+
+$id_dispo = $_GET['id_dispo'];
+if (!$gh->getDispo($id_dispo)){ // Dispo n'est plus disponible
+  echo"Dispo n'est plus disponnible.".'<br>';
+  echo "<a href='accueil_client.php'>Retour à l'accueil</a>";
+  exit();
+}
 
 // Get les infos du client
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
@@ -9,7 +18,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.
 $id_activite = $activite_id = $_POST['service'];
 $date_rendez_vous = $_GET['date_rendez_vous'];
 $id_facilitateur = $facilitateur_id = $_GET['facilitateur_id'];
-$id_dispo = $_GET['id_dispo'];
+
 $no_adresse = $_POST['noAdresse'];
 $rue = $_POST['rue'];
 $ville = $_POST['ville'];
