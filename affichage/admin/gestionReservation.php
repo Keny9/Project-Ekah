@@ -30,6 +30,11 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 <main class="mainReservation">
   <h1 class="titreReservation">Gestion des Réservation</h1>
     <div class="tableauActivite">
+      <?php
+                     require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                     $gagr = new GestionAffichageGestionReservation();
+                     echo $gagr->getAllQuestion();
+                   ?>
     <?php
                    require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
@@ -86,7 +91,6 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                   ?>
       <input type="button" class="submitSupprimerQuestion" onclick="supprimerQuestion();" value="Supprimer" />
     <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h4>
-      <input class="inputId" type="text"  placeholder="Id" id="idQuestion"></input>
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
       <input class="inputType" type="text"  placeholder="Type de la question" id="typeQuestion"></input>
