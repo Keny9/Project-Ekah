@@ -77,6 +77,9 @@ class GestionHoraire{
                                   $row['heure_debut'],
                                   $row['heure_fin'],
                                   $row['id_etat']);
+            if($row['id_etat'] == 2){
+              return false;
+            }
           }
         }
         return $disponibilite;

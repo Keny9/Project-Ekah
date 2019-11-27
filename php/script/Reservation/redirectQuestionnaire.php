@@ -43,7 +43,7 @@ try {
   ]);
 
   $_SESSION['recu_paiement_url'] = $charge['receipt_url'];
-} catch(\Stripe\Exception\CardException $e) {
+}/* catch(\Stripe\Exception\CardException $e) {
   // Since it's a decline, \Stripe\Exception\CardException will be caught
   echo 'Status is: ' . $e->getHttpStatus() . '<br>';
   echo 'Type is: ' . $e->getError()->type . '<br>';
@@ -94,7 +94,7 @@ try {
   echo 'Param is: ' . $e->getError()->param . '<br>';
   echo 'Message is: ' . $e->getError()->message . '<br>';
   exit();
-} catch (Exception $e) {
+}*/ catch (Exception $e) {
   // Something else happened, completely unrelated to Stripe
   echo 'Status is: ' . $e->getHttpStatus() . '<br>';
   echo 'Type is: ' . $e->getError()->type . '<br>';
