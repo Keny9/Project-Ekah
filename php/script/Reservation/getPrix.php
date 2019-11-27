@@ -1,12 +1,12 @@
 <?php
 /**
-* Script qui retourne un string HTML pour afficher le prix
+* Script qui attribut le prix d'une activité à une variable $prix
 *
-* Nom :         printPrix.php
+* Nom :         getPrix
 * Catégorie :   Script
 * Auteur :      Maxime Lussier
 * Version :     1.0
-* Date de la dernière modification : 2019-11-26
+* Date de la dernière modification : 2019-11-27
 */
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
@@ -23,16 +23,15 @@ $stmt = $conn->prepare("SELECT prix FROM activite_prix WHERE activite_id = ? AND
 $stmt->bind_param('iii', $activite_id, $duree_id, $facilitateur_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$html = "";
+$prix = "";
 
 if($result->num_rows == 0){
 
 }
 else{
   if($row = $result->fetch_assoc()){
-    $html .= $row['prix'];
+    $prix .= $row['prix'];
   }
 }
 
-echo $html;
 ?>
