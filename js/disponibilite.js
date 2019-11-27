@@ -109,7 +109,7 @@ $(document).ready(function() {
   var i = 0;
   $.each($('.cal-day-hour-part'), function(index, $event){
     var $this = $(this);
-    console.log("ID");
+    // console.log("ID");
     $this.attr('id', i);
     i++;
   });
@@ -122,13 +122,17 @@ $(document).ready(function() {
       var date = $(".h3").text();
 
       var couleur = $this.css("background-color");
+      console.log(couleur);
 
       if(couleur == "rgba(0, 0, 0, 0)"){
         $this.css("background-color", "green");
         envoyeDispo(heure, date);
+      }else if (couleur == "rgba(240, 89, 41, 0.26)"){
+        console.log("Modal");
+        openModal();
       }else{
+        console.log("Supprime");
         $this.css("background-color", "rgba(0, 0, 0, 0)");
-
         supprimerDispo(heure, date);
       }
    }
@@ -227,6 +231,16 @@ function supprimerDispo(heure, date){
 }
 
 
+//Fermer la fenetre modale de modification d'une réservation
+function closeModal(){
+  $("#modal-inscription").css("display", "none");
+  $('.selectionne').toggleClass('selectionne');
+}
+
+//Ouvrir la fenêtre modal
+function openModal(){
+  $("#modal-inscription").css("display", "block");
+}
 
 
 //Fonction pour convertir le mois
