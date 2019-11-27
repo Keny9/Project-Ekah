@@ -24,7 +24,7 @@
   $heure = null;
   $adresse = null;
 
-  $prix = $_POST['prix'];
+  // $prix = $_POST['prix'];
   $duree = $_POST['duree'];
   $activite = $_POST['activite'];     //id de l'activite
   $date = $_POST['date'];
