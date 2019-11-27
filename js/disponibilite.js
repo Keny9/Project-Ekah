@@ -24,7 +24,18 @@ function changerBackground(){
     $.each($('.events-list'), function(index, $event){
       var $this = $(this);
       $this.css("display", "none");
+      $this.parent().css("background-color", "#e8fde7");
     });
+
+    //Enlever le CSS inutile pour la réservation (css today)
+    var $today = $(".cal-day-today");
+    $today.removeClass("cal-day-today");
+    $today.css("background-color", "RGBA(240,89,41,0.26)");
+
+
+    var $todayTxt = $today.find("span");
+    $todayTxt.css("color", "#333333");
+    $todayTxt.css("font-size", "1.2em");
   }
 
 //Les event onclick pour les boutons

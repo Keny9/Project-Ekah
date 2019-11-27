@@ -49,7 +49,7 @@ foreach ($disponibilite as $row) {
         'url' => "URL",
         'start' => strtotime($start) . '000',
         'end' => strtotime($end) .'000',
-        'test' => "test"
+        'etat' => $row[$i]->getEtat()
       );
     }
   }
@@ -61,7 +61,8 @@ if($out == null){
     'title' => 0,
     'url' => "URL",
     'start' => '2556075600000',
-    'end' => '2556077400000'
+    'end' => '2556077400000',
+    'etat' => $row[$i]->getEtat()
   );
 }
 
