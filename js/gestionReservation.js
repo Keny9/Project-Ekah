@@ -451,7 +451,6 @@ let divFin = document.getElementById("AjoutActivite").getAttribute('value');
       var idActivite = i+1;
     }
   }
-  idActivite = idActivite+1;
   var nomQuestionnaire = document.getElementById('nom').value;
 
   // Create our XMLHttpRequest object
