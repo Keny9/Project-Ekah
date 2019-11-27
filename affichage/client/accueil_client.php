@@ -43,7 +43,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
     <main>
       <div class="top-img">
-        <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
+        <img src="../../img/activite/reflexion.jpg" alt="Mouvement Intuitif">
         <div class="shade"></div>
         <p class="txt-centered">Les ateliers</p>
       </div>
