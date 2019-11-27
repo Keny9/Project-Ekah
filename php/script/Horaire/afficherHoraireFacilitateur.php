@@ -34,21 +34,34 @@ $facilitateur = $gestionFacilitateur->getFacilitateur($id);
 date_default_timezone_set('America/Toronto');
 
 $disponibilite[] = $facilitateur->getDisponibilite();
+$out = null;
 
 foreach ($disponibilite as $row) {
 
-  for ($i=0; $i < sizeof($row); $i++) {
-    $start = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureDebut()));
-    $end = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureFin()));
+  if(isset($row)){
+    for ($i=0; $i < sizeof($row); $i++) {
+      $start = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureDebut()));
+      $end = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureFin()));
 
-    $out[] = array(
-      'id' => $row[$i]->getId(),
-      'title' => $row[$i]->getId(),
-      'url' => "URL",
-      'start' => strtotime($start) . '000',
-      'end' => strtotime($end) .'000'
-    );
+      $out[] = array(
+        'id' => $row[$i]->getId(),
+        'title' => $row[$i]->getId(),
+        'url' => "URL",
+        'start' => strtotime($start) . '000',
+        'end' => strtotime($end) .'000'
+      );
+    }
   }
+}
+
+if($out == null){
+  $out[] = array(
+    'id' => 0,
+    'title' => 0,
+    'url' => "URL",
+    'start' => '2556075600000',
+    'end' => '2556077400000'
+  );
 }
 
 echo json_encode(array('success' => 1, 'result' => $out));

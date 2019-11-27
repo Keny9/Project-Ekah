@@ -3,7 +3,7 @@
     <li>
       <a class="link-menu" href="/Project-Ekah/affichage/admin/disponibilite.php">
         <span id="icon-horaire" class="picto-menu"></span>
-        <span class="text-menu"><p>Mon horaire</p></span>
+        <span class="text-menu"><p>Mes disponibilités</p></span>
       </a>
     </li>
     <li>
@@ -29,7 +29,7 @@
     <li>
       <a class="link-menu" href="/Project-Ekah/affichage/admin/gestion-client.php">
         <span id="icon-rendezvous" class="picto-menu"></span>
-        <span class="text-menu"><p>Gestion des clients</p></span>
+        <span class="text-menu"><p>Les clients</p></span>
       </a>
     </li>
     <li>
