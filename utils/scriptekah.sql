@@ -389,7 +389,6 @@ INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (13, "1", "954
 INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (14, "1", "75 Beechwood LaneBrighton, MA 02135");
 INSERT INTO emplacement(id, id_type_emplacement, nom_lieu) VALUES (15, "1", "787 Edgewood DriveClifton Park, NY 12065");
 
-
 INSERT INTO type_question(id, nom) VALUES (1, "Texte");
 INSERT INTO type_question(id, nom) VALUES (2, "Case à chocher");
 
@@ -441,7 +440,6 @@ INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_quest
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 5, 4);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 6, 5);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (2, 1, 6);
-
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 2,1);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 3,2);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 4,3);
@@ -451,7 +449,6 @@ INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_quest
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 8, 7);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 9, 8);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (3, 1, 9);
-
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 2, 1);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 3, 2);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 10, 3);
@@ -465,7 +462,6 @@ INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_quest
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 15, 11);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 16, 12);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (4, 1, 13);
-
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 2, 1);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 3, 2);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 4, 3);
@@ -473,7 +469,6 @@ INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_quest
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 6, 5);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 17, 6);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (5, 1, 7);
-
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 2, 1);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 3, 2);
 INSERT INTO ta_questionnaire_reservation_question(id_questionnaire_res, id_question, ordre) VALUES (6, 4, 3);
@@ -499,19 +494,16 @@ INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_bre
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue, cout) VALUES (2, 2, 1, "Entraînement à domicile", "Pour prendre en main sa santé, cultiver un mode de vie sain, préparer son corps pour une discipline ou adopter une pratique adaptée à ses besoins, nous offrons des services d’accompagnement, de préparation physique et d’entraînement à domicile.", "LONGUE", 100.99);
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue, cout) VALUES (3, 2, 1, "Habitudes de vies à domicile", "Pour être accompagné dans l’adoption d’un mode de vie adapté à ses besoins, être aligné avec notre alimentation, apprendre à manger et cuisiner sainement, nous offrons des services d’orientation des habitudes de vie et de création culinaires personnalisés à domicile.", "LONGUE", 25);
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue, cout) VALUES (4, 2, 1, "Yoga et méditation à domicile", "Pour vivre des séances sur mesure, être accompagné dans l’intégration des asanas et de la méditation dans sa vie, développer une pratique sécuritaire et adaptée à ses besoins ou approfondir son expérience du yoga, nous offrons des séances individuelles et en groupe à domicile.", "LONGUE", 19.99);
-
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (5, 1, 1, "L’Ennéagramme", "Pour prendre pleine possession de ses forces, mieux aborder ses défis, connaître la structure de sa \"personnalité\", mieux connaître la nature humaine, découvrir ses différentes intelligences, filtres de perception, motivations profondes, comportements typiques, mécanismes réactionnels. Nous offrons un atelier d’introduction d’une journée sur les différents types d'humains et de leur \"personnalité\".", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (6, 1, 1, "Réflexion créative: Flow design", "Pour réellement s'aligner et s’engager vers la version la plus enrichissante de nous-même, pour renouveler sa façon d’évoluer, pour transcender des limitations qui nous empêchent d’avancer, pour utiliser tout son potentiel afin d’orienter sa propre vie, dans notre cursus de formation à l’Ennéagramme, nous offrons des séances individuelles et des ateliers d’une journée en groupe de flow design.", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (7, 1, 1, "L’art de la facilitation", "Pour apprendre à tenir l’espace, développer un savoir-être avec nous-même et les autres, pour intégrer des notions de gestion de groupe et apprendre à diriger par l’écoute, nous offrons des ateliers d’une journée en groupe sur l’art de la facilitation.", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (8, 1, 1, "Trouver sa voix", "Pour cultiver une expression authentique, apprendre à avoir confiance dans ses manifestations et son discours en public, pour explorer l’épanouissement que nous amène le chant et le travail vocal, nous offrons des ateliers d’une demi-journée en groupe sur trouver sa voix.", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (9, 1, 1, "Art intuitif", "Pour explorer son potentiel créatif, apprendre à utiliser l’art pour s’exprimer, s’initier à de nouvelles façons de jouer, de s’amuser, de réfléchir, de et de se découvrir, nous offrons des ateliers d’une demi-journée en expression intuitive.", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (10, 1, 1, "Mouvement intuitif", "Pour cultiver la fluidité corporelle, , découvrir de nouvelles façons de bouger, apprendre à méditer en mouvement et pour s’amuser en groupe, nous offrons des ateliers d’une demi-journée de mouvements intuitifs.", "LONGUE");
-
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (11, 3, 1, "Séances de Flow Design", "Pour réellement s'aligner et s’engager vers la version la plus enrichissante de nous-même, pour utiliser sa créativité afin d’établir des objectifs concrets pour évoluer, nous offrons une série de 8 rencontres à distance durant lesquels le flow design est utilisé pour se ramener à l’essentiel et poser des actions conscientes dans sa vie.", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (12, 3, 1, "Orientation MPO", "Cette rencontre d'orientation permet de conscientiser ses besoins motivationnels, se positionner et de se rapprocher du contexte idéal dans lequel s'épanouir grâce à l’outil psychométrique MPO. Le test s'effectue en ligne en 20 minutes, la séance d'orientation dure 90 minutes en vidéoconférence", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (13, 3, 1, "Mentorat", "Pour vous accompagner dans votre développement personnel, professionnel et spirituel, nous partageons des réflexions, pistes de solutions, pratiques personnelles, nouvelles expériences ainsi que de devoirs à accomplir dans des rencontres de 60 minutes en ligne. L’encadrement est adapté à vos besoins et inclu un suivi par courriel hebdomadaire.", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (14, 3, 1, "Programmes d’entraînement", "Pour vous encadrer dans votre mode de vie actif, préparer votre corps pour une discipline sportive, prévenir vos blessures et adopter une pratique adaptée à vos besoins, nous offrons des services de préparation de programme sur mesure en ligne. la rencontre d’évaluation dure 30 minutes en ligne et la prescription du programme d’entraînement 90 minutes.", "LONGUE");
-
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (15, 4, 1, "Coaching Professionnel", "Ces séances individuelles visent à orienter  chaque  membre de l’équipe à travers une pratique qui fait émerger et cultive un leadership authentique.", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (16, 4, 1, "Ateliers et Facilitation", "Nos ateliers visent à  intégrer des outils et des pratiques qui enrichissent les dynamiques personnelles et  interpersonnelles dans les équipes ", "LONGUE");
 INSERT INTO activite(id, id_type_activite,id_etat_activite, nom, description_breve, description_longue) VALUES (17, 4, 1, "Consolidation en Plein-air", "Nos défis d’équipe visent à tester et transformer les dynamiques d’équipe,  supportés par des outils psychométriques nous expérimentons des épreuves dans un environnement inconnu. ", "LONGUE");
@@ -606,14 +598,11 @@ INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (3, 1, '20
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (4, 2, '2019-10-12 07:00:00','2019-10-12 11:30:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (5, 2, '2019-10-13 08:30:00','2019-10-13 12:00:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (6, 3, '2010-10-13 11:00:00','2010-10-13 17:00:00');
-
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (7, 1, '2019-11-29 11:00:00','2019-11-29 12:30:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (8, 1, '2019-11-29 11:30:00','2019-11-29 12:00:00');
-
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (9, 1, '2019-11-29 14:00:00','2019-11-29 14:30:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (10, 1, '2019-11-29 14:30:00','2019-11-29 15:00:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (11, 1, '2019-11-29 15:00:00','2019-11-29 15:30:00');
-
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (12, 1, '2019-12-16 11:00:00','2019-12-16 11:30:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (13, 1, '2019-12-16 11:30:00','2019-12-16 12:00:00');
 INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (14, 1, '2019-12-16 12:00:00','2019-12-16 12:30:00');
@@ -624,23 +613,21 @@ INSERT INTO disponibilite(id, id_etat, heure_debut, heure_fin) VALUES (15, 1, '2
 INSERT INTO specialite(id, nom) VALUES (1, "Meditation");
 
 
-
-
-INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (2, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (3, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (4, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (5, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (6, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (7, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (8, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (9, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (10, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (11, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (12, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (13, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (14, "Vide", "Vide");
-INSERT INTO suivi(id, fait, commentaire) VALUES (15, "Vide", "Vide");
+INSERT INTO suivi(id, fait, commentaire) VALUES (1, "Une scéance de massothérapie a été effectué pendant le rendez-vous.", "Rien pour le moment.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (2, "Suivi de son programme d'entraînement.", "Rien pour le moment.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (3, "Scéance en kinésiologie effectuer.", " ");
+INSERT INTO suivi(id, fait, commentaire) VALUES (4, "Amélioration du programme. Passé de débutant à intermédiaire.", "Effectuer un suivi du nouveau programme.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (5, "Nouveau plan alimentaire pour introudire des nouveaux repas sains", "À la prochaine rencontre effectuer un suivi du plan. Est-ce qu'il a bien été suivi ? Qu'est-ce qui a été moins apprécié par le client ?");
+INSERT INTO suivi(id, fait, commentaire) VALUES (6, "Apprendre à manger et à cuisiner sainement.", "Comment l'expérience s'est-elle passée ?");
+INSERT INTO suivi(id, fait, commentaire) VALUES (7, "Introduire le client au yoga et à la méditation.", "Vérifier les connaissances du client.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (8, "Scéance en kinésiologie effectuer.", " ");
+INSERT INTO suivi(id, fait, commentaire) VALUES (9, "Suivi de son programme d'entraînement.", "Vérifier comment se déroule l'entraînement à la prochaine rencontre.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (10, "Constrcution d'un nouveau plan alimentaire sain.", "Commencer petit à petit à remplasser les aliments moins santé progressivement. Ne pas tout changer en un seul coup.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (11, "Scéance de massothérapie. La cliente était très satisfaite du service offert.", "Rien pour le moment.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (12, "Atelier d'introduction sur les différents types d'humain", "Faire un suivi de ce qui a été appris");
+INSERT INTO suivi(id, fait, commentaire) VALUES (13, "Activité effectué en équipe.", " ");
+INSERT INTO suivi(id, fait, commentaire) VALUES (14, "Commencement du programme d'entraînement.", "Un programme d'entraînement lui a été construit afin qu'il puisse commencer sa remise en forme.");
+INSERT INTO suivi(id, fait, commentaire) VALUES (15, "Création culinaires personnalisés à domicile.", "S'il y a lieu faire un suivi du plan alimentaire. Qu'est-ce qui serait à changé ?");
 
 INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (1, 1, null, null, null);
 INSERT INTO groupe(no_groupe, id_type_groupe, nom_entreprise, nom_organisateur, nb_participant) VALUES (2, 1, null, null, null);
