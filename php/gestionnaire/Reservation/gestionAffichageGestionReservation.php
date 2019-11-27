@@ -3,7 +3,7 @@
   {
     public function getAllActivite(){
        $ga = new GestionActivite();
-       $activite = $ga->getAllActivite();
+       $activite = $ga->getAllActiviteService();
 
        $html = "";
 
