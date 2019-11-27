@@ -137,7 +137,8 @@ class GestionReservation{
                                       $row['id_etat'],
                                       $row['nom'],
                                       $row['description_breve'],
-                                      $row['description_longue']);
+                                      $row['description_longue'],
+                                      $row['cout']);
           }
         }
 
