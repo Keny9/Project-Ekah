@@ -352,7 +352,9 @@ INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) 
 INSERT INTO adresse(id, id_province, ville, no_civique, rue, code_postal, pays) VALUES (14, 1, "Québec", 454, "Rue Ménard", "J1J 1J1", "Canada");
 
 
-INSERT INTO type_paiement(id, nom, description) VALUES (1, "Paypal", "Payer à l'aide de Paypal");
+INSERT INTO type_paiement(id, nom, description) VALUES (1, "Stripe", "Payer à l'aide de Stripe");
+INSERT INTO type_paiement(id, nom, description) VALUES (2, "Personne", "Payer personne");
+
 
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (1, 1, 4525, '2019-01-01');
 INSERT INTO paiement(id, id_type_paiement, montant, date_paiement) VALUES (2, 1, 5000, '2019-05-13');

@@ -77,7 +77,7 @@ class GestionActivite{
 
     if($result->num_rows > 0){
       $row = $result->fetch_assoc();
-      $activite = new Activite($row['id'], $row['id_type_activite'],$row['id_etat_activite'], $row['nom'], $row['description_breve'], $row['description_longue']);
+      $activite = new Activite($row['id'], $row['id_type_activite'],$row['id_etat_activite'], $row['nom'], $row['description_breve'], $row['description_longue'], $row['cout']);
     }
     return $activite;
   }
