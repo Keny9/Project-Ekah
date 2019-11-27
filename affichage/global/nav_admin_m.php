@@ -14,7 +14,7 @@
       <a href="/Project-Ekah/affichage/admin/gestionReservation.php">GESTION DES SERVICES</a>
     </div>
     <div class="collection_m">
-      <a href="/Project-Ekah/affichage/admin/gestion-client.php">GESTION DES CLIENTS</a>
+      <a href="/Project-Ekah/affichage/admin/gestion-client.php">LES CLIENTS</a>
     </div>
     <div class="collection_m">
       <a href="/Project-Ekah/affichage/admin/consulter-reservation.php">CONSULTER LES RÉSERVATIONS</a>
