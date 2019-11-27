@@ -29,6 +29,7 @@ $activites = $gActivite->getAllActivite();
     <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
