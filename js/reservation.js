@@ -19,6 +19,10 @@
      success: function(result){
        $("#question-complementaire").css("display", result);
      }});
+
+     // Met à jour les durées
+     $('#duree').load('/Project-Ekah/php/script/Reservation/printActiviteDuree.php?activite_id='+$('#service').val());
+     $("#prix").html("");
    });
  });
 
@@ -34,14 +38,17 @@
    }
 
    duree = $('#duree').val();
+   region = $('#region').val();
+   id_service = $('#service').val();
 
+   // console.log(idFacilitateur + " " + duree + " " + region);
 
    return $.ajax({
      type: "POST",
      async: false,
      dataType: "json",
      url: "../../php/script/Horaire/afficherAllEvents.php",
-     data: {idFacilitateur: idFacilitateur, duree: duree}
+     data: {idFacilitateur: idFacilitateur, duree: duree, region: region, service: id_service}
    });
  }
 
@@ -73,6 +80,7 @@
    // console.log("Load");
   calendrier = $("#calendar").calendar(
      {
+       language: 'fr-FR',
        tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
        weekbox: false,
        events_source: events,
@@ -163,6 +171,7 @@
    var idFacilitateur = null;
    var date = null;
    var duree = null;
+   var region = null;
 
    idFacilitateur = $('.facilitateur-select').attr("id");
    // idFacilitateur = 1;
@@ -180,6 +189,10 @@
      date = "2000-01-01";
    }
 
+   region = $('#region').val();
+   id_service = $('#service').val();
+
+
    $.ajax({
      type: "POST",
      async: false,
@@ -187,7 +200,9 @@
      url: "../../php/script/Horaire/afficherAllHoraireSelectionne.php",
      data: {idFacilitateur: idFacilitateur,
              date: date,
-             duree: duree
+             duree: duree,
+             region: region,
+             service: id_service
           },
      success: function(data){
          // console.log(data);
@@ -221,6 +236,23 @@
 
 //Click pour choisir un facilitateur
 function choisirFacilitateur(){
+
+  $('#facilitateur').on('click', function(){
+    let $this = $('.facilitateur-select');
+    // console.log($this.length);
+    if($this.length > 0){
+      $this.toggleClass("facilitateur-select");
+      getEvents();
+      apresAjax();
+      calendrier.view();
+      changerBackground();
+      enleverDayView();
+      selectionnerJour();
+      $("#dispo").empty();
+    }
+  });
+
+
   $(".block-photo-facilitateur").each(function(index) {
 
     $(this).on("click", function(){
@@ -253,17 +285,24 @@ function choisirFacilitateur(){
  ///////////////////////////////////////////////
 //Page est chargé
 $(document).ready(function() {
-  apresAjax();
+  apresAjax();                //Envent listener When sur la fonction ajax
+  getEvents();                //Appel la fonction ajax
+  calendrier.view();          //Refresh le calendrier (les events)
+  changerBackground();        //Change le css
+  enleverDayView();           //Enleve la possibilité d'aller sur le calendrier en mode "jour"
+  selectionnerJour();         //Permettre de cliquer sur une journée
 
-  getEvents();
+  choisirFacilitateur();      //Events pour choisir le facilitateur
 
-  calendrier.view();
-
-  changerBackground();
-  enleverDayView();
-  selectionnerJour();
-
-  choisirFacilitateur();
+  $("#service").change(function() {
+    getEvents();
+    apresAjax();
+    calendrier.view();
+    changerBackground();
+    enleverDayView();
+    selectionnerJour();
+    $("#dispo").empty();
+  });
 
   $("#duree").change(function() {
     getEvents();
@@ -272,9 +311,29 @@ $(document).ready(function() {
     changerBackground();
     enleverDayView();
     selectionnerJour();
-});
+    $("#dispo").empty();
 
+    $("#prix").load('/Project-Ekah/php/script/Reservation/printPrix.php?activite_id='+$('#service').val()+'&duree='+$('#duree').val(), function() {
+      // callback du load
+      // Set le prix
+      let prix = $("#prix").text();
+      let prixDecimal = prix.slice(prix.length-2, prix.length);
+      let prixEntier = prix.slice(0, prix.length-2);
+      let prixFormat = prixEntier+','+prixDecimal;
+      $('#prix').html(prixFormat + " $ CAD");
+    });
 
+  });
+
+  $("#region").change(function() {
+    getEvents();
+    apresAjax();
+    calendrier.view();
+    changerBackground();
+    enleverDayView();
+    selectionnerJour();
+    $("#dispo").empty();
+  });
 
   listInput = document.querySelectorAll("input, textarea, select");
 
@@ -336,6 +395,8 @@ $(document).ready(function() {
     $(this).css("display", "none");
     window.location.href = "/Project-Ekah/affichage/client/accueil_client.php";
   });
+
+  $("#btn-confirm-reservation").click(closeModal); //Click pour fermer la fenetre modal
 
 });
 
@@ -538,4 +599,14 @@ function siVide(e){
    else{
      document.getElementById("photo-facilitateur").style.display = "none";
    }
+ }
+
+ //Fermer la fenetre modale de modification d'une réservation
+ function closeModal(){
+   $("#modal-complete-reservation").css("display", "none");
+ }
+
+ //Ouvrir la fenêtre modal
+ function openModal(){
+   $("#modal-complete-reservation").css("display", "block");
  }

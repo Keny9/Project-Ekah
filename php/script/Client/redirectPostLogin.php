@@ -54,7 +54,7 @@
      header("Location: /Project-Ekah/affichage/client/accueil_client.php?");
      break;
      case '2': // Si c'est un admin
-     header("Location: /Project-Ekah/affichage/admin/accueil_admin.php");
+     header("Location: /Project-Ekah/affichage/admin/disponibilite.php");
      break;
      default: // Sinon (ne devrais pas se produire, mais doit quand même être géré)
      echo "Une erreur est survenue dans le switch.";

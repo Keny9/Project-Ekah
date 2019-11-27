@@ -94,7 +94,7 @@ session_start();
               <textarea name="message" id="message" class="commentaire"></textarea>
             </div>
             <div class="group-input-inscr btn-ques">
-              <button type="button" name="retourDemandeGroupe" id="retourDemandeGroupe" class="bouton-re-que">RETOUR</button>
+              <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="retourDemandeGroupe" id="retourDemandeGroupe" class="bouton-re-que">RETOUR</button></a>
               <button type="button" name="confirmerDemandeGroupe" id="confirmerDemandeGroupe" class="bouton-re-que" onclick="sendEmail()">CONFIRMER</button>
             </div>
           </div>

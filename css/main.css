@@ -30,6 +30,10 @@ main{
   position: relative;
 }
 
+.main-calendar{
+  margin-top: 0;
+}
+
 /*--------
   HEADER
 colors:
@@ -46,6 +50,16 @@ header{
   max-height: 83px;
   width:100%;
   padding: 20px 20px;
+  top: 0;
+  transition: top 0.2s ease-in-out;
+}
+
+.nav-up {
+  top: -83px;
+}
+
+.nav-down{
+  top: 0;
 }
 
 .inner-header{
@@ -330,6 +344,7 @@ nav{
 
 .nav_show{
   display: block;
+  transition: top 0.2s ease-in-out;
 }
 
 .side-menu{
@@ -641,6 +656,15 @@ footer{
 @media only screen and (min-width: 1100px){
   .side-nav{
     display: none;
+  }
+
+  main{
+    margin-top: 83px;
+  }
+
+  header{
+    position: fixed;
+    z-index: 1;
   }
 }
 

@@ -86,7 +86,7 @@ $activites = $gActivite->getAllActivite();
               //  echo "<option disabled class=\"select-section\">EN ATELIER</option>";
                 echo "<option disabled class=\"select-section\">À DOMICILE</option>";
                 foreach ($activites as $activite){
-                  if ($activite->getId_type() == 4) break;
+                  if ($activite->getId_type() == 4) continue;
 
                   if ($activite->getId_type() != $separator){
                     $separator = $activite->getId_type();
@@ -117,7 +117,7 @@ $activites = $gActivite->getAllActivite();
 
           <div class="group-input-inscr">
             <label class="label-reservation label-prix" for="prix">Prix</label>
-            <p id="prix">120$</p>
+            <p id="prix"></p>
           </div>
 
           <div id="question-complementaire" style="display: none;">
@@ -157,7 +157,7 @@ $activites = $gActivite->getAllActivite();
           </div>
 
           <div class="group-input-inscr">
-            <label class="label-reservation label-long">Sélectionner la date et l'heure désiré</label>
+            <label class="label-reservation date-heure label-long">Sélectionner la date et l'heure désiré</label>
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php'; ?>
           </div>
 

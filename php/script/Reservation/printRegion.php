@@ -21,6 +21,7 @@ $html =
     <select class=\"select-inscr input-long\" name=\"region\" id=\"region\" onchange='changeListe(this);'>
     <option class='option-vide' value='vide' selected='selected'>Choisir une région</option>";
     foreach($region_array as $region){
+      if($region['id'] == 0) continue;
       $html .= "<option value=\"".$region['id']."\">".$region['nom']."</option>";
     }
     $html .= "</select>

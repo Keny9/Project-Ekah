@@ -19,24 +19,31 @@ function callAjax(){
   });
 }
 
+function changerBackground(){
+  //Changer la couleur du background si y'a des dispos
+    $.each($('.events-list'), function(index, $event){
+      var $this = $(this);
+      $this.css("display", "none");
+    });
+  }
+
 //Les event onclick pour les boutons
 function calendrierReady(calendar){
   $( "#month" ).click(function() {
     var $this = $(this);
     calendar.view($this.data('calendar-view'));
-
-    getEvents();
-    apresAjax();
-    calendar.view();
+    changerBackground();
   });
 
   $( "#next" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    changerBackground();
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    changerBackground();
   });
 }
 
@@ -45,6 +52,7 @@ function loadCalendrier(events){
   // console.log("Load");
  calendar = $("#calendar").calendar(
     {
+      language: 'fr-FR',
       tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
       weekbox: false,
       events_source: events,
@@ -68,10 +76,12 @@ function apresAjax(){
   $.when(callAjax()).done(function(response){
     calendar = loadCalendrier(response.result);
     calendar.view();
+    changerBackground();
     return calendar;
   });
 }
 
+//Document ready
 $(document).ready(function() {
   calendar = apresAjax();
   getEvents();
@@ -81,6 +91,7 @@ $(document).ready(function() {
     getEvents();
     apresAjax();
     calendar.view();
+    changerBackground();
   });
 
 
@@ -91,7 +102,6 @@ $(document).ready(function() {
     $this.attr('id', i);
     i++;
   });
-
 
   $(document).on('click','.cal-day-hour-part', function(){
       var $this = $(this);
@@ -208,7 +218,7 @@ function supprimerDispo(heure, date){
 
 
 
-
+//Fonction pour convertir le mois
 function convertirMois(mois){
   switch(mois) {
   case "January,":

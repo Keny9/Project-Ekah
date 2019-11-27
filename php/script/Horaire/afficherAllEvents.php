@@ -10,13 +10,20 @@
    */
 
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
+   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
    include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
   $idFacilitateur = $_POST['idFacilitateur'];
   $duree = $_POST['duree'];
+  $region = $_POST['region'];
+  $service = $_POST['service'];
 
   // $idFacilitateur = -1;
-  // $duree = "90";
+  // $duree = "30";
+  // $region = 3;
+  // $service = "1";
+
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -28,17 +35,24 @@
     $facilitateur = $gestionFacilitateur->getFacilitateurActifAvecDispoGroup($idFacilitateur);
   }
 
-  // print_r($facilitateur);
-
-
   date_default_timezone_set('America/Toronto');
 
   $out = null;
+
+  if($service == "vide"){
+    $service = 1;
+  }
+
+  $ga = new GestionActivite();
+  $activite = $ga->getActivite($service);
+
   $dispo = $facilitateur[0]->getDisponibilite();
   // print_r($dispo);
 
   for ($i=0; $i < sizeof($facilitateur); $i++) {
     $dispo = $facilitateur[$i]->getDisponibilite();
+    // print_r($dispo);
+
 
     if (isset($dispo)) {
       for ($j=0; $j < sizeof($facilitateur[$i]->getDisponibilite()); $j++) {
@@ -54,18 +68,10 @@
           for ($k=0; $k < sizeof($dispo); $k++) {
             if ($duree == "60") {
               if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "60";
-                // echo "<br />";
                 $dispo[$j]->setEtat(0);
               }
             }elseif ($duree == "90") {
               if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+60 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "90";
-                // echo "<br />";
                 $dispo[$j]->setEtat(0);
               }
             }else{
@@ -74,23 +80,47 @@
           }
         }
 
-
         $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
         $end = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureFin()));
 
-        if($dispo[$j]->getEtat() == 0){
-          $out[] = array(
-            'id' => $dispo[$j]->getId(),
-            'title' => $dispo[$j]->getId(),
-            'url' => "URL",
-            'start' => strtotime($start) . '000',
-            'end' => strtotime($end) .'000'
-          );
+        if($activite->getId_type() == 3){                   //Si c'est en ligne
+          if($dispo[$j]->getEtat() == 0){
+            $out[] = array(
+              'id' => $dispo[$j]->getId(),
+              'title' => $dispo[$j]->getId(),
+              'url' => "URL",
+              'start' => strtotime($start) . '000',
+              'end' => strtotime($end) .'000',
+              'date_debut' => $dispo[$j]->getHeureDebut(),
+              'date_fin' => $dispo[$j]->getHeureFin()
+            );
+          }
+        }else{                                            //Si c'est pas en ligne, pas besoin de la region dans le if
+          if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
+            $out[] = array(
+              'id' => $dispo[$j]->getId(),
+              'title' => $dispo[$j]->getId(),
+              'url' => "URL",
+              'start' => strtotime($start) . '000',
+              'end' => strtotime($end) .'000',
+              'date_debut' => $dispo[$j]->getHeureDebut(),
+              'date_fin' => $dispo[$j]->getHeureFin()
+            );
+          }
         }
       }
     }
   }
 
+  if($out == null){
+    $out[] = array(
+      'id' => 0,
+      'title' => 0,
+      'url' => "URL",
+      'start' => '2556075600000',
+      'end' => '2556077400000'
+    );
+  }
 
   echo json_encode(array('success' => 1, 'result' => $out));
   exit;

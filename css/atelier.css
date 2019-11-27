@@ -1,3 +1,48 @@
+.btnCalandrier{
+  float: right;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.bouton-nav{
+  float: right;
+  margin-left: 10px;
+}
+
+h3{
+  font-size: 30.5px;
+  line-height: normal;
+  margin: 0px;
+}
+.page-header{
+  padding-bottom: 0px;
+  margin: 0px;
+  border: none;
+  float: left;
+  margin: auto;
+  position: absolute;
+  margin-top: 5px;
+  left: 30%;
+}
+
+.legend{
+  float: left;
+  margin-right: 33%;
+
+}
+.legend-vert{
+  background-color: #e8fde7;
+  width: 35px;
+  height: 35px;
+  float: left;
+}
+.legend-txt{
+  float: left;
+  margin-left: 5px;
+  margin-top: 16px;
+  font-size: 18px;
+}
+
 .img-modal{
   /* margin-bottom: 15px; */
 }

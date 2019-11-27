@@ -19,6 +19,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/calendar.js"></script>
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/app.js"></script>
+  <script type="text/javascript" src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
 
   <script type="text/javascript" src="../../js/disponibilite.js"></script>
 
@@ -52,6 +53,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
         var calendar = $("#calendar").calendar(
           {
+            language: 'fr-FR',
             tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
             weekbox: false,
             events_source: "../../php/script/Horaire/afficherHoraireFacilitateur.php",

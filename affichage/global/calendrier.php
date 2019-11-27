@@ -8,25 +8,29 @@
 
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/calendar.js"></script>
   <script type="text/javascript" src="../../utils/bootstrap-calendar/js/app.js"></script>
+  <script type="text/javascript" src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
 </head>
 <body>
-  <main>
+  <main class="main-calendar">
 
     <select class="select-inscr" name="dispo" id="dispo" onchange="changeListe(this);">
-      <option value="" disabled selected>Choisissez une date d'abord</option>
+      <option value="" disabled selected>Commencer par choisir une date!</option>
     </select>
 
-
-    <div class="">
+    <div class="btnCalandrier">
+      <div class="legend">
+        <div class="legend-vert"></div>
+        <p class="legend-txt">= Disponible</p>
+      </div>
       <div class="page-header">
         <h3 class=" h3"></h3>
       </div>
-      <div class="btnsCalandrier">
-        <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
-        <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
+      <div class="">
+        <button type="button" class="bouton-re-que bouton-nav" name="button" id="next"  data-calendar-nav="next">Suivant >></button>
+        <button type="button" class="bouton-re-que bouton-nav" name="button" id="prev"  data-calendar-nav="prev"><< Précédent</button>
       </div>
     </div>
 
