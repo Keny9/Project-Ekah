@@ -48,7 +48,8 @@ foreach ($disponibilite as $row) {
         'title' => $row[$i]->getId(),
         'url' => "URL",
         'start' => strtotime($start) . '000',
-        'end' => strtotime($end) .'000'
+        'end' => strtotime($end) .'000',
+        'test' => "test"
       );
     }
   }
