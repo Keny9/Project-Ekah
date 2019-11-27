@@ -12,10 +12,10 @@ async function ouvrir(){
   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
   divFin=parseInt(divFin);
   for (i = 0; i < divFin; i++){
-    await sleep(100);
+    await sleep(50);
     let divSelection = document.getElementById("Activite-"+i);
     divSelection.classList.add("ouverture");
-    await sleep(100);
+    await sleep(50);
     divSelection.classList.remove("ouverture");
 
   }
