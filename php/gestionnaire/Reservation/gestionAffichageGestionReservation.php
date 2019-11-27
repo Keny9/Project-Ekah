@@ -3,7 +3,7 @@
   {
     public function getAllActivite(){
        $ga = new GestionActivite();
-       $activite = $ga->getAllActivite();
+       $activite = $ga->getAllActiviteService();
 
        $html = "";
 
@@ -87,6 +87,8 @@
          }
          return $html;
        }
+
+
        public function getQuestionActivite($idActivite){
           $gq = new GestionQuestion();
           $question_activite = $gq->getQuestionsOfActivite($idActivite);
@@ -131,5 +133,23 @@
         }
         return $html;
       }
+
+      public function getAllQuestion(){
+         $gd = new GestionQuestion();
+         $question = $gd->getAllQuestion();
+
+         $html = "";
+
+          if (!is_array($question)){
+           $html .= "Aucun resultat trouvé.";
+         }
+         else{
+
+             $html .= "
+                 <div id='sizeQuestion' class=\"cacher\">".sizeof($question)."</div>
+                   ";
+         }
+         return $html;
+       }
    }
 ?>

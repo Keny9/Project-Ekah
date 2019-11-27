@@ -62,6 +62,8 @@ class GestionQuestion{
           $tempconn = new Connexion();
           $conn = $tempconn->getConnexion();
 
+          echo $ta_questionnaire_reservation_question->getIdQuestion();
+
           //Crée l'employé
           $requete= "INSERT INTO ta_questionnaire_reservation_question VALUES(
                       '".$ta_questionnaire_reservation_question->getIdQuestionnaire()."',
@@ -137,6 +139,25 @@ class GestionQuestion{
 
       return $question;
     }
+}
+public function getAllQuestion(){
+  $tempconn = new Connexion();
+  $conn = $tempconn->getConnexion();
+  $question = null;
+
+  $requete= "SELECT * FROM question";
+
+  $result = $conn->query($requete);
+  if(!$result){
+    trigger_error($conn->error);
+  }
+
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $question[] = new Question( $row['id'],$row['id_type_question'],$row['question'],$row['nb_ligne']);
+    }
+  }
+  return $question;
 }
 }
 

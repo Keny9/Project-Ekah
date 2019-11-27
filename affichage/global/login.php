@@ -52,7 +52,7 @@ session_destroy();
           </div>
           <div class="group-input-inscr mt-less">
             <div class="link-box">
-              <a href="#" class="link-inscr">Mot de passe oublié ?</a>
+              <a href="/Project-Ekah/affichage/global/password-reset.php" class="link-inscr">Mot de passe oublié ?</a>
             </div>
           </div>
         </form>

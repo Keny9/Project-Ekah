@@ -12,10 +12,10 @@ async function ouvrir(){
   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
   divFin=parseInt(divFin);
   for (i = 0; i < divFin; i++){
-    await sleep(100);
+    await sleep(50);
     let divSelection = document.getElementById("Activite-"+i);
     divSelection.classList.add("ouverture");
-    await sleep(100);
+    await sleep(50);
     divSelection.classList.remove("ouverture");
 
   }
@@ -451,7 +451,6 @@ let divFin = document.getElementById("AjoutActivite").getAttribute('value');
       var idActivite = i+1;
     }
   }
-  idActivite = idActivite+1;
   var nomQuestionnaire = document.getElementById('nom').value;
 
   // Create our XMLHttpRequest object
@@ -466,9 +465,9 @@ let divFin = document.getElementById("AjoutActivite").getAttribute('value');
         async: false,
         data: {id:idActivite,nomQuestionnaire:nomQuestionnaire},
         success: function(data) {
-          console.log(data);
+          //console.log(data);
           if(!data){
-              alert("La modification s'est effectuée avec succès!");
+              //alert("La modification s'est effectuée avec succès!");
           }
           else{
             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
@@ -498,9 +497,9 @@ function ajouterActiviteQuestionnaire(id){
         async: false,
         data: {id:id},
         success: function(data) {
-          console.log(data);
+          //console.log(data);
           if(!data){
-              alert("La modification s'est effectuée avec succès!");
+              //alert("La modification s'est effectuée avec succès!");
           }
           else{
             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
@@ -516,7 +515,9 @@ function ajouterActiviteQuestionnaire(id){
 
 
 function ajouterQuestion(){
-  var id = document.getElementById('idQuestion').value;
+  var id = document.getElementById('sizeQuestion').innerHTML;
+  id=parseInt(id);
+  id=id+1;
   var question = document.getElementById('question').value;
   var idType = document.getElementById('typeQuestion').value;
   var nbLigne = document.getElementById('nbLigne').value;
@@ -540,13 +541,13 @@ function ajouterQuestion(){
         async: false,
         data: {id:id,idType:idType, question:question, nbLigne: nbLigne},
         success: function(data) {
-          console.log(data);
+          //console.log(data);
           if(!data){
-              alert("La modification s'est effectuée avec succès!");
+              //alert("La modification s'est effectuée avec succès!");
           }
           else{
             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
-              console.log(data);
+              //console.log(data);
           }
         } ,
         error: function() {
@@ -558,9 +559,9 @@ function ajouterQuestion(){
 }
 
 function ajouterQuestionQuestionnaire(id){
-  var idQues = document.getElementById('idQuestion').value;
-  console.log(id);
-  console.log(idQues);
+  var idQues = document.getElementById('sizeQuestion').innerHTML;
+  idQues=parseInt(idQues);
+  idQues=idQues+1;
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
@@ -575,7 +576,7 @@ function ajouterQuestionQuestionnaire(id){
         success: function(data) {
           console.log(data);
           if(!data){
-              alert("La modification s'est effectuée avec succès!");
+              //alert("La modification s'est effectuée avec succès!");
           }
           else{
             //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";

@@ -69,7 +69,7 @@ class GestionFacilitateur{
         $requete= "SELECT * FROM utilisateur
                      INNER JOIN ta_disponibilite_specialiste ON id_specialiste = id
                      INNER JOIN disponibilite ON disponibilite.id = id_disponibilite
-                   WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = $id AND id_etat = 1;";
+                   WHERE id_type_utilisateur = 2 AND id_type_etat_dispo = 1 AND utilisateur.id = $id;";
 
         $result = $conn->query($requete);
         if(!$result){
