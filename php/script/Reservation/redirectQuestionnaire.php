@@ -84,7 +84,7 @@ if($paiement_effectue == true){
 
  // Set l'id de l'emplacement
   $id_emplacement = null;
-  if(isset($no_adresse) && isset($rue) && isset($ville)){ // Champs remplis, donc service 'À domicile'; requiert un emplacement
+  if(!empty($no_adresse) && !empty($rue) && !empty($ville)){ // Champs remplis, donc service 'À domicile'; requiert un emplacement
     $id_emplacement = $gReservation->insertEmplacement($no_adresse, $rue, $ville);
   }
 
