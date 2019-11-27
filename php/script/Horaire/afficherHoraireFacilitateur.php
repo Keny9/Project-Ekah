@@ -62,7 +62,7 @@ if($out == null){
     'url' => "URL",
     'start' => '2556075600000',
     'end' => '2556077400000',
-    'etat' => $row[$i]->getEtat()
+    'etat' => 2
   );
 }
 
