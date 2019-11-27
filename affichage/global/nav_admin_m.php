@@ -2,7 +2,7 @@
   <div id="folder_espace_m" class="folder">+ ESPACE FACILITATEUR</div>
   <div id="espace_m" class="sous-onglet sous-onglet-m">
     <div class="collection_m">
-      <a href="/Project-Ekah/affichage/admin/disponibilite.php">MON HORAIRE</a>
+      <a href="/Project-Ekah/affichage/admin/disponibilite.php">MES DISPONIBILITÉS</a>
     </div>
     <div class="collection_m">
       <a href="/Project-Ekah/affichage/admin/mon-profil.php">MON PROFIL</a>

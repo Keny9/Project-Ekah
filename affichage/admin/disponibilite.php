@@ -9,7 +9,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-  <title>Mon Horaire</title>
+  <title>Mes disponibilités</title>
   <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
   <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
 	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
@@ -41,7 +41,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
   <main>
     <div class="reservation">
-      <div class="txt-consulter">Mon horaire</div>
+      <div class="txt-consulter">Mes disponibilités</div>
       <br>
 
       <div class="page-header">
