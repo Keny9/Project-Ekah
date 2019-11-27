@@ -19,21 +19,31 @@ function callAjax(){
   });
 }
 
+function changerBackground(){
+  //Changer la couleur du background si y'a des dispos
+    $.each($('.events-list'), function(index, $event){
+      var $this = $(this);
+      $this.css("display", "none");
+    });
+  }
+
 //Les event onclick pour les boutons
 function calendrierReady(calendar){
   $( "#month" ).click(function() {
     var $this = $(this);
     calendar.view($this.data('calendar-view'));
-
+    changerBackground();
   });
 
   $( "#next" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    changerBackground();
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    changerBackground();
   });
 }
 
@@ -66,6 +76,7 @@ function apresAjax(){
   $.when(callAjax()).done(function(response){
     calendar = loadCalendrier(response.result);
     calendar.view();
+    changerBackground();
     return calendar;
   });
 }
@@ -80,6 +91,7 @@ $(document).ready(function() {
     getEvents();
     apresAjax();
     calendar.view();
+    changerBackground();
   });
 
 

@@ -29,7 +29,7 @@
   for ($i=0; $i < sizeof($facilitateur); $i++) {
     $dispo = $facilitateur[$i]->getDisponibilite();
 
-    if (isset($dispo)) {
+    if (isset($facilitateur[$i]->getDisponibilite())) {
       for ($j=0; $j < sizeof($facilitateur[$i]->getDisponibilite()); $j++) {
 
         $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
@@ -52,6 +52,15 @@
     }
   }
 
+  if($out == null){
+    $out[] = array(
+      'id' => 0,
+      'title' => 0,
+      'url' => "URL",
+      'start' => '2556075600000',
+      'end' => '2556077400000'
+    );
+  }
 
   echo json_encode(array('success' => 1, 'result' => $out));
   exit;
