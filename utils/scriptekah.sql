@@ -722,3 +722,5 @@ INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (
 INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 1, 7000);
 INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 2, 6500);
 INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 3, 6000);
+
+Select * from reservation
