@@ -8,6 +8,47 @@
  * Date de la dernière modification : 2019-09-30
  */
 
+ //Fermer la fenetre modale de modification d'une réservation
+ function closeModal(){
+   $("#modal").css("display", "none");
+   $('.selectionne').toggleClass('selectionne');
+ }
+
+ //Ouvrir la fenêtre modal
+ function openModal(){
+   // getInfoModal();
+   $("#modal").css("display", "block");
+ }
+
+ function ajouterAtelier(){
+   let date = $('#date').val();
+   let heure = $('#heure').val();
+   let duree = $('#duree').val();
+   let adresse = $('#adresse').val();
+   // let prix = $('#prix').val();
+   let activite = $('#atelier').find('option:selected').val();
+
+   date = date + " " + heure+ ":00";
+   console.log(activite);
+
+   $.ajax({
+     type: "POST",
+     async: false,
+     dataType: "json",
+     url: "../../php/script/Reservation/ajouterAtelier.php",
+     data: {"date": date, "heure": heure, "duree": duree, "adresse": adresse, "activite": activite},
+     success: function(data){
+         bool = true;
+         closeModal();
+         console.log("YESS");
+     },
+     error: function (jQXHR, textStatus, errorThrown) {
+         alert("An error occurred whilst trying to contact the server: " + jQXHR.status + " " + textStatus + " " + errorThrown);
+     }
+   });
+   return bool;
+ }
+
 async function ouvrir(){
   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
   divFin=parseInt(divFin);
