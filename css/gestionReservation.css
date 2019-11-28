@@ -26,6 +26,14 @@
    border-color:#000;
    background-color:#D3D3D3;
  }
+ .boxQuestion{
+   width:510px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
  .inputQuestion{
    width:250px;
    height:18px;
