@@ -1,4 +1,5 @@
 <?php
+  session_start();
 /**
 * Page pour permettre a un utilisateur de récupérer son mot de passe
 *
@@ -38,12 +39,20 @@
           </div>
 
           <div class="group-input-inscr">
-            <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long" onclick="return validerFormRecovery()">Envoyez les instructions</button>
+            <button type="submit" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long" onclick="return validerFormRecovery()">Envoyez les instructions</button>
           </div>
 
           <div class="group-input-inscr margin-less">
            <a href="/Project-Ekah/affichage/global/login.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">Retour</button></a>
           </div>
+
+          <?php
+            if(isset($_SESSION['msgPassword'])){
+              echo "<div class='txt-reservation txt-bienv'>".$_SESSION['msgPassword']."</div>";
+              unset($_SESSION['msgPassword']);
+            }
+          ?>
+
         </div>
       </form>
     </main>
