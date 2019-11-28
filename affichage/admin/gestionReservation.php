@@ -78,7 +78,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
   <h1 class="titreReservation">Gestion des Réservation</h1>
 
-  <button type="button" onclick="openModal();" name="button">TEST</button>
+  <button type="button" onclick="openModal();" class="bouton-re-que" name="button">Créer un atelier</button>
 
     <div class="tableauActivite">
       <?php
