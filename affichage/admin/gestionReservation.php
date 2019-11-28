@@ -78,7 +78,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
   <h1 class="titreReservation">Gestion des Réservation</h1>
 
-  <button type="button" onclick="openModal();" name="button">TEST</button>
+  <button type="button" onclick="openModal();" class="bouton-re-que" name="button">Créer un atelier</button>
 
     <div class="tableauActivite">
       <?php
@@ -144,7 +144,6 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h4>
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
-      <input class="inputType" type="text"  placeholder="Type de la question" id="typeQuestion"></input>
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />
 
       <div class="group-input-inscr btn-espace">
