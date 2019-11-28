@@ -9,7 +9,7 @@
     <li class="li-menu">
       <a class="link-menu" href="/Project-Ekah/affichage/client/consulter-reservation.php">
         <span id="icon-form" class="picto-menu"></span>
-        <span class="text-menu"><p>Consulter mes réservations</p></span>
+        <span class="text-menu"><p>Mes réservations</p></span>
       </a>
     </li>
     <hr class="hr-menu">
