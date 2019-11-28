@@ -133,6 +133,7 @@ class GestionQuestion{
           if ($result1->num_rows > 0) {
             while($row = $result1->fetch_assoc()) {
               $question[] = new Question( $row['id'],$row['id_type_question'],$row['question'],$row['nb_ligne']);
+              //echo $row['id'];
             }
         }
       }
