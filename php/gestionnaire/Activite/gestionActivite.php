@@ -35,6 +35,35 @@ class GestionActivite{
     return $activite;
   }
 
+  /*
+    Retourne un tableau contenant tous les ateliers contenus dans la BD
+  */
+    public function getAllAtelier(){
+      $tempconn = new Connexion();
+      $conn = $tempconn->getConnexion();
+      $activite = null;
+
+      $requete= "SELECT * FROM activite WHERE id_type_activite = 1 ORDER BY id_type_activite";
+
+      $result = $conn->query($requete);
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $activite[] = new Activite( $row['id'],
+                                    $row['id_type_activite'],
+                                    $row['id_etat_activite'],
+                                    $row['nom'],
+                                    $row['description_breve'],
+                                    $row['description_longue']);
+        }
+      }
+
+      return $activite;
+    }
+
   public function getAllActiviteService(){
    $tempconn = new Connexion();
    $conn = $tempconn->getConnexion();
@@ -77,7 +106,7 @@ class GestionActivite{
 
     if($result->num_rows > 0){
       $row = $result->fetch_assoc();
-      $activite = new Activite($row['id'], $row['id_type_activite'],$row['id_etat_activite'], $row['nom'], $row['description_breve'], $row['description_longue']);
+      $activite = new Activite($row['id'], $row['id_type_activite'],$row['id_etat_activite'], $row['nom'], $row['description_breve'], $row['description_longue'], $row['cout']);
     }
     return $activite;
   }
