@@ -85,8 +85,10 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
       </div>
 
       <div class="reservation">
-        <p>Bravo, votre inscription est faite.</p>
-        <p>Vous pouvez télécharger votre facture en cliquant sur ce lien : <a target="_blank" href="<?php echo $_SESSION['recu_paiement_url']; ?>">Télécharger reçu</a> </p>
+        <br>
+        <p>Votre inscription est faite.</p>
+        <p>Vous pouvez consulter votre facture en cliquant sur ce lien : <a target="_blank" href="<?php echo $_SESSION['recu_paiement_url']; ?>">Télécharger reçu</a> </p>
+        <p>Vous pouvez consulter votre réservation dans <a target="_blank" href="consulter-reservation.php">la liste de vos réservations</a>.</p>
         <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>
         <div class="txt-explication">À titre préparatif, nous aimerions apprendre à mieux vous connaître.</div>
 
