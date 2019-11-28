@@ -99,12 +99,12 @@
             $html .= "Aucun resultat trouvé.";
           }
           else{
-            $html .= "<select class=\"boxDuree\" name=\"service\" id=\"questionnaire\">";
+            $html .= "<select class=\"boxQuestion\" name=\"service\" id=\"questionnaire\">";
             for ($i = 0; $i < sizeof($question_activite);$i++){
               $j=$i+1;
 
               $html .= "
-                <option id='Question-$i' value=\"$j\" >".$question_activite[$i]->getQuestion()."</option>
+                <option id='Question-$i' value=".$question_activite[$i]->getIdentifiant().">".$question_activite[$i]->getQuestion()."</option>
               ";
             }
             $html .= "</select>";

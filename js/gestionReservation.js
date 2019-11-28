@@ -457,7 +457,7 @@ function ajoutDuree(x){
      for (i = 0; i < divFin; i++){
        let divSelection = document.getElementById("Activite-"+i);
        if(divSelection.classList.contains("selectionne")){
-         var idActivite = i+2;
+         var idActivite = i+1;
        }
      }
 
@@ -466,13 +466,12 @@ function ajoutDuree(x){
            url: url,
            type:"POST",
            async: false,
-           data: {id: id,idQuestionnaire:idActivite},
+           data: {id:id, idQuestionnaire:idActivite},
            success: function(data) {
              if(!data){
                  //alert("La modification s'est effectuée avec succès!");
              }
              else{
-               //  document.getElementById('erreurIdentifiant').innerHTML="L'identifiant existe déjà";
                  console.log(data);
              }
            } ,
@@ -481,7 +480,7 @@ function ajoutDuree(x){
            }
          });
        });
-       //window.location.reload();
+       window.location.reload();
      }
 
 function ajouterQuestionnaire(){
@@ -560,7 +559,7 @@ function ajouterQuestion(){
   id=parseInt(id);
   id=id+1;
   var question = document.getElementById('question').value;
-  var idType = document.getElementById('typeQuestion').value;
+  var idType = 1;
   var nbLigne = document.getElementById('nbLigne').value;
   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
   for (i = 0; i < divFin; i++){
@@ -596,7 +595,7 @@ function ajouterQuestion(){
         }
       });
     });
-    //window.location.reload();
+    window.location.reload();
 }
 
 function ajouterQuestionQuestionnaire(id){

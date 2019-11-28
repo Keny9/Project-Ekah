@@ -26,6 +26,14 @@
    border-color:#000;
    background-color:#D3D3D3;
  }
+ .boxQuestion{
+   width:510px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
  .inputQuestion{
    width:250px;
    height:18px;
@@ -359,6 +367,13 @@
   text-align: center;
   margin-top: 15px;
   color: #f0592a;
+}
+.bouton-re-que{
+  width: 110px;
+  height: 35px;
+  background-color: #000;
+  border: 1px solid #000;
+  color: #FFFFFF;
 }
 
 .btn-modal-insc{

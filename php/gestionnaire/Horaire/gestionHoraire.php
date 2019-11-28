@@ -119,7 +119,7 @@ class GestionHoraire{
         return $disponibilite;
     }
 
-  //Retourne une dispo
+  //Change l'était d'une dispo pour être réservé
   public function reserverDispo($id){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
