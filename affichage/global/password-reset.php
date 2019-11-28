@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/password-reset.css">
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="../../js/password-recovery.js"></script>
   </head>
   <body>
 
@@ -37,7 +38,7 @@
           </div>
 
           <div class="group-input-inscr">
-            <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long">Envoyez les instructions</button>
+            <button type="button" name="buttonSuivant" id="btnSuivant" class="btn-confirmer input-long" onclick="return validerFormRecovery()">Envoyez les instructions</button>
           </div>
 
           <div class="group-input-inscr margin-less">

@@ -7,7 +7,13 @@
 include_once  $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/connexion.php';
 
 /*Commenter ces variables lorsqu'elles seront set dans le fichier qui appel ce script*/
-$courriel = 'annie@ekah.ca';
+if(isset($_POST['courriel'])){
+  $courriel = $_POST['courriel'];
+}
+else{
+  $courriel = null;
+}
+
 /*Fin des variables à commenter*/
 
 /* Créer un password aléatoire de 8 charactère avec au moins 1 chiffre et 1 lettre majuscule */
