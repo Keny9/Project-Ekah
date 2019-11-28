@@ -23,7 +23,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireRes
 
 class GestionReservation{
   //Retourne tous les ateliers
-    public function getAllAteliers($id){
+    public function getAllAteliers(){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
       $reservation = null;
@@ -200,7 +200,7 @@ class GestionReservation{
       $type_paiement = 2;
       $date = "2019-01-01";
       $cout = $activite->getCout() . "00";
-      
+
       $stmt = $conn->do()->prepare("INSERT INTO paiement (id_type_paiement, montant, date_paiement)
         VALUES (?, ?, ?);");
       $stmt->bind_param('iis', $type_paiement, $cout, $date);
