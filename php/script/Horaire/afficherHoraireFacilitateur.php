@@ -43,6 +43,7 @@ foreach ($disponibilite as $row) {
       $start = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureDebut()));
       $end = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureFin()));
 
+      if($row[$i]->getEtat() == 1 || $row[$i]->getEtat() == 2)
       $out[] = array(
         'id' => $row[$i]->getId(),
         'title' => $row[$i]->getId(),

@@ -49,11 +49,13 @@ function calendrierReady(calendar){
   $( "#next" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    calendar.view();
     changerBackground();
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    calendar.view();
     changerBackground();
   });
 }
