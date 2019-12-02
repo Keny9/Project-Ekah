@@ -63,7 +63,6 @@ class GestionFacilitateur{
       public function getDisponibilite($id){
         $tempconn = new Connexion();
         $conn = $tempconn->getConnexion();
-        $activite = null;
         $disponibilite = null;
 
         $requete= "SELECT * FROM utilisateur
@@ -274,7 +273,7 @@ class GestionFacilitateur{
 
 
     /*
-      Retourne une liste de tous les facilitateurs
+      Retourne un facilitateur
     */
       public function getFacilitateur($id){
 
