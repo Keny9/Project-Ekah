@@ -84,6 +84,36 @@ class GestionReservation{
         return $reservation;
       }
 
+  //Retourne une réservation à l'Aide d'un id
+    public function getReservation($id){
+      $conn = ($connexion = new Connexion())->do();
+      $reservation = null;
+
+      $requete= "SELECT * FROM reservation
+                WHERE id = ?";
+
+      $stmt = $conn->prepare($requete);
+      $stmt->bind_param('i', $id);
+      $stmt->execute();
+      $result = $stmt->get_result();
+
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $reservation = new Reservation($row['id'], $row['id_paiement'],
+                                         $row['id_emplacement'], $row['id_suivi'],
+                                         $row['id_activite'], $row['id_groupe'],
+                                         $row['date_rendez_vous'],
+                                         $row['id_region'], $row['heure_fin'], $row['id_facilitateur']);
+          $reservation->setIdEtat($row['id_etat']);
+        }
+      }
+      return $reservation;
+    }
+
     //Retourne l'emplacement d'une reservation à l'aide d'un id
       public function getEmplacementAtelier($id){
         $conn = ($connexion = new Connexion())->do();
