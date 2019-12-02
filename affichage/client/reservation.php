@@ -29,7 +29,6 @@ $activites = $gActivite->getAllActivite();
     <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
@@ -39,6 +38,7 @@ $activites = $gActivite->getAllActivite();
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
     <script type="text/javascript" src="../../js/reservation.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <title>Réservation</title>
   </head>
   <body>
@@ -81,19 +81,23 @@ $activites = $gActivite->getAllActivite();
               <select class="select-inscr input-long" name="service" id="service" onchange="changeListe(this);">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
                 <?php
+                // TODO: cleaner ça
                 $separator = 1;
+              //  echo "<option disabled class=\"select-section\">EN ATELIER</option>";
                 echo "<option disabled class=\"select-section\">À DOMICILE</option>";
                 foreach ($activites as $activite){
                   if ($activite->getId_type() == 4) continue;
 
                   if ($activite->getId_type() != $separator){
                     $separator = $activite->getId_type();
-                    if($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
+                    /*if($separator == 1) echo "<option disabled class=\"select-section\">À DOMICILE</option>";
+                    else*/if($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
                   }
 
                   if($activite->getId_type() == 2 || $activite->getId_type() == 3){
                     echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
                   }
+
                 }
                 ?>
               </select>

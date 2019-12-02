@@ -346,7 +346,7 @@ input:focus:-moz-placeholder {
 
 @media only screen and (min-width: 768px) {
     .modal-content{
-      width: 625px;
+      width: 35%;
     }
 
     .inscription{

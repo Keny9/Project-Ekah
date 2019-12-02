@@ -33,6 +33,6 @@ else{
     $html .= $row['prix'];
   }
 }
-
+$paiement_prix = $html;
 echo $html;
 ?>

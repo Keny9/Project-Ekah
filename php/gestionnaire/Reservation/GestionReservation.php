@@ -23,7 +23,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireRes
 
 class GestionReservation{
   //Retourne tous les ateliers
-    public function getAllAteliers(){
+    public function getAllAteliers($id){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
       $reservation = null;
@@ -137,8 +137,7 @@ class GestionReservation{
                                       $row['id_etat'],
                                       $row['nom'],
                                       $row['description_breve'],
-                                      $row['description_longue'],
-                                      $row['cout']);
+                                      $row['description_longue']);
           }
         }
 
@@ -186,80 +185,7 @@ class GestionReservation{
       }
     }
 
-    /**
-     * Insert un nouvel atelier
-     */
-  public function insertAtelier($reservation, $activite, $adresse, $id_facilitateur, $duree){
-    $conn = new Connexion();
 
-    try {
-      $conn->do()->begin_transaction();
-      $cout = $activite->getCout();
-
-      //Insert le paiement
-      $type_paiement = 2;
-      $date = "2019-01-01";
-      $cout = $activite->getCout() . "00";
-
-      $stmt = $conn->do()->prepare("INSERT INTO paiement (id_type_paiement, montant, date_paiement)
-        VALUES (?, ?, ?);");
-      $stmt->bind_param('iis', $type_paiement, $cout, $date);
-      $stmt->execute();
-
-      $id_paiement = $conn->do()->insert_id;
-
-      //Insert l'emplacement
-      $id_type_emplacement = 1;
-
-      $stmt = $conn->do()->prepare("INSERT INTO emplacement (id_type_emplacement, nom_lieu)
-        VALUES (?, ?);");
-      $stmt->bind_param('is', $id_type_emplacement, $adresse);
-      $stmt->execute();
-
-      $id_emplacement = $conn->do()->insert_id;
-
-      //Insert Suivi
-      $temp = "Atelier";
-      $stmt = $conn->do()->prepare("INSERT INTO suivi (fait, commentaire)
-        VALUES (?, ?);");
-      $stmt->bind_param('ss', $temp, $temp);
-      $stmt->execute();
-
-      $id_suivi = $conn->do()->insert_id;
-
-      //Insert Groupe
-      $temp = 3;
-      $null = "Atelier";
-      $stmt = $conn->do()->prepare("INSERT INTO groupe (id_type_groupe, nom_entreprise, nom_organisateur, nb_participant)
-        VALUES (?, ?, ?, ?);");
-      $stmt->bind_param('issi', $temp, $null, $null, $temp);
-      $stmt->execute();
-
-      $id_groupe = $conn->do()->insert_id;
-
-      $heure_fin = date("Y-m-d H:i:s", strtotime($reservation->getDateRendezVous() . "+".$duree." minutes"));
-
-
-      $stmt = $conn->do()->prepare("INSERT INTO reservation (id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, id_region, heure_fin, id_etat)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
-
-      $id_activite = $activite->getIdentifiant();
-      $date = $reservation->getDateRendezVous();
-      $temp = 1;
-      $stmt->bind_param('iiiiiiisisi', $id_groupe, $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $id_facilitateur, $date, $temp, $heure_fin, $temp);
-      $stmt->execute();
-
-      // Commit la transaction
-      $conn->do()->commit();
-      return true;
-    } catch (Exception $e) {
-      // Rollback la transaction
-      $conn->do()->rollback();
-      echo "Erreur try-catch : ".$e."<br>";
-      return false;
-    }
-
-  }
 
 
   /**

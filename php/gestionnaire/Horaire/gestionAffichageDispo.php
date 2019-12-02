@@ -17,16 +17,13 @@ if (session_status() === PHP_SESSION_NONE){session_start();}
        else{
          for ($i = 0; $i < sizeof($facilitateur);$i++){
            $j=$i+1;
-
-           echo $_SESSION['logged_in_user_id'] . " = " . $facilitateur[$i]->getId();
-
            if($_SESSION['logged_in_user_id'] == $facilitateur[$i]->getId()){
              $html .= "
-               <option selected id='Facilitateur-$i' value=".$facilitateur[$i]->getId()." >".$facilitateur[$i]->getPrenom()." ".$facilitateur[$i]->getNom()."</option>
+               <option id='Facilitateur-$i' value=".$facilitateur[$i]->getId()." >".$facilitateur[$i]->getPrenom()." ".$facilitateur[$i]->getNom()."</option>
              ";
            }else{
              $html .= "
-               <option id='Facilitateur-$i' value=".$facilitateur[$i]->getId()." >".$facilitateur[$i]->getPrenom()." ".$facilitateur[$i]->getNom()."</option>
+               <option selected id='Facilitateur-$i' value=".$facilitateur[$i]->getId()." >".$facilitateur[$i]->getPrenom()." ".$facilitateur[$i]->getNom()."</option>
              ";
            }
 

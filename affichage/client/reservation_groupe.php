@@ -33,15 +33,18 @@ session_start();
     <title>Réservation Groupe</title>
   </head>
   <body>
-    <div id="modal-demande" class="modal-modif-reservation">
+    <!-- The Modal -->
+    <div id="modal-demande" class="modal">
+      <!-- Modal content -->
       <div class="modal-content">
-        <div class="modal-align-middle-mr">
-          <div class="txt-reservation txt-bienv">Votre demande a été envoyée avec succès ! <br><br> <p class="modal-text">Nous analyserons votre demande et nous vous recontacterons très bientôt.</p> </div>
-          <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-            <a href="/Project-Ekah/affichage/client/accueil_client.php"><button id="close-demande" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Terminer</button></a>  
-          </div>
+        <div class="modal-header">
+          <a href="/Project-Ekah/affichage/client/accueil_client.php"><span id="close-demande" class="close">&times;</span></a>
+          <h2>Demande envoyée avec succès !</h2>
+        </div>
+        <div class="modal-body">
+          <p>Nous analyserons votre demande et nous vous recontacterons très bientôt !</p>
+        </div>
       </div>
-    </div>
   </div>
 
     <?php include "../global/header.php"; ?>

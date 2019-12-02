@@ -77,9 +77,6 @@ class GestionHoraire{
                                   $row['heure_debut'],
                                   $row['heure_fin'],
                                   $row['id_etat']);
-            if($row['id_etat'] == 2){
-              return false;
-            }
           }
         }
         return $disponibilite;
@@ -119,7 +116,7 @@ class GestionHoraire{
         return $disponibilite;
     }
 
-  //Change l'était d'une dispo pour être réservé
+  //Retourne une dispo
   public function reserverDispo($id){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();

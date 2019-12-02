@@ -95,23 +95,5 @@ class GestionLogin{
     }
     return $user_type_id;
   }
-
-  // Si le courriel existe, retourne qu'il existe (true).
-  // Sinon, retourne false
-  public function compteExiste($courriel){
-    $conn = ($connexion = new Connexion())->do();
-
-    $stmt = $conn->prepare("SELECT fk_utilisateur
-    FROM compte_utilisateur
-    WHERE courriel = ?");
-
-    $stmt->bind_param('s', $courriel);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if($row = $result->fetch_assoc()){
-      return true;
-    }
-    return false;
-  }
 }
  ?>

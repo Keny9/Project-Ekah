@@ -17,7 +17,7 @@
       <a href="/Project-Ekah/affichage/admin/gestion-client.php">LES CLIENTS</a>
     </div>
     <div class="collection_m">
-      <a href="/Project-Ekah/affichage/admin/consulter-reservation.php">LES RÉSERVATIONS</a>
+      <a href="/Project-Ekah/affichage/admin/consulter-reservation.php">CONSULTER LES RÉSERVATIONS</a>
     </div>
   </div>
   <input type="hidden" id="nav_m_type" name="" value="FACILITATEUR">

@@ -157,6 +157,15 @@ textarea:focus{
   display: block;
 }
 
+.date-heure{
+  /* padding-right: 222px; */
+}
+
+
+  .reservation{
+    width: 530px;
+  }
+
   #prix{
     margin-left: 0;
   }

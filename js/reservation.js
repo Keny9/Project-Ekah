@@ -373,11 +373,6 @@ $(document).ready(function() {
   poste = document.getElementById("poste");
   vous = document.getElementById("vous");
   message = document.getElementById("message");
-  adresse = document.getElementById("noAdresse");
-  rue = document.getElementById("rue");
-  ville = document.getElementById("ville");
-  nbParticipant = $("#nbParticipant");
-
 
   $(window).keydown(function(event){ //S'assure que le user ne peut pas envoyer le form avec un enter
     if(event.keyCode == 13) {
@@ -424,6 +419,7 @@ function clickSuivant(){
   }
 
   date_rendez_vous = date_rendez_vous + " " + heure;
+  // console.log(date_rendez_vous);
 
 
   // let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
@@ -437,8 +433,9 @@ function clickSuivant(){
 
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
-  e.style.borderBottomColor = "#ff0000";
-  e.style.setProperty("--color", "#ff0000");
+   console.log(e);
+    e.style.borderBottomColor = "#ff0000";
+    e.style.setProperty("--color", "#ff0000");
  }
 
  //Fonction pour montrer que le textArea est requis
@@ -455,13 +452,6 @@ function clickSuivant(){
      });
      return false;
    }
-
-   //Si les 3 ne sont pas vides alors pas d'erreur que c'est vide
-   if((siVide(noAdresse) || siVide(rue) || siVide(ville)) && $("#question-complementaire").css("display") == "block"){
-     indiqueAdresseVide();
-     return false;
-   }
-
    return true;
  }
 
@@ -545,21 +535,6 @@ function sendEmail(){
      textAreaRequired(message);
    }
  }
-
- //Indique quels champs sont vide pour l'adresse
-  function indiqueAdresseVide(){
-    if(siVide(noAdresse)){
-      inputRequired(noAdresse);
-    }
-
-    if(siVide(rue)){
-      inputRequired(rue);
-    }
-
-    if(siVide(ville)){
-      inputRequired(ville);
-    }
-  }
 
 //Indique les champos invalide dans la page de reservation
 function indiqueChampVideReservation(){
