@@ -534,7 +534,7 @@ if(!String.prototype.formatNum) {
           console.log(entry.etat);
           if(entry.etat == 1){
             $this.css("background-color", "green");
-          }else{
+          }else if(entry.etat == 2){
             $this.css("background-color", "RGBA(240,89,41,0.26)");
           }
         }
