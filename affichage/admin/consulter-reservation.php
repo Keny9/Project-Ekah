@@ -83,7 +83,7 @@ session_start();
     <div id="modal-cancel-already" class="modal-modif-reservation">
       <div class="modal-content">
         <div class="modal-align-middle-mr">
-          <div class="txt-reservation txt-bienv">Cette réservation est déjà annulé.</div>
+          <div class="txt-reservation txt-bienv">Cette réservation est déjà annulée.</div>
           <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
             <button id="btn-already-cancel" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Retour</button>
           </div>
@@ -94,7 +94,7 @@ session_start();
   <div id="modal-done-already" class="modal-modif-reservation">
     <div class="modal-content">
       <div class="modal-align-middle-mr">
-        <div class="txt-reservation txt-bienv">Cette réservation a été complété. <br> Elle ne peut pas être annulé.</div>
+        <div class="txt-reservation txt-bienv">Cette réservation a été complétée. <br> Elle ne peut pas être annulée.</div>
         <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
           <button id="btn-already-done" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Retour</button>
         </div>

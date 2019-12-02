@@ -24,7 +24,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
   <script type="text/javascript" src="../../js/global.js"></script>
   <script type="text/javascript" src="../../js/gestionReservation.js"></script>
-  <title>Gestion Reservation</title>
+  <title>Gestion Réservation</title>
 </head>
 
 <body onload="ouvrir()">
@@ -46,7 +46,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                   <label for="heure">Heure (Ex: 08:30 / 18:00)</label><BR />
                   <input id="heure" class="input-atelier" type="text" name="heure" value="" placeholder="Heure (Ex: 08:30 / 18:00)"><br><br>
 
-                  <label for="duree">Duree (En minute)</label><BR />
+                  <label for="duree">Durée (En minute)</label><BR />
                   <input id="duree" class="input-atelier" type="text" name="duree" value="" placeholder="Minute (Ex: 30 / 90)"><br><br>
 
                   <label for="adresse">Adresse</label><BR />
@@ -76,7 +76,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
 
 
-  <h1 class="titreReservation">Gestion des Réservation</h1>
+  <h1 class="titreReservation">Gestion des Réservations</h1>
 
   <button type="button" onclick="openModal();" class="bouton-re-que" name="button">Créer un atelier</button>
 
@@ -97,10 +97,10 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     </div>
 
     <div class="reservationMain">
-      <h2 class="texteEkha">Aperçu de la reservation</h2>
+      <h2 class="texteEkha">Aperçu de la réservation</h2>
       <div class="reservationHeader"><img class="imgHeader"src="../../img/logo_ekah_header.png" alt="Ekah"></div>
       <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg" id="titre"></div></div>
-      <h3 class="reservez texteEkha">Réservez dès maintenant</h3></br>
+      <h3 class="reservez texteEkha">Réserver dès maintenant</h3></br>
       <h6 class="choisirServ texteEkha">Nom du service:</h6>
       <h6 class="choisirDuree texteEkha">Quelles durées sont acceptées:</h6></br></br>
 
@@ -125,7 +125,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     <div id="typeSelect" class="cacher">
       yo
     </div>
-    <h6 class="duree texteEkha">Duree:</h6>
+    <h6 class="duree texteEkha">Durée:</h6>
     <?php
                    require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
@@ -141,7 +141,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                     echo $gagr->getQuestionActivite(1);
                   ?>
       <input type="button" class="submitSupprimerQuestion" onclick="supprimerQuestion();" value="Supprimer" />
-    <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h4>
+    <h4 class="descriptionC texteEkha">Ajouter des questions spécifiques</h4>
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />

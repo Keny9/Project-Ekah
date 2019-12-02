@@ -50,7 +50,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
           <p>Attention !</p>
         </div>
         <div class="modal-align-middle-insc txt-modal-bienv-insc">
-          <p>Cette disponibilite est déjà réservée. Vous devez annuler la réservation avant de supprimer cette disponibilité.</p>
+          <p>Cette disponibilité est déjà réservée. Vous devez annuler la réservation avant de supprimer cette disponibilité.</p>
         </div>
         <div class="modal-align-middle-insc btn-modal-insc">
           <button type="submit" onclick="closeModal()" class="btn-confirmer input-court" name="button">Fermer</button>
