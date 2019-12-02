@@ -15,6 +15,11 @@
 
   if(isset($_POST['id_reservation'])){
     $gReservation->cancelReservation($_POST['id_reservation']);
+
+
+
+
+    
     echo json_encode(true);
   }
 
