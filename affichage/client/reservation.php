@@ -68,11 +68,11 @@ $activites = $gActivite->getAllActivite();
       <div class="top-img">
         <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
-        <p class="txt-centered">Réservation</p>
+        <p class="txt-centered">Faire une réservation</p>
       </div>
 
       <div class="reservation">
-        <div class="txt-reservation txt-bienv">Réservez dès maintenant</div>
+        <div class="txt-reservation txt-bienv">Réserver dès maintenant</div>
 
         <form class="form-reservation" id="form-reservation" action="" method="post">
           <div class="group-input-inscr">
@@ -120,7 +120,7 @@ $activites = $gActivite->getAllActivite();
             <div class="group-input-inscr">
               <div class="box-select">
                 <select class="select-inscr input-long" name="nbParticipant" id="nbParticipant" onchange="changeListe(this);">
-                  <option disabled selected value="">Nombre de participant</option>
+                  <option disabled selected value="">Nombre de participant(s)</option>
                   <option value="1">1</option>
                   <option value="1">2</option>
                   <option value="1">3</option>
@@ -153,7 +153,7 @@ $activites = $gActivite->getAllActivite();
           </div>
 
           <div class="group-input-inscr">
-            <label class="label-reservation date-heure label-long">Sélectionner la date et l'heure désiré</label>
+            <label class="label-reservation date-heure label-long">Sélectionner la date et l'heure désirée</label>
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php'; ?>
           </div>
 
