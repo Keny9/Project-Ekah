@@ -37,7 +37,7 @@ session_destroy();
         </div>
         <form class="" id="formulaireLogin" action="" method="post">
           <div class="group-input-inscr">
-            <input type="text" name="courriel" id="courriel" class="input-inscr" placeholder="Courriel" value="">
+            <input type="text" name="courriel" id="courriel" class="input-inscr" placeholder="Adresse courriel" value="">
           </div>
           <div class="group-input-inscr">
             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr" placeholder="Mot de passe" value="">

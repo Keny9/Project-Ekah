@@ -35,7 +35,7 @@
           <div class="txt-reservation txt-bienv">Un courriel vous sera envoyé avec les instructions pour modifier votre mot de passe.</div>
 
           <div class="group-input-inscr">
-            <input type="text" name="courriel" id="courriel" class="input-inscr" placeholder="Courriel" value="">
+            <input type="text" name="courriel" id="courriel" class="input-inscr" placeholder="Adresse courriel" value="">
           </div>
 
           <div class="group-input-inscr">
