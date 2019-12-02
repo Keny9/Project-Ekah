@@ -12,6 +12,7 @@
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
 
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Region/Region.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
 
  if (session_status() === PHP_SESSION_NONE){session_start();}
@@ -29,12 +30,15 @@ $gestionFacilitateur = new GestionFacilitateur();
 
 $facilitateur = $gestionFacilitateur->getFacilitateur($id);
 // print_r($facilitateur->getDisponibilite());
+$regions = $gestionFacilitateur->getRegion();
 
 
 date_default_timezone_set('America/Toronto');
 
 $disponibilite[] = $facilitateur->getDisponibilite();
 $out = null;
+
+$regionNom = null;
 
 foreach ($disponibilite as $row) {
 
@@ -43,13 +47,22 @@ foreach ($disponibilite as $row) {
       $start = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureDebut()));
       $end = date("Y-m-d H:i:s", strtotime($row[$i]->getHeureFin()));
 
+      for ($k=0; $k < sizeof($regions); $k++) {
+        if($regions[$k]->getId() == $row[$i]->getRegion()){
+          $regionNom = $regions[$k]->getNom();
+        }
+      }
+
+
+      if($row[$i]->getEtat() == 1 || $row[$i]->getEtat() == 2)
       $out[] = array(
         'id' => $row[$i]->getId(),
         'title' => $row[$i]->getId(),
         'url' => "URL",
         'start' => strtotime($start) . '000',
         'end' => strtotime($end) .'000',
-        'etat' => $row[$i]->getEtat()
+        'etat' => $row[$i]->getEtat(),
+        'region' => $regionNom
       );
     }
   }
@@ -62,7 +75,8 @@ if($out == null){
     'url' => "URL",
     'start' => '2556075600000',
     'end' => '2556077400000',
-    'etat' => 2
+    'etat' => 2,
+    'region' => 'Ceci n est pas une vrai dispo'
   );
 }
 

@@ -135,3 +135,42 @@ main{
 .btn-modal-insc button{
   width: 200px;
 }
+
+.legend{
+  float: left;
+  margin-right: 15px;
+}
+.legend-vert{
+  background-color: #e8fde7;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: 8px;
+}
+.legend-orange{
+  background-color: #EEC7BB;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: 8px;
+}
+.legend-bleu{
+  background-color: #7AA1A4;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: 8px;
+}
+.legend-jaune{
+  background-color: #FFFAE5;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: 8px;
+}
+.legend-txt{
+  float: left;
+  margin-left: 5px;
+  margin-top: 14px;
+  font-size: 13px;
+}
