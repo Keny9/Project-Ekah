@@ -114,7 +114,7 @@
              <div class="error-courriel" id="error-courriel">
                <p>Cette adresse courriel est déjà utilisé.*</p>
              </div>
-             <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
+             <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Adresse courriel" value="">
            </div>
            <div class="group-input-inscr">
              <input type="password" name="motDePasse" id="motDePasse" class="input-inscr input-long" placeholder="Mot de passe" value="" onclick="afficheExigence()">
