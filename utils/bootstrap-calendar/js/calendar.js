@@ -531,11 +531,13 @@ if(!String.prototype.formatNum) {
         if(entry_heure_debut_int <= heure_debut_int && entry_heure_fin_int >= heure_fin_int){
           // console.log("debut : " + heure_debut_int + " fin : " + heure_fin_int);
 
-          console.log(entry.etat);
+          // console.log(entry.etat);
           if(entry.etat == 1){
             $this.css("background-color", "green");
+            $this.find('.span11').text(entry.region);
           }else if(entry.etat == 2){
             $this.css("background-color", "RGBA(240,89,41,0.26)");
+            $this.find('.span11').text(entry.region);
           }
         }
 
