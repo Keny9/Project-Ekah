@@ -176,6 +176,5 @@ class GestionClient{
       }
       return true;
     }
-
 }
  ?>
