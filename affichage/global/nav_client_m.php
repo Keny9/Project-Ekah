@@ -5,7 +5,7 @@
       <a href="/Project-Ekah/affichage/client/mon-profil.php">MON PROFIL</a>
     </div>
     <div class="collection_m">
-      <a href="/Project-Ekah/affichage/client/consulter-reservation.php">CONSULTER MES RÉSERVATIONS</a>
+      <a href="/Project-Ekah/affichage/client/consulter-reservation.php">MES RÉSERVATIONS</a>
     </div>
     <div class="collection_m">
       <a href="/Project-Ekah/affichage/client/reservation.php">FAIRE UNE RÉSERVATION</a>

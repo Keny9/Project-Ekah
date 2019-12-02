@@ -85,10 +85,15 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
       </div>
 
       <div class="reservation">
-        <p>Bravo, votre inscription est faite.</p>
-        <p>Vous pouvez télécharger votre facture en cliquant sur ce lien : <a href="<?php echo $_SESSION['recu_paiement_url']; ?>">Télécharger reçu</a> </p>
-        <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>
-        <div class="txt-explication">À titre préparatif, nous aimerions apprendre à mieux vous connaître.</div>
+        <br>
+        <p>Votre inscription est faite.</p>
+        <p>
+          Vous pouvez consulter votre facture en cliquant sur ce lien :
+          <a target="_blank" href="<?php echo $_SESSION['recu_paiement_url']; ?>">
+          Consulter votre reçu</a> - Une copie de votre reçu se trouve dans la liste de vos réservation.
+        </p>
+      <!--  <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>   -->
+        <div class="txt-explication">À titre préparatif, nous aimerions que vous remplissez ce questionnaire.</div>
 
         <form class="form-reservation-question" id="form-reservation-question" action="#" method="post">
           <div id="form-questions">
@@ -100,7 +105,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
             <p>*Ces informations resteront confidentielles au Collectif Ekah</p>
           </div>
           <div class="group-input-inscr">
-            <p class="label-question">Signez et datez la déclaration</p>
+            <p class="label-question">Veuillez dater et signer le questionnaire rempli</p>
             <div class="group-input-inscr">
               <label for="signature" class="label-dec">Signature</label>
               <input type="text" name="signature" id="signature" value="" class="input-inscr input-question-dec">

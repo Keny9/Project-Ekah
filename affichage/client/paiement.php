@@ -2,6 +2,15 @@
 session_start();
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
+$gh = new GestionHoraire();
+
+$id_dispo = $_GET['id_dispo'];
+if (!$gh->getDispo($id_dispo)){ // Dispo n'est plus disponible
+  echo"Dispo n'est plus disponnible.".'<br>';
+  echo "<a href='accueil_client.php'>Retour à l'accueil</a>";
+  exit();
+}
 
 // Get les infos du client
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
@@ -9,12 +18,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.
 $id_activite = $activite_id = $_POST['service'];
 $date_rendez_vous = $_GET['date_rendez_vous'];
 $id_facilitateur = $facilitateur_id = $_GET['facilitateur_id'];
-$id_dispo = $_GET['id_dispo'];
+
 $no_adresse = $_POST['noAdresse'];
 $rue = $_POST['rue'];
 $ville = $_POST['ville'];
 $duree = $_GET['duree'];
-/*$prix = */include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/printPrix.php';//10000;//formule magique
+/*$prix = *///10000;//formule magique
 if(isset($_POST['region'])){ $id_region = $_GET['id_region'];}
 else{$id_region = null;}
 // TODO: faire les validations des variables pour être sûr que la Réservation puisse se créer sans erreur après le paiement
@@ -37,7 +46,8 @@ if ($no_adresse){
 
 // Get les infos de la Réservation
 include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/paiement-getInfoReservation.php";
-
+//Get le prix
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/getPrix.php';
 
 
 
@@ -55,8 +65,8 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/paiement
 // ");
 
 //Format le prix
-$paiement_prix = 123456;
-$paiement_prix_format = number_format($paiement_prix*0.01, 2, ',', '');
+//$paiement_prix = 123456;
+$prix_format = number_format($prix*0.01, 2, ',', '');
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -70,7 +80,7 @@ $paiement_prix_format = number_format($paiement_prix*0.01, 2, ',', '');
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
-      const prix = <?php echo $paiement_prix; ?>;
+      const prix = <?php echo $prix; ?>;
     </script>
     <script type="text/javascript" src="../../js/paiement.js"></script>
   </head>
@@ -100,7 +110,7 @@ $paiement_prix_format = number_format($paiement_prix*0.01, 2, ',', '');
           <label>Emplacement :</label>
           <span><?php echo $emplacement ?></span>
           <label>Montant :</label>
-          <span><?php echo $paiement_prix_format." $ CAD" ?></span>
+          <span><?php echo $prix_format." $ CAD" ?></span>
         </div>
       </div>
 

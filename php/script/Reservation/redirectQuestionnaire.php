@@ -29,17 +29,86 @@ require $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/stripe-php-7.13.0/vendor/
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 \Stripe\Stripe::setApiKey('sk_test_NZqmLN0M3rIysRWEpo5xza8J00PZodFzrb');
 
-// Token is created using Checkout or Elements!
-// Get the payment token ID submitted by the form:
-$token = $_POST['stripeToken'];
-$prix = $_POST['total'];
-$charge = \Stripe\Charge::create([
-    'amount' => $prix,
-    'currency' => 'cad',
-    'description' => 'Facturation d\'une réservation',
-    'source' => $token,
-]);
-$_SESSION['recu_paiement_url'] = $charge['receipt_url'];
+
+try {
+  // Token is created using Checkout or Elements!
+  // Get the payment token ID submitted by the form:
+  $token = $_POST['stripeToken'];
+  $prix = $_POST['total'];
+  $charge = \Stripe\Charge::create([
+      'amount' => $prix,
+      'currency' => 'cad',
+      'description' => 'Facturation d\'une réservation',
+      'source' => $token,
+  ]);
+
+  $_SESSION['recu_paiement_url'] = $charge['receipt_url'];
+}/* catch(\Stripe\Exception\CardException $e) {
+  // Since it's a decline, \Stripe\Exception\CardException will be caught
+  echo 'Status is: ' . $e->getHttpStatus() . '<br>';
+  echo 'Type is: ' . $e->getError()->type . '<br>';
+  echo 'Code is: ' . $e->getError()->code . '<br>';
+  echo 'Param is: ' . $e->getError()->param . '<br>';
+  echo 'Message is: ' . $e->getError()->message . '<br>';
+
+  exit();
+} catch (\Stripe\Exception\RateLimitException $e) {
+  // Too many requests made to the API too quickly
+  echo 'Status is: ' . $e->getHttpStatus() . '<br>';
+  echo 'Type is: ' . $e->getError()->type . '<br>';
+  echo 'Code is: ' . $e->getError()->code . '<br>';
+  echo 'Param is: ' . $e->getError()->param . '<br>';
+  echo 'Message is: ' . $e->getError()->message . '<br>';
+  exit();
+} catch (\Stripe\Exception\InvalidRequestException $e) {
+  // Invalid parameters were supplied to Stripe's API
+  echo 'Status is: ' . $e->getHttpStatus() . '<br>';
+  echo 'Type is: ' . $e->getError()->type . '<br>';
+  echo 'Code is: ' . $e->getError()->code . '<br>';
+  echo 'Param is: ' . $e->getError()->param . '<br>';
+  echo 'Message is: ' . $e->getError()->message . '<br>';
+  exit();
+} catch (\Stripe\Exception\AuthenticationException $e) {
+  // Authentication with Stripe's API failed
+  // (maybe you changed API keys recently)
+  echo 'Status is: ' . $e->getHttpStatus() . '<br>';
+  echo 'Type is: ' . $e->getError()->type . '<br>';
+  echo 'Code is: ' . $e->getError()->code . '<br>';
+  echo 'Param is: ' . $e->getError()->param . '<br>';
+  echo 'Message is: ' . $e->getError()->message . '<br>';
+  exit();
+} catch (\Stripe\Exception\ApiConnectionException $e) {
+  // Network communication with Stripe failed
+  echo 'Status is: ' . $e->getHttpStatus() . '<br>';
+  echo 'Type is: ' . $e->getError()->type . '<br>';
+  echo 'Code is: ' . $e->getError()->code . '<br>';
+  echo 'Param is: ' . $e->getError()->param . '<br>';
+  echo 'Message is: ' . $e->getError()->message . '<br>';
+  exit();
+} catch (\Stripe\Exception\ApiErrorException $e) {
+  // Display a very generic error to the user, and maybe send
+  // yourself an email
+  echo 'Status is: ' . $e->getHttpStatus() . '<br>';
+  echo 'Type is: ' . $e->getError()->type . '<br>';
+  echo 'Code is: ' . $e->getError()->code . '<br>';
+  echo 'Param is: ' . $e->getError()->param . '<br>';
+  echo 'Message is: ' . $e->getError()->message . '<br>';
+  exit();
+}*/ catch (Exception $e) {
+  // Something else happened, completely unrelated to Stripe
+  echo 'Status is: ' . $e->getHttpStatus() . '<br>';
+  echo 'Type is: ' . $e->getError()->type . '<br>';
+  echo 'Code is: ' . $e->getError()->code . '<br>';
+  echo 'Param is: ' . $e->getError()->param . '<br>';
+  echo 'Message is: ' . $e->getError()->message . '<br>';
+  exit();
+}
+
+
+/*Gestion des cas d'erreur*/
+
+
+/*Fin Gestion des cas d'erreur*/
 
 /****   FIN BLOC PAIEMENT  ****/
 
@@ -84,7 +153,7 @@ if($paiement_effectue == true){
 
  // Set l'id de l'emplacement
   $id_emplacement = null;
-  if(isset($no_adresse) && isset($rue) && isset($ville)){ // Champs remplis, donc service 'À domicile'; requiert un emplacement
+  if(!empty($no_adresse) && !empty($rue) && !empty($ville)){ // Champs remplis, donc service 'À domicile'; requiert un emplacement
     $id_emplacement = $gReservation->insertEmplacement($no_adresse, $rue, $ville);
   }
 

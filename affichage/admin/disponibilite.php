@@ -40,6 +40,25 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   <?php include '../global/header.php' ?>
 
   <main>
+
+    <div id="modal-inscription" class="modal-inscription">
+      <div class="modal-content">
+        <div class="modal-align-middle-insc img-conf-insc">
+           <img src="../../img/crochet.png" alt="Confirmation inscription">
+        </div>
+        <div class="modal-align-middle-insc txt-bravo-insc">
+          <p>Attention !</p>
+        </div>
+        <div class="modal-align-middle-insc txt-modal-bienv-insc">
+          <p>Cette disponibilite est déjà réservée. Vous devez annuler la réservation avant de supprimer cette disponibilité.</p>
+        </div>
+        <div class="modal-align-middle-insc btn-modal-insc">
+          <button type="submit" onclick="closeModal()" class="btn-confirmer input-court" name="button">Fermer</button>
+        </div>
+      </div>
+    </div>
+
+
     <div class="reservation">
       <div class="txt-consulter">Mes disponibilités</div>
       <br>
@@ -70,7 +89,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <div class="">
           <select class="select-inscr input" name="facilitateur" id="facilitateur">
             <?php
-              // echo "<option class=\"option-vide\" value=".$_SESSION['logged_in_user_id']." selected=\"selected\">Choisir un facilitateur</option>";
               require_once '../../php/gestionnaire/Horaire/gestionAffichageDispo.php';
               $gad = new GestionAffichageDispo();
               echo $gad->getAllFacilitateur();
