@@ -17,12 +17,13 @@ $service_nom = "";
 
 
 // Get info SERVICE
-$stmt = $conn->prepare("SELECT nom FROM activite WHERE id = ?");
+$stmt = $conn->prepare("SELECT nom, id_type_activite FROM activite WHERE id = ?");
 $stmt->bind_param('i', $id_activite);
 $stmt->execute();
 $result = $stmt->get_result();
 if($row = $result->fetch_assoc()){
   $service_nom = $row['nom'];
+  $id_type_activite = $row['id_type_activite'];
 } else $service_nom = "*erreur";
 
 

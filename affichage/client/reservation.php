@@ -48,12 +48,16 @@ $activites = $gActivite->getAllActivite();
 
 
       <?php
-      // TODO: Dans ce modal,indiquer au client l'url pour son recu avec $_SESSION['recu_paiement_url']
-        if(isset($_GET['rComplete']) && $_GET['rComplete'] == 1){
+        if(isset($_GET['rComplete']) && $_GET['rComplete'] == 1 ){
+          if(isset($_GET['recu_url'])) $recu_url = $_GET['recu_url'];
+          else $recu_url = "";
           echo "<div id='modal-complete-reservation' class='modal-modif-reservation'>
             <div class='modal-content'>
               <div class='modal-align-middle-mr'>
-                <div class='txt-reservation txt-bienv'>Réservation complétée. <br><br> Merci de faire confiance à l'équipe d'Ekah. </div>
+                <div class='txt-reservation txt-bienv'>Réservation complétée. <br><br>
+                 Merci de faire confiance à l'équipe d'Ekah. <br>
+                 <a href='$recu_url' target='_blank'>Reçu du paiement</a> <br>
+                 Aussi consultable dans la liste de vos réservation.</div>
                   <div class='modal-align-middle btn-modal-insc modal-align-middle-mr'>
                     <button id='btn-confirm-reservation' type='submit' class='btn-confirmer input-court btn-coller' name='button'>Terminer</button>
                   </div>

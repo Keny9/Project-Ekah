@@ -1,56 +1,67 @@
-$(document).ready(function(){
-
+window.addEventListener('load', function () {
   var stripe = Stripe('pk_test_nexEKdAh5yqBBuHujvFYAwpq00HQmYWpWf');
-  var elements = stripe.elements({
-    locale: 'fr',
-  });
+  var elements = stripe.elements();
 
-  function stripeTokenHandler(token) {
-    // Insert the token ID into the form so it gets submitted to the server
-    var form = document.getElementById('payment-form');
-    var hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'stripeToken');
-    hiddenInput.setAttribute('value', token.id);
-    form.appendChild(hiddenInput);
-
-    $('#total').val(prix);
-    // Submit the form
-    form.submit();
-  }
-
-  // Custom styling can be passed to options when creating an Element.
   var style = {
     base: {
-      // Add your base input styles here. For example:
+      color: '#32325d',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
       fontSize: '16px',
-      color: "#00000",
+      '::placeholder': {
+        color: 'rgba(23, 41, 56, 0.4)',
+      }
     },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
   };
 
-  // Create an instance of the card Element.
-  var card = elements.create('card', {
+  var cardNumberElement = elements.create('cardNumber', {
     style: style,
-    iconStyle: 'solid',
+    placeholder: '4242 4242 4242 4242',
+  });
+  cardNumberElement.mount('#card-number-element');
+
+  var cardExpiryElement = elements.create('cardExpiry', {
+    style: style,
+    placeholder: '04/24',
+  });
+  cardExpiryElement.mount('#card-expiry-element');
+
+  var cardCvcElement = elements.create('cardCvc', {
+    style: style,
+    placeholder: '424'
+  });
+  cardCvcElement.mount('#card-cvc-element');
+
+
+
+  function setOutcome(result) {
+    var errorElement = document.querySelector('.error');
+    errorElement.classList.remove('visible');
+
+    if (result.token) {
+    // Submit form
+      var form = document.querySelector('form');
+      form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
+      form.submit();
+    } else if (result.error) {
+      errorElement.textContent = result.error.message;
+      errorElement.classList.add('visible');
+    }
+  }
+
+  cardNumberElement.on('change', function(event) {
+    setOutcome(event);
   });
 
-  // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card-element');
-
-  // Create a token or display an error when the form is submitted.
-  var form = document.getElementById('payment-form');
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    stripe.createToken(card).then(function(result) {
-      if (result.error) {
-        // Inform the customer that there was an error.
-        var errorElement = document.getElementById('card-errors');
-        errorElement.textContent = result.error.message;
-      } else {
-        // Send the token to your server.
-        stripeTokenHandler(result.token);
-      }
-    });
+  document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var options = {
+      address_zip: document.getElementById('postal-code').value,
+    };
+    stripe.createToken(cardNumberElement, options).then(setOutcome);
   });
-});
+}, false);
