@@ -50,7 +50,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
           <p>Attention !</p>
         </div>
         <div class="modal-align-middle-insc txt-modal-bienv-insc">
-          <p>Cette disponibilite est déjà réservée. Vous devez annuler la réservation avant de supprimer cette disponibilité.</p>
+          <p>Cette disponibilité est déjà réservée. Vous devez annuler la réservation avant de supprimer cette disponibilité.</p>
         </div>
         <div class="modal-align-middle-insc btn-modal-insc">
           <button type="submit" onclick="closeModal()" class="btn-confirmer input-court" name="button">Fermer</button>
@@ -62,6 +62,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
     <div class="reservation">
       <div class="txt-consulter">Mes disponibilités</div>
       <br>
+
 
       <div class="page-header">
         <h3 class="h3"></h3>
@@ -78,12 +79,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         </select>
       </div>
 
-        <div class="btnsCalandrier">
-          <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
-          <button type="button" class="bouton-re-que" name="button" id="month"  data-calendar-view="month">MONTH</button>
-          <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
-        </div>
-
         <br><br>
 
         <div class="">
@@ -95,6 +90,36 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
             ?>
           </select>
         </div><br>
+
+        <div class="btnsCalandrier">
+          <button type="button" class="bouton-re-que" name="button" id="prev"  data-calendar-nav="prev"><< Prev</button>
+          <button type="button" class="bouton-re-que" name="button" id="month"  data-calendar-view="month">MONTH</button>
+          <button type="button" class="bouton-re-que" name="button" id="next"  data-calendar-nav="next">Next >></button>
+        </div>
+
+        <div class="legend">
+          <div class="legend">
+            <div class="legend-vert"></div>
+            <p class="legend-txt">= Des disponibilités</p>
+          </div>
+
+          <div class="legend">
+            <div class="legend-bleu"></div>
+            <p class="legend-txt">= Disponibilite vide</p>
+          </div>
+
+          <div class="legend">
+            <div class="legend-orange"></div>
+            <p class="legend-txt">= Réservé par un client</p>
+          </div>
+
+          <div class="legend">
+            <div class="legend-jaune"></div>
+            <p class="legend-txt">= Aujourd'hui</p>
+          </div>
+        </div>
+
+<br><br><br>
 
         <div id="calendar"></div>
 

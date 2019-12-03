@@ -119,7 +119,7 @@ class GestionHoraire{
         return $disponibilite;
     }
 
-  //Change l'était d'une dispo pour être réservé
+  //Change l'état d'une dispo pour être réservé
   public function reserverDispo($id){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
@@ -127,6 +127,22 @@ class GestionHoraire{
     $requete= "UPDATE disponibilite
                 SET id_etat = 2
                WHERE id = ".$id." AND id_etat = 1 ;";
+
+    $result = $conn->query($requete);
+    if(!$result){
+      trigger_error($conn->error);
+    }
+
+  }
+
+  //Change l'état d'une dispo pour être dispo
+  public function libererDispo($id){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+
+    $requete= "UPDATE disponibilite
+               SET id_etat = 1
+               WHERE id = ".$id." AND id_etat = 2 ;";
 
     $result = $conn->query($requete);
     if(!$result){

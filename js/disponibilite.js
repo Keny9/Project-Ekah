@@ -30,7 +30,7 @@ function changerBackground(){
     //Enlever le CSS inutile pour la réservation (css today)
     var $today = $(".cal-day-today");
     $today.removeClass("cal-day-today");
-    $today.css("background-color", "RGBA(240,89,41,0.26)");
+    $today.css("background-color", "#FFFAE5");
 
 
     var $todayTxt = $today.find("span");
@@ -49,11 +49,13 @@ function calendrierReady(calendar){
   $( "#next" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    calendar.view();
     changerBackground();
   });
   $( "#prev" ).click(function() {
     var $this = $(this);
     calendar.navigate($this.data('calendar-nav'));
+    calendar.view();
     changerBackground();
   });
 }
@@ -125,7 +127,7 @@ $(document).ready(function() {
       console.log(couleur);
 
       if(couleur == "rgba(0, 0, 0, 0)"){
-        $this.css("background-color", "green");
+        $this.css("background-color", "rgba(3, 78, 84, 0.52)");
         envoyeDispo(heure, date);
       }else if (couleur == "rgba(240, 89, 41, 0.26)"){
         console.log("Modal");

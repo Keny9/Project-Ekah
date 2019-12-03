@@ -114,7 +114,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
                 <p id="modal-date">Date</p><br>
                 <p id=modal-start>Heure</p><br>
-                <p id="modal-fin">Duree</p><br>
+                <p id="modal-fin">Durée</p><br>
 
                 <p id="modal-adresse">Adresse</p><br>
                 <p id="modal-prix">Prix</p><br>
