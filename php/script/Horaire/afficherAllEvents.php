@@ -65,17 +65,29 @@
         if($duree != "vide"){
           $dispo = $facilitateur[$i]->getDisponibilite();
 
-          for ($k=0; $k < sizeof($dispo); $k++) {
-            if ($duree == "60") {
-              if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes")) == $dispo[$k]->getHeureDebut()) {
-                $dispo[$j]->setEtat(0);
+          for ($k=0; $k < sizeof($dispo); $k++) {       //Pour toutes les dispo, compare dispo[$j] avec dispo[k] pour 30 minutes après la dispo
+
+            for ($l=0; $l < sizeof($dispo); $l++) {     //Pour toutes les dispo, compare dispo[$j] avec dispo[l] pour 30 minutes avant la dispo
+              if($duree == "30"){
+                if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes")) == $dispo[$k]->getHeureDebut()) {   //Si y'a une dispo 30 minutes avant (deplacement)
+                  if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "-30 minutes")) == $dispo[$l]->getHeureDebut()) { //Si y'a une dispo 30 minutes avant (deplacement)
+                    $dispo[$j]->setEtat(0);
+                  }
+                }
+              }else if ($duree == "60") {
+                if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+60 minutes")) == $dispo[$k]->getHeureDebut()) {   //Si il y a une autre dispo pour le déplacement
+
+                  if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "-30 minutes")) == $dispo[$l]->getHeureDebut()) { //Si y'a une dispo 30 minutes avant (deplacement)
+                    $dispo[$j]->setEtat(0);
+                  }
+                }
+              }elseif ($duree == "90") {
+                if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+90 minutes")) == $dispo[$k]->getHeureDebut()) {
+                  if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "-30 minutes")) == $dispo[$l]->getHeureDebut()) { //Si y'a une dispo 30 minutes avant (deplacement)
+                    $dispo[$j]->setEtat(0);
+                  }
+                }
               }
-            }elseif ($duree == "90") {
-              if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+60 minutes")) == $dispo[$k]->getHeureDebut()) {
-                $dispo[$j]->setEtat(0);
-              }
-            }else{
-              $dispo[$j]->setEtat(0);
             }
           }
         }
