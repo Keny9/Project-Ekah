@@ -127,13 +127,6 @@ if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($i
   // Redirect
 }
 
-  // Créer la réservation
-  $reservation = new Reservation(null, $id_paiement, $id_emplacement, null, $id_activite, null, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur);
-  // Insert la reservation et get l'id de son suivi
-  $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
-
-  //Réserver la disponibilité choisi
-  $gHoraire->reserverDispo($id_dispo);
   $disponibilites = $facilitateur->getDisponibilite();
 
   //Réserver les autres dispo dépendament de la durée
