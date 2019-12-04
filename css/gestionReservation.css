@@ -200,9 +200,12 @@
  }
  .reservationMain{
    width:800px;
-   height:40px;
+   height:950px;
    margin-left:500px;
    margin-bottom:1200px;
+   border:1px solid gray;
+   border-style: ridge;
+   padding: 8px;
  }
  .reservationHeader{
    background-color:#034E54;
@@ -215,7 +218,7 @@
    height:200px;
  }
  .imgPrincipal{
-   width:800px;
+   width:782px;
    height:250px;
    float:left
  }
@@ -229,7 +232,8 @@
    transform: translate(-50%, -50%);
  }
  .titreReservation{
-   margin-left:10px;
+   margin-left:15px;
+   margin-top:15px;
    color:#034E54;
  }
  .duree{
@@ -282,7 +286,7 @@
 }
 .ouverture{
   transition: background-color 0.1s ease;
-  background-color:#FF00FF;
+  background-color:#adff2f;
 }
 .selectionne{
   transition: background-color 2s ease;
@@ -369,11 +373,16 @@
   color: #f0592a;
 }
 .bouton-re-que{
-  width: 110px;
+  width: 120px;
   height: 35px;
-  background-color: #000;
-  border: 1px solid #000;
-  color: #FFFFFF;
+  font-size: 15px;
+  color:#FFF;
+  background-color:#614051;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  margin-left:80px;
+  margin-top:15px;
 }
 
 .btn-modal-insc{

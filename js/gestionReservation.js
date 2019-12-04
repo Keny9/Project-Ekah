@@ -29,8 +29,8 @@
    let activite = $('#atelier').find('option:selected').val();
 
    date = date + " " + heure+ ":00";
-   console.log(activite);
-
+   //console.log(activite);
+   
    $.ajax({
      type: "POST",
      async: false,
@@ -709,7 +709,7 @@ function ajouterActive(){
     return false;
   }
   function verifieNom(e){
-    var nomRegex = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:’ '-]+$/;
+    var nomRegex = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.:;’ '-]+$/;
     //console.log(nomRegex.test(e));
     return nomRegex.test(e);
   }
@@ -722,11 +722,11 @@ function ajouterActive(){
     return false;
   }
   if(!verifieNom(nom)){
-    console.log("mauvais nom");
+    console.log("Mauvais nom");
     return false;
   }
   if(!verifieNom(descriptionC)){
-    console.log("mauvais description");
+    console.log("Mauvaise description");
     return false;
   }
 
