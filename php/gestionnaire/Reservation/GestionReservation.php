@@ -733,7 +733,7 @@ public function selectAll($user_id = null){
     public function getAllReservationData($id_client = null){
       $conn = ($connexion = new Connexion())->do();
 
-      $requete = "SELECT r.id, r.id_etat, a.nom, r.date_rendez_vous, e.nom_lieu, p.montant, p.recu_url, s.id AS id_suivi, g.no_groupe, i.date_inscription,
+      $requete = "SELECT r.id, r.id_etat, a.nom, r.date_rendez_vous, r.heure_fin, e.nom_lieu, p.montant, p.recu_url, s.id AS id_suivi, g.no_groupe, i.date_inscription,
                   CONCAT(u.prenom, ' ' , u.nom) AS client, u.id AS client_id, CONCAT(f.prenom, ' ' , f.nom) AS facilitateur
                   FROM reservation r
                   LEFT JOIN utilisateur f ON r.id_facilitateur = f.id
