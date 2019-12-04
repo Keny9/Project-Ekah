@@ -482,7 +482,6 @@ function sendEmail(){
     url: '../../php/script/Reservation/mail_groupe.php',
     method: 'POST',
     dataType: 'json',
-    contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
       service: serviceGroupeInput.options[serviceGroupeInput.selectedIndex].value,
       entreprise: entreprise.value,
@@ -507,7 +506,7 @@ function sendEmail(){
     }, error: function(response){
       console.log(response);
       $("#loader").css("display", "none");
-      alert("Il y a eu un problème lors de l'envoi du courriel.");
+      alert("Error : Il y a eu un problème lors de l'envoi du courriel.");
       document.getElementById("confirmerDemandeGroupe").disabled = false;
       $("#form-reservation-groupe").css("display", "block");
     }
