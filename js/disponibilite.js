@@ -41,10 +41,7 @@ function changerBackground(){
 //Les event onclick pour les boutons
 function calendrierReady(calendar){
   $( "#month" ).click(function() {
-    window.location.reload();
-    // var $this = $(this);
-    // calendar.view($this.data('calendar-view'));
-    // changerBackground();
+    apresAjax();
   });
 
   $( "#next" ).click(function() {
