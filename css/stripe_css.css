@@ -19,7 +19,6 @@ body {
   flex-direction: column;
   min-height:100%;
 }
-
 /***********************************
 *   HEADER
 ************************************/
@@ -215,5 +214,10 @@ button:hover {
 }
 
 .bottom{
+  display:flex;
+  justify-content: center;
   margin-top: 10px;
+}
+.top{
+  margin-bottom:5px;
 }
