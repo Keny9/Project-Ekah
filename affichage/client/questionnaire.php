@@ -8,20 +8,20 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-10-11
 */
-
+session_start();
+$page_type=1;
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php';
 
-session_start();
-
-$page_type=1;
-include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
+$recu_paiement_url = $_SESSION['recu_paiement_url'];
+unset($_SESSION['recu_paiement_url']);
 
 // Si le questionnaire n'est pas set
 if (!isset($_SESSION['questionnaire'])){
   // Redirect sur la page de réservation
-  header('Location: /Project-Ekah/affichage/client/reservation.php?rComplete=1');
+  header('Location: /Project-Ekah/affichage/client/reservation.php?rComplete=1&recu_url='.$recu_paiement_url);
   exit();
 }
 
@@ -89,7 +89,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
         <p>Votre inscription est faite.</p>
         <p>
           Vous pouvez consulter votre facture en cliquant sur ce lien :
-          <a target="_blank" href="<?php echo $_SESSION['recu_paiement_url']; ?>">
+          <a target="_blank" href="<?php echo $recu_paiement_url ?>">
           Consulter votre reçu</a> - Une copie de votre reçu se trouve dans la liste de vos réservations.
         </p>
       <!--  <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>   -->
