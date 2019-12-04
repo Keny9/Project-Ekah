@@ -77,9 +77,6 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
 
   <h1 class="titreReservation">Gestion des Réservations</h1>
-
-  <button type="button" onclick="openModal();" class="bouton-re-que" name="button">Créer un atelier</button>
-
     <div class="tableauActivite">
       <?php
                      require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
@@ -93,7 +90,8 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                  ?>
                  <input type="button" class="submitSupprimer" onclick="supprime();" value="Désactivé" />
                  <input type="button" class="submitAjout" onclick="ajouterActive();" value="Ajouter" /></br>
-                 <input type="button" class="submitModifier" onclick="modifier();" value="Modifier" />
+                 <input type="button" class="submitModifier" onclick="modifier();" value="Modifier" /></br>
+                 <button type="button" onclick="openModal();" class="bouton-re-que" name="button">Créer un atelier</button>
     </div>
 
     <div class="reservationMain">
@@ -145,6 +143,8 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />
+
+    </div>
 
       <div class="group-input-inscr btn-espace">
        <a href="/Project-Ekah/affichage/admin/accueil_admin.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer submitRetour">Retour</button></a>
