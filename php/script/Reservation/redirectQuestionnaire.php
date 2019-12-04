@@ -126,6 +126,81 @@ if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($i
   // Redirect
 }
 
+
+  if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
+    $facilitateur = $gFacilitaeur->getDispo($id_dispo);
+    $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
+  }
+
+ // Set l'id de l'emplacement
+  $id_emplacement = null;
+  if(!empty($no_adresse) && !empty($rue) && !empty($ville)){ // Champs remplis, donc service 'À domicile'; requiert un emplacement
+    $id_emplacement = $gReservation->insertEmplacement($no_adresse, $rue, $ville);
+  }
+
+
+  //Calculer l'heure_fin de la réservation
+  $dispo = $gHoraire->getDispo($id_dispo);
+  $heure_fin = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+".$duree." minutes"));
+
+
+  // Créer la réservation
+  $reservation = new Reservation(null, $id_paiement, $id_emplacement, null, $id_activite, null, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur);
+  // Insert la reservation et get l'id de son suivi
+  $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
+
+  //Réserver la disponibilité choisi
+  $gHoraire->reserverDispo($id_dispo);
+  $disponibilites = $facilitateur->getDisponibilite();
+
+  //Réserver les autres dispo dépendament de la durée
+  $heure_debut = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "-30 minutes"));
+
+  if($duree == "30"){
+    for ($i=0; $i < sizeof($disponibilites); $i++) {
+      if($disponibilites[$i]->getHeureDebut() == $heure_fin){           //Réserver 30 minutes après dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){   //réservé 30 minutes avant dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }
+    }
+  }else if ($duree == "60") {
+    $heure_après = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+30 minutes"));
+
+    for ($i=0; $i < sizeof($disponibilites); $i++) {
+      if($disponibilites[$i]->getHeureDebut() == $heure_fin){           //Réserver la deuxieme dispo (le deuxieme 30 minutes car 1h)
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }else if($disponibilites[$i]->getHeureDebut() == $heure_après){   //réservé 30 minutes avant dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){   //réservé 30 minutes avant dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }
+    }
+  }else if($duree == "90"){
+    $heure_dispo_milieu = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+30 minutes"));
+    $heure_après = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+60 minutes"));
+
+    for ($i=0; $i < sizeof($disponibilites); $i++) {
+      if($disponibilites[$i]->getHeureDebut() == $heure_fin){                 //Réserver 30 minutes après dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }else if($disponibilites[$i]->getHeureDebut() == $heure_dispo_milieu){   //Réserver la deuxieme dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }else if($disponibilites[$i]->getHeureDebut() == $heure_après){         //Pour réserver la troisième dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){         //Pour réserver 30 minutes avant une dispo
+        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+      }
+    }
+  }
+
+ // L'activité ne contient pas de questionnaire
+ if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
+   echo "Il n'y a pas de questionnaire pour cette activité\n";
+   echo "Réservation complétée";
+
+   // Redirect
+ }
+
 // L'activité contient un questionnaire
 $questionnaire = $questionnaireArray[0];
 $_SESSION['questionnaire'] = $questionnaire;
