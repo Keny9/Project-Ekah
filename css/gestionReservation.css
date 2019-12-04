@@ -200,9 +200,12 @@
  }
  .reservationMain{
    width:800px;
-   height:40px;
+   height:950px;
    margin-left:500px;
    margin-bottom:1200px;
+   border:1px solid gray;
+   border-style: ridge;
+   padding: 8px;
  }
  .reservationHeader{
    background-color:#034E54;
@@ -215,7 +218,7 @@
    height:200px;
  }
  .imgPrincipal{
-   width:800px;
+   width:782px;
    height:250px;
    float:left
  }
@@ -229,7 +232,8 @@
    transform: translate(-50%, -50%);
  }
  .titreReservation{
-   margin-left:10px;
+   margin-left:15px;
+   margin-top:15px;
    color:#034E54;
  }
  .duree{

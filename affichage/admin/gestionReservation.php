@@ -94,6 +94,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />
+    </div>
 
       <div class="group-input-inscr btn-espace">
        <a href="/Project-Ekah/affichage/admin/accueil_admin.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer submitRetour">Retour</button></a>
