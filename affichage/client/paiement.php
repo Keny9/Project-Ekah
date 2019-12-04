@@ -63,7 +63,8 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
  <body>
    <div class="body-container">
      <div class="top">
-        <img src="../../img/powered_by_stripe.png" alt="Powered by Stripe" title="Powered by Stripe">
+        <img src="../../img/powered_by_stripe.png" alt="Powered by Stripe" title="Powered by Stripe"><br>
+        <label></label>
      </div>
      <div class="body">
        <div class="header">
@@ -81,7 +82,7 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
        <div class="main">
          <div class="info-container">
            <div class="item">
-             <label>Individu :</label>
+             <label>Client :</label>
              <span><?php echo $client['prenom']." ".$client['nom'] ?></span>
            </div>
            <div class="item">

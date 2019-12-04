@@ -35,6 +35,14 @@ $(document).ready(function(){
       }},
       {"data": "nom_lieu"},
       {"data": "date_rendez_vous"},
+      // {"data": "heure_fin"},
+      {"data": null,
+      render: function(data, type, row){
+        let date = data.heure_fin;
+        date = date.substr(date.length - 8);
+        date =  date.slice(0, date.length -3);
+        return date;
+      }},
       {"data": null,
       render: function(data, type, row){
         return data.montant + " $";
