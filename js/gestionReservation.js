@@ -29,8 +29,8 @@
    let activite = $('#atelier').find('option:selected').val();
 
    date = date + " " + heure+ ":00";
-   console.log(activite);
-
+   //console.log(activite);
+   
    $.ajax({
      type: "POST",
      async: false,
