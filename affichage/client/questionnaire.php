@@ -8,20 +8,20 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-10-11
 */
-
+session_start();
+$page_type=1;
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php';
 
-session_start();
-
-$page_type=1;
-include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
+$recu_paiement_url = $_SESSION['recu_paiement_url'];
+unset($_SESSION['recu_paiement_url']);
 
 // Si le questionnaire n'est pas set
 if (!isset($_SESSION['questionnaire'])){
   // Redirect sur la page de réservation
-  header('Location: /Project-Ekah/affichage/client/reservation.php?rComplete=1');
+  header('Location: /Project-Ekah/affichage/client/reservation.php?rComplete=1&recu_url='.$recu_paiement_url);
   exit();
 }
 
@@ -85,10 +85,15 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
       </div>
 
       <div class="reservation">
-        <p>Bravo, votre inscription est faite.</p>
-        <p>Vous pouvez télécharger votre facture en cliquant sur ce lien : <a href="<?php echo $_SESSION['recu_paiement_url']; ?>">Télécharger reçu</a> </p>
-        <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>
-        <div class="txt-explication">À titre préparatif, nous aimerions apprendre à mieux vous connaître.</div>
+        <br>
+        <p>Votre inscription est faite.</p>
+        <p>
+          Vous pouvez consulter votre facture en cliquant sur ce lien :
+          <a target="_blank" href="<?php echo $recu_paiement_url ?>">
+          Consulter votre reçu</a> - Une copie de votre reçu se trouve dans la liste de vos réservations.
+        </p>
+      <!--  <div class="txt-reservation txt-bienv txt-question">Remplir les champs suivants</div><br>   -->
+        <div class="txt-explication">À titre préparatif, nous aimerions que vous remplissez ce questionnaire.</div>
 
         <form class="form-reservation-question" id="form-reservation-question" action="#" method="post">
           <div id="form-questions">
@@ -100,7 +105,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
             <p>*Ces informations resteront confidentielles au Collectif Ekah</p>
           </div>
           <div class="group-input-inscr">
-            <p class="label-question">Signez et datez la déclaration</p>
+            <p class="label-question">Veuiller dater et signer le questionnaire rempli</p>
             <div class="group-input-inscr">
               <label for="signature" class="label-dec">Signature</label>
               <input type="text" name="signature" id="signature" value="" class="input-inscr input-question-dec">

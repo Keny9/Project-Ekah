@@ -31,11 +31,11 @@
           </div>
           <div class="modal-body">
             <p>Vous souhaitez changer votre mot de passe?</p>
-            <span>Insérez votre mot de passe <b>actuel</b></span>
+            <span>Insérer votre mot de passe <b>actuel</b></span>
             <input type="password" name="mot-de-passe-actuel" id="mot-de-passe-actuel" value="">
-            <span>Insérez votre <b>nouveau</b> mot de passe</span>
+            <span>Insérer votre <b>nouveau</b> mot de passe</span>
             <input type="text" name="mot-de-passe-nouveau" id="mot-de-passe-nouveau" value="">
-            <span>Confirmez votre nouveau mot de passe</span>
+            <span>Confirmer votre nouveau mot de passe</span>
             <input type="text" class="mb-2" name="mot-de-passe-confirmation" id="mot-de-passe-confirmation" value="">
           </div>
           <div class="modal-footer">

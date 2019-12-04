@@ -42,10 +42,22 @@ session_start();
       <div class="top-img">
         <img src="../../img/activite/operationMPO.jpg" alt="Mouvement Intuitif">
         <div class="shade"></div>
-        <p class="txt-centered">Mes rendez-vous</p>
+        <p class="txt-centered">Mes réservations</p>
       </div>
       <div class="reservation">
         <div id="txtConsulter" class="txt-consulter">Jettez un petit coup d'oeil à vos réservations</div>
+
+        <div class="legende">
+          <div class="legende-carr">
+            <div id="carre1" class="carre"></div><span class="txt-legende">Réservation annulée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre2" class="carre"></div><span class="txt-legende">Réservation complétée</span>
+          </div>
+          <div class="legende-carr">
+            <div id="carre4" class="carre"></div><span class="txt-legende">Réservation à venir</span>
+          </div>
+        </div>
 
         <div class="block-tbl">
           <table id="table_reservation" class="cell-border hover row-border">

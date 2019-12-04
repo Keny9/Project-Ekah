@@ -37,7 +37,7 @@ session_destroy();
         </div>
         <form class="" id="formulaireLogin" action="" method="post">
           <div class="group-input-inscr">
-            <input type="text" name="courriel" id="courriel" class="input-inscr" placeholder="Courriel" value="">
+            <input type="text" name="courriel" id="courriel" class="input-inscr" placeholder="Adresse courriel" value="">
           </div>
           <div class="group-input-inscr">
             <input type="password" name="motDePasse" id="motDePasse" class="input-inscr" placeholder="Mot de passe" value="">
@@ -52,7 +52,7 @@ session_destroy();
           </div>
           <div class="group-input-inscr mt-less">
             <div class="link-box">
-              <a href="#" class="link-inscr">Mot de passe oublié ?</a>
+              <a href="/Project-Ekah/affichage/global/password-reset.php" class="link-inscr">Mot de passe oublié ?</a>
             </div>
           </div>
         </form>

@@ -29,6 +29,7 @@ $activites = $gActivite->getAllActivite();
     <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/consulter-reservation.css">
@@ -38,7 +39,6 @@ $activites = $gActivite->getAllActivite();
     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script type="text/javascript" src="../../js/global.js"></script>
     <script type="text/javascript" src="../../js/reservation.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
     <title>Réservation</title>
   </head>
   <body>
@@ -48,12 +48,16 @@ $activites = $gActivite->getAllActivite();
 
 
       <?php
-      // TODO: Dans ce modal,indiquer au client l'url pour son recu avec $_SESSION['recu_paiement_url']
-        if(isset($_GET['rComplete']) && $_GET['rComplete'] == 1){
+        if(isset($_GET['rComplete']) && $_GET['rComplete'] == 1 ){
+          if(isset($_GET['recu_url'])) $recu_url = $_GET['recu_url'];
+          else $recu_url = "";
           echo "<div id='modal-complete-reservation' class='modal-modif-reservation'>
             <div class='modal-content'>
               <div class='modal-align-middle-mr'>
-                <div class='txt-reservation txt-bienv'>Réservation complétée. <br><br> Merci de faire confiance à l'équipe d'Ekah. </div>
+                <div class='txt-reservation txt-bienv'>Réservation complétée. <br><br>
+                 Merci de faire confiance à l'équipe d'Ekah. <br>
+                 <a href='$recu_url' target='_blank'>Reçu du paiement</a> <br>
+                 Aussi consultable dans la liste de vos réservation.</div>
                   <div class='modal-align-middle btn-modal-insc modal-align-middle-mr'>
                     <button id='btn-confirm-reservation' type='submit' class='btn-confirmer input-court btn-coller' name='button'>Terminer</button>
                   </div>
@@ -68,11 +72,11 @@ $activites = $gActivite->getAllActivite();
       <div class="top-img">
         <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
-        <p class="txt-centered">Réservation</p>
+        <p class="txt-centered">Faire une réservation</p>
       </div>
 
       <div class="reservation">
-        <div class="txt-reservation txt-bienv">Réservez dès maintenant</div>
+        <div class="txt-reservation txt-bienv">Réserver dès maintenant</div>
 
         <form class="form-reservation" id="form-reservation" action="" method="post">
           <div class="group-input-inscr">
@@ -81,23 +85,19 @@ $activites = $gActivite->getAllActivite();
               <select class="select-inscr input-long" name="service" id="service" onchange="changeListe(this);">
                 <option class="option-vide" value="vide" selected="selected">Service</option>
                 <?php
-                // TODO: cleaner ça
                 $separator = 1;
-              //  echo "<option disabled class=\"select-section\">EN ATELIER</option>";
                 echo "<option disabled class=\"select-section\">À DOMICILE</option>";
                 foreach ($activites as $activite){
                   if ($activite->getId_type() == 4) continue;
 
                   if ($activite->getId_type() != $separator){
                     $separator = $activite->getId_type();
-                    /*if($separator == 1) echo "<option disabled class=\"select-section\">À DOMICILE</option>";
-                    else*/if($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
+                    if($separator == 3) echo "<option disabled class=\"select-section\">EN LIGNE</option>";
                   }
 
                   if($activite->getId_type() == 2 || $activite->getId_type() == 3){
                     echo"<option value=\"".$activite->getIdentifiant()."\">".$activite->getNom()."</option>";
                   }
-
                 }
                 ?>
               </select>
@@ -124,7 +124,7 @@ $activites = $gActivite->getAllActivite();
             <div class="group-input-inscr">
               <div class="box-select">
                 <select class="select-inscr input-long" name="nbParticipant" id="nbParticipant" onchange="changeListe(this);">
-                  <option disabled selected value="">Nombre de participant</option>
+                  <option disabled selected value="">Nombre de participant(s)</option>
                   <option value="1">1</option>
                   <option value="1">2</option>
                   <option value="1">3</option>
@@ -157,7 +157,7 @@ $activites = $gActivite->getAllActivite();
           </div>
 
           <div class="group-input-inscr">
-            <label class="label-reservation date-heure label-long">Sélectionner la date et l'heure désiré</label>
+            <label class="label-reservation date-heure label-long">Sélectionner la date et l'heure désirée</label>
             <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/calendrier.php'; ?>
           </div>
 

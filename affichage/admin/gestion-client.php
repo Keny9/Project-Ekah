@@ -17,7 +17,7 @@ if(isset($_GET['client'])){ //Un client a été sélectionné à partir de la pa
   $idClient = $_GET['client'];
 }
 else{
-  $idClient = -1; 
+  $idClient = -1;
 }
 ?>
 
@@ -131,7 +131,7 @@ else{
 
         <div class="group-input-inscr">
           <div class="error-courriel" id="error-courriel">
-            <p>Cette adresse courriel est déjà utilisé.*</p>
+            <p>Cette adresse courriel est déjà utilisée.*</p>
           </div>
           <label class="label-consulter">Adresse courriel</label>
           <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">

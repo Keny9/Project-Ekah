@@ -22,8 +22,9 @@
 
   // $idFacilitateur = -1;
   // $date = "2019-11-29";
-  // $duree = "60";
+  // $duree = "30";
   // $region = 1;
+  // $service = 11;
 
   $gestionFacilitateur = new GestionFacilitateur();
 
@@ -42,36 +43,38 @@
   $ga = new GestionActivite();
   $activite = $ga->getActivite($service);
 
-  for ($i=0; $i < sizeof($facilitateur); $i++) {
+  for ($i=0; $i < sizeof($facilitateur); $i++) {    //Pour tous les faciltiatateurs
     $dispo = $facilitateur[$i]->getDisponibilite();
 
     if (isset($dispo)) {
-      for ($j=0; $j < sizeof($facilitateur[$i]->getDisponibilite()); $j++) {
+      for ($j=0; $j < sizeof($facilitateur[$i]->getDisponibilite()); $j++) {    //Pour toutes les dispo
         //Ajout de la durée
         if($duree != "vide"){
           $dispo = $facilitateur[$i]->getDisponibilite();
 
-          for ($k=0; $k < sizeof($dispo); $k++) {
+          for ($k=0; $k < sizeof($dispo); $k++) {       //Pour toutes les dispo, compare dispo[$j] avec dispo[k] pour 30 minutes après la dispo
 
+            for ($l=0; $l < sizeof($dispo); $l++) {     //Pour toutes les dispo, compare dispo[$j] avec dispo[l] pour 30 minutes avant la dispo
+              if($duree == "30"){
+                if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes")) == $dispo[$k]->getHeureDebut()) {   //Si y'a une dispo 30 minutes avant (deplacement)
+                  if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "-30 minutes")) == $dispo[$l]->getHeureDebut()) { //Si y'a une dispo 30 minutes avant (deplacement)
+                    $dispo[$j]->setEtat(0);
+                  }
+                }
+              }else if ($duree == "60") {
+                if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+60 minutes")) == $dispo[$k]->getHeureDebut()) {   //Si il y a une autre dispo pour le déplacement
 
-            if ($duree == "60") {
-              if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "60";
-                // echo "<br />";
-                $dispo[$j]->setEtat(0);
+                  if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "-30 minutes")) == $dispo[$l]->getHeureDebut()) { //Si y'a une dispo 30 minutes avant (deplacement)
+                    $dispo[$j]->setEtat(0);
+                  }
+                }
+              }elseif ($duree == "90") {
+                if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+90 minutes")) == $dispo[$k]->getHeureDebut()) {
+                  if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "-30 minutes")) == $dispo[$l]->getHeureDebut()) { //Si y'a une dispo 30 minutes avant (deplacement)
+                    $dispo[$j]->setEtat(0);
+                  }
+                }
               }
-            }elseif ($duree == "90") {
-              if (date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+60 minutes")) == $dispo[$k]->getHeureDebut()) {
-                // echo $dispo[$k]->getHeureDebut() . " = " .  date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut() . "+30 minutes"));
-                // echo $dispo[$j]->getHeureDebut();
-                // echo "90";
-                // echo "<br />";
-                $dispo[$j]->setEtat(0);
-              }
-            }else{
-              $dispo[$j]->setEtat(0);
             }
           }
         }

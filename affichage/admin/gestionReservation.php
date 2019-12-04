@@ -8,6 +8,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 require_once("../../php/gestionnaire/Activite/gestionActivite.php");
 require_once("../../php/gestionnaire/Duree/gestionDuree.php");
 require_once("../../php/gestionnaire/Question/gestionQuestion.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +21,65 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <link rel="stylesheet" href="../../css/gestionReservation.css">
   <link rel="stylesheet" href="../../css/main.css">
+
   <script type="text/javascript" src="../../js/global.js"></script>
   <script type="text/javascript" src="../../js/gestionReservation.js"></script>
-  <title>Gestion Reservation</title>
+  <title>Gestion Réservation</title>
 </head>
 
 <body onload="ouvrir()">
   <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 <main class="mainReservation">
-  <h1 class="titreReservation">Gestion des Réservation</h1>
+
+  <!-- MODAL -->
+          <div id="modal" class="modal-modif-reservation">
+            <div class="modal-content">
+                <div class="modal-align-middle-mr">
+
+                  <img src="../../img/activite/relaxe.jpg" class="img-modal" alt="Image">
+
+                  <h3 id="modal-titre" class="modal-titre">Créer un atelier</h3>
+
+                  <label for="date">Date (2000-01-31)</label><BR />
+                  <input id="date" class="input-atelier" type="text" name="date" value="" placeholder="date (2000-01-31)"><br><br>
+
+                  <label for="heure">Heure (Ex: 08:30 / 18:00)</label><BR />
+                  <input id="heure" class="input-atelier" type="text" name="heure" value="" placeholder="Heure (Ex: 08:30 / 18:00)"><br><br>
+
+                  <label for="duree">Durée (En minute)</label><BR />
+                  <input id="duree" class="input-atelier" type="text" name="duree" value="" placeholder="Minute (Ex: 30 / 90)"><br><br>
+
+                  <label for="adresse">Adresse</label><BR />
+                  <input id="adresse" class="input-atelier" type="text" name="adresse" value="" placeholder="Adresse (16 rue étoile, Sherbrooke, J1E 1J1)"><br><br>
+
+                  <label for="atelier">Atelier</label><BR />
+                  <select class="select-inscr input" name="atelier" id="atelier">
+                    <?php
+                      require_once '../../php/gestionnaire/Activite/gestionAffichageActivite.php';
+                      $gaa = new GestionAffichageActivite();
+                      echo $gaa->getAllAtelier();
+                    ?>
+                  </select>
+
+                  <!-- <label for="prix">Prix</label><BR />
+                  <input id="prix" class="input-atelier" type="text" name="prix" value="" placeholder="Pirx (Ex: 30 / 90)"><br><br> -->
+
+                </div>
+              <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
+                <button type="submit" class="btn-confirmer input-court btn-coller" onclick="ajouterAtelier()" name="button">Créer</button>
+                <button id="btn-annuler" type="button" onClick="closeModal()" class="btn-confirmer input-long btn-compte-existant btn-coller" name="button">Annuler</button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+  <h1 class="titreReservation">Gestion des Réservations</h1>
+
+  <button type="button" onclick="openModal();" class="bouton-re-que" name="button">Créer un atelier</button>
+
     <div class="tableauActivite">
       <?php
                      require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
@@ -46,10 +97,10 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     </div>
 
     <div class="reservationMain">
-      <h2 class="texteEkha">Aperçu de la reservation</h2>
+      <h2 class="texteEkha">Aperçu de la réservation</h2>
       <div class="reservationHeader"><img class="imgHeader"src="../../img/logo_ekah_header.png" alt="Ekah"></div>
       <div class="reservationImg"><img class="imgPrincipal"src="../../img/imgDehors.jpg" alt="Soins a domicile"> <div class="titreImg" id="titre"></div></div>
-      <h3 class="reservez texteEkha">Réservez dès maintenant</h3></br>
+      <h3 class="reservez texteEkha">Réserver dès maintenant</h3></br>
       <h6 class="choisirServ texteEkha">Nom du service:</h6>
       <h6 class="choisirDuree texteEkha">Quelles durées sont acceptées:</h6></br></br>
 
@@ -74,7 +125,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     <div id="typeSelect" class="cacher">
       yo
     </div>
-    <h6 class="duree texteEkha">Duree:</h6>
+    <h6 class="duree texteEkha">Durée:</h6>
     <?php
                    require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
@@ -90,7 +141,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                     echo $gagr->getQuestionActivite(1);
                   ?>
       <input type="button" class="submitSupprimerQuestion" onclick="supprimerQuestion();" value="Supprimer" />
-    <h4 class="descriptionC texteEkha">Ajouter des questions specifique</h4>
+    <h4 class="descriptionC texteEkha">Ajouter des questions spécifiques</h4>
       <input class="inputQuestion" type="text"  placeholder="Question" id="question"></input>
       <input class="inputNb" type="text"  placeholder="Nombre de lignes de la case" id="nbLigne"></input>
       <input type="button" class="submitAjoutQuestion" onclick="ajouterQuestionnaire();" value="Ajouter" />

@@ -7,11 +7,21 @@
  * Version :     1.0
  * Date de la dernière modification : 2019-10-30
  */
+ var currentRowData = null;
+ var idReservation = null;
 
 $(document).ready( function () {
   $('#txtConsulter').css('margin-top',30);
 
-$('#table_reservation').DataTable({
+  selectedLine = null; //La ligne sélectionné
+  today = new Date(); //Obtenir la date d'aujourd'hui
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  today = yyyy + '-' + mm + '-' + dd;
+
+table = $('#table_reservation').DataTable({
   "ajax":{
     "url": "../../php/script/Reservation/dataReservationClient.php",
     "dataSrc": ""
@@ -41,5 +51,38 @@ $('#table_reservation').DataTable({
   responsive: false
 });
 jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+
+setTimeout(function(){
+  table.rows().every(function(rowIdx,tableLoop,rowLoop){ //Loop au travers de chaque ligne de dataTable
+    var data = this.data();
+    var row = table.row(rowIdx);
+    var dateL = data.date_rendez_vous.slice(0,10);
+
+    tr = table.row(rowIdx).node(); //Recupere le tr (la ligne en html)
+    child = tr.children; //Obtenir les elements de la ligne
+
+    if(dateL < today && data.id_etat == 1){
+      tr.setAttribute("id", "row" + rowIdx);
+      tr.style.backgroundColor = "#cefdce";
+
+      $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
+        $(this).css("background-color", "whitesmoke");
+        },function(){
+        $(this).css("background-color", "#cefdce");
+      });
+    }
+    else if(data.id_etat == 2){
+      tr.setAttribute("id", "row" + rowIdx);
+      tr.style.backgroundColor = "#ffc2b3";
+
+      $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
+        $(this).css("background-color", "whitesmoke");
+        },function(){
+        $(this).css("background-color", "#ffc2b3");
+      });
+    }
+   });
+}, 250);
+
 
 });

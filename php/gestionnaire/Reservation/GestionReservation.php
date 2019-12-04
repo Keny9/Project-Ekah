@@ -23,7 +23,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireRes
 
 class GestionReservation{
   //Retourne tous les ateliers
-    public function getAllAteliers($id){
+    public function getAllAteliers(){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
       $reservation = null;
@@ -84,6 +84,36 @@ class GestionReservation{
         return $reservation;
       }
 
+  //Retourne une réservation à l'Aide d'un id
+    public function getReservation($id){
+      $conn = ($connexion = new Connexion())->do();
+      $reservation = null;
+
+      $requete= "SELECT * FROM reservation
+                WHERE id = ?";
+
+      $stmt = $conn->prepare($requete);
+      $stmt->bind_param('i', $id);
+      $stmt->execute();
+      $result = $stmt->get_result();
+
+      if(!$result){
+        trigger_error($conn->error);
+      }
+
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $reservation = new Reservation($row['id'], $row['id_paiement'],
+                                         $row['id_emplacement'], $row['id_suivi'],
+                                         $row['id_activite'], $row['id_groupe'],
+                                         $row['date_rendez_vous'],
+                                         $row['id_region'], $row['heure_fin'], $row['id_facilitateur']);
+          $reservation->setIdEtat($row['id_etat']);
+        }
+      }
+      return $reservation;
+    }
+
     //Retourne l'emplacement d'une reservation à l'aide d'un id
       public function getEmplacementAtelier($id){
         $conn = ($connexion = new Connexion())->do();
@@ -137,7 +167,8 @@ class GestionReservation{
                                       $row['id_etat'],
                                       $row['nom'],
                                       $row['description_breve'],
-                                      $row['description_longue']);
+                                      $row['description_longue'],
+                                      $row['cout']);
           }
         }
 
@@ -185,7 +216,80 @@ class GestionReservation{
       }
     }
 
+    /**
+     * Insert un nouvel atelier
+     */
+  public function insertAtelier($reservation, $activite, $adresse, $id_facilitateur, $duree){
+    $conn = new Connexion();
 
+    try {
+      $conn->do()->begin_transaction();
+      $cout = $activite->getCout();
+
+      //Insert le paiement
+      $type_paiement = 2;
+      $date = "2019-01-01";
+      $cout = $activite->getCout() . "00";
+
+      $stmt = $conn->do()->prepare("INSERT INTO paiement (id_type_paiement, montant, date_paiement)
+        VALUES (?, ?, ?);");
+      $stmt->bind_param('iis', $type_paiement, $cout, $date);
+      $stmt->execute();
+
+      $id_paiement = $conn->do()->insert_id;
+
+      //Insert l'emplacement
+      $id_type_emplacement = 1;
+
+      $stmt = $conn->do()->prepare("INSERT INTO emplacement (id_type_emplacement, nom_lieu)
+        VALUES (?, ?);");
+      $stmt->bind_param('is', $id_type_emplacement, $adresse);
+      $stmt->execute();
+
+      $id_emplacement = $conn->do()->insert_id;
+
+      //Insert Suivi
+      $temp = "Atelier";
+      $stmt = $conn->do()->prepare("INSERT INTO suivi (fait, commentaire)
+        VALUES (?, ?);");
+      $stmt->bind_param('ss', $temp, $temp);
+      $stmt->execute();
+
+      $id_suivi = $conn->do()->insert_id;
+
+      //Insert Groupe
+      $temp = 3;
+      $null = "Atelier";
+      $stmt = $conn->do()->prepare("INSERT INTO groupe (id_type_groupe, nom_entreprise, nom_organisateur, nb_participant)
+        VALUES (?, ?, ?, ?);");
+      $stmt->bind_param('issi', $temp, $null, $null, $temp);
+      $stmt->execute();
+
+      $id_groupe = $conn->do()->insert_id;
+
+      $heure_fin = date("Y-m-d H:i:s", strtotime($reservation->getDateRendezVous() . "+".$duree." minutes"));
+
+
+      $stmt = $conn->do()->prepare("INSERT INTO reservation (id, id_paiement, id_emplacement, id_suivi, id_activite, id_groupe, id_facilitateur, date_rendez_vous, id_region, heure_fin, id_etat)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+      $id_activite = $activite->getIdentifiant();
+      $date = $reservation->getDateRendezVous();
+      $temp = 1;
+      $stmt->bind_param('iiiiiiisisi', $id_groupe, $id_paiement, $id_emplacement, $id_suivi, $id_activite, $id_groupe, $id_facilitateur, $date, $temp, $heure_fin, $temp);
+      $stmt->execute();
+
+      // Commit la transaction
+      $conn->do()->commit();
+      return true;
+    } catch (Exception $e) {
+      // Rollback la transaction
+      $conn->do()->rollback();
+      echo "Erreur try-catch : ".$e."<br>";
+      return false;
+    }
+
+  }
 
 
   /**

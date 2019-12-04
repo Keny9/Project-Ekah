@@ -128,7 +128,7 @@ session_start();
            </div>
            <div class="group-input-inscr">
              <div class="error-courriel" id="error-courriel">
-               <p>Cette adresse courriel est déjà utilisé.*</p>
+               <p>Cette adresse courriel est déjà utilisée.*</p>
              </div>
              <input type="text" name="courriel" id="courriel" class="input-inscr input-long" placeholder="Courriel" value="">
            </div>

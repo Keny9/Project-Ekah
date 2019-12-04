@@ -35,7 +35,7 @@
     <li>
       <a class="link-menu" href="/Project-Ekah/affichage/admin/consulter-reservation.php">
         <span id="icon-book" class="picto-menu"></span>
-        <span class="text-menu"><p>Consulter les réservations</p></span>
+        <span class="text-menu"><p>Les réservations</p></span>
       </a>
     </li>
     <hr class="hr-menu">
