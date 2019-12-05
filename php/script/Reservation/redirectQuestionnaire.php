@@ -98,7 +98,7 @@ $id_paiement = $conn->insert_id;
 
 if($id_facilitateur == -1){ // Aucun facilitateur choisi
   $facilitateur = $gFacilitaeur->getDispo($id_dispo);
-  $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
+  $id_facilitateur = $facilitateur->getId();
 }
 
 // Set l'id de l'emplacement

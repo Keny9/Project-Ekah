@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
 * Page de reservation ou le client repond aux questions en lien avec le service choisi
 *
@@ -8,12 +9,12 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-10-11
 */
+$page_type=1;
+
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
-session_start();
-$page_type=1;
 
 $recu_paiement_url = $_SESSION['recu_paiement_url'];
 unset($_SESSION['recu_paiement_url']);
