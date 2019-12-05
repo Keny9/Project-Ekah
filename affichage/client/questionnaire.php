@@ -51,11 +51,11 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/reservation_questionnaire.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-    <script type="text/javascript" src="../../js/global.js"></script>
-    <script type="text/javascript" src="../../js/reservation.js"></script>
-    <script type="text/javascript" src="../../js/questionnaire.js"></script>
-    <script type="text/javascript">
+    <script src="../../js/jquery-3.4.1.slim.js"></script>
+    <script src="../../js/global.js"></script>
+    <script src="../../js/reservation.js"></script>
+    <script src="../../js/questionnaire.js"></script>
+    <script>
       const SUIVI_ID = <?php echo $_GET['res_id']; ?>;
     </script>
     <title>Réservation - Questions</title>

@@ -34,7 +34,7 @@
        <div class="modal-content">
          <div class="modal-header">
            <h4 class="modal-title">Mes fichiers</h4>
-           <button type="button"id="ajouter-fichier-perso-btn-close" class="close" data-dismiss="modal">&times;</button>
+           <button type="button" id="ajouter-fichier-perso-btn-close" class="close" data-dismiss="modal">&times;</button>
          </div>
          <div class="modal-body">
            <p>Vous souhaitez ajouter des fichiers personnels à votre dossier?</p>
@@ -47,14 +47,14 @@
            </div>
          </div>
          <div class="modal-footer">
-           <button type="button" id="ajouter-fichier-perso-btn-sauvegarder"class="btn btn-default mr-auto" data-dismiss="modal">Sauvegarder le changement</button>
-           <button type="button" id="ajouter-fichier-perso-btn-fermer"class="btn btn-default" data-dismiss="modal">Fermer</button>
+           <button type="button" id="ajouter-fichier-perso-btn-sauvegarder" class="btn btn-default mr-auto" data-dismiss="modal">Sauvegarder le changement</button>
+           <button type="button" id="ajouter-fichier-perso-btn-fermer" class="btn btn-default" data-dismiss="modal">Fermer</button>
          </div>
        </div>
      </div>
    </div>
 
-   <script type="text/javascript">
+   <script>
      $(document).ready(function(){
       $(document).on('change', '#formulaire-medical-fichier', function(){
         var fichier_medical = document.getElementById("formulaire-medical-fichier");
@@ -114,7 +114,7 @@
          },
          success:function(data)
          {
-           alert("Energistrement du fichier effectuté avec succès.");
+           alert("Enregistrement du fichier effectuté avec succès.");
          }
         });
       });

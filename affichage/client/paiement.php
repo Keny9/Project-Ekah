@@ -57,7 +57,8 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
    <title></title>
    <link rel="stylesheet" href="../../css/stripe_css.css">
    <script src="https://js.stripe.com/v3/"></script>
-   <script type="text/javascript" src="../../js/paiement.js"></script>
+   <script src="../../js/paiement.js"></script>
+   <title>Paiement</title>
 
  </head>
  <body>

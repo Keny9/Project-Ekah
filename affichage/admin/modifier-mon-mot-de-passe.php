@@ -27,7 +27,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Modification du mot de passe</h4>
-            <button type="button"id="modifier-mon-mot-de-passe-btn-close" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" id="modifier-mon-mot-de-passe-btn-close" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
             <p>Vous souhaitez changer votre mot de passe?</p>
@@ -39,8 +39,8 @@
             <input type="text" class="mb-2" name="mot-de-passe-confirmation" id="mot-de-passe-confirmation" value="">
           </div>
           <div class="modal-footer">
-            <button type="button" id="modifier-mon-mot-de-passe-btn-sauvegarder"class="btn btn-default mr-auto" data-dismiss="modal">Sauvegarder le changement</button>
-            <button type="button" id="modifier-mon-mot-de-passe-btn-fermer"class="btn btn-default" data-dismiss="modal">Fermer</button>
+            <button type="button" id="modifier-mon-mot-de-passe-btn-sauvegarder" class="btn btn-default mr-auto" data-dismiss="modal">Sauvegarder le changement</button>
+            <button type="button" id="modifier-mon-mot-de-passe-btn-fermer" class="btn btn-default" data-dismiss="modal">Fermer</button>
           </div>
         </div>
       </div>
