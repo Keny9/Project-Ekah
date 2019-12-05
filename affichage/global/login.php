@@ -25,13 +25,13 @@ session_destroy();
     <meta charset="utf-8">
     <meta name="description" content="Ekah est un collectif de facilitateurs, de thérapeutes, de professionnels de la santé et de yogis, qui vise le développement humain holistique.">
     <meta name="keywords" content="Ekah,ekah,ekah login,login ekah,ekah connexion,facilitateur,">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../css/inscription.css">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/login.css">
-    <script src="../../js/jquery-3.4.1.slim.js"></script>
-    <script src="../../js/login.js"></script>
+    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="../../js/login.js"></script>
     <title>Ekah - Bienvenue</title>
   </head>
   <body>

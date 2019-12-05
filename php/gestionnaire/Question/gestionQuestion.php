@@ -11,7 +11,7 @@
  */
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/Question.php";
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/Type_question.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/type_question.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/Ta_questionnaire_reservation_question.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php";
 

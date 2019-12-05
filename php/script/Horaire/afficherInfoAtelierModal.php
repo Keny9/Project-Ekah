@@ -1,5 +1,5 @@
 <?php
-  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
+  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/Gestionnaire/Reservation/GestionReservation.php';
 
   $id = $_POST['id'];
   // $id = 13;
