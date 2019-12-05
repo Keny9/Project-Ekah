@@ -35,6 +35,14 @@ $(document).ready(function(){
       }},
       {"data": "nom_lieu"},
       {"data": "date_rendez_vous"},
+      // {"data": "heure_fin"},
+      {"data": null,
+      render: function(data, type, row){
+        let date = data.heure_fin;
+        date = date.substr(date.length - 8);
+        date =  date.slice(0, date.length -3);
+        return date;
+      }},
       {"data": null,
       render: function(data, type, row){
         return data.montant + " $";
@@ -127,7 +135,7 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#cefdce";
 
-        child[7].children[0].onclick = function(){alreadyDone();}; //Fenêtre modal
+        child[8].children[0].onclick = function(){alreadyDone();}; //Fenêtre modal
 
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");
@@ -139,7 +147,7 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#ffc2b3";
 
-        child[7].children[0].onclick = function(){alreadyCancelled();}; //Fenêtre modal
+        child[8].children[0].onclick = function(){alreadyCancelled();}; //Fenêtre modal
 
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");

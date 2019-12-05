@@ -84,7 +84,7 @@ session_start();
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
-                 <option class="option-vide" value="vide" selected="selected">Pays</option> <!-- Definir la facon d'inclure les pays principaux -->
+                 <option class="option-vide" value="vide" selected="selected">Pays</option>
                  <option value="Canada">Canada</option>
                  <option value="États-Unis">États-Unis</option>
                </select>

@@ -13,7 +13,7 @@ session_start();
  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
 
  $gFacilitateur = new GestionFacilitateur();
  $arrFacilitateur = $gFacilitateur->getAllFacilitateurActif();
@@ -126,6 +126,7 @@ session_start();
                 <th class="all">Client</th>
                 <th class="min-desktop">Lieu</th>
                 <th class="min-desktop">Date/Heure</th>
+                <th class="min-desktop">Se termine</th>
                 <th class="min-desktop">Coût</th>
                 <th class="all">Facilitateur</th>
                 <th class="all">Facture</th>

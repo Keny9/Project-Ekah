@@ -13,7 +13,7 @@
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Facilitateur.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/disponibilite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Facilitateur/Disponibilite.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Region/Region.php";
 
 
@@ -420,11 +420,11 @@ class GestionFacilitateur{
       if(!$result){
         trigger_error($conn->error);
       }
-
       $disponibilite = null;
 
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
+          $disponibilite = $this->getAllDisponibiliteActive($row['id']);
           $facilitateur = new Facilitateur(
                                 $row['id'],  /*********Juste id ? Serveur web: erreur undefined index utilisateur.id*************/
                                 $row['nom'],

@@ -2,7 +2,7 @@
 session_start();
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php';
 $gh = new GestionHoraire();
 
 $id_dispo = $_GET['id_dispo'];
@@ -62,80 +62,88 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
 
  </head>
  <body>
-   <div class="body">
-     <div class="header">
-       <div class="item">
-         <img class="logo" src="../../img/icon_ekah.png" alt="Ekah Logo" title="Logo d'Ekah">
+   <div class="body-container">
+     <div class="top">
+        <img src="../../img/powered_by_stripe.png" alt="Powered by Stripe" title="Powered by Stripe"><br>
+        <label></label>
+     </div>
+     <div class="body">
+       <div class="header">
+         <div class="item">
+           <img class="logo" src="../../img/icon_ekah.png" alt="Ekah Logo" title="Logo d'Ekah">
+         </div>
+         <div class="item">
+           <label>Formulaire de paiement</label>
+         </div>
+         <div class="item">
+           <label>Collectif Ekah 2019</label>
+         </div>
        </div>
-       <div class="item">
-         <p>Formulaire de paiement</p>
+
+       <div class="main">
+         <div class="info-container">
+           <div class="item">
+             <label>Client :</label>
+             <span><?php echo $client['prenom']." ".$client['nom'] ?></span>
+           </div>
+           <div class="item">
+             <label>Service :</label>
+             <span><?php echo $service_nom ?></span>
+           </div>
+           <div class="item">
+             <label>Date :</label>
+             <span><?php echo $date ?></span>
+           </div>
+           <div class="item">
+             <label>Heure :</label>
+             <span><?php echo $time ?></span>
+           </div>
+           <div class="item">
+             <label>Durée :</label>
+             <span><?php echo $duree ?> minutes</span>
+           </div>
+           <div class="item">
+             <label>Lieu :</label>
+             <span><?php echo $emplacement ?></span>
+           </div>
+           <div class="item">
+             <label>Montant :</label>
+             <span><?php echo $prix_format ?> $ CAD</span>
+           </div>
+         </div>
        </div>
-       <div class="item">
-         <span>Collectif Ekah 2019</span>
+
+       <div class="main">
+         <form action="../../php/script/Reservation/redirectQuestionnaire.php" method="post" id="payment-form">
+           <input type="hidden" name="token" />
+           <div class="group">
+             <label>
+               <span>Numéro de carte</span>
+               <div id="card-number-element" class="field"></div>
+             </label>
+             <label>
+               <span>Date d'expiration</span>
+               <div id="card-expiry-element" class="field"></div>
+             </label>
+             <label>
+               <span>CVC</span>
+               <div id="card-cvc-element" class="field"></div>
+             </label>
+             <label>
+               <span>Code postal</span>
+               <input id="postal-code" name="postal_code" class="field" placeholder="J1N 1Z1" />
+             </label>
+           </div>
+           <div class="error"></div>
+           <button type="submit">Payer <?php echo $prix_format ?> $</button>
+
+         </form>
        </div>
      </div>
-
-     <div class="main">
-       <div class="info-container">
-         <div class="item">
-           <label>Individu :</label>
-           <span><?php echo $client['prenom']." ".$client['nom'] ?></span>
-         </div>
-         <div class="item">
-           <label>Service :</label>
-           <span><?php echo $service_nom ?></span>
-         </div>
-         <div class="item">
-           <label>Date :</label>
-           <span><?php echo $date ?></span>
-         </div>
-         <div class="item">
-           <label>Heure :</label>
-           <span><?php echo $time ?></span>
-         </div>
-         <div class="item">
-           <label>Durée :</label>
-           <span><?php echo $duree ?> minutes</span>
-         </div>
-         <div class="item">
-           <label>Lieu :</label>
-           <span><?php echo $emplacement ?></span>
-         </div>
-         <div class="item">
-           <label>Montant :</label>
-           <span><?php echo $prix_format ?> $ CAD</span>
-         </div>
-       </div>
-     </div>
-
-     <div class="main">
-       <form action="../../php/script/Reservation/redirectQuestionnaire.php" method="post" id="payment-form">
-         <input type="hidden" name="token" />
-         <div class="group">
-           <label>
-             <span>Numéro de carte</span>
-             <div id="card-number-element" class="field"></div>
-           </label>
-           <label>
-             <span>Date d'expiration</span>
-             <div id="card-expiry-element" class="field"></div>
-           </label>
-           <label>
-             <span>CVC</span>
-             <div id="card-cvc-element" class="field"></div>
-           </label>
-           <label>
-             <span>Code postal</span>
-             <input id="postal-code" name="postal_code" class="field" placeholder="J1N 1Z1" />
-           </label>
-         </div>
-         <div class="error"></div>
-         <button type="submit">Payer <?php echo $prix_format ?> $</button>
-       </form>
+     <div class="bottom">
+       <img src="../../img/logo_ekah_header.png" alt="Ekah logo" title="Logo d'Ekah">
      </div>
    </div>
-   <div class="bottom">
-     <img src="../../img/logo_ekah_header.png" alt="Ekah logo" title="Logo d'Ekah">
-   </div>
+
  </body>
  </html>

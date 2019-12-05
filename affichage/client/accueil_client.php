@@ -93,7 +93,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
             language: 'fr-FR',
             tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
             weekbox: false,
-            events_source: "../../php/script/Horaire/AfficherAllAteliers.php",
+            events_source: "../../php/script/Horaire/afficherAllAteliers.php",
 
             onAfterViewLoad: function(view) {
               $('.page-header h3').text(this.getTitle());

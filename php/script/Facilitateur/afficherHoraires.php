@@ -9,7 +9,7 @@
  * Date de la dernière modification : 2019-10-10
  */
 
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php";
 
 $gestionHoraire = new GestionHoraire();
 $disponibilite = $gestionHoraire->getAllDisponibilite();
