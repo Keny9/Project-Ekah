@@ -10,7 +10,7 @@
    */
 
   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php";
-  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Groupe/GestionGroupe.php";
+  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Groupe/gestionGroupe.php";
   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Inscription/GestionInscription.php";
   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";

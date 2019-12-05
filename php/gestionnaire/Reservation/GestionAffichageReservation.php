@@ -10,7 +10,7 @@
 */
 
 include_once 'GestionReservation.php';
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/Question.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
 
 class GestionAffichageReservation{
 

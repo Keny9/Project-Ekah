@@ -2,7 +2,7 @@
 session_start();
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
 $gh = new GestionHoraire();
 
 $id_dispo = $_GET['id_dispo'];
@@ -57,8 +57,7 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
    <title></title>
    <link rel="stylesheet" href="../../css/stripe_css.css">
    <script src="https://js.stripe.com/v3/"></script>
-   <script src="../../js/paiement.js"></script>
-   <title>Paiement</title>
+   <script type="text/javascript" src="../../js/paiement.js"></script>
 
  </head>
  <body>

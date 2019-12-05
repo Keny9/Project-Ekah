@@ -11,7 +11,7 @@
  * Date de la dernière modification : 2019-11-18
  */
 
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
 
  $gestionFacilitateur = new GestionFacilitateur();
  $arrFacilitateur = $gestionFacilitateur->getAllFacilitateur();

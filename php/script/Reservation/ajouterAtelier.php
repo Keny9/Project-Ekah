@@ -11,8 +11,8 @@
 
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/GestionActivite.php";
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/Activite.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Emplacement/Emplacement.php";
 
   if (session_status() === PHP_SESSION_NONE){session_start();}
@@ -39,7 +39,7 @@
   // $date = "2019-12-25 12:00:00";
   // $adresse = "222 rue du panier";
 
-  $ga = new GestionActivite();
+  $ga = new gestionActivite();
   $activite = $ga->getActivite($activite);
 
   $gr = new GestionReservation();
