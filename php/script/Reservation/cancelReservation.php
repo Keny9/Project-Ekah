@@ -8,14 +8,14 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-11-14
 */
-  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php";
-  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";
+  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php";
 
 
   $gReservation = new GestionReservation();
   $gHoraire = new GestionHoraire();
-  $gFacilitateur = new gestionFacilitateur();
+  $gFacilitateur = new GestionFacilitateur();
 
   // if(isset($_POST['id_reservation'])){
   //   $id = $_POST['id_reservation'];

@@ -1,9 +1,9 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/activite.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/type_activite.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/ta_duree_activite.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/etat_activite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/Activite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/Type_activite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/Ta_duree_activite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Activite/Etat_activite.php";
 
 class GestionActivite{
 /*

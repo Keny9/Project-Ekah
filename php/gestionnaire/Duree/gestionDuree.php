@@ -11,7 +11,7 @@
  * Date de la dernière modification : 2019-10-03
  */
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Duree/duree.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Duree/Duree.php";
 class GestionDuree{
 
 /*
