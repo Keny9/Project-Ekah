@@ -8,18 +8,21 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-10-11
 */
+ob_start();
+
 $page_type=1;
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
+session_start();
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
 $recu_paiement_url = $_SESSION['recu_paiement_url'];
 unset($_SESSION['recu_paiement_url']);
 
 // Si le questionnaire n'est pas set
-if (!isset($_SESSION['questionnaire'])){
+if ($_SESSION['questionnaire'] == null){
   // Redirect sur la page de réservation
   header('Location: /Project-Ekah/affichage/client/reservation.php?rComplete=1&recu_url='.$recu_paiement_url);
   exit();
@@ -36,6 +39,8 @@ $gAffichage = new GestionAffichageReservation();
 
 $arrayQuestion = $gReservation->questionSelectAllWithQuestionnaireId($questionnaire_id);
 $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
+
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
