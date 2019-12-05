@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calendrier</title>
   <script src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
   <script src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
   <script src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>

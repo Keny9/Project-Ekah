@@ -1,8 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
-//include_once '../../class/Activite/Activite.php';
-//include_once '../../class/Activite/Type_activite.php';
+//include_once '../../class/Activite/activite.php';
+//include_once '../../class/Activite/type_activite.php';
 class GestionGroupe{
 
 /*

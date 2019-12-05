@@ -39,7 +39,7 @@
   // $date = "2019-12-25 12:00:00";
   // $adresse = "222 rue du panier";
 
-  $ga = new GestionActivite();
+  $ga = new gestionActivite();
   $activite = $ga->getActivite($activite);
 
   $gr = new GestionReservation();

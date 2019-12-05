@@ -24,18 +24,18 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script src="../../js/jquery-3.4.1.slim.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
 
-    <script src="../../utils/bootstrap-calendar/js/calendar.js"></script>
-    <script src="../../utils/bootstrap-calendar/js/app.js"></script>
-    <script src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
+    <script type="text/javascript" src="../../utils/bootstrap-calendar/js/calendar.js"></script>
+    <script type="text/javascript" src="../../utils/bootstrap-calendar/js/app.js"></script>
+    <script type="text/javascript" src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
 
-    <script src="../../js/global.js"></script>
-    <script src="../../js/ateliers.js"></script>
+    <script type="text/javascript" src="../../js/global.js"></script>
+    <script type="text/javascript" src="../../js/ateliers.js"></script>
 
   </head>
   <body>
@@ -86,14 +86,14 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <br><br>
 
 
-        <script>
+        <script type="text/javascript">
 
         var calendar = $("#calendar").calendar(
           {
             language: 'fr-FR',
             tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
             weekbox: false,
-            events_source: "../../php/script/Horaire/afficherAllAteliers.php",
+            events_source: "../../php/script/Horaire/AfficherAllAteliers.php",
 
             onAfterViewLoad: function(view) {
               $('.page-header h3').text(this.getTitle());
