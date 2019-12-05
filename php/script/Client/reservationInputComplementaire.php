@@ -10,7 +10,7 @@
  * Date de la dernière modification : 2019-11-13
  */
 
-include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/gestionActivite.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Activite/GestionActivite.php";
 
 
 function reservationInputComplementaire(){

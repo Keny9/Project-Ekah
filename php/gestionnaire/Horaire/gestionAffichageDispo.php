@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php';
+include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php';
 
 if (session_status() === PHP_SESSION_NONE){session_start();}
 

@@ -8,9 +8,9 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-11-14
 */
-  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
   include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php";
-  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php";
+  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php";
 
 
   $gReservation = new GestionReservation();
@@ -46,7 +46,7 @@
 
       echo date("Y-m-d H:i:s", strtotime($heure_fin . "+30 minutes")) ." == ". $dispo[$i]->getHeureDebut();
       echo "<br />";
-      
+
       if(date("Y-m-d H:i:s", strtotime($heure_fin . "+30 minutes")) == $dispo[$i]->getHeureDebut()){
         // $gHoraire->libererDispo($dispo[$i]->getId());
         echo "Ok apres";

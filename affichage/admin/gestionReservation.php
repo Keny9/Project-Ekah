@@ -5,9 +5,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
 // TODO: faire des 'include' comme plus haut
 // TODO: la page ne devrait pas include de gestionnaire.. Seulement des scripts
-require_once("../../php/gestionnaire/Activite/gestionActivite.php");
-require_once("../../php/gestionnaire/Duree/gestionDuree.php");
-require_once("../../php/gestionnaire/Question/gestionQuestion.php");
+require_once("../../php/gestionnaire/Activite/GestionActivite.php");
+require_once("../../php/gestionnaire/Duree/GestionDuree.php");
+require_once("../../php/gestionnaire/Question/GestionQuestion.php");
 
 ?>
 
