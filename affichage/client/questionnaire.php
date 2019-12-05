@@ -8,7 +8,6 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-10-11
 */
-session_start();
 $page_type=1;
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
