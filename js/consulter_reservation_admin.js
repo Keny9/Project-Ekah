@@ -135,7 +135,7 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#cefdce";
 
-        child[7].children[0].onclick = function(){alreadyDone();}; //Fenêtre modal
+        child[8].children[0].onclick = function(){alreadyDone();}; //Fenêtre modal
 
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");
@@ -147,7 +147,7 @@ $(document).ready(function(){
         tr.setAttribute("id", "row" + rowIdx);
         tr.style.backgroundColor = "#ffc2b3";
 
-        child[7].children[0].onclick = function(){alreadyCancelled();}; //Fenêtre modal
+        child[8].children[0].onclick = function(){alreadyCancelled();}; //Fenêtre modal
 
         $("#row" + rowIdx).hover(function(){ //Effet de hover sur les lignes
           $(this).css("background-color", "whitesmoke");
