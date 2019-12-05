@@ -24,7 +24,7 @@ $activites = $gActivite->getAllActivite();
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
   	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
@@ -36,9 +36,9 @@ $activites = $gActivite->getAllActivite();
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/fix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-    <script type="text/javascript" src="../../js/global.js"></script>
-    <script type="text/javascript" src="../../js/reservation.js"></script>
+    <script src="../../js/jquery-3.4.1.slim.js"></script>
+    <script src="../../js/global.js"></script>
+    <script src="../../js/reservation.js"></script>
     <title>Réservation</title>
   </head>
   <body>
