@@ -8,7 +8,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mes disponibilités</title>
   <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
   <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
@@ -16,15 +16,15 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
   <link rel="stylesheet" href="../../css/fix.css">
 
-  <script type="text/javascript" src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
-  <script type="text/javascript" src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
+  <script src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
+  <script src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
+  <script src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
+  <script src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
 
-  <script type="text/javascript" src="../../utils/bootstrap-calendar/js/calendar.js"></script>
-  <script type="text/javascript" src="../../utils/bootstrap-calendar/js/app.js"></script>
+  <script src="../../utils/bootstrap-calendar/js/calendar.js"></script>
+  <script src="../../utils/bootstrap-calendar/js/app.js"></script>
 
-  <script type="text/javascript" src="../../js/disponibilite.js"></script>
+  <script src="../../js/disponibilite.js"></script>
 
   <link rel="stylesheet" href="../../css/inscription.css">
   <link rel="stylesheet" href="../../css/disponibilite.css">
@@ -32,7 +32,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <link rel="stylesheet" href="../../css/fix.css">
-  <script type="text/javascript" src="../../js/global.js"></script>
+  <script src="../../js/global.js"></script>
 
 </head>
 <body>
@@ -72,7 +72,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <select class="select-inscr input" name="region" id="region">
           <?php
             echo "<option class=\"option-vide\" value=\"0\" selected=\"selected\">Choisir une région</option>";
-            require_once '../../php/gestionnaire/Horaire/gestionAffichageDispo.php';
+            require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
             $gad = new GestionAffichageDispo();
             echo $gad->getAllRegion();
           ?>
@@ -84,7 +84,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <div class="">
           <select class="select-inscr input" name="facilitateur" id="facilitateur">
             <?php
-              require_once '../../php/gestionnaire/Horaire/gestionAffichageDispo.php';
+              require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
               $gad = new GestionAffichageDispo();
               echo $gad->getAllFacilitateur();
             ?>

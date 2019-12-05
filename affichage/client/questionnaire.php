@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
 * Page de reservation ou le client repond aux questions en lien avec le service choisi
 *
@@ -8,12 +9,12 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-10-11
 */
+$page_type=1;
+
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php';
-session_start();
-$page_type=1;
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
 
 $recu_paiement_url = $_SESSION['recu_paiement_url'];
 unset($_SESSION['recu_paiement_url']);
@@ -51,11 +52,11 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     <link rel="stylesheet" href="../../css/reservation.css">
     <link rel="stylesheet" href="../../css/reservation_questionnaire.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-    <script type="text/javascript" src="../../js/global.js"></script>
-    <script type="text/javascript" src="../../js/reservation.js"></script>
-    <script type="text/javascript" src="../../js/questionnaire.js"></script>
-    <script type="text/javascript">
+    <script src="../../js/jquery-3.4.1.slim.js"></script>
+    <script src="../../js/global.js"></script>
+    <script src="../../js/reservation.js"></script>
+    <script src="../../js/questionnaire.js"></script>
+    <script>
       const SUIVI_ID = <?php echo $_GET['res_id']; ?>;
     </script>
     <title>Réservation - Questions</title>

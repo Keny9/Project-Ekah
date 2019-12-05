@@ -14,14 +14,14 @@
  <html lang="fr" dir="ltr">
    <head>
      <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
      <link rel="stylesheet" href="../../css/inscription.css">
      <link rel="stylesheet" href="../../css/main.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-     <script type="text/javascript" src="../../js/inscription.js"></script>
+     <script src="../../js/jquery-3.4.1.slim.js"></script>
+     <script src="../../js/inscription.js"></script>
 
      <title>Inscription</title>
    </head>
@@ -76,7 +76,7 @@
            </div>
            <div class="group-input-inscr">
              <input type="text" name="prenom" id="prenom" class="input-inscr" placeholder="Prénom" value="">
-             <input type="text" name="nom" id="nom" class="input-inscr second-input" placeholder="Nom de famille"value="">
+             <input type="text" name="nom" id="nom" class="input-inscr second-input" placeholder="Nom de famille" value="">
            </div>
            <div class="group-input-inscr">
              <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">

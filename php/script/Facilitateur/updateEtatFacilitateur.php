@@ -10,7 +10,7 @@
  * Date de la dernière modification : 2019-11-22
  */
 
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php";
 
  $idEtat = $_POST['idEtat'];
  $idFacilitateur = $_POST['idFacilitateur'];
