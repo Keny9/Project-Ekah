@@ -163,14 +163,14 @@ $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, 
 
  // L'activité ne contient pas de questionnaire
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
-   echo "Il n'y a pas de questionnaire pour cette activité\n";
-   echo "Réservation complétée";
 
-   // Redirect
  }
 
 // L'activité contient un questionnaire
-$questionnaire = $questionnaireArray[0];
+
+  $questionnaire = $questionnaireArray[0];
+
+
 $_SESSION['questionnaire'] = $questionnaire;
 
 header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
