@@ -378,6 +378,8 @@ $(document).ready(function() {
   ville = document.getElementById("ville");
   nbParticipant = $("#nbParticipant");
 
+  $("#dispo").css("color", "#000000");
+
 
   $(window).keydown(function(event){ //S'assure que le user ne peut pas envoyer le form avec un enter
     if(event.keyCode == 13) {
@@ -459,6 +461,9 @@ function clickSuivant(){
    //Si les 3 ne sont pas vides alors pas d'erreur que c'est vide
    if((siVide(noAdresse) || siVide(rue) || siVide(ville)) && $("#question-complementaire").css("display") == "block"){
      indiqueAdresseVide();
+     document.querySelector('.reservation').scrollIntoView({ //Animation scroll smooth au debut du form
+       behavior: 'smooth'
+     });
      return false;
    }
 
@@ -482,7 +487,6 @@ function sendEmail(){
     url: '../../php/script/Reservation/mail_groupe.php',
     method: 'POST',
     dataType: 'json',
-    contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
       service: serviceGroupeInput.options[serviceGroupeInput.selectedIndex].value,
       entreprise: entreprise.value,
@@ -507,7 +511,7 @@ function sendEmail(){
     }, error: function(response){
       console.log(response);
       $("#loader").css("display", "none");
-      alert("Il y a eu un problème lors de l'envoi du courriel.");
+      alert("Error : Il y a eu un problème lors de l'envoi du courriel.");
       document.getElementById("confirmerDemandeGroupe").disabled = false;
       $("#form-reservation-groupe").css("display", "block");
     }
@@ -549,15 +553,15 @@ function sendEmail(){
  //Indique quels champs sont vide pour l'adresse
   function indiqueAdresseVide(){
     if(siVide(noAdresse)){
-      inputRequired(noAdresse);
+      noAdresse.style.borderColor = "#ff0000";
     }
 
     if(siVide(rue)){
-      inputRequired(rue);
+      rue.style.borderColor = "#ff0000";
     }
 
     if(siVide(ville)){
-      inputRequired(ville);
+      ville.style.borderColor = "#ff0000";
     }
   }
 

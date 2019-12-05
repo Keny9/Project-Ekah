@@ -5,9 +5,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
 // TODO: faire des 'include' comme plus haut
 // TODO: la page ne devrait pas include de gestionnaire.. Seulement des scripts
-require_once("../../php/gestionnaire/Activite/gestionActivite.php");
-require_once("../../php/gestionnaire/Duree/gestionDuree.php");
-require_once("../../php/gestionnaire/Question/gestionQuestion.php");
+require_once("../../php/gestionnaire/Activite/GestionActivite.php");
+require_once("../../php/gestionnaire/Duree/GestionDuree.php");
+require_once("../../php/gestionnaire/Question/GestionQuestion.php");
 
 ?>
 
@@ -55,7 +55,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
                   <label for="atelier">Atelier</label><br />
                   <select class="select-inscr input" name="atelier" id="atelier">
                     <?php
-                      require_once '../../php/gestionnaire/Activite/gestionAffichageActivite.php';
+                      require_once '../../php/gestionnaire/Activite/GestionAffichageActivite.php';
                       $gaa = new GestionAffichageActivite();
                       echo $gaa->getAllAtelier();
                     ?>
@@ -79,12 +79,12 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
   <h1 class="titreReservation">Gestion des Réservations</h1>
     <div class="tableauActivite">
       <?php
-                     require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                     require_once '../../php/gestionnaire/Reservation/GestionAffichageGestionReservation.php';
                      $gagr = new GestionAffichageGestionReservation();
                      echo $gagr->getAllQuestion();
                    ?>
     <?php
-                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/GestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllActivite();
                  ?>
@@ -105,7 +105,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
       <textarea class="boxService" name="service" id="nom"></textarea>
       <div class="tableauDuree">
       <?php
-                     require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                     require_once '../../php/gestionnaire/Reservation/GestionAffichageGestionReservation.php';
                      $gagr = new GestionAffichageGestionReservation();
                      echo $gagr->getAllDuree();
                    ?>
@@ -114,7 +114,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
 
     <h6 class="choisirType texteEkha">Quelle est le type de l'activité:</h6><br><br>
     <?php
-                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/GestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllTypeActivite();
                  ?>
@@ -125,7 +125,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     </div>
     <h6 class="duree texteEkha">Durée:</h6>
     <?php
-                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/GestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getDureeActivite(1);
                  ?>
@@ -134,7 +134,7 @@ require_once("../../php/gestionnaire/Question/gestionQuestion.php");
     <br />
     <h6 class="descriptionC texteEkha">Questions de l'activité:</h6>
     <?php
-                    require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                    require_once '../../php/gestionnaire/Reservation/GestionAffichageGestionReservation.php';
                     $gagr = new GestionAffichageGestionReservation();
                     echo $gagr->getQuestionActivite(1);
                   ?>

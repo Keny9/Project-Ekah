@@ -11,9 +11,9 @@
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/connexion.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/gestionHoraire.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/gestionFacilitateur.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/questionnaire.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Facilitateur/GestionFacilitateur.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Reservation/Reservation.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Groupe/Groupe.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
@@ -95,9 +95,10 @@ $stmt->execute();
 $id_paiement = $conn->insert_id;
 
 
+
 if($id_facilitateur == -1){ // Aucun facilitateur choisi
   $facilitateur = $gFacilitaeur->getDispo($id_dispo);
-  $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
+  $id_facilitateur = $facilitateur->getId();
 }
 
 // Set l'id de l'emplacement
@@ -126,31 +127,6 @@ if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($i
   // Redirect
 }
 
-
-  if($id_facilitateur == -1){ // veut dire pas de facilitateur choisit?? indiquer svp
-    $facilitateur = $gFacilitaeur->getDispo($id_dispo);
-    $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
-  }
-
- // Set l'id de l'emplacement
-  $id_emplacement = null;
-  if(!empty($no_adresse) && !empty($rue) && !empty($ville)){ // Champs remplis, donc service 'À domicile'; requiert un emplacement
-    $id_emplacement = $gReservation->insertEmplacement($no_adresse, $rue, $ville);
-  }
-
-
-  //Calculer l'heure_fin de la réservation
-  $dispo = $gHoraire->getDispo($id_dispo);
-  $heure_fin = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+".$duree." minutes"));
-
-
-  // Créer la réservation
-  $reservation = new Reservation(null, $id_paiement, $id_emplacement, null, $id_activite, null, $date_rendez_vous, $id_region, $heure_fin, $id_facilitateur);
-  // Insert la reservation et get l'id de son suivi
-  $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
-
-  //Réserver la disponibilité choisi
-  $gHoraire->reserverDispo($id_dispo);
   $disponibilites = $facilitateur->getDisponibilite();
 
   //Réserver les autres dispo dépendament de la durée

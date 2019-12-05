@@ -54,8 +54,8 @@ echo "<br>";
 echo $password_hash;*/
 
 $mail = new PHPMailer(true);  // Passing `true` enables exceptions
-$mail->charSet = 'utf-8';
-$mail->Encoding = 'base64';
+$mail->CharSet = 'UTF-8';
+$mail->Encoding = 'quoted-printable';
 
 $sujet = "Demande de mot de passe oublié";
 
@@ -81,10 +81,10 @@ try {
                                                           // Name is optional
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = $sujet;
+    $mail->Subject = html_entity_decode($sujet);
     $body = $txt;
-    $mail->Body = $body;
-    $mail->AltBody = strip_tags($body);
+    $mail->Body = html_entity_decode($body);
+    $mail->AltBody = html_entity_decode(strip_tags($body));
 
     $mail->send();
 
