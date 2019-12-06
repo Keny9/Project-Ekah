@@ -18,6 +18,7 @@
   $duree = $_POST['duree'];
   $region = $_POST['region'];
   $service = $_POST['service'];
+  $activite = null;
 
   // $idFacilitateur = -1;
   // $duree = "30";
@@ -95,29 +96,31 @@
         $start = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureDebut()));
         $end = date("Y-m-d H:i:s", strtotime($dispo[$j]->getHeureFin()));
 
-        if($activite->getId_type() == 3){                   //Si c'est en ligne
-          if($dispo[$j]->getEtat() == 0){
-            $out[] = array(
-              'id' => $dispo[$j]->getId(),
-              'title' => $dispo[$j]->getId(),
-              'url' => "URL",
-              'start' => strtotime($start) . '000',
-              'end' => strtotime($end) .'000',
-              'date_debut' => $dispo[$j]->getHeureDebut(),
-              'date_fin' => $dispo[$j]->getHeureFin()
-            );
-          }
-        }else{                                            //Si c'est pas en ligne, pas besoin de la region dans le if
-          if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
-            $out[] = array(
-              'id' => $dispo[$j]->getId(),
-              'title' => $dispo[$j]->getId(),
-              'url' => "URL",
-              'start' => strtotime($start) . '000',
-              'end' => strtotime($end) .'000',
-              'date_debut' => $dispo[$j]->getHeureDebut(),
-              'date_fin' => $dispo[$j]->getHeureFin()
-            );
+        if($activite !== null){
+          if($activite->getId_type() == 3){                   //Si c'est en ligne
+            if($dispo[$j]->getEtat() == 0){
+              $out[] = array(
+                'id' => $dispo[$j]->getId(),
+                'title' => $dispo[$j]->getId(),
+                'url' => "URL",
+                'start' => strtotime($start) . '000',
+                'end' => strtotime($end) .'000',
+                'date_debut' => $dispo[$j]->getHeureDebut(),
+                'date_fin' => $dispo[$j]->getHeureFin()
+              );
+            }
+          }else{                                            //Si c'est pas en ligne, pas besoin de la region dans le if
+            if($dispo[$j]->getEtat() == 0 && $dispo[$j]->getRegion() == $region){
+              $out[] = array(
+                'id' => $dispo[$j]->getId(),
+                'title' => $dispo[$j]->getId(),
+                'url' => "URL",
+                'start' => strtotime($start) . '000',
+                'end' => strtotime($end) .'000',
+                'date_debut' => $dispo[$j]->getHeureDebut(),
+                'date_fin' => $dispo[$j]->getHeureFin()
+              );
+            }
           }
         }
       }

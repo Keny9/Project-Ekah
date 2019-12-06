@@ -47,7 +47,7 @@
      type: "POST",
      async: false,
      dataType: "json",
-     url: "../../php/script/Horaire/afficherAllEvents.php",
+     url: "/Project-Ekah/php/script/Horaire/afficherAllEvents.php",
      data: {idFacilitateur: idFacilitateur, duree: duree, region: region, service: id_service}
    });
  }
@@ -197,7 +197,7 @@
      type: "POST",
      async: false,
      dataType: "json",
-     url: "../../php/script/Horaire/afficherAllHoraireSelectionne.php",
+     url: "/Project-Ekah/php/script/Horaire/afficherAllHoraireSelectionne.php",
      data: {idFacilitateur: idFacilitateur,
              date: date,
              duree: duree,
@@ -483,10 +483,9 @@ function sendEmail(){
   $("#form-reservation-groupe").css("display", "none");
 
   $.ajax({
-    url: '../../php/script/Reservation/mail_groupe.php',
+    url: '/Project-Ekah/php/script/Reservation/mail_groupe.php',
     method: 'POST',
     dataType: 'json',
-    contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
       service: serviceGroupeInput.options[serviceGroupeInput.selectedIndex].value,
       entreprise: entreprise.value,
@@ -505,7 +504,7 @@ function sendEmail(){
       }
       else{
         $("#loader").css("display", "none");
-        alert("Il y a eu un problème lors de l'envoi du courriel.");
+        alert("Error : Il y a eu un problème lors de l'envoi du courriel.");
         window.location.href = "/Project-Ekah/affichage/client/reservation_groupe.php";
       }
     }, error: function(response){
