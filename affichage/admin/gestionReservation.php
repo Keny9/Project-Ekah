@@ -116,7 +116,7 @@ ob_end_flush();
 
     <h6 class="choisirType texteEkha">Quelle est le type de l'activité:</h6><br><br>
     <?php
-                   require_once '../../php/gestionnaire/Reservation/gestionAffichageGestionReservation.php';
+                   require_once '../../php/gestionnaire/Reservation/GestionAffichageGestionReservation.php';
                    $gagr = new GestionAffichageGestionReservation();
                    echo $gagr->getAllTypeActivite();
                  ?>
