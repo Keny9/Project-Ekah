@@ -241,7 +241,7 @@ window.onload = function(){
 
    // Change l'attribut Action du Formulaire
    $("#modal-inscription").css("display", "block");
-   $('#mickeymouse').attr('action', '../../php/script/Client/ajouterClient.php');
+   $('#mickeymouse').attr('action', '/Project-Ekah/php/script/Client/ajouterClient.php');
    return true;
  }
 
@@ -458,7 +458,7 @@ window.onload = function(){
    $.ajax({
      type: "POST",
      async: false,
-     url: "../../php/script/Client/siCourrielExiste.php",
+     url: "/Project-Ekah/php/script/Client/siCourrielExiste.php",
      data: {"courriel": $('#courriel').val()},
      success: function(result){
        if(result == 'false'){

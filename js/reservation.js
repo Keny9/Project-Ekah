@@ -81,7 +81,7 @@
   calendrier = $("#calendar").calendar(
      {
        language: 'fr-FR',
-       tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+       tmpl_path: "/Project-Ekah/utils/bootstrap-calendar/tmpls/",
        weekbox: false,
        events_source: events,
 
@@ -378,7 +378,7 @@ $(document).ready(function() {
   ville = document.getElementById("ville");
   nbParticipant = $("#nbParticipant");
 
-$("#dispo").css("color", "#000000");
+ $("#dispo").css("color", "#000000");
 
   $(window).keydown(function(event){ //S'assure que le user ne peut pas envoyer le form avec un enter
     if(event.keyCode == 13) {
@@ -428,7 +428,7 @@ function clickSuivant(){
 
 
   // let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
-  let urlRedirectQuestionnaire = 'paiement.php?';
+  let urlRedirectQuestionnaire = '/paiement?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
   let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region+'&duree='+duree;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
@@ -504,8 +504,8 @@ function sendEmail(){
       }
       else{
         $("#loader").css("display", "none");
-        alert("Error : Il y a eu un problème lors de l'envoi du courriel.");
-        window.location.href = "/Project-Ekah/affichage/client/reservation_groupe.php";
+        alert("Il y a eu un problème lors de l'envoi du courriel.");
+        window.location.href = "/reservation-groupe";
       }
     }, error: function(response){
       console.log(response);

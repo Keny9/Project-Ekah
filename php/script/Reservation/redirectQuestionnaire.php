@@ -173,5 +173,5 @@ $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, 
 
 $_SESSION['questionnaire'] = $questionnaire;
 
-header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
+header('Location: /questionnaire?res_id='.$suivi_id);
 ?>

@@ -32,7 +32,7 @@ else{
 //Si le courriel n'existe pas, message d'erreur
 if(!$gestionLogin->compteExiste($courriel)){
   $_SESSION['msgPassword'] = "Le courriel n'a pas pu être envoyé. Une erreur s'est produite.";
-  header("Location: /Project-Ekah/affichage/global/password-reset.php");
+  header("Location: /password-reset");
 }
 
 /* Créer un password aléatoire de 8 charactère avec au moins 1 chiffre et 1 lettre majuscule */
@@ -89,11 +89,11 @@ try {
     $mail->send();
 
     $_SESSION['msgPassword'] = "Un courriel vous a été envoyé.";
-    header("Location: /Project-Ekah/affichage/global/password-reset.php");
+    header("Location: /password-reset");
 } catch (Exception $e) {
   $_SESSION['msgPassword'] = "Le courriel n'a pas pu être envoyé. Une erreur s'est produite.";
   echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-  header("Location: /Project-Ekah/affichage/global/password-reset.php");
+  header("Location: /password-reset");
 }
 
 

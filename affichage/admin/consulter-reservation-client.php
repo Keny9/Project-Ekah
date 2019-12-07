@@ -29,25 +29,25 @@ if(!isset($_GET['id'])){ // Retour à la page précédente
     <meta charset="utf-8">
     <title>Liste des réservations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon-ekah.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/dataTable.css"/>
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/inscription.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
-    <link rel="stylesheet" href="../../css/consulter-reservation.css">
+    <link rel="stylesheet" href="/datatable.css"/>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/reservation.css">
+    <link rel="stylesheet" href="/consulter-reservation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
 
     <script type="text/javascript">
       const CLIENT_ID = <?php echo $idClient;?>;
     </script>
 
-    <script type="text/javascript" src="../../js/consulter_reservation_client.js"></script>
+    <script type="text/javascript" src="/consulter-reservation-client.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="../../js/global.js"></script>
+    <script type="text/javascript" src="/global.js"></script>
 
 
   </head>

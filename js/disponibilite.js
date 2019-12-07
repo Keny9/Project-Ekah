@@ -14,7 +14,7 @@ function callAjax(){
     type: "POST",
     async: false,
     dataType: "json",
-    url: "../../php/script/Horaire/afficherHoraireFacilitateur.php",
+    url: "/Project-Ekah/php/script/Horaire/afficherHoraireFacilitateur.php",
     data: {idFacilitateur: idFacilitateur}
   });
 }
@@ -67,7 +67,7 @@ function loadCalendrier(events){
  calendar = $("#calendar").calendar(
     {
       language: 'fr-FR',
-      tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+      tmpl_path: "/Project-Ekah/utils/bootstrap-calendar/tmpls/",
       weekbox: false,
       events_source: events,
 
@@ -167,7 +167,7 @@ function envoyeDispo(heure, date){
   $.ajax({
     type: "POST",
     async: false,
-    url: "../../php/script/Horaire/ajouterDisponibilite.php",
+    url: "/Project-Ekah/php/script/Horaire/ajouterDisponibilite.php",
     data: {"annee": annee,
            "mois": mois,
            "jour": jour,
@@ -212,7 +212,7 @@ function supprimerDispo(heure, date){
   $.ajax({
     type: "POST",
     async: false,
-    url: "../../php/script/Horaire/supprimerDisponibilite.php",
+    url: "/Project-Ekah/php/script/Horaire/supprimerDisponibilite.php",
     dataType: "text",
     data: {"annee": annee,
            "mois": mois,

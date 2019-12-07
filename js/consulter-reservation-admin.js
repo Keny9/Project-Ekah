@@ -24,14 +24,14 @@ $(document).ready(function(){
 
   table = $('#table_reservation').DataTable({
     "ajax":{
-      "url": "../../php/script/Reservation/dataReservationAdmin.php",
+      "url": "/Project-Ekah/php/script/Reservation/dataReservationAdmin.php",
       "dataSrc": ""
     },
     "columns" : [
       {"data": "nom"},
       {"data": null,
       render: function(data, type, row){
-        return '<a class="link-client" href="../admin/gestion-client.php?client='+data.client_id+'" target="_blank">'+ data.client +'</a>';
+        return '<a class="link-client" href="/admin/gestion-client?client='+data.client_id+'" target="_blank">'+ data.client +'</a>';
       }},
       {"data": "nom_lieu"},
       {"data": "date_rendez_vous"},
@@ -175,7 +175,7 @@ $(document).ready(function(){
 //Afficher les informations du suivi dans les textarea
 function printSuivi(id_suivi){
   $.ajax({
-    url: "../../php/script/Reservation/dataSuivi.php",
+    url: "/Project-Ekah/php/script/Reservation/dataSuivi.php",
     data: {id_suivi : id_suivi},
     async:false,
     success: function(result){
@@ -189,7 +189,7 @@ function printSuivi(id_suivi){
 
 function updateSuivi(id_suivi, fait, commentaire){
   $.ajax({
-    url: "../../php/script/Reservation/updateSuivi.php",
+    url: "/Project-Ekah/php/script/Reservation/updateSuivi.php",
     data: {id_suivi: id_suivi, fait: fait, commentaire: commentaire},
     async:false,
     success: function(result){
@@ -269,7 +269,7 @@ function closeAlreadyDoneModal(){
 //Fonction qui annule une réservations
 function cancelReservation(){
   $.ajax({
-    url: "../../php/script/Reservation/cancelReservation.php",
+    url: "/Project-Ekah/php/script/Reservation/cancelReservation.php",
     type: "post",
     data: {id_reservation: idReservation},
     async:false,

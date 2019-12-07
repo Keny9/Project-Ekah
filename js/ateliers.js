@@ -130,7 +130,7 @@ function getInfoModal(){
     type: "POST",
     async: false,
     dataType: "json",
-    url: "../../php/script/Horaire/afficherInfoAtelierModal.php",
+    url: "/Project-Ekah/php/script/Horaire/afficherInfoAtelierModal.php",
     data: {"id": id},
     success: function(data){
         bool = true;
@@ -162,7 +162,7 @@ function inscrireAtelier(){
     type: "POST",
     async: false,
     dataType: "json",
-    url: "../../php/script/Reservation/inscrireAtelier.php",
+    url: "/Project-Ekah/php/script/Reservation/inscrireAtelier.php",
     data: {"id": id},
     success: function(data){
         bool = true;

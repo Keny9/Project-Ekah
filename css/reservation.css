@@ -1,12 +1,12 @@
 /**
- * CSS pour la page reservation
- *
- * Nom :         reservation.css
- * Catégorie :   Style
- * Auteur :      Karl Boutin
- * Version :     1.0
- * Date de la dernière modification : 2019-10-11
- */
+* CSS pour la page reservation
+*
+* Nom :         reservation.css
+* Catégorie :   Style
+* Auteur :      Karl Boutin
+* Version :     1.0
+* Date de la dernière modification : 2019-10-11
+*/
 
 .top-img{
   position: relative;
@@ -71,7 +71,7 @@
 
 #photo-facilitateur{
   display: none;
-  overflow: hidden;
+  overflow:hidden;
 }
 
 .block-photo-facilitateur{
@@ -178,7 +178,6 @@ textarea:focus{
 .date-heure{
   padding-right: 50px;
 }
-
 .facilitateur-select{
   outline: 2px solid #000000;
   border-radius: 0px;

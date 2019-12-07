@@ -17,7 +17,7 @@ if($_FILES["file"]["name"] != '')
  $test = explode('.', $_FILES["file"]["name"]);
  $ext = end($test);
  $name = $_SESSION['logged_in_user_id']."_form-medical" . '.' . $ext;
- $location = '../../../upload/client/' . $name;
+ $location = $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/upload/client/'.$name;
  move_uploaded_file($_FILES["file"]["tmp_name"], $location);
  echo '<img src="'.$location.'" height="150" width="225" class="img-thumbnail" />';
 }

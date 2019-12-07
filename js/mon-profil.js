@@ -51,6 +51,8 @@ function updateMotDePasse(){
   var newPassword = document.getElementById('mot-de-passe-nouveau');
   var newPasswordConfirm = document.getElementById('mot-de-passe-confirmation');
 
+  password_modal_sauvegarder.removeAttribute("data-dismiss");
+
   // mot de passe actuel est bien le bon
   if(!actualPasswordValid(CLIENT['id'], actualPassword.value)){
     alert("Le mot de passe actuel ne correspond pas à votre mot de passe actuel.")
@@ -81,7 +83,7 @@ function updateMotDePasse(){
 
 // Requête ajax pour update le mot de passe
   $.ajax({
-    url: "../../php/script/Client/updateMotDePasse.php",
+    url: "/Project-Ekah/php/script/Client/updateMotDePasse.php",
     data: {data: dataClientJson},
     async:false,
     success: function(result){
@@ -96,7 +98,7 @@ function updateMotDePasse(){
 }
 
 function ajouterFichierPerso(){
-  
+
 }
 
 // Set l'attribut data-dismiss à modal. e = element html
@@ -107,7 +109,7 @@ function modalDataDismiss(e){
 function actualPasswordValid(client_id, mot_de_passe){
   var reponse = false;
   $.ajax({
-    url: "../../php/script/Client/comparerMotDePasse.php",
+    url: "/Project-Ekah/php/script/Client/comparerMotDePasse.php",
     data: {client_id: client_id,
            mot_de_passe : mot_de_passe},
     async:false,
@@ -627,7 +629,7 @@ function setMonProfilChamps(){
    $.ajax({
      type: "POST",
      async: false,
-     url: "../../php/script/Client/siCourrielExiste.php",
+     url: "/Project-Ekah/php/script/Client/siCourrielExiste.php",
      data: {"courriel": $('#courriel').val()},
      success: function(result){
        if(result == 'false'){
@@ -674,7 +676,7 @@ function setMonProfilChamps(){
      var dataClientJson = JSON.stringify(dataClient);
 
      $.ajax({
-       url: "../../php/script/Client/updateProfilClient.php",
+       url: "/Project-Ekah/php/script/Client/updateProfilClient.php",
        data: {data: dataClientJson},
        async:false,
        success: function(result){
