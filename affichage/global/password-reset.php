@@ -43,7 +43,7 @@
           </div>
 
           <div class="group-input-inscr margin-less">
-           <a href="/Project-Ekah/affichage/global/login.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">Retour</button></a>
+           <a href="/login"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">Retour</button></a>
           </div>
 
           <?php

@@ -53,12 +53,12 @@ session_destroy();
           </div>
           <div class="group-input-inscr">
             <div class="link-box">
-              <a href="./inscription.php" class="link-inscr">Créer un compte</a>
+              <a href="/inscription" class="link-inscr">Créer un compte</a>
             </div>
           </div>
           <div class="group-input-inscr mt-less">
             <div class="link-box">
-              <a href="/password-reset.php" class="link-inscr">Mot de passe oublié ?</a>
+              <a href="/password-reset" class="link-inscr">Mot de passe oublié ?</a>
             </div>
           </div>
         </form>

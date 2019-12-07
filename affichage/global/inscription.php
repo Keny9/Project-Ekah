@@ -128,7 +128,7 @@
              <button type="button" name="btnInscription" id="btnInscription" class="btn-confirmer input-long" onclick="return validerFormInscription()">Créer un compte</button>
            </div>
            <div class="group-input-inscr btn-espace">
-            <a href="./login.php"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>
+            <a href="/login"><button type="button" name="btnCompteExistant" id="btnCompteExistant" class="btn-confirmer input-long btn-compte-existant">Vous avez déjà un compte ?</button></a>
            </div>
          </form>
        </div>

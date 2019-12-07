@@ -29,14 +29,14 @@ else{
   <title>Gestion des clients</title>
   <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/dataTable.css">
+  <link rel="stylesheet" href="/datatable.css">
   <link rel="stylesheet" href="/main.css">
   <link rel="stylesheet" href="/inscription.css">
   <link rel="stylesheet" href="/reservation.css">
-  <link rel="stylesheet" href="/gestionClient.css">
+  <link rel="stylesheet" href="/gestion-client.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
-  <script type="text/javascript" src="/gestionClient.js"></script>
+  <script type="text/javascript" src="/gestion-client.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
