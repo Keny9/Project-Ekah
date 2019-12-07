@@ -10,8 +10,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/php
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/phpmailer/src/OAuth.php';
 
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-$mail->charSet = 'utf-8';
-$mail->Encoding = 'base64';
+$mail->CharSet = 'UTF-8';
+$mail->Encoding = 'quoted-printable';
 
 $sujet = "Demande de groupe";
 $service = $_POST['service'];
@@ -24,13 +24,13 @@ $vous = $_POST['vous'];
 $message = $_POST['message'];
 
 //Message dans le email
-$txt = utf8_encode("Une demande de groupe a été effectué pour le service suivant : ".$service."<br>"
+$txt = "Une demande de groupe a été effectué pour le service suivant : ".$service."<br>"
 ."Entreprise : ".$entreprise."<br>"
 ."Nom du responsable : ".$nom."<br>"
 ."Courriel : ".$courriel."<br>"
 ."Téléphone : ".$telephone."<br>". " Poste : ".$poste."<br><br>"
 ."Parlez-nous de vous : ".$vous."<br><br>"
-."Message/Demande : ".$message."<br>");
+."Message/Demande : ".$message."<br>";
 
 try {
     //Server settings

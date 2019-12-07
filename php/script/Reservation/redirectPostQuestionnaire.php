@@ -9,5 +9,5 @@
  * Date de la dernière modification : 2019-10-14
  */
 
-header('Location: /Project-Ekah/affichage/client/accueil_client.php');
+header('Location: /accueil');
  ?>

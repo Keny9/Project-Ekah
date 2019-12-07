@@ -26,12 +26,12 @@ session_destroy();
     <meta name="description" content="Ekah est un collectif de facilitateurs, de thérapeutes, de professionnels de la santé et de yogis, qui vise le développement humain holistique.">
     <meta name="keywords" content="Ekah,ekah,ekah login,login ekah,ekah connexion,facilitateur,">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../css/inscription.css">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/login.css">
-    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-    <script type="text/javascript" src="../../js/login.js"></script>
+    <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/login.css">
+    <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="/login.js"></script>
     <title>Ekah - Bienvenue</title>
   </head>
   <body>
@@ -39,7 +39,7 @@ session_destroy();
     <main>
       <div class="inscription">
         <div class="logo-inscr" id="logo">
-          <img src="../../img/logo_ekah_header.png" alt="Ekah">
+          <img src="/logo-ekah-header.png" alt="Ekah">
         </div>
         <form class="" id="formulaireLogin" action="" method="post">
           <div class="group-input-inscr">
@@ -58,7 +58,7 @@ session_destroy();
           </div>
           <div class="group-input-inscr mt-less">
             <div class="link-box">
-              <a href="/Project-Ekah/affichage/global/password-reset.php" class="link-inscr">Mot de passe oublié ?</a>
+              <a href="/password-reset.php" class="link-inscr">Mot de passe oublié ?</a>
             </div>
           </div>
         </form>

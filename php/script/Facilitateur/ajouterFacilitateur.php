@@ -39,5 +39,5 @@ NULL, $telephone, NULL, NULL, NULL,
 NULL, NULL, NULL, NULL);
 
 $gestionFacilitateur->addFacilitateur($facilitateur, $motDePasse);
-header('Location: /Project-Ekah/affichage/admin/gestion-facilitateur.php');
+header('Location: /admin/gestion-facilitateur');
 ?>

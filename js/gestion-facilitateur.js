@@ -63,7 +63,7 @@ $(document).ready(function(){
   //Initialiser Data table
   table = $('#table_client').DataTable({
       "ajax":{
-        "url": "../../php/script/Facilitateur/getDataFacilitateur.php",
+        "url": "/Project-Ekah/php/script/Facilitateur/getDataFacilitateur.php",
         "dataSrc": ""
       },
       "columns" : [
@@ -75,7 +75,7 @@ $(document).ready(function(){
         {"data": null,
         render: function(data, type, row){
           // Set la référence vers l'agenda d'un facilitateur
-          return '<a href="../admin/disponibilite.php?id='+data.id+'" target="_blank"><span class="calendar"></span></a>';
+          return '<a href="/admin/disponibilite?id='+data.id+'" target="_blank"><span class="calendar"></span></a>';
         }},
         {"data": null,
         render: function(data, type, row){
@@ -154,7 +154,7 @@ $(document).ready(function(){
 
    // Change l'attribut Action du Formulaire
    $("#modal-inscription").css("display", "block");
-   $('#mickeymouse').attr('action', '../../php/script/Facilitateur/ajouterFacilitateur.php');
+   $('#mickeymouse').attr('action', '/Project-Ekah/php/script/Facilitateur/ajouterFacilitateur.php');
    return true;
  }
 
@@ -279,7 +279,7 @@ $(document).ready(function(){
    $.ajax({
      type: "POST",
      async: false,
-     url: "../../php/script/Client/siCourrielExiste.php",
+     url: "/Project-Ekah/php/script/Client/siCourrielExiste.php",
      data: {"courriel": $('#courriel').val()},
      success: function(result){
        if(result == 'false'){
@@ -299,7 +299,7 @@ $(document).ready(function(){
    if(!siSelectVide(document.getElementById("etat"))){
      $.ajax({
        type: "POST",
-       url: "../../php/script/Facilitateur/updateEtatFacilitateur.php",
+       url: "/Project-Ekah/php/script/Facilitateur/updateEtatFacilitateur.php",
        data: {"idFacilitateur": selectedFacilitateur, "idEtat": selectedEtat},
        success: function(response){
          location.reload();

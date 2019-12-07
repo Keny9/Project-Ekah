@@ -40,7 +40,7 @@ function submitQuestionnaire(){
 // TODO: faire l'url
 // TODO: remettre le script redirectionQuestionnaire À défaut
   $.ajax({
-    url: "../../php/script/Reservation/updateSuivi.php",
+    url: "/Project-Ekah/php/script/Reservation/updateSuivi.php",
     async: false,
     data: {fait: suivi_string,
            commentaire: "",
@@ -57,7 +57,7 @@ function submitQuestionnaire(){
 //Fermer la fenetre modale de modification d'une réservation
 function closeModal(){
   $("#modal-question-reservation").css("display", "none");
-  window.location = "/Project-Ekah/affichage/client/accueil_client.php";
+  window.location = "/accueil";
 }
 
 //Ouvrir la fenêtre modal

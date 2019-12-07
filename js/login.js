@@ -57,7 +57,7 @@ function validerLogin(){
   $.ajax({
     type: "POST",
     async: false,
-    url: "../../php/script/Client/validerLogin.php",
+    url: "/Project-Ekah/php/script/Client/validerLogin.php",
     data: {"courriel": $('#courriel').val(),
            "motDePasse": $('#motDePasse').val()},
     success: function(result){

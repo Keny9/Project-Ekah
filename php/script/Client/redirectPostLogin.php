@@ -51,10 +51,11 @@
    //Vérification du type d'utilisateur et redirect
    switch ($userTypeId) {
      case '1': // Si c'est un client
-     header("Location: /Project-Ekah/affichage/client/accueil_client.php?");
+     //header("Location: /Project-Ekah/affichage/client/accueil_client.php?");
+     header("Location: /accueil");
      break;
      case '2': // Si c'est un admin
-     header("Location: /Project-Ekah/affichage/admin/disponibilite.php");
+     header("Location: /admin/disponibilite");
      break;
      default: // Sinon (ne devrais pas se produire, mais doit quand même être géré)
      echo "Une erreur est survenue dans le switch.";

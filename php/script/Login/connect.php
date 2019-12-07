@@ -21,7 +21,7 @@ if (isset($_SESSION['logged_in_user_id']) && !empty($_SESSION['logged_in_user_id
   else{ // Montre alert JS  et  redirect sur login
     echo '<script type="text/javascript">
             alert("01.'.$user_type.$page_type.' Vous devez vous connecter pour accéder à cette page.");
-            window.location.replace("/Project-Ekah/affichage/global/login.php");
+            window.location.replace("/login");
           </script>';
   }
 
@@ -30,7 +30,7 @@ else{ // La session ne contient pas d'utilisateur
   // Montre alert JS  et  redirect sur login
   echo '<script type="text/javascript">
           alert("02. Vous devez vous connecter pour accéder à cette page.");
-          window.location.replace("/Project-Ekah/affichage/global/login.php");
+          window.location.replace("/login");
         </script>';
 }
 ?>

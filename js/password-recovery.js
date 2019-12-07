@@ -27,7 +27,7 @@ function validerFormRecovery(){
   }
 
   // Change l'attribut Action du Formulaire
-  $('#form-reco-pass').attr('action', '../../php/script/Login/passwordReset.php');
+  $('#form-reco-pass').attr('action', '/Project-Ekah/php/script/Login/passwordReset.php');
 
   return true;
 }

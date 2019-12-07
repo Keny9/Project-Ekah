@@ -11,7 +11,7 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Client/GestionClientAjout.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
-$preMessageErreur = "script ajouterClient mouru : ";
+$preMessageErreur = "";
 
 $gestion = new GestionClientAjout();
 $client_id
@@ -72,6 +72,6 @@ $ville, NULL, NULL, $pays);
 if($gestion->ajouterClient($client)){
   //Afficher que l'inscription fut un succès, ensuite va à la page login
   //header('Location: /Project-Ekah/affichage/global/login.php');
-  echo 'success - modifierMonProfil.php line : '.__LINE__;
+  //echo 'success - modifierMonProfil.php line : '.__LINE__;
 }
 ?>

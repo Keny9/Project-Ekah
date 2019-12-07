@@ -23,7 +23,7 @@ $(document).ready(function(){
 
   table = $('#table_reservation_client').DataTable({
     "ajax":{
-      "url": "../../php/script/Reservation/dataReservationClient.php?id="+CLIENT_ID,
+      "url": "/Project-Ekah/php/script/Reservation/dataReservationClient.php?id="+CLIENT_ID,
       "dataSrc": ""
     },
     "columns" : [
@@ -137,7 +137,7 @@ $(document).ready(function(){
 //Afficher les informations du suivi dans les textarea
 function printSuivi(id_suivi){
   $.ajax({
-    url: "../../php/script/Reservation/dataSuivi.php",
+    url: "/Project-Ekah/php/script/Reservation/dataSuivi.php",
     data: {id_suivi : id_suivi},
     async:false,
     success: function(result){
@@ -151,7 +151,7 @@ function printSuivi(id_suivi){
 
 function updateSuivi(id_suivi, fait, commentaire){
   $.ajax({
-    url: "../../php/script/Reservation/updateSuivi.php",
+    url: "/Project-Ekah/php/script/Reservation/updateSuivi.php",
     data: {id_suivi: id_suivi, fait: fait, commentaire: commentaire},
     async:false,
     success: function(result){

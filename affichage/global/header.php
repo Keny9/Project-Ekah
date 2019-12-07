@@ -23,7 +23,7 @@ else{
   <nav class="navi-header">
     <div id="logoWrapper" class="logo">
       <a class="link-logo" href="https://ekah.co">
-        <img id='logoHeader' src="../../img/logo_ekah_header.png" alt="Ekah">
+        <img id='logoHeader' src="/logo-ekah-header.png" alt="Ekah">
       </a>
     </div>
     <div class="inner-header">
@@ -80,10 +80,10 @@ else{
         <?php
           if(isset($page_type)){
             if($page_type == 1){
-              include "nav_client.php";
+              include "nav-client.php";
             }
             else if($page_type == 2){
-              include "nav_admin.php";
+              include "nav-admin.php";
             }
           }
          ?>
@@ -136,10 +136,10 @@ else{
           <?php
             if(isset($page_type)){
               if($page_type == 1){
-                include "nav_client_m.php";
+                include "nav-client-m.php";
               }
               else if($page_type == 2){
-                include "nav_admin_m.php";
+                include "nav-admin-m.php";
               }
             }
            ?>
@@ -155,7 +155,7 @@ else{
           ?>
           <div class="onglet onglet-m">
             <div class="folder" id="folder_accueil_m">
-              <a href="../global/login.php">SE DÉCONNECTER</a>
+              <a href="/login">SE DÉCONNECTER</a>
             </div>
           </div>
         </div>

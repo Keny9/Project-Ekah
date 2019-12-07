@@ -3,9 +3,9 @@
 	"use strict";
 
 	var options = {
-		events_source: 'events.json.php',
+		events_source: '/Project-Ekah/utils/bootstrap-calendar/events.json.php',
 		view: 'month',
-		tmpl_path: '../../utils/bootstrap-calendar/tmpls/',
+		tmpl_path: '/Project-Ekah/utils/bootstrap-calendar/tmpls/',
 		tmpl_cache: false,
 		day: 'now',
 		onAfterEventsLoad: function(events) {

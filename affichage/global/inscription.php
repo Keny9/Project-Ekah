@@ -15,13 +15,13 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
-     <link rel="stylesheet" href="../../css/inscription.css">
-     <link rel="stylesheet" href="../../css/main.css">
+     <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
+     <link rel="stylesheet" href="/inscription.css">
+     <link rel="stylesheet" href="/main.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-     <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-     <script type="text/javascript" src="../../js/inscription.js"></script>
+     <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
+     <script type="text/javascript" src="/inscription.js"></script>
 
      <title>Inscription</title>
    </head>
@@ -30,7 +30,7 @@
      <main>
        <div class="inscription">
          <div class="logo-inscr">
-           <img src="../../img/logo_ekah_header.png" alt="Ekah">
+           <img src="/logo-ekah-header.png" alt="Ekah">
          </div>
          <div class="txt-inscr">
            <p>Créer un compte</p>
@@ -51,7 +51,7 @@
            <div id="modal-inscription" class="modal-inscription">
              <div class="modal-content">
                <div class="modal-align-middle img-conf-insc">
-                  <img src="../../img/crochet.png" alt="Confirmation inscription">
+                  <img src="/crochet.png" alt="Confirmation inscription">
                </div>
                <div class="modal-align-middle txt-bravo">
                  <p>Félicitations !</p>

@@ -47,7 +47,7 @@
      type: "POST",
      async: false,
      dataType: "json",
-     url: "../../php/script/Horaire/afficherAllEvents.php",
+     url: "/Project-Ekah/php/script/Horaire/afficherAllEvents.php",
      data: {idFacilitateur: idFacilitateur, duree: duree, region: region, service: id_service}
    });
  }
@@ -81,7 +81,7 @@
   calendrier = $("#calendar").calendar(
      {
        language: 'fr-FR',
-       tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+       tmpl_path: "/Project-Ekah/utils/bootstrap-calendar/tmpls/",
        weekbox: false,
        events_source: events,
 
@@ -197,7 +197,7 @@
      type: "POST",
      async: false,
      dataType: "json",
-     url: "../../php/script/Horaire/afficherAllHoraireSelectionne.php",
+     url: "/Project-Ekah/php/script/Horaire/afficherAllHoraireSelectionne.php",
      data: {idFacilitateur: idFacilitateur,
              date: date,
              duree: duree,
@@ -378,6 +378,7 @@ $(document).ready(function() {
   ville = document.getElementById("ville");
   nbParticipant = $("#nbParticipant");
 
+ $("#dispo").css("color", "#000000");
 
   $(window).keydown(function(event){ //S'assure que le user ne peut pas envoyer le form avec un enter
     if(event.keyCode == 13) {
@@ -427,7 +428,7 @@ function clickSuivant(){
 
 
   // let urlRedirectQuestionnaire = '/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php?';
-  let urlRedirectQuestionnaire = 'paiement.php?';
+  let urlRedirectQuestionnaire = '/paiement?';
   // TODO: Insérer les bonnes valeurs pour facilitateur_id et date_rendez_vous
   let paramRedirectQuestionnaire = 'facilitateur_id='+facilitateur_id+'&date_rendez_vous='+date_rendez_vous+'&id_dispo='+id_dispo+'&id_region='+id_region+'&duree='+duree;
   urlRedirectQuestionnaire += paramRedirectQuestionnaire;
@@ -459,6 +460,9 @@ function clickSuivant(){
    //Si les 3 ne sont pas vides alors pas d'erreur que c'est vide
    if((siVide(noAdresse) || siVide(rue) || siVide(ville)) && $("#question-complementaire").css("display") == "block"){
      indiqueAdresseVide();
+     document.querySelector('.reservation').scrollIntoView({ //Animation scroll smooth au debut du form
+       behavior: 'smooth'
+     });
      return false;
    }
 
@@ -479,10 +483,9 @@ function sendEmail(){
   $("#form-reservation-groupe").css("display", "none");
 
   $.ajax({
-    url: '../../php/script/Reservation/mail_groupe.php',
+    url: '/Project-Ekah/php/script/Reservation/mail_groupe.php',
     method: 'POST',
     dataType: 'json',
-    contentType: "application/x-www-form-urlencoded; charset=utf-8",
     data: {
       service: serviceGroupeInput.options[serviceGroupeInput.selectedIndex].value,
       entreprise: entreprise.value,
@@ -502,7 +505,7 @@ function sendEmail(){
       else{
         $("#loader").css("display", "none");
         alert("Il y a eu un problème lors de l'envoi du courriel.");
-        window.location.href = "/Project-Ekah/affichage/client/reservation_groupe.php";
+        window.location.href = "/reservation-groupe";
       }
     }, error: function(response){
       console.log(response);
@@ -549,15 +552,15 @@ function sendEmail(){
  //Indique quels champs sont vide pour l'adresse
   function indiqueAdresseVide(){
     if(siVide(noAdresse)){
-      inputRequired(noAdresse);
+      noAdresse.style.borderColor = "#ff0000";
     }
 
     if(siVide(rue)){
-      inputRequired(rue);
+      rue.style.borderColor = "#ff0000";
     }
 
     if(siVide(ville)){
-      inputRequired(ville);
+      ville.style.borderColor = "#ff0000";
     }
   }
 

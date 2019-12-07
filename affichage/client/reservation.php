@@ -25,24 +25,24 @@ $activites = $gActivite->getAllActivite();
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
-  	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
-  	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
+    <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
+  	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
+  	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/css/calendar.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/inscription.css">
-    <link rel="stylesheet" href="../../css/consulter-reservation.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
-    <link rel="stylesheet" href="../../css/fix.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/consulter-reservation.css">
+    <link rel="stylesheet" href="/reservation.css">
+    <link rel="stylesheet" href="/fix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-    <script type="text/javascript" src="../../js/global.js"></script>
-    <script type="text/javascript" src="../../js/reservation.js"></script>
+    <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="/global.js"></script>
+    <script type="text/javascript" src="/reservation.js"></script>
     <title>Réservation</title>
   </head>
   <body>
-    <?php include "../global/header.php"; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/affichage/global/header.php"; ?>
 
     <main>
 
@@ -70,7 +70,7 @@ $activites = $gActivite->getAllActivite();
 
 
       <div class="top-img">
-        <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
+        <img src="/mouvement-intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
         <p class="txt-centered">Faire une réservation</p>
       </div>
@@ -172,7 +172,7 @@ $activites = $gActivite->getAllActivite();
       </div>
     </main>
 
-    <?php include "../global/footer.php"; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/affichage/global/footer.php"; ?>
 
   </body>
 </html>
