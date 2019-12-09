@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 $page_type=1;
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/GestionHoraire.php';
@@ -12,43 +13,50 @@ if (!$gh->getDispo($id_dispo)){ // Dispo n'est plus disponible
   exit();
 }
 
-// Retourne $client
-include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
+try{
+  // Retourne $client
+  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
 
-$id_activite = $activite_id = $_POST['service'];
-$date_rendez_vous = $_GET['date_rendez_vous'];
-$id_facilitateur = $facilitateur_id = $_GET['facilitateur_id'];
+  $id_activite = $activite_id = $_POST['service'];
+  $date_rendez_vous = $_GET['date_rendez_vous'];
+  $id_facilitateur = $facilitateur_id = $_GET['facilitateur_id'];
 
-$no_adresse = $_POST['noAdresse'];
-$rue = $_POST['rue'];
-$ville = $_POST['ville'];
-$duree = $_GET['duree'];
-if(isset($_POST['region'])) $id_region = $_GET['id_region'];
-else $id_region = null;
-$_SESSION['id_activite'] = $id_activite;
-$_SESSION['date_rendez_vous'] = $date_rendez_vous;
-$_SESSION['id_facilitateur'] = $id_facilitateur;
-$_SESSION['id_dispo'] = $id_dispo;
-$_SESSION['no_adresse'] = $no_adresse;
-$_SESSION['rue'] = $rue;
-$_SESSION['ville'] = $ville;
-$_SESSION['duree'] = $duree;
-$_SESSION['id_region'] = $id_region;
-$_SESSION['client'] = $client;
+  $no_adresse = $_POST['noAdresse'];
+  $rue = $_POST['rue'];
+  $ville = $_POST['ville'];
+  $duree = $_GET['duree'];
+  if(isset($_POST['region'])) $id_region = $_GET['id_region'];
+  else $id_region = null;
+  $_SESSION['id_activite'] = $id_activite;
+  $_SESSION['date_rendez_vous'] = $date_rendez_vous;
+  $_SESSION['id_facilitateur'] = $id_facilitateur;
+  $_SESSION['id_dispo'] = $id_dispo;
+  $_SESSION['no_adresse'] = $no_adresse;
+  $_SESSION['rue'] = $rue;
+  $_SESSION['ville'] = $ville;
+  $_SESSION['duree'] = $duree;
+  $_SESSION['id_region'] = $id_region;
+  $_SESSION['client'] = $client;
 
-$dt = new DateTime($date_rendez_vous);
-$date = $dt->format('m/d/Y');
-$time = $dt->format('H:i');
+  $dt = new DateTime($date_rendez_vous);
+  $date = $dt->format('m/d/Y');
+  $time = $dt->format('H:i');
 
-// retourne $service_nom
-include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/paiement-getInfoReservation.php";
-if($id_type_activite == 3) $emplacement = "En ligne";
-else $emplacement = $no_adresse." ".$rue.", ".$ville;
-// retourne $prix
-include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/getPrix.php';
-$_SESSION['prix'] = $prix;
+  // retourne $service_nom
+  include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Reservation/paiement-getInfoReservation.php";
+  if($id_type_activite == 3) $emplacement = "En ligne";
+  else $emplacement = $no_adresse." ".$rue.", ".$ville;
+  // retourne $prix
+  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Reservation/getPrix.php';
+  $_SESSION['prix'] = $prix;
 
-$prix_format = number_format($prix*0.01, 2, ',', '');
+  $prix_format = number_format($prix*0.01, 2, ',', '');
+} catch (Exception $e){
+  echo "Une erreur est survenue. <br>";
+  echo "<a href='accueil_client.php'>Retour à l'accueil</a>";
+  exit();
+}
+
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
