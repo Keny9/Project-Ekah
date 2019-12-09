@@ -120,46 +120,53 @@ $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, 
   //Réserver la disponibilité choisi
   $gHoraire->reserverDispo($id_dispo);
   $disponibilites = $facilitateur->getDisponibilite();
+  
+  $activite = $gReservation->getActiviteReservation($reservation->getId());
 
-  //Réserver les autres dispo dépendament de la durée
-  $heure_debut = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "-30 minutes"));
+//Si c'est un service à domicile
+  if($activite->getId_type() == 2){
+    //Réserver les autres dispo dépendament de la durée
+    $heure_debut = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "-30 minutes"));
 
-  if($duree == "30"){
-    for ($i=0; $i < sizeof($disponibilites); $i++) {
-      if($disponibilites[$i]->getHeureDebut() == $heure_fin){           //Réserver 30 minutes après dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){   //réservé 30 minutes avant dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
+    if($duree == "30"){
+      for ($i=0; $i < sizeof($disponibilites); $i++) {
+        if($disponibilites[$i]->getHeureDebut() == $heure_fin){           //Réserver 30 minutes après dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){   //réservé 30 minutes avant dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }
+      }
+    }else if ($duree == "60") {
+      $heure_après = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+30 minutes"));
+
+      for ($i=0; $i < sizeof($disponibilites); $i++) {
+        if($disponibilites[$i]->getHeureDebut() == $heure_fin){           //Réserver la deuxieme dispo (le deuxieme 30 minutes car 1h)
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }else if($disponibilites[$i]->getHeureDebut() == $heure_après){   //réservé 30 minutes avant dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){   //réservé 30 minutes avant dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }
+      }
+    }else if($duree == "90"){
+      $heure_dispo_milieu = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+30 minutes"));
+      $heure_après = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+60 minutes"));
+
+      for ($i=0; $i < sizeof($disponibilites); $i++) {
+        if($disponibilites[$i]->getHeureDebut() == $heure_fin){                 //Réserver 30 minutes après dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }else if($disponibilites[$i]->getHeureDebut() == $heure_dispo_milieu){   //Réserver la deuxieme dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }else if($disponibilites[$i]->getHeureDebut() == $heure_après){         //Pour réserver la troisième dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){         //Pour réserver 30 minutes avant une dispo
+          $gHoraire->reserverDispo($disponibilites[$i]->getId());
+        }
       }
     }
-  }else if ($duree == "60") {
-    $heure_après = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+30 minutes"));
 
-    for ($i=0; $i < sizeof($disponibilites); $i++) {
-      if($disponibilites[$i]->getHeureDebut() == $heure_fin){           //Réserver la deuxieme dispo (le deuxieme 30 minutes car 1h)
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }else if($disponibilites[$i]->getHeureDebut() == $heure_après){   //réservé 30 minutes avant dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){   //réservé 30 minutes avant dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }
-    }
-  }else if($duree == "90"){
-    $heure_dispo_milieu = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+30 minutes"));
-    $heure_après = date("Y-m-d H:i:s", strtotime($dispo->getHeureDebut() . "+60 minutes"));
-
-    for ($i=0; $i < sizeof($disponibilites); $i++) {
-      if($disponibilites[$i]->getHeureDebut() == $heure_fin){                 //Réserver 30 minutes après dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }else if($disponibilites[$i]->getHeureDebut() == $heure_dispo_milieu){   //Réserver la deuxieme dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }else if($disponibilites[$i]->getHeureDebut() == $heure_après){         //Pour réserver la troisième dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }else if($disponibilites[$i]->getHeureDebut() == $heure_debut){         //Pour réserver 30 minutes avant une dispo
-        $gHoraire->reserverDispo($disponibilites[$i]->getId());
-      }
-    }
   }
+
 
  // L'activité ne contient pas de questionnaire
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
