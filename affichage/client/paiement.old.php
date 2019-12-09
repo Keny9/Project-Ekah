@@ -77,12 +77,12 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
 
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/paiement.css">
-    <script src="../../js/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
-    <script>
+    <script type="text/javascript">
       const prix = <?php echo $prix; ?>;
     </script>
-    <script src="../../js/paiement.js"></script>
+    <script type="text/javascript" src="../../js/paiement.js"></script>
   </head>
   <body>
 

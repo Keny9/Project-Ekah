@@ -9,6 +9,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/php
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/phpmailer/src/Exception.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/phpmailer/src/OAuth.php';
 
+
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 $mail->CharSet = 'UTF-8';
 $mail->Encoding = 'quoted-printable';
@@ -36,15 +37,15 @@ try {
     //Server settings
     //$mail->SMTPDebug = 2;                               // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
+    $mail->Host = 'mail.ekah-app.co';                     // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'ekahinfo@gmail.com';               // SMTP username
-    $mail->Password = 'Facilitateur2019';                 // SMTP password
+    $mail->Username = 'demande.groupe@ekah-app.co';       // SMTP username
+    $mail->Password = '*WUJZJfaa7Aa';                     // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('ekahinfo@gmail.com');
+    $mail->setFrom('demande.groupe@ekah-app.co');
     $mail->addAddress('demande.groupe@ekah-app.co', 'Ekah');        // Add a recipient
                                                                     // Name is optional
 

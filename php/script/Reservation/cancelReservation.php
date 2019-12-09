@@ -17,12 +17,10 @@
   $gHoraire = new GestionHoraire();
   $gFacilitateur = new GestionFacilitateur();
 
-  // if(isset($_POST['id_reservation'])){
-  //   $id = $_POST['id_reservation'];
+   if(isset($_POST['id_reservation'])){
+    $id = $_POST['id_reservation'];
 
-    $id = 25;
-
-    // $gReservation->cancelReservation($_POST['id_reservation']);
+    $gReservation->cancelReservation($_POST['id_reservation']);
 
     $reservation = $gReservation->getReservation($id);
 
@@ -37,8 +35,6 @@
     $facilitateur = $gFacilitateur->getFacilitateur($reservation->getIdFacilitateur());
 
     $dispo = $facilitateur->getDisponibilite();
-
-    print_r($reservation);
 
     //Vérifie toutes les dispos du facilitateur pour trouver celui qui concorde avec la dispo de la réservation
     for ($i=0; $i < sizeof($dispo); $i++) {
@@ -75,13 +71,9 @@
       }
 
     }
-
-
-
-
     echo json_encode(true);
-  // }
-
-  echo json_encode(false);
-
+  }
+  else{
+    echo json_encode(false);
+  }
 ?>

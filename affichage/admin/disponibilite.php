@@ -8,43 +8,43 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
   <title>Mes disponibilités</title>
-  <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
-	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
-  <link rel="stylesheet" href="../../css/fix.css">
+  <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
+	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/css/calendar.css">
+  <link rel="stylesheet" href="/fix.css">
 
-  <script src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
+  <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
+  <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
 
-  <script src="../../utils/bootstrap-calendar/js/calendar.js"></script>
-  <script src="../../utils/bootstrap-calendar/js/app.js"></script>
+  <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/js/calendar.js"></script>
+  <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/js/app.js"></script>
 
-  <script src="../../js/disponibilite.js"></script>
+  <script type="text/javascript" src="/disponibilite.js"></script>
 
-  <link rel="stylesheet" href="../../css/inscription.css">
-  <link rel="stylesheet" href="../../css/disponibilite.css">
+  <link rel="stylesheet" href="/inscription.css">
+  <link rel="stylesheet" href="/disponibilite.css">
 
-  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-  <link rel="stylesheet" href="../../css/fix.css">
-  <script src="../../js/global.js"></script>
+  <link rel="stylesheet" href="/fix.css">
+  <script type="text/javascript" src="/global.js"></script>
 
 </head>
 <body>
 
-  <?php include '../global/header.php' ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 
   <main>
 
     <div id="modal-inscription" class="modal-inscription">
       <div class="modal-content">
         <div class="modal-align-middle-insc img-conf-insc">
-           <img src="../../img/crochet.png" alt="Confirmation inscription">
+           <img src="/crochet.png" alt="Confirmation inscription">
         </div>
         <div class="modal-align-middle-insc txt-bravo-insc">
           <p>Attention !</p>
@@ -72,7 +72,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <select class="select-inscr input" name="region" id="region">
           <?php
             echo "<option class=\"option-vide\" value=\"0\" selected=\"selected\">Choisir une région</option>";
-            require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
+            require_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/GestionAffichageDispo.php';
             $gad = new GestionAffichageDispo();
             echo $gad->getAllRegion();
           ?>
@@ -84,7 +84,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <div class="">
           <select class="select-inscr input" name="facilitateur" id="facilitateur">
             <?php
-              require_once '../../php/gestionnaire/Horaire/GestionAffichageDispo.php';
+              require_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Horaire/GestionAffichageDispo.php';
               $gad = new GestionAffichageDispo();
               echo $gad->getAllFacilitateur();
             ?>
@@ -128,7 +128,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
       </main>
 
-    <?php include '../global/footer.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/footer.php' ?>
 
   </body>
 </html>

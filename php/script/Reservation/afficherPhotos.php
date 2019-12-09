@@ -19,7 +19,7 @@
 
      <div id=\"".$facilitateur[$i]->getId()."\" class=\"block-photo-facilitateur\">
        <div class=\"photo-facilitateur\">
-         <img src=\"../../img/facilitateur/".$facilitateur[$i]->getPhoto()."\" alt=\"facilitateur\">
+         <img src=\"/Project-Ekah/img/facilitateur/".$facilitateur[$i]->getPhoto()."\" alt=\"facilitateur\">
        </div>
        <div class=\"block-photo-nom\">
          <div class=\"photo-nom\">".$facilitateur[$i]->getPrenom()."</div>

@@ -95,10 +95,9 @@ $stmt->execute();
 $id_paiement = $conn->insert_id;
 
 
-
 if($id_facilitateur == -1){ // Aucun facilitateur choisi
   $facilitateur = $gFacilitaeur->getDispo($id_dispo);
-  $id_facilitateur = $facilitateur->getId();
+  $id_facilitateur = $facilitateur->getId(); /*********Ne fonctionne pas si la requete getDispo($id_dispo) retourne rien***************/
 }
 
 // Set l'id de l'emplacement
@@ -116,17 +115,10 @@ $reservation = new Reservation(null, $id_paiement, $id_emplacement, null, $id_ac
 // Insert la reservation et get l'id de son suivi
 $suivi_id = $gReservation->insertReservationIndividuelle($groupe, $reservation, $_SESSION['logged_in_user_id']);
 
-//Réserver la disponibilité
-$gHoraire->reserverDispo($id_dispo);
 
-// L'activité ne contient pas de questionnaire
-if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
-  echo "Il n'y a pas de questionnaire pour cette activité\n";
-  echo "Réservation complétée";
 
-  // Redirect
-}
-
+  //Réserver la disponibilité choisi
+  $gHoraire->reserverDispo($id_dispo);
   $disponibilites = $facilitateur->getDisponibilite();
 
   //Réserver les autres dispo dépendament de la durée
@@ -171,15 +163,15 @@ if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($i
 
  // L'activité ne contient pas de questionnaire
  if(($questionnaireArray = $gReservation->questionnaireSelectAllWithActiviteId($id_activite)) == null){
-   echo "Il n'y a pas de questionnaire pour cette activité\n";
-   echo "Réservation complétée";
 
-   // Redirect
  }
 
 // L'activité contient un questionnaire
-$questionnaire = $questionnaireArray[0];
+
+  $questionnaire = $questionnaireArray[0];
+
+
 $_SESSION['questionnaire'] = $questionnaire;
 
-header('Location: /Project-Ekah/affichage/client/questionnaire.php?res_id='.$suivi_id);
+header('Location: /questionnaire?res_id='.$suivi_id);
 ?>

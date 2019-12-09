@@ -20,24 +20,24 @@ session_start();
  <html lang="fr" dir="ltr">
    <head>
      <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+     <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     <link rel="stylesheet" href="../../css/main.css">
-     <link rel="stylesheet" href="../../css/inscription.css">
-     <link rel="stylesheet" href="../../css/modal.css">
+     <link rel="stylesheet" href="/main.css">
+     <link rel="stylesheet" href="/inscription.css">
+     <link rel="stylesheet" href="/modal.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
 <?php //<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> ?>
-     <script src="../../js/jquery-3.4.1.slim.js"></script>
+     <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-     <script src="../../js/global.js"></script>
-     <script>
+     <script type="text/javascript" src="/global.js"></script>
+     <script type="text/javascript">
        // variable qui contient un array JSON des informations du client
        const CLIENT = <?php echo $client_json ?>;
      </script>
-     <script src="../../js/mon-profil.js"></script>
+     <script type="text/javascript" src="/mon-profil.js"></script>
      <title>Mon profil</title>
    </head>
    <body>
@@ -47,7 +47,7 @@ session_start();
        <div class="modal-dialog">
          <div class="modal-content">
            <div class="modal-align-middle img-conf-insc">
-              <img src="../../img/crochet.png" alt="Confirmation inscription">
+              <img src="/crochet.png" alt="Confirmation inscription">
            </div>
            <div class="modal-align-middle txt-bravo">
              <p>Changements faits</p>
@@ -64,7 +64,7 @@ session_start();
      <main>
        <div class="inscription">
          <div class="logo-inscr">
-           <img src="../../img/logo_ekah_header.png" alt="Ekah">
+           <img src="/logo-ekah-header.png" alt="Ekah">
          </div>
          <div class="txt-inscr">
            <p>Mon profil</p>
@@ -84,7 +84,7 @@ session_start();
            <div class="group-input-inscr">
              <div class="box-select">
                <select class="select-inscr input-long" name="pays" id="pays" onchange="changePays()">
-                 <option class="option-vide" value="vide" selected="selected">Pays</option>
+                 <option class="option-vide" value="vide" selected="selected">Pays</option> <!-- Definir la facon d'inclure les pays principaux -->
                  <option value="Canada">Canada</option>
                  <option value="États-Unis">États-Unis</option>
                </select>
@@ -92,7 +92,7 @@ session_start();
            </div>
            <div class="group-input-inscr">
              <input type="text" name="prenom" id="prenom" class="input-inscr" placeholder="Prénom" value="">
-             <input type="text" name="nom" id="nom" class="input-inscr second-input" placeholder="Nom de famille" value="">
+             <input type="text" name="nom" id="nom" class="input-inscr second-input" placeholder="Nom de famille"value="">
            </div>
            <div class="group-input-inscr">
              <input type="text" id="jour" name="jour" class="input-inscr input-date m-long" placeholder="Jour de naissance" value="" maxlength="2">
@@ -144,6 +144,6 @@ session_start();
 
      </main>
 
-     <?php include "../global/footer.php"; ?>
+     <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/affichage/global/footer.php"; ?>
    </body>
  </html>

@@ -16,15 +16,15 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
     <title>Mot de passe oublié ?</title>
-    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/inscription.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
-    <link rel="stylesheet" href="../../css/password-reset.css">
-    <script src="../../js/jquery-3.4.1.slim.js"></script>
-    <script src="../../js/password-recovery.js"></script>
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/reservation.css">
+    <link rel="stylesheet" href="/password-reset.css">
+    <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="/password-recovery.js"></script>
   </head>
   <body>
 
@@ -43,7 +43,7 @@
           </div>
 
           <div class="group-input-inscr margin-less">
-           <a href="/Project-Ekah/affichage/global/login.php"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">Retour</button></a>
+           <a href="/login"><button type="button" name="btnRetour" id="btnRetour" class="btn-confirmer input-long btn-compte-existant">Retour</button></a>
           </div>
 
           <?php

@@ -10,32 +10,32 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
   <head>
     <meta charset="utf-8">
     <title>Accueil</title>
-    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
-  	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
-  	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/inscription.css">
-    <link rel="stylesheet" href="../../css/accueil_client.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
-    <link rel="stylesheet" href="../../css/consulter-reservation.css">
-    <link rel="stylesheet" href="../../css/atelier.css">
-    <link rel="stylesheet" href="../../css/fix.css">
+    <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
+  	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
+  	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/css/calendar.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/accueil-client.css">
+    <link rel="stylesheet" href="/reservation.css">
+    <link rel="stylesheet" href="/consulter-reservation.css">
+    <link rel="stylesheet" href="/atelier.css">
+    <link rel="stylesheet" href="/fix.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script src="../../js/jquery-3.4.1.slim.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
-    <script src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
+    <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
 
-    <script src="../../utils/bootstrap-calendar/js/calendar.js"></script>
-    <script src="../../utils/bootstrap-calendar/js/app.js"></script>
-    <script src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
+    <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/js/calendar.js"></script>
+    <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/js/app.js"></script>
+    <script type="text/javascript" src="/Project-Ekah/utils/bootstrap-calendar/js/language/fr-FR.js"></script>
 
-    <script src="../../js/global.js"></script>
-    <script src="../../js/ateliers.js"></script>
+    <script type="text/javascript" src="/global.js"></script>
+    <script type="text/javascript" src="/ateliers.js"></script>
 
   </head>
   <body>
@@ -43,7 +43,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
     <main>
       <div class="top-img">
-        <img src="../../img/activite/reflexion.jpg" alt="Mouvement Intuitif">
+        <img src="/reflexion.jpg" alt="Mouvement Intuitif">
         <div class="shade"></div>
         <p class="txt-centered">Les ateliers</p>
       </div>
@@ -51,7 +51,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
       <div id="modal-inscription" class="modal-inscription">
         <div class="modal-content">
           <div class="modal-align-middle-insc img-conf-insc">
-             <img src="../../img/crochet.png" alt="Confirmation inscription">
+             <img src="/crochet.png" alt="Confirmation inscription">
           </div>
           <div class="modal-align-middle-insc txt-bravo-insc">
             <p>Félicitations !</p>
@@ -86,14 +86,14 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         <br><br>
 
 
-        <script>
+        <script type="text/javascript">
 
         var calendar = $("#calendar").calendar(
           {
             language: 'fr-FR',
-            tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+            tmpl_path: "/Project-Ekah/utils/bootstrap-calendar/tmpls/",
             weekbox: false,
-            events_source: "../../php/script/Horaire/afficherAllAteliers.php",
+            events_source: "/Project-Ekah/php/script/Horaire/afficherAllAteliers.php",
 
             onAfterViewLoad: function(view) {
               $('.page-header h3').text(this.getTitle());
@@ -106,7 +106,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
           <div class="modal-content">
               <div class="modal-align-middle-mr">
 
-                <img src="../../img/activite/relaxe.jpg" class="img-modal" alt="Image">
+                <img src="/relaxe.jpg" class="img-modal" alt="Image">
 
                 <h3 id="modal-titre" class="modal-titre">Titre</h3>
 

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calendrier</title>
-  <script src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
 
-  <script src="../../utils/bootstrap-calendar/js/calendar.js"></script>
-  <script src="../../utils/bootstrap-calendar/js/app.js"></script>
-  <script src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/js/calendar.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/js/app.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/js/language/fr-FR.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 

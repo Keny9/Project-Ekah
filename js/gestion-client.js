@@ -89,7 +89,7 @@ $(document).ready(function(){
 
 table = $('#table_client').DataTable({
     "ajax":{
-      "url": "../../php/script/Client/getDataClient.php",
+      "url": "/Project-Ekah/php/script/Client/getDataClient.php",
       "dataSrc": ""
     },
     "columns" : [
@@ -101,7 +101,7 @@ table = $('#table_client').DataTable({
       {"data": null,
       render: function(data, type, row){
         // Set la référence vers les réservations du client selon son id
-        return '<a href="../admin/consulter-reservation-client.php?id='+data.id+'" target="_blank"><span class="calendar"></span></a>';
+        return '<a href="/admin/consulter-reservation-client?id='+data.id+'" target="_blank"><span class="calendar"></span></a>';
       }},
     ],
     "language":{
@@ -248,7 +248,7 @@ function updateProfil(){
     var dataClientJson = JSON.stringify(dataClient);
 
     $.ajax({
-      url: "../../php/script/Client/updateProfilClient.php",
+      url: "/Project-Ekah/php/script/Client/updateProfilClient.php",
       data: {data: dataClientJson},
       async:false,
       success: function(result){
@@ -571,7 +571,7 @@ function verifieNomPrenom(e){
      $.ajax({
        type: "POST",
        async: false,
-       url: "../../php/script/Client/siCourrielExiste.php",
+       url: "/Project-Ekah/php/script/Client/siCourrielExiste.php",
        data: {"courriel": $('#courriel').val()},
        success: function(result){
          if(result == 'false'){

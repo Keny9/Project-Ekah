@@ -19,17 +19,17 @@ session_start();
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/inscription.css">
-    <link rel="stylesheet" href="../../css/reservation_questionnaire.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
-    <link rel="stylesheet" href="../../css/reservation_groupe.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
+    <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/reservation-questionnaire.css">
+    <link rel="stylesheet" href="/reservation.css">
+    <link rel="stylesheet" href="/reservation-groupe.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script src="../../js/jquery-3.4.1.slim.js"></script>
-    <script src="../../js/global.js"></script>
-    <script src="../../js/reservation.js"></script>
+    <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="/global.js"></script>
+    <script type="text/javascript" src="/reservation-groupe.js"></script> <!--C'est tu nécessaire de réutiliser reservation.js..? -->
     <title>Réservation Groupe</title>
   </head>
   <body>
@@ -38,7 +38,7 @@ session_start();
         <div class="modal-align-middle-mr">
           <div class="txt-reservation txt-bienv">Votre demande a été envoyée avec succès ! <br><br> <p class="modal-text">Nous analyserons votre demande et nous vous recontacterons très bientôt.</p> </div>
           <div class="modal-align-middle btn-modal-insc modal-align-middle-mr">
-            <a href="/Project-Ekah/affichage/client/accueil_client.php"><button id="close-demande" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Terminer</button></a>
+            <a href="/accueil"><button id="close-demande" type="button" class="btn-confirmer input-long btn-compte-existant" name="button">Terminer</button></a>
           </div>
       </div>
     </div>
@@ -47,7 +47,7 @@ session_start();
     <?php include "../global/header.php"; ?>
     <main>
       <div class="top-img">
-        <img src="../../img/activite/relaxe.jpg" alt="Atelier et facilitation">
+        <img src="/relaxe.jpg" alt="Atelier et facilitation">
         <div class="shade"></div>
         <p class="txt-centered">Réservation de groupe</p>
       </div>
@@ -91,7 +91,7 @@ session_start();
               <textarea name="message" id="message" class="commentaire"></textarea>
             </div>
             <div class="group-input-inscr btn-ques">
-              <a href="/Project-Ekah/affichage/client/accueil_client.php"><button type="button" name="retourDemandeGroupe" id="retourDemandeGroupe" class="bouton-re-que">RETOUR</button></a>
+              <a href="/accueil"><button type="button" name="retourDemandeGroupe" id="retourDemandeGroupe" class="bouton-re-que">RETOUR</button></a>
               <button type="button" name="confirmerDemandeGroupe" id="confirmerDemandeGroupe" class="bouton-re-que" onclick="sendEmail()">CONFIRMER</button>
             </div>
           </div>

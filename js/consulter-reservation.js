@@ -23,7 +23,7 @@ $(document).ready( function () {
 
 table = $('#table_reservation').DataTable({
   "ajax":{
-    "url": "../../php/script/Reservation/dataReservationClient.php",
+    "url": "/Project-Ekah/php/script/Reservation/dataReservationClient.php",
     "dataSrc": ""
   },
   "columns" : [
