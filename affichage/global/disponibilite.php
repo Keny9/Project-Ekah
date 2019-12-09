@@ -8,29 +8,29 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 <html>
 <head>
   <title>Minimum Setup</title>
-  <link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
-	<link rel="stylesheet" href="../../utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="../../utils/bootstrap-calendar/css/calendar.css">
+  <link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap.css">
+	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="/Project-Ekah/utils/bootstrap-calendar/css/calendar.css">
 
-  <script src="../../utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
-  <script src="../../utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/jquery/jquery.min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/underscore/underscore-min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/bootstrap2/js/bootstrap.min.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/components/jstimezonedetect/jstz.min.js"></script>
 
-  <script src="../../utils/bootstrap-calendar/js/calendar.js"></script>
-  <script src="../../utils/bootstrap-calendar/js/app.js"></script>
-  <script src="../../utils/bootstrap-calendar/js/language/fr-FR.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/js/calendar.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/js/app.js"></script>
+  <script src="/Project-Ekah/utils/bootstrap-calendar/js/language/fr-FR.js"></script>
 
-  <script src="../../js/disponibilite.js"></script>
+  <script src="/disponibilite.js"></script>
 
-  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-  <script src="../../js/global.js"></script>
+  <script src="/global.js"></script>
 
 </head>
 <body>
 
-  <?php include 'header.php' ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/affichage/global/header.php' ?>
 
   <main>
 
@@ -55,9 +55,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
         var calendar = $("#calendar").calendar(
           {
             language: 'fr-FR',
-            tmpl_path: "../../utils/bootstrap-calendar/tmpls/",
+            tmpl_path: "/Project-Ekah/utils/bootstrap-calendar/tmpls/",
             weekbox: false,
-            events_source: "../../php/script/Horaire/afficherHoraireFacilitateur.php",
+            events_source: "/Project-Ekah/php/script/Horaire/afficherHoraireFacilitateur.php",
 
             onAfterViewLoad: function(view) {
         			$('.page-header h3').text(this.getTitle());

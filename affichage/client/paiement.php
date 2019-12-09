@@ -55,21 +55,21 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
  <head>
    <meta charset="utf-8">
    <title></title>
-   <link rel="stylesheet" href="../../css/stripe_css.css">
+   <link rel="stylesheet" href="/paiement.css">
    <script src="https://js.stripe.com/v3/"></script>
-   <script type="text/javascript" src="../../js/paiement.js"></script>
+   <script type="text/javascript" src="/paiement.js"></script>
 
  </head>
  <body>
    <div class="body-container">
      <div class="top">
-        <img src="../../img/powered_by_stripe.png" alt="Powered by Stripe" title="Powered by Stripe"><br>
+        <img src="/powered-by-stripe.png" alt="Powered by Stripe" title="Powered by Stripe"><br>
         <label></label>
      </div>
      <div class="body">
        <div class="header">
          <div class="item">
-           <img class="logo" src="../../img/icon_ekah.png" alt="Ekah Logo" title="Logo d'Ekah">
+           <img class="logo" src="/icon-ekah.png" alt="Ekah Logo" title="Logo d'Ekah">
          </div>
          <div class="item">
            <label>Formulaire de paiement</label>
@@ -113,7 +113,7 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
        </div>
 
        <div class="main">
-         <form action="../../php/script/Reservation/redirectQuestionnaire.php" method="post" id="payment-form">
+         <form action="/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php" method="post" id="payment-form">
            <input type="hidden" name="token" />
            <div class="group">
              <label>
@@ -140,7 +140,7 @@ $prix_format = number_format($prix*0.01, 2, ',', '');
        </div>
      </div>
      <div class="bottom">
-       <img src="../../img/logo_ekah_header.png" alt="Ekah logo" title="Logo d'Ekah">
+       <img src="/logo-ekah-header.png" alt="Ekah logo" title="Logo d'Ekah">
      </div>
    </div>
 

@@ -19,6 +19,7 @@ $( document ).ready(function() {
 
  // FORM SUBMIT
  $('#btnlogin').click(function(){
+   p.innerHTML = "";
    if(validerLogin()){
      $('#formulaireLogin').attr('action', '/Project-Ekah/php/script/Client/redirectPostLogin.php');
      $('#formulaireLogin').submit();
@@ -35,9 +36,9 @@ $(document).on('keypress',function(e) {
   // Appuie sur Enter
     if(e.which == 13) {
       // Insert le mot de passe et le courriel
-      $('#courriel').val(function() {
-        return this.value + "@ekah.ca"});
-      $('#motDePasse').val("Qwertyu1");
+    //  $('#courriel').val(function() {
+    //    return this.value + "@ekah.ca"});
+    //  $('#motDePasse').val("Qwertyu1");
       // Simule un clique sur le bouton de login
       $('#btnlogin').click();
     }
@@ -57,7 +58,7 @@ function validerLogin(){
   $.ajax({
     type: "POST",
     async: false,
-    url: "../../php/script/Client/validerLogin.php",
+    url: "/Project-Ekah/php/script/Client/validerLogin.php",
     data: {"courriel": $('#courriel').val(),
            "motDePasse": $('#motDePasse').val()},
     success: function(result){

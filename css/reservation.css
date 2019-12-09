@@ -1,12 +1,12 @@
 /**
- * CSS pour la page reservation
- *
- * Nom :         reservation.css
- * Catégorie :   Style
- * Auteur :      Karl Boutin
- * Version :     1.0
- * Date de la dernière modification : 2019-10-11
- */
+* CSS pour la page reservation
+*
+* Nom :         reservation.css
+* Catégorie :   Style
+* Auteur :      Karl Boutin
+* Version :     1.0
+* Date de la dernière modification : 2019-10-11
+*/
 
 .top-img{
   position: relative;
@@ -71,34 +71,27 @@
 
 #photo-facilitateur{
   display: none;
+  overflow:hidden;
 }
 
 .block-photo-facilitateur{
-  width: 430px;
   margin: 0 auto;
   float: left;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 15px;
-
   width: 129px;
 }
 
 .photo-facilitateur{
   display: inline-block;
-  /* background-color: grey; */
-  width: 75px;
-  height: 75px;
   margin-right: 15px;
   cursor: pointer;
-
   width: 125px;
   height: 125px;
 }
 
 .block-photo-nom{
-  width: 279px;
-  /* margin: 0 auto; */
   width: 430px;
 }
 
@@ -157,34 +150,34 @@ textarea:focus{
   display: block;
 }
 
-  #prix{
-    margin-left: 0;
-  }
+#prix{
+  margin-left: 0;
+}
 
-  #calendrier{
-    width: 450px;
-    height: 450px;
-  }
+#calendrier{
+  width: 450px;
+  height: 450px;
+}
 
-  #label-facilitateur{
-    width: 175px;
-  }
+#label-facilitateur{
+  width: 175px;
+}
 
-  .label-prix{
-    width: 50px;
-  }
+.label-prix{
+  width: 50px;
+}
 
-  .label-long{
-    width: 300px;
-  }
+.label-long{
+  width: 300px;
+}
 
-  .label-col{
-    width: 100%;
-  }
+.label-col{
+  width: 100%;
+}
 
-  .date-heure{
-    padding-right: 50px;
-  }
+.date-heure{
+  padding-right: 50px;
+}
 .facilitateur-select{
   outline: 2px solid #000000;
   border-radius: 0px;
@@ -210,6 +203,7 @@ h3{
   line-height: normal;
   margin: 0px;
 }
+
 .page-header{
   padding-bottom: 0px;
   margin: 0px;
@@ -226,6 +220,7 @@ h3{
   float: left;
   margin-right: 0px;
 }
+
 .legend-vert{
   background-color: #e8fde7;
   width: 25px;
@@ -233,6 +228,7 @@ h3{
   float: left;
   margin-top: 8px;
 }
+
 .legend-txt{
   float: left;
   margin-left: 5px;
@@ -285,12 +281,27 @@ h3{
   .legend{
     margin-right: 33%;
   }
+
   .page-header{
     top: 36px;
   }
-}
 
-.facilitateur-select{
-  outline: 2px solid #000000;
-  border-radius: 0px;
+  .block-photo-facilitateur{
+    width: 129px;
+    margin-top: 5px;
+  }
+
+  .photo-facilitateur{
+    width: 125px;
+    height: 125px;
+  }
+
+  .block-photo-nom{
+    width: 430px;
+  }
+
+  .photo-nom{
+    width: 125px;
+    font-size: 15px;
+  }
 }

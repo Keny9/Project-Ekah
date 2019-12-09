@@ -30,12 +30,12 @@
 
    date = date + " " + heure+ ":00";
    //console.log(activite);
-   
+
    $.ajax({
      type: "POST",
      async: false,
      dataType: "json",
-     url: "../../php/script/Reservation/ajouterAtelier.php",
+     url: "/Project-Ekah/php/script/Reservation/ajouterAtelier.php",
      data: {"date": date, "heure": heure, "duree": duree, "adresse": adresse, "activite": activite},
      success: function(data){
          bool = true;
@@ -150,7 +150,7 @@ document.getElementById('nom').focus();
 function remplirNom(x){
   var id = x+1;
   myData={id:id};
-  var url="../../php/script/Activite/remplirActiviteNom.php";
+  var url="/Project-Ekah/php/script/Activite/remplirActiviteNom.php";
               $(function($) {
                 $.ajax({
                   url: url,
@@ -201,7 +201,7 @@ function remplirNom(x){
 function remplirDescription(x){
   var id = x+1;
   myData={id:id};
-  var url="../../php/script/Activite/remplirActiviteDescription.php";
+  var url="/Project-Ekah/php/script/Activite/remplirActiviteDescription.php";
               $(function($) {
                 $.ajax({
                   url: url,
@@ -235,7 +235,7 @@ function remplirDescription(x){
 function remplirDuree(x){
   var id = x+1;
   myData={id:id};
-  var url="../../php/script/Activite/remplirActiviteDuree.php";
+  var url="/Project-Ekah/php/script/Activite/remplirActiviteDuree.php";
               $(function($) {
                 $.ajax({
                   url: url,
@@ -265,7 +265,7 @@ function remplirDuree(x){
 function remplirQuestion(x){
   var id = x+1;
   myData={id:id};
-  var url="../../php/script/Activite/remplirActiviteQuestionnaire.php";
+  var url="/Project-Ekah/php/script/Activite/remplirActiviteQuestionnaire.php";
               $(function($) {
                 $.ajax({
                   url: url,
@@ -320,7 +320,7 @@ function remplirQuestion(x){
 function remplirType(x){
   var id = x+1;
   myData={id:id};
-  var url="../../php/script/Activite/remplirActiviteType.php";
+  var url="/Project-Ekah/php/script/Activite/remplirActiviteType.php";
               $(function($) {
                 $.ajax({
                   url: url,
@@ -371,7 +371,7 @@ function ajoutDuree(x){
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
-  var url="../../php/script/Activite/ajouterActiviteDuree.php";
+  var url="/Project-Ekah/php/script/Activite/ajouterActiviteDuree.php";
   let divFin = document.getElementById("AjoutActivite").getAttribute('value');
   for (i = 0; i < divFin; i++){
     let divSelection = document.getElementById("Activite-"+i);
@@ -411,7 +411,7 @@ function ajoutDuree(x){
 }
  function enleveDuree(x){
    var hr = new XMLHttpRequest();
-   var url="../../php/script/Activite/supprimerActiviteDuree.php";
+   var url="/Project-Ekah/php/script/Activite/supprimerActiviteDuree.php";
    let divFin = document.getElementById("AjoutActivite").getAttribute('value');
    for (i = 0; i < divFin; i++){
      let divSelection = document.getElementById("Activite-"+i);
@@ -447,7 +447,7 @@ function ajoutDuree(x){
 
    function supprimerQuestion(){
      var hr = new XMLHttpRequest();
-     var url="../../php/script/Question/supprimerQuestion.php";
+     var url="/Project-Ekah/php/script/Question/supprimerQuestion.php";
 
      var sel = document.getElementById('questionnaire');
      var id=sel.value;
@@ -496,7 +496,7 @@ let divFin = document.getElementById("AjoutActivite").getAttribute('value');
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
-  var url="../../php/script/Question/ajouterQuestionnaire.php";
+  var url="/Project-Ekah/php/script/Question/ajouterQuestionnaire.php";
 
   $(function($) {
       $.ajax({
@@ -528,7 +528,7 @@ function ajouterActiviteQuestionnaire(id){
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
-  var url="../../php/script/Question/ajouterActiviteQuestionnaire.php";
+  var url="/Project-Ekah/php/script/Question/ajouterActiviteQuestionnaire.php";
 
   $(function($) {
       $.ajax({
@@ -572,7 +572,7 @@ function ajouterQuestion(){
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
-  var url="../../php/script/Question/ajouterQuestion.php";
+  var url="/Project-Ekah/php/script/Question/ajouterQuestion.php";
 
   $(function($) {
       $.ajax({
@@ -605,7 +605,7 @@ function ajouterQuestionQuestionnaire(id){
   // Create our XMLHttpRequest object
   var hr = new XMLHttpRequest();
   // Create some variables we need to send to our PHP file
-  var url="../../php/script/Question/ajouterQuestionQuestionnaire.php";
+  var url="/Project-Ekah/php/script/Question/ajouterQuestionQuestionnaire.php";
   var ordre=1;
   $(function($) {
       $.ajax({
@@ -654,7 +654,7 @@ function ajouterActive(){
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
-   var url="../../php/script/Activite/ajouterActivite.php";
+   var url="/Project-Ekah/php/script/Activite/ajouterActivite.php";
 
    var nom = document.getElementById('nom').value;
    var idType = document.getElementById('type').value;
@@ -740,7 +740,7 @@ function ajouterActive(){
    // Create our XMLHttpRequest object
    var hr = new XMLHttpRequest();
    // Create some variables we need to send to our PHP file
-   var url="../../php/script/Activite/modifierActivite.php";
+   var url="/Project-Ekah/php/script/Activite/modifierActivite.php";
 
    var nom = document.getElementById('nom').value;
    nom = nom.replace(/'/g, "\\'");

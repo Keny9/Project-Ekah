@@ -8,19 +8,21 @@
 * Version :     1.0
 * Date de la dernière modification : 2019-10-11
 */
-session_start();
+ob_start();
+
 $page_type=1;
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionAffichageReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Reservation/GestionReservation.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php';
+session_start();
 include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Login/connect.php';
 
 $recu_paiement_url = $_SESSION['recu_paiement_url'];
 unset($_SESSION['recu_paiement_url']);
 
 // Si le questionnaire n'est pas set
-if (!isset($_SESSION['questionnaire'])){
+if ($_SESSION['questionnaire'] == null){
   // Redirect sur la page de réservation
   header('Location: /Project-Ekah/affichage/client/reservation.php?rComplete=1&recu_url='.$recu_paiement_url);
   exit();
@@ -37,6 +39,8 @@ $gAffichage = new GestionAffichageReservation();
 
 $arrayQuestion = $gReservation->questionSelectAllWithQuestionnaireId($questionnaire_id);
 $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
+
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -44,18 +48,18 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" content="">
-    <link rel="shortcut icon" href="../../img/favicon-ekah.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/consulter-reservation.css">
-    <link rel="stylesheet" href="../../css/inscription.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
-    <link rel="stylesheet" href="../../css/reservation_questionnaire.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/consulter-reservation.css">
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/reservation.css">
+    <link rel="stylesheet" href="/reservation-questionnaire.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script type="text/javascript" src="../../js/jquery-3.4.1.slim.js"></script>
-    <script type="text/javascript" src="../../js/global.js"></script>
-    <script type="text/javascript" src="../../js/reservation.js"></script>
-    <script type="text/javascript" src="../../js/questionnaire.js"></script>
+    <script type="text/javascript" src="/jquery-3.4.1.slim.js"></script>
+    <script type="text/javascript" src="/global.js"></script>
+    <script type="text/javascript" src="/reservation.js"></script>
+    <script type="text/javascript" src="/questionnaire.js"></script>
     <script type="text/javascript">
       const SUIVI_ID = <?php echo $_GET['res_id']; ?>;
     </script>
@@ -80,7 +84,7 @@ $stringQuestions = $gAffichage->printQuestionArray($arrayQuestion);
     </div>
 
       <div class="top-img">
-        <img src="../../img/activite/mouvement_intuitif.png" alt="Mouvement Intuitif">
+        <img src="/mouvement-intuitif.png" alt="Mouvement Intuitif">
         <div class="shade"></div>
         <p class="txt-centered"><?php echo $questionnaire_nom; ?></p>
       </div>
