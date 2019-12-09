@@ -1,0 +1,105 @@
+RewriteEngine On
+
+# global
+RewriteRule ^calendrier$ /Project-Ekah/affichage/global/calendrier.php
+RewriteRule ^disponibilite$ /Project-Ekah/affichage/global/disponibilite.php
+RewriteRule ^erreur$ /Project-Ekah/affichage/global/erreur.php
+RewriteRule ^footer$ /Project-Ekah/affichage/global/footer.php
+RewriteRule ^header$ /Project-Ekah/affichage/global/header.php
+RewriteRule ^inscription$ /Project-Ekah/affichage/global/inscription.php
+RewriteRule ^login$ /Project-Ekah/affichage/global/login.php
+RewriteRule ^nav-admin-m$ /Project-Ekah/affichage/global/nav-admin-m.php
+RewriteRule ^nav-admin$ /Project-Ekah/affichage/global/nav-admin.php
+RewriteRule ^nav-client-m$ /Project-Ekah/affichage/global/nav-client-m.php
+RewriteRule ^nav-client$ /Project-Ekah/affichage/global/nav-client.php
+RewriteRule ^password-reset$ /Project-Ekah/affichage/global/password-reset.php
+
+
+# client
+RewriteRule ^accueil$ /Project-Ekah/affichage/client/accueil-client.php
+RewriteRule ^ajouter-fichier-perso$ /Project-Ekah/affichage/client/ajouter-fichier-perso.php
+RewriteRule ^consulter-reservation$ /Project-Ekah/affichage/client/consulter-reservation.php
+RewriteRule ^modifier-mon-mot-de-passe$ /Project-Ekah/affichage/client/modifier-mon-mot-de-passe.php
+RewriteRule ^mon-profil$ /Project-Ekah/affichage/client/mon-profil.php
+RewriteRule ^paiement$ /Project-Ekah/affichage/client/paiement.php
+RewriteRule ^questionnaire$ /Project-Ekah/affichage/client/questionnaire.php
+RewriteRule ^reservation-groupe$ /Project-Ekah/affichage/client/reservation-groupe.php
+RewriteRule ^reservation$ /Project-Ekah/affichage/client/reservation.php
+
+
+# admin
+RewriteRule ^admin/accueil$ /Project-Ekah/affichage/admin/disponibilite.php
+RewriteRule ^admin/consulter-reservation-client$ /Project-Ekah/affichage/admin/consulter-reservation-client.php
+RewriteRule ^admin/consulter-reservation$ /Project-Ekah/affichage/admin/consulter-reservation.php
+RewriteRule ^admin/disponibilite$ /Project-Ekah/affichage/admin/disponibilite.php
+RewriteRule ^admin/gestion-client$ /Project-Ekah/affichage/admin/gestion-client.php
+RewriteRule ^admin/gestion-facilitateur$ /Project-Ekah/affichage/admin/gestion-facilitateur.php
+RewriteRule ^admin/gestion-reservation$ /Project-Ekah/affichage/admin/gestion-reservation.php
+RewriteRule ^admin/modifier-mon-mot-de-passe$ /Project-Ekah/affichage/admin/modifier-mon-mot-de-passe.php
+RewriteRule ^admin/mon-profil$ /Project-Ekah/affichage/admin/mon-profil.php
+
+
+# css
+RewriteRule (^admin\/|^)accueil-client.css$ /Project-Ekah/css/accueil-client.css
+RewriteRule (^admin\/|^)atelier.css$ /Project-Ekah/css/atelier.css
+RewriteRule (^admin\/|^)consulter-reservation.css$ /Project-Ekah/css/consulter-reservation.css
+RewriteRule (^admin\/|^)datatable.css$ /Project-Ekah/css/datatable.css
+RewriteRule (^admin\/|^)disponibilite.css$ /Project-Ekah/css/disponibilite.css
+RewriteRule (^admin\/|^)fix.css$ /Project-Ekah/css/fix.css
+RewriteRule (^admin\/|^)gestion-client.css$ /Project-Ekah/css/gestion-client.css
+RewriteRule (^admin\/|^)gestion-facilitateur.css$ /Project-Ekah/css/gestion-facilitateur.css
+RewriteRule (^admin\/|^)gestion-reservation.css$ /Project-Ekah/css/gestion-reservation.css
+RewriteRule (^admin\/|^)inscription.css$ /Project-Ekah/css/inscription.css
+RewriteRule (^admin\/|^)login.css$ /Project-Ekah/css/login.css
+RewriteRule (^admin\/|^)main.css$ /Project-Ekah/css/main.css
+RewriteRule (^admin\/|^)modal.css$ /Project-Ekah/css/modal.css
+RewriteRule (^admin\/|^)paiement.css$ /Project-Ekah/css/paiement.css
+RewriteRule (^admin\/|^)password-reset.css$ /Project-Ekah/css/password-reset.css
+RewriteRule (^admin\/|^)reservation-groupe.css$ /Project-Ekah/css/reservation-groupe.css
+RewriteRule (^admin\/|^)reservation-questionnaire.css$ /Project-Ekah/css/reservation-questionnaire.css
+RewriteRule (^admin\/|^)reservation.css$ /Project-Ekah/css/reservation.css
+
+
+# js
+RewriteRule (^admin\/|^)ateliers.js$ /Project-Ekah/js/ateliers.js
+RewriteRule (^admin\/|^)consulter-reservation.js$ /Project-Ekah/js/consulter-reservation.js
+RewriteRule (^admin\/|^)consulter-reservation-admin.js$ /Project-Ekah/js/consulter-reservation-admin.js
+RewriteRule (^admin\/|^)consulter-reservation-client.js$ /Project-Ekah/js/consulter-reservation-client.js
+RewriteRule (^admin\/|^)disponibilite.js$ /Project-Ekah/js/disponibilite.js
+RewriteRule (^admin\/|^)gestion-client.js$ /Project-Ekah/js/gestion-client.js
+RewriteRule (^admin\/|^)gestion-facilitateur.js$ /Project-Ekah/js/gestion-facilitateur.js
+RewriteRule (^admin\/|^)gestion-reservation.js$ /Project-Ekah/js/gestion-reservation.js
+RewriteRule (^admin\/|^)global.js$ /Project-Ekah/js/global.js
+RewriteRule (^admin\/|^)inscription.js$ /Project-Ekah/js/inscription.js
+RewriteRule (^admin\/|^)jquery-3.4.1.slim.js$ /Project-Ekah/js/jquery-3.4.1.slim.js
+RewriteRule (^admin\/|^)login.js$ /Project-Ekah/js/login.js
+RewriteRule (^admin\/|^)mon-profil.js$ /Project-Ekah/js/mon-profil.js
+RewriteRule (^admin\/|^)paiement.js$ /Project-Ekah/js/paiement.js
+RewriteRule (^admin\/|^)paiement-recovery.js$ /Project-Ekah/js/paiement-recovery.js
+RewriteRule (^admin\/|^)questionnaire.js$ /Project-Ekah/js/questionnaire.js
+RewriteRule (^admin\/|^)reservation-groupe.js$ /Project-Ekah/js/reservation-groupe.js
+RewriteRule (^admin\/|^)reservation.js$ /Project-Ekah/js/reservation.js
+
+
+# img
+RewriteRule (^admin\/|^)calendar.jpg$ /Project-Ekah/img/calendar.jpg
+RewriteRule (^admin\/|^)crochet.png$ /Project-Ekah/img/crochet.png
+RewriteRule (^admin\/|^)favicon-ekah.ico$ /Project-Ekah/img/favicon-ekah.ico
+RewriteRule (^admin\/|^)icon-ekah.png$ /Project-Ekah/img/icon-ekah.png
+RewriteRule (^admin\/|^)img-dehors.jpg$ /Project-Ekah/img/img-dehors.jpg
+RewriteRule (^admin\/|^)logo-ekah-header.png$ /Project-Ekah/img/logo-ekah-header.png
+RewriteRule (^admin\/|^)powered-by-stripe.png$ /Project-Ekah/img/powered-by-stripe.png
+RewriteRule (^admin\/|^)enneagramme.jpg$ /Project-Ekah/img/activite/enneagramme.jpg
+RewriteRule (^admin\/|^)groupe-atelier-facilitation.jpg$ /Project-Ekah/img/activite/groupe-atelier-facilitation.jpg
+RewriteRule (^admin\/|^)mouvement-intuitif.png$ /Project-Ekah/img/activite/mouvement-intuitif.png
+RewriteRule (^admin\/|^)operation-mpo.jpg$ /Project-Ekah/img/activite/operation-mpo.jpg
+RewriteRule (^admin\/|^)reflexion.jpg$ /Project-Ekah/img/activite/reflexion.jpg
+RewriteRule (^admin\/|^)relaxe.jpg$ /Project-Ekah/img/activite/relaxe.jpg
+RewriteRule (^admin\/|^)sort_asc_disabled.png$ /Project-Ekah/img/dataTable/sort_asc_disabled.png
+RewriteRule (^admin\/|^)sort_asc.png$ /Project-Ekah/img/dataTable/sort_asc.png
+RewriteRule (^admin\/|^)sort_both.png$ /Project-Ekah/img/dataTable/sort_both.png
+RewriteRule (^admin\/|^)sort_desc_disabled.png$ /Project-Ekah/img/dataTable/sort_desc_disabled.png
+RewriteRule (^admin\/|^)sort_desc.png$ /Project-Ekah/img/dataTable/sort_desc.png
+RewriteRule (^admin\/|^)img1.png$ /Project-Ekah/img/facilitateur/img1.png
+RewriteRule (^admin\/|^)img2.png$ /Project-Ekah/img/facilitateur/img2.png
+RewriteRule (^admin\/|^)img3.png$ /Project-Ekah/img/facilitateur/img3.png
