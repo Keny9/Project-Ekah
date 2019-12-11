@@ -68,15 +68,15 @@ try {
     //Server settings
     //$mail->SMTPDebug = 2;                               // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
+    $mail->Host = 'mail.ekah-app.co';                       // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'ekahinfo@gmail.com';               // SMTP username
-    $mail->Password = 'Facilitateur2019';                 // SMTP password
+    $mail->Username = 'noreply@ekah-app.co';               // SMTP username
+    $mail->Password = '*WUJZJfaa7Aa';                 // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('ekahinfo@gmail.com');
+    $mail->setFrom('noreply@ekah-app.co');
     $mail->addAddress($courriel); // Add a recipient
                                                           // Name is optional
     //Content
