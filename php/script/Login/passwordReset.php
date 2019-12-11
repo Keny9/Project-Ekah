@@ -14,7 +14,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/php
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/phpmailer/src/SMTP.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/phpmailer/src/Exception.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/vendor/phpmailer/phpmailer/src/OAuth.php';
-
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/connexion.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Client/GestionLogin.php';
 
@@ -27,12 +26,14 @@ else{
   $courriel = null;
   $_SESSION['msgPassword'] = "Le courriel n'a pas pu être envoyé. Une erreur s'est produite.";
   header("Location: /Project-Ekah/affichage/global/password-reset.php");
+  exit();
 }
 
 //Si le courriel n'existe pas, message d'erreur
 if(!$gestionLogin->compteExiste($courriel)){
   $_SESSION['msgPassword'] = "Le courriel n'a pas pu être envoyé. Une erreur s'est produite.";
-  header("Location: /password-reset");
+  header("Location: /Project-Ekah/affichage/global/password-reset.php");
+  exit();
 }
 
 /* Créer un password aléatoire de 8 charactère avec au moins 1 chiffre et 1 lettre majuscule */
@@ -60,9 +61,9 @@ $mail->Encoding = 'quoted-printable';
 $sujet = "Demande de mot de passe oublié";
 
 //Message dans le email
-$txt = utf8_encode("Nous avons reçu une demande de mot de passe oublié. Si vous n'avez pas fait cette demande, veuillez ignorer ce courriel.<br>
+$txt = "Nous avons reçu une demande de mot de passe oublié. Si vous n'avez pas fait cette demande, veuillez ignorer ce courriel.<br>
                   Voici votre nouveau mot de passe: ".$password_clair."<br>
-                  Veuillez changer de mot de passe lors de votre prochaine connexion.");
+                  Veuillez changer de mot de passe lors de votre prochaine connexion.";
 
 try {
     //Server settings
@@ -82,7 +83,7 @@ try {
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = html_entity_decode($sujet);
-    $body = $txt;
+    $body = html_entity_decode($txt);
     $mail->Body = html_entity_decode($body);
     $mail->AltBody = html_entity_decode(strip_tags($body));
 
