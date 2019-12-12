@@ -10,15 +10,15 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
     <title>Vidéos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <link href="https://vjs.zencdn.net/7.5.5/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/video-js.min.css">
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/videos.css">
-    <link rel="stylesheet" href="/fix.css">
-
+    <link rel="stylesheet" href="/video-brand.css">
+    <script src="/video.min.js"></script>
     <script src="/jquery-3.4.1.slim.js"></script>
     <script src="/videos.js"></script>
+    <script src='/video-brand.js'></script>
     <script src="/global.js"></script>
   </head>
   <body>
@@ -53,8 +53,10 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
               <p>Description de la vidéo..</p>
               <div class="video-container">
 
-                <video>
-                </video>
+                <video-js id="video-1" class="video-js vjs-default-skin" width="700" height="395" data-setup='{"controls": true}'>
+                  <source src="/test_video.mp4" type="video/mp4">
+                  <p class="vjs-no-js">Javascript a été désactivé ou n'est pas supporté. <br>Impossible de lire la vidéo.</p>
+                </video-js>
 
               </div>
             </div>
@@ -68,8 +70,10 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
               <p>Description de la vidéo..</p>
               <div class="video-container">
 
-                <video>
-                </video>
+                <video-js id="video-2" class="video-js vjs-default-skin" width="700" height="395" data-setup='{"controls": true}'>
+                  <source src="/test_video.mp4" type="video/mp4">
+                  <p class="vjs-no-js">Javascript a été désactivé ou n'est pas supporté. <br>Impossible de lire la vidéo.</p>
+                </video-js>
 
               </div>
             </div>
@@ -83,8 +87,10 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
               <p>Description de la vidéo..</p>
               <div class="video-container">
 
-                <video>
-                </video>
+                <video-js id="video-3" class="video-js vjs-default-skin" width="700" height="395" data-setup='{"controls": true}'>
+                  <source src="/test_video.mp4" type="video/mp4">
+                  <p class="vjs-no-js">Javascript a été désactivé ou n'est pas supporté. <br>Impossible de lire la vidéo.</p>
+                </video-js>
 
               </div>
             </div>
