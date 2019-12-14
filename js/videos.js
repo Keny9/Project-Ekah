@@ -2,6 +2,57 @@ document.addEventListener("DOMContentLoaded", function() {
     eventListeners();
 });
 
+$(document).ready(function(){
+
+  var player = videojs('video-1');
+
+  player.brand({
+  	image: "/ekah-logo.png",
+    title: "Ekah",
+    destination: "www.ekah.co",
+    destinationTarget: "_top"
+  });
+  player.poster("/Project-Ekah/img/poster/ekahPoster.jpg");
+
+
+
+  var player2 = videojs('video-2');
+
+  player2.brand({
+  	image: "/ekah-logo.png",
+    title: "Ekah",
+    destination: "www.ekah.co",
+    destinationTarget: "_top"
+  });
+
+  var player3 = videojs('video-3');
+
+  player3.brand({
+  	image: "/ekah-logo.png",
+    title: "Ekah",
+    destination: "www.ekah.co",
+    destinationTarget: "_top"
+  });
+  player3.poster("/Project-Ekah/img/poster/oceans.png");
+
+  // disable browser context menu on video
+  $video = $("#video-1");
+  $video.on('contextmenu', function(e) {
+      e.preventDefault();
+  });
+
+  $video = $("#video-2");
+  $video.on('contextmenu', function(e) {
+      e.preventDefault();
+  });
+
+  $video = $("#video-3");
+  $video.on('contextmenu', function(e) {
+      e.preventDefault();
+  });
+});
+
+
 function eventListeners(){
   eventListenerNav();
 }
