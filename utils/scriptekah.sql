@@ -337,7 +337,7 @@ FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id)
 );
 
 INSERT INTO videos VALUES (1, 'Mouvements fonctionnels de base', '/test_video.mp4', '/ekahPoster.jpg', 1000);
-INSERT INTO videos VALUES (2, 'Alimentation en Grèce antique', '/video.mp4', '', 1000);
+INSERT INTO videos VALUES (2, 'Alimentation en Grèce antique', '/video.mp4', 'https://i.imgur.com/cLbAUSj.jpg', 1000);
 INSERT INTO videos VALUES (3, 'Les bases du Ashtanga Vinyasa', '/oceans.mp4', '/oceans.png', 1000);
 
 

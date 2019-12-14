@@ -22,6 +22,7 @@ $(document).ready(function(){
     destination: "www.ekah.co",
     destinationTarget: "_top"
   });
+  player2.poster(VIDEOS[1]['poster']);
 
   var player3 = videojs('video-3');
 
@@ -50,6 +51,7 @@ $(document).ready(function(){
   });
 
 // Les prochaines lignes font la distinction entre les videos achetées/non-achetées par le client
+// Ce n'est pas la manière propre de faire
   v1 = v2 = v3 = false;
   VIDEOS_CLIENT.forEach(function(e){
     console.log(e);
@@ -58,13 +60,13 @@ $(document).ready(function(){
     if(e == 3) v3 = true;
   });
   if(v1 == false){
-    $("#video-1").html("<p style='text-align:center;line-height:200px;font-size:20px;'>Vous devez acheter la video</p>");
+    $("#video-1").html("<p style='height:100%;text-align:center;line-height:400px;font-size:40px;background-image:url(\""+VIDEOS[0]['poster']+"\");'>Vous devez acheter la video</p>");
   }
   if(v2 == false){
-    $("#video-2").html("<p style='text-align:center;line-height:200px;font-size:20px;'>Vous devez acheter la video</p>");
+    $("#video-2").html("<p style='height:100%;text-align:center;line-height:400px;font-size:40px;background-image:url(\""+VIDEOS[1]['poster']+"\");'>Vous devez acheter la video</p>");
   }
   if(v3 == false){
-    $("#video-3").html("<p style='text-align:center;line-height:200px;font-size:20px;'>Vous devez acheter la video</p>");
+    $("#video-3").html("<p style='height:100%;text-align:center;line-height:400px;font-size:40px;background-image:url(\""+VIDEOS[2]['poster']+"\");'>Vous devez acheter la video</p>");
   }
 });
 
