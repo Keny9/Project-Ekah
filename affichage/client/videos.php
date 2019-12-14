@@ -3,6 +3,13 @@ session_start();
 $page_type = 1;
 include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
 $videosTable = include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Videos/consulterVideosTable.php";
+$videos_clientTable = include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Videos/consulterVideos_clientTable.php";
+$videos_client = [];
+foreach($videos_clientTable as $row){
+  if($row['utilisateur_id'] === $_SESSION['logged_in_user_id']) {
+    $videos_client[] .= $row['videos_id'];
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -19,6 +26,7 @@ $videosTable = include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Video
 
     <script>
       const VIDEOS = JSON.parse('<?php echo json_encode($videosTable); ?>');
+      const VIDEOS_CLIENT = JSON.parse('<?php echo json_encode($videos_client); ?>');
     </script>
     <script src="/video.min.js"></script>
     <script src="/jquery-3.4.1.slim.js"></script>

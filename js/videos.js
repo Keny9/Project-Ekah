@@ -48,6 +48,24 @@ $(document).ready(function(){
   $video.on('contextmenu', function(e) {
       e.preventDefault();
   });
+
+// Les prochaines lignes font la distinction entre les videos achetées/non-achetées par le client
+  v1 = v2 = v3 = false;
+  VIDEOS_CLIENT.forEach(function(e){
+    console.log(e);
+    if(e == 1) v1 = true;
+    if(e == 2) v2 = true;
+    if(e == 3) v3 = true;
+  });
+  if(v1 == false){
+    $("#video-1").html("<p style='text-align:center;line-height:200px;font-size:20px;'>Vous devez acheter la video</p>");
+  }
+  if(v2 == false){
+    $("#video-2").html("<p style='text-align:center;line-height:200px;font-size:20px;'>Vous devez acheter la video</p>");
+  }
+  if(v3 == false){
+    $("#video-3").html("<p style='text-align:center;line-height:200px;font-size:20px;'>Vous devez acheter la video</p>");
+  }
 });
 
 

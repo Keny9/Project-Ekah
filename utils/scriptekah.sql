@@ -340,7 +340,7 @@ INSERT INTO videos VALUES (1, 'Mouvements fonctionnels de base', '/test_video.mp
 INSERT INTO videos VALUES (2, 'Alimentation en Grèce antique', '/video.mp4', '', 1000);
 INSERT INTO videos VALUES (3, 'Les bases du Ashtanga Vinyasa', '/oceans.mp4', '/oceans.png', 1000);
 
-INSERT INTO videos_client VALUES (4,1);
+
 
 INSERT INTO region(id, nom) VALUES (0, "Aucune");
 INSERT INTO region(id, nom) VALUES (1, "Estrie");
@@ -743,3 +743,6 @@ INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (
 INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 1, 7000);
 INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 2, 6500);
 INSERT INTO activite_prix(activite_id, duree_id, facilitateur_id, prix) VALUES (14, 1, 3, 6000);
+
+INSERT INTO videos_client VALUES (4,1);
+INSERT INTO videos_client VALUES (4,3);
