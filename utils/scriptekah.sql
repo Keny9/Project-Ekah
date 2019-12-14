@@ -320,6 +320,27 @@ FOREIGN KEY (duree_id) REFERENCES duree(id),
 FOREIGN KEY (facilitateur_id) REFERENCES utilisateur(id)
 );
 
+CREATE TABLE videos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nom VARCHAR(255),
+fichier VARCHAR(255),
+poster VARCHAR(255),
+prix INT
+);
+
+CREATE TABLE videos_client(
+utilisateur_id INT,
+videos_id INT,
+PRIMARY KEY (utilisateur_id, videos_id),
+FOREIGN KEY (videos_id) REFERENCES videos(id),
+FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id)
+);
+
+INSERT INTO videos VALUES (1, 'Mouvements fonctionnels de base', '/test_video.mp4', '/ekahPoster.jpg', 1000);
+INSERT INTO videos VALUES (2, 'Alimentation en Grèce antique', '/video.mp4', '', 1000);
+INSERT INTO videos VALUES (3, 'Les bases du Ashtanga Vinyasa', '/oceans.mp4', '/oceans.png', 1000);
+
+INSERT INTO videos_client VALUES (4,1);
 
 INSERT INTO region(id, nom) VALUES (0, "Aucune");
 INSERT INTO region(id, nom) VALUES (1, "Estrie");

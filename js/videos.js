@@ -12,9 +12,7 @@ $(document).ready(function(){
     destination: "www.ekah.co",
     destinationTarget: "_top"
   });
-  player.poster("/Project-Ekah/img/poster/ekahPoster.jpg");
-
-
+  player.poster(VIDEOS[0]['poster']);
 
   var player2 = videojs('video-2');
 
@@ -33,7 +31,7 @@ $(document).ready(function(){
     destination: "www.ekah.co",
     destinationTarget: "_top"
   });
-  player3.poster("/Project-Ekah/img/poster/oceans.png");
+  player3.poster(VIDEOS[2]['poster']);
 
   // disable browser context menu on video
   $video = $("#video-1");
