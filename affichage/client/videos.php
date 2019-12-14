@@ -2,6 +2,14 @@
 session_start();
 $page_type = 1;
 include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
+$videosTable = include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Videos/consulterVideosTable.php";
+$videos_clientTable = include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Videos/consulterVideos_clientTable.php";
+$videos_client = [];
+foreach($videos_clientTable as $row){
+  if($row['utilisateur_id'] === $_SESSION['logged_in_user_id']) {
+    $videos_client[] .= $row['videos_id'];
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -15,6 +23,11 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/videos.css">
     <link rel="stylesheet" href="/video-brand.css">
+
+    <script>
+      const VIDEOS = JSON.parse('<?php echo json_encode($videosTable); ?>');
+      const VIDEOS_CLIENT = JSON.parse('<?php echo json_encode($videos_client); ?>');
+    </script>
     <script src="/video.min.js"></script>
     <script src="/jquery-3.4.1.slim.js"></script>
     <script src="/videos.js"></script>
@@ -54,7 +67,7 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
               <div class="video-container">
 
                 <video-js id="video-1" class="video-js vjs-default-skin" width="700" height="395" data-setup='{"controls": true}'>
-                  <source src="/Project-Ekah/video/test_video.mp4" type="video/mp4">
+                  <source src="<?php echo $videosTable[0]['fichier']; ?>" type="video/mp4">
                   <p class="vjs-no-js">Javascript a été désactivé ou n'est pas supporté. <br>Impossible de lire la vidéo.</p>
                 </video-js>
 
@@ -71,7 +84,7 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
               <div class="video-container">
 
                 <video-js id="video-2" class="video-js vjs-default-skin" width="700" height="395" data-setup='{"controls": true}'>
-                  <source src="/Project-Ekah/video/video.mp4" type="video/mp4">
+                  <source src="<?php echo $videosTable[1]['fichier']; ?>" type="video/mp4">
                   <p class="vjs-no-js">Javascript a été désactivé ou n'est pas supporté. <br>Impossible de lire la vidéo.</p>
                 </video-js>
 
@@ -88,7 +101,7 @@ include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/script/Login/connect.php";
               <div class="video-container">
 
                 <video-js id="video-3" class="video-js vjs-default-skin" width="700" height="395" data-setup='{"controls": true}'>
-                  <source src="/Project-Ekah/video/oceans.mp4" type="video/mp4">
+                  <source src="<?php echo $videosTable[2]['fichier']; ?>" type="video/mp4">
                   <p class="vjs-no-js">Javascript a été désactivé ou n'est pas supporté. <br>Impossible de lire la vidéo.</p>
                 </video-js>
 
