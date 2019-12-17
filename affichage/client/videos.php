@@ -20,6 +20,8 @@ try{
   // Retourne $client
   include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
 
+  $_SESSION['client'] = $client;
+
 
   $dt = new DateTime(null,new DateTimeZone('UTC'));
   $dt->setTimezone(new DateTimeZone('America/Toronto'));
@@ -131,6 +133,8 @@ try{
                   <div class="main">
                     <form action="/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php" method="post" id="payment-form">
                       <input type="hidden" name="token" />
+                      <input type="hidden" name="id-video" id="id-video" value="">
+                      <input type="hidden" name="prix" value="" id="prix-video">
                       <div class="group">
                         <label>
                           <span>Numéro de carte</span>
@@ -150,7 +154,7 @@ try{
                         </label>
                       </div>
                       <div class="error"></div>
-                      <button class="btn-stripe" type="submit" id="btn-paiement">Payer <?php //echo $prix_format ?> $</button>
+                      <button class="btn-stripe" type="submit" id="btn-paiement"></button>
 
                     </form>
                   </div>

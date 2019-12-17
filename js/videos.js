@@ -137,6 +137,8 @@ function showInfoVideo1(){
   $("#nomVideo").text(VIDEOS[0]['nom']);
   $("#montantVideo").text(PRIX[0] + '$ CAD');
   $("#btn-paiement").text('Payer ' + PRIX[0] + ' $');
+  $("#id-video").val(VIDEOS[0]['id']);
+  $("#prix-video").val(VIDEOS[0]['prix']);
 }
 
 //Info paiement video-2
@@ -144,6 +146,8 @@ function showInfoVideo2(){
   $("#nomVideo").text(VIDEOS[1]['nom']);
     $("#montantVideo").text(PRIX[1] + '$ CAD');
     $("#btn-paiement").text('Payer ' + PRIX[1] + ' $');
+    $("#id-video").val(VIDEOS[1]['id']);
+    $("#prix-video").val(VIDEOS[1]['prix']);
 }
 
 //Info paiement video-3
@@ -151,4 +155,6 @@ function showInfoVideo3(){
   $("#nomVideo").text(VIDEOS[2]['nom']);
   $("#montantVideo").text(PRIX[2] + '$ CAD');
   $("#btn-paiement").text('Payer ' + PRIX[2] + ' $');
+  $("#id-video").val(VIDEOS[2]['id']);
+  $("#prix-video").val(VIDEOS[2]['prix']);
 }
