@@ -69,19 +69,25 @@ try{
     <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/affichage/global/header.php" ?>
 
     <main>
-      <div id='modal-complete-video' class='modal-modif-reservation'>
-        <div class='modal-content'>
-          <div class='modal-align-middle-mr'>
-            <div class='txt-reservation txt-bienv'>Vidéo acheté.<br><br>
-             Merci de faire confiance à l'équipe d'Ekah. <br>
-             <a href='#' target='_blank'>Reçu du paiement</a> <br>
-             </div>
-              <div class='modal-align-middle btn-modal-insc modal-align-middle-mr'>
-                <button id='btn-confirm-video' type='submit' class='btn-confirmer input-court btn-coller' name='button'>Terminer</button>
+      <?php
+        if(isset($_GET['vComplete']) && $_GET['vComplete'] == 1 ){
+          if(isset($_GET['recu_url'])) $recu_url = $_GET['recu_url'];
+          else $recu_url = "";
+        echo "<div id='modal-complete-video' class='modal-modif-reservation'>
+          <div class='modal-content'>
+            <div class='modal-align-middle-mr'>
+              <div class='txt-reservation txt-bienv'>Vidéo acheté.<br><br>
+               Merci de faire confiance à l'équipe d'Ekah. <br>
+               <a href='$recu_url' target='_blank'>Reçu du paiement</a> <br>
+               </div>
+                <div class='modal-align-middle btn-modal-insc modal-align-middle-mr'>
+                  <button id='btn-confirm-video' type='submit' class='btn-confirmer input-court btn-coller' name='button'>Terminer</button>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div>";
+        }
+    ?>
 
         <div id='modal-paiement-video' class='modal-modif-reservation'>
           <div class='modal-content'>
@@ -117,11 +123,11 @@ try{
                       </div>
                       <div class="item">
                         <label>Date :</label>
-                        <span><?php echo $date ?></span>
+                        <span><?php echo $date; ?></span>
                       </div>
                       <div class="item">
                         <label>Heure :</label>
-                        <span><?php echo $time ?></span>
+                        <span><?php echo $time; ?></span>
                       </div>
                       <div class="item">
                         <label>Montant :</label>
@@ -131,10 +137,10 @@ try{
                   </div>
 
                   <div class="main">
-                    <form action="/Project-Ekah/php/script/Reservation/redirectQuestionnaire.php" method="post" id="payment-form">
+                    <form action="/Project-Ekah/php/script/Videos/paiement-video.php" method="post" id="payment-form">
                       <input type="hidden" name="token" />
                       <input type="hidden" name="id-video" id="id-video" value="">
-                      <input type="hidden" name="prix" value="" id="prix-video">
+                      <input type="hidden" name="prix-video" value="" id="prix-video">
                       <div class="group">
                         <label>
                           <span>Numéro de carte</span>

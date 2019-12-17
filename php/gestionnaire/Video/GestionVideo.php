@@ -13,7 +13,11 @@ class GestionVideo{
 
         $stmt = $conn->prepare($requete);
         $stmt->bind_param('ii',$idClient, $idVideo);
-        $stmt->execute();
+        $status = $stmt->execute();
+
+        if($status === false){
+          trigger_error($stmt->error, E_USER_ERROR);
+        }
 
         // Commit la transaction
         $conn->commit();

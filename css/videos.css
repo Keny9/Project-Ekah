@@ -144,7 +144,7 @@
 }
 
 #modal-complete-video{
-  display: none;
+  display: block;
 }
 
 #modal-paiement-video{
