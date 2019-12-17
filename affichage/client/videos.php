@@ -11,6 +11,10 @@ foreach($videos_clientTable as $row){
   }
 }
 
+$prix_format[] = number_format($videosTable[0]['prix']*0.01, 2, ',', '');
+$prix_format[] = number_format($videosTable[1]['prix']*0.01, 2, ',', '');
+$prix_format[] = number_format($videosTable[2]['prix']*0.01, 2, ',', '');
+
 /*********Infos paiements***********/
 try{
   // Retourne $client
@@ -49,6 +53,7 @@ try{
     <script>
       const VIDEOS = JSON.parse('<?php echo json_encode($videosTable); ?>');
       const VIDEOS_CLIENT = JSON.parse('<?php echo json_encode($videos_client); ?>');
+      const PRIX = JSON.parse('<?php echo json_encode($prix_format); ?>');
     </script>
     <script src="/video.min.js"></script>
     <script src="/jquery-3.4.1.slim.js"></script>
@@ -106,7 +111,7 @@ try{
                       </div>
                       <div class="item">
                         <label>Vidéo :</label>
-                        <span><?php //echo $service_nom ?></span>
+                        <span id="nomVideo"></span>
                       </div>
                       <div class="item">
                         <label>Date :</label>
@@ -118,7 +123,7 @@ try{
                       </div>
                       <div class="item">
                         <label>Montant :</label>
-                        <span><?php //echo $prix_format ?> $ CAD</span>
+                        <span id="montantVideo">$ CAD</span>
                       </div>
                     </div>
                   </div>
@@ -145,7 +150,7 @@ try{
                         </label>
                       </div>
                       <div class="error"></div>
-                      <button class="btn-stripe" type="submit">Payer <?php //echo $prix_format ?> $</button>
+                      <button class="btn-stripe" type="submit" id="btn-paiement">Payer <?php //echo $prix_format ?> $</button>
 
                     </form>
                   </div>

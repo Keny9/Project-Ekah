@@ -37,7 +37,7 @@ $(document).ready(function(){
 // disable browser context menu on video
 preventRightClick();
 
-addEventBtn();
+addEventBtn(); //Ajouter les click events sur les boutons
 
 // Les prochaines lignes font la distinction entre les videos achetées/non-achetées par le client
 // Ce n'est pas la manière propre de faire
@@ -110,14 +110,17 @@ function preventRightClick(){
 function addEventBtn(){
     $('#btn-video-1').click(function(){
       $("#modal-paiement-video").show();
+      showInfoVideo1();
     });
 
     $('#btn-video-2').click(function(){
       $("#modal-paiement-video").show();
+      showInfoVideo2();
     });
 
     $('#btn-video-3').click(function(){
       $("#modal-paiement-video").show();
+      showInfoVideo3();
     });
 
     $("#btn-close").click(function(){
@@ -127,4 +130,25 @@ function addEventBtn(){
     $("#btn-confirm-video").click(function(){
       $("#modal-complete-video").hide();
     });
+}
+
+//Info paiement video-1
+function showInfoVideo1(){
+  $("#nomVideo").text(VIDEOS[0]['nom']);
+  $("#montantVideo").text(PRIX[0] + '$ CAD');
+  $("#btn-paiement").text('Payer ' + PRIX[0] + ' $');
+}
+
+//Info paiement video-2
+function showInfoVideo2(){
+  $("#nomVideo").text(VIDEOS[1]['nom']);
+    $("#montantVideo").text(PRIX[1] + '$ CAD');
+    $("#btn-paiement").text('Payer ' + PRIX[1] + ' $');
+}
+
+//Info paiement video-3
+function showInfoVideo3(){
+  $("#nomVideo").text(VIDEOS[2]['nom']);
+  $("#montantVideo").text(PRIX[2] + '$ CAD');
+  $("#btn-paiement").text('Payer ' + PRIX[2] + ' $');
 }
