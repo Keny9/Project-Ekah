@@ -143,6 +143,231 @@
   display: none;
 }
 
+#modal-complete-video{
+  display: block;
+}
+
+#modal-paiement-video{
+  display: none;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*****STRIPE CSS*******/
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:stretch;
+  margin: 0 auto;
+  background-color: rgba(3, 77, 84);
+  width: 480px;
+  padding:10px;
+  margin-bottom: 10px;
+  height:100%;
+  border-radius: 5px;
+}
+
+.logo{
+  display: block;
+}
+.header .item{
+  padding-right:10px;
+  color: rgba(240,89,41, 0.75);
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
+}
+.header .item:last-of-type{
+  padding-right:0;
+  flex: 1;
+  justify-content:flex-end;
+  flex-direction:row;
+  color: rgba(255,255,255,.4);
+}
+.body{
+  background-color: rgb(3, 77, 84);
+  border-radius:5px;
+}
+.main{
+  width:480px;
+  display:flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.info-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  width: 460px;
+
+  border-radius: 4px;
+  box-shadow: 0px 0px 3px 3px rgba(240,89,41, 0.75);
+}
+.info-container .item{
+  display: flex;
+  flex-direction: row;
+  margin:0 10px 0 10px;
+  padding: 5px 0 5px 5px;
+}
+.info-container .item:nth-child(even){
+  background-color: rgba(3, 77, 84, 0.25);
+}
+
+.info-container .item label{
+  width: 100px;
+}
+
+
+
+form {
+  width: 460px;
+  padding-top: 20px;
+}
+
+.group {
+  background: white;
+  box-shadow: 0px 0px 3px 3px rgba(240,89,41, 0.75);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#payment-form label {
+  position: relative;
+  color: rgba(23, 41, 56, 0.8);
+  font-weight: 300;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.group label:not(:last-child) {
+  border-bottom: 1px solid #F0F5FA;
+}
+
+label > span {
+  width: 150px;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.field {
+  background: transparent;
+  font-weight: 300;
+  border: 0;
+  color: rgb(23, 41, 56);
+  outline: none;
+  flex: 1;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: text;
+
+  padding-top: 10px;
+}
+input.field{
+  padding-top:5px;
+}
+
+.field::-webkit-input-placeholder {
+  color: rgba(23, 41, 56, 0.4);
+}
+
+.field::-moz-placeholder {
+  color: rgba(23, 41, 56, 0.4);
+}
+
+.btn-stripe {
+  float: left;
+  display: block;
+  background: #F05929;
+  color: white;
+  box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  border: 0;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  height: 40px;
+  line-height: 38px;
+  outline: none;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.btn-stripe:focus {
+  background: #F05929;
+}
+
+.btn-stripe:active {
+  background-color :  rgba(240,89,41, 0.8);
+}
+
+.btn-stripe:hover {
+  box-shadow: 0px 0px 0px 3px rgb(240,89,41);
+}
+
+.outcome {
+  float: left;
+  width: 100%;
+  padding-top: 8px;
+  min-height: 24px;
+  text-align: center;
+}
+
+.success,
+.error {
+  display: none;
+  font-size: 13px;
+}
+
+.success.visible,
+.error.visible {
+  display: inline;
+}
+
+.error {
+  color: #E4584C;
+}
+
+.success {
+  color: #666EE8;
+}
+
+.success .token {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.bottom{
+  display:flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.top{
+  margin-bottom:5px;
+}
+
 /*
   Player Skin Designer for Video.js
   http://videojs.com

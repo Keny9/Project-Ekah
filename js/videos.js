@@ -34,21 +34,10 @@ $(document).ready(function(){
   });
   player3.poster(VIDEOS[2]['poster']);
 
-  // disable browser context menu on video
-  video = $("#video-1");
-  video.on('contextmenu', function(e) {
-      e.preventDefault();
-  });
+// disable browser context menu on video
+preventRightClick();
 
-  video = $("#video-2");
-  video.on('contextmenu', function(e) {
-      e.preventDefault();
-  });
-
-  video = $("#video-3");
-  video.on('contextmenu', function(e) {
-      e.preventDefault();
-  });
+addEventBtn();
 
 // Les prochaines lignes font la distinction entre les videos achetées/non-achetées par le client
 // Ce n'est pas la manière propre de faire
@@ -97,4 +86,45 @@ function eventListenerNav(){
       link.style.color = "rgba(26,26,26,.4)";
     });
   });
+}
+
+// disable browser context menu on video
+function preventRightClick(){
+  video = $("#video-1");
+  video.on('contextmenu', function(e) {
+      e.preventDefault();
+  });
+
+  video = $("#video-2");
+  video.on('contextmenu', function(e) {
+      e.preventDefault();
+  });
+
+  video = $("#video-3");
+  video.on('contextmenu', function(e) {
+      e.preventDefault();
+  });
+}
+
+//Ajouter action listeners sur les boutons
+function addEventBtn(){
+    $('#btn-video-1').click(function(){
+      $("#modal-paiement-video").show();
+    });
+
+    $('#btn-video-2').click(function(){
+      $("#modal-paiement-video").show();
+    });
+
+    $('#btn-video-3').click(function(){
+      $("#modal-paiement-video").show();
+    });
+
+    $("#btn-close").click(function(){
+      $("#modal-paiement-video").hide();
+    });
+
+    $("#btn-confirm-video").click(function(){
+      $("#modal-complete-video").hide();
+    });
 }
