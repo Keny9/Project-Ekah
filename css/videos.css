@@ -144,11 +144,15 @@
 }
 
 #modal-complete-video{
-  display: block;
+  display: none;
 }
 
 #modal-paiement-video{
   display: none;
+}
+
+.modal-align-middle-mr{
+  width: 95%;
 }
 
 /* The Close Button */

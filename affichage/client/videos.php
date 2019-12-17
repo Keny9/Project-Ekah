@@ -10,6 +10,23 @@ foreach($videos_clientTable as $row){
     $videos_client[] .= $row['videos_id'];
   }
 }
+
+/*********Infos paiements***********/
+try{
+  // Retourne $client
+  include $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/script/Client/getMonProfil.php';
+
+
+  $dt = new DateTime(null,new DateTimeZone('UTC'));
+  $dt->setTimezone(new DateTimeZone('America/Toronto'));
+  $date = $dt->format('m/d/Y');
+  $time = $dt->format('H:i');
+
+} catch (Exception $e){
+  echo "Une erreur est survenue. <br>";
+  echo "<a href='accueil_client.php'>Retour à l'accueil</a>";
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -48,10 +65,10 @@ foreach($videos_clientTable as $row){
       <div id='modal-complete-video' class='modal-modif-reservation'>
         <div class='modal-content'>
           <div class='modal-align-middle-mr'>
-            <div class='txt-reservation txt-bienv'>Réservation complétée. <br><br>
+            <div class='txt-reservation txt-bienv'>Vidéo acheté.<br><br>
              Merci de faire confiance à l'équipe d'Ekah. <br>
              <a href='#' target='_blank'>Reçu du paiement</a> <br>
-             Aussi consultable dans la liste de vos réservation.</div>
+             </div>
               <div class='modal-align-middle btn-modal-insc modal-align-middle-mr'>
                 <button id='btn-confirm-video' type='submit' class='btn-confirmer input-court btn-coller' name='button'>Terminer</button>
               </div>
@@ -85,27 +102,19 @@ foreach($videos_clientTable as $row){
                     <div class="info-container">
                       <div class="item">
                         <label>Client :</label>
-                        <span><?php //echo $client['prenom']." ".$client['nom'] ?></span>
+                        <span><?php echo $client['prenom']." ".$client['nom'] ?></span>
                       </div>
                       <div class="item">
-                        <label>Service :</label>
+                        <label>Vidéo :</label>
                         <span><?php //echo $service_nom ?></span>
                       </div>
                       <div class="item">
                         <label>Date :</label>
-                        <span><?php //echo $date ?></span>
+                        <span><?php echo $date ?></span>
                       </div>
                       <div class="item">
                         <label>Heure :</label>
-                        <span><?php //echo $time ?></span>
-                      </div>
-                      <div class="item">
-                        <label>Durée :</label>
-                        <span><?php //echo $duree ?> minutes</span>
-                      </div>
-                      <div class="item">
-                        <label>Lieu :</label>
-                        <span><?php //echo $emplacement ?></span>
+                        <span><?php echo $time ?></span>
                       </div>
                       <div class="item">
                         <label>Montant :</label>
