@@ -133,6 +133,7 @@
   cursor: pointer;
   height: 40px;
   margin-top: 5px;
+  margin-left: 40px;
 }
 
 .btn-payer:hover{
@@ -392,6 +393,7 @@ input.field{
   font-size: 10px;
   /* The main font color changes the ICON COLORS as well as the text */
   color: #f0592a;
+  margin: 0 auto;
 }
 
 /* The "Big Play Button" is the play button that shows before the video plays.

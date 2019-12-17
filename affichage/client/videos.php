@@ -48,8 +48,8 @@ try{
     <link rel="stylesheet" href="/inscription.css">
     <link rel="stylesheet" href="/consulter-reservation.css">
     <link rel="stylesheet" href="/reservation.css">
-    <link rel="stylesheet" href="/videos.css">
     <link rel="stylesheet" href="/video-brand.css">
+    <link rel="stylesheet" href="/videos.css">
 
 
     <script>
