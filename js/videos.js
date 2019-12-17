@@ -35,18 +35,18 @@ $(document).ready(function(){
   player3.poster(VIDEOS[2]['poster']);
 
   // disable browser context menu on video
-  $video = $("#video-1");
-  $video.on('contextmenu', function(e) {
+  video = $("#video-1");
+  video.on('contextmenu', function(e) {
       e.preventDefault();
   });
 
-  $video = $("#video-2");
-  $video.on('contextmenu', function(e) {
+  video = $("#video-2");
+  video.on('contextmenu', function(e) {
       e.preventDefault();
   });
 
-  $video = $("#video-3");
-  $video.on('contextmenu', function(e) {
+  video = $("#video-3");
+  video.on('contextmenu', function(e) {
       e.preventDefault();
   });
 
@@ -59,17 +59,21 @@ $(document).ready(function(){
     if(e == 2) v2 = true;
     if(e == 3) v3 = true;
   });
+
   if(v1 == false){
-    $("#video-1").html("<p style='height:100%;text-align:center;line-height:400px;font-size:40px;background-image:url(\""+VIDEOS[0]['poster']+"\");'>Vous devez acheter la video</p>");
+    $("#video-1").html("<div class='shade'></div><p class='video-locked' style='background:url(\""+VIDEOS[0]['poster']+"\") no-repeat center;background-size: cover;'><p class='txt-centered'>Vous ne posséder pas cette vidéo</p></p>");
+    $("#btn-video-1").show();
   }
   if(v2 == false){
-    $("#video-2").html("<p style='height:100%;text-align:center;line-height:400px;font-size:40px;background-image:url(\""+VIDEOS[1]['poster']+"\");'>Vous devez acheter la video</p>");
+    $("#video-2").html("<div class='shade'></div><p class='video-locked' style='background:url(\""+VIDEOS[1]['poster']+"\") no-repeat center;background-size: cover;'><p class='txt-centered'>Vous ne posséder pas cette vidéo</p></p>");
+    $("#btn-video-2").show();
   }
   if(v3 == false){
-    $("#video-3").html("<p style='height:100%;text-align:center;line-height:400px;font-size:40px;background-image:url(\""+VIDEOS[2]['poster']+"\");'>Vous devez acheter la video</p>");
+    $("#video-3").html("<div class='shade'></div><p class='video-locked' style='background:url(\""+VIDEOS[2]['poster']+"\") no-repeat center;background-size: cover;'><p class='txt-centered'>Vous ne posséder pas cette vidéo</p></p>");
+    $("#btn-video-3").show();
   }
-});
 
+});
 
 function eventListeners(){
   eventListenerNav();

@@ -19,10 +19,15 @@ foreach($videos_clientTable as $row){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/favicon-ekah.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/video-js.min.css">
     <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/inscription.css">
+    <link rel="stylesheet" href="/consulter-reservation.css">
+    <link rel="stylesheet" href="/reservation.css">
     <link rel="stylesheet" href="/videos.css">
     <link rel="stylesheet" href="/video-brand.css">
+
 
     <script>
       const VIDEOS = JSON.parse('<?php echo json_encode($videosTable); ?>');
@@ -33,11 +38,27 @@ foreach($videos_clientTable as $row){
     <script src="/videos.js"></script>
     <script src='/video-brand.js'></script>
     <script src="/global.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript" src="/paiement.js"></script>
   </head>
   <body>
     <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/affichage/global/header.php" ?>
 
     <main>
+      <div id='modal-complete-video' class='modal-modif-reservation'>
+        <div class='modal-content'>
+          <div class='modal-align-middle-mr'>
+            <div class='txt-reservation txt-bienv'>Réservation complétée. <br><br>
+             Merci de faire confiance à l'équipe d'Ekah. <br>
+             <a href='#' target='_blank'>Reçu du paiement</a> <br>
+             Aussi consultable dans la liste de vos réservation.</div>
+              <div class='modal-align-middle btn-modal-insc modal-align-middle-mr'>
+                <button id='btn-confirm-reservation' type='submit' class='btn-confirmer input-court btn-coller' name='button'>Terminer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <div class="content">
         <div id="folderNav">
           <div class="folder-nav">
@@ -72,6 +93,7 @@ foreach($videos_clientTable as $row){
                 </video-js>
 
               </div>
+              <button type="button" name="btn-video" id="btn-video-1" class="btn-payer btn-video">Obtenir le guide</button>
             </div>
           </div>
 
@@ -89,6 +111,7 @@ foreach($videos_clientTable as $row){
                 </video-js>
 
               </div>
+              <button type="button" name="btn-video" id="btn-video-2" class="btn-payer btn-video">Obtenir le guide</button>
             </div>
           </div>
 
@@ -106,6 +129,7 @@ foreach($videos_clientTable as $row){
                 </video-js>
 
               </div>
+              <button type="button" name="btn-video" id="btn-video-3" class="btn-payer btn-video">Obtenir le guide</button>
             </div>
           </div>
 
