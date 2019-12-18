@@ -1,7 +1,9 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Video/GestionVideo.php';
 
 $conn;
+$gVideo = new GestionVideo();
 
 $nom = $fichier = $poster = $prix = "";
 $nomErr = $fichierErr = $posterErr = $prixErr = "";
@@ -32,11 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if(($nomErr === $fichierErr) && ($posterErr === $prixErr)){
-    $conn = ($temp = new Connexion())->do();
-    $req = "INSERT INTO videos (nom, fichier, poster, prix) VALUES (?, ?, ?, ?);";
-    $stmt = $conn->prepare($req);
-    $stmt->bind_param('sssi', $nom, $fichier, $poster, $prix);
-    $stmt->execute();
+
+    $gVideo->ajouterVideo($nom, $fichier, $poster, $prix);
 
     //header("Location: ./TESTvideoAdded.php");
   } else {
