@@ -312,6 +312,7 @@ $(document).ready(function() {
     enleverDayView();
     selectionnerJour();
     $("#dispo").empty();
+    $("#nbParticipant").val(1);
 
     $("#prix").load('/Project-Ekah/php/script/Reservation/printPrix.php?activite_id='+$('#service').val()+'&duree='+$('#duree').val(), function() {
       // callback du load
@@ -322,8 +323,21 @@ $(document).ready(function() {
       let prixFormat = prixEntier+','+prixDecimal;
       $('#prix').html(prixFormat + " $ CAD");
     });
-
   });
+
+  $("#nbParticipant").change(function(){
+    $("#prix").load('/Project-Ekah/php/script/Reservation/printPrix.php?activite_id='+$('#service').val()+'&duree='+$('#duree').val(), function() {
+      // callback du load
+      // Set le prix
+      let prix = $("#prix").text();
+      prix = (parseFloat(prix) * $('#nbParticipant').val()).toString();
+      let prixDecimal = prix.slice(prix.length-2, prix.length);
+      let prixEntier = prix.slice(0, prix.length-2);
+      let prixFormat = prixEntier+','+prixDecimal;
+      $('#prix').html(prixFormat + " $ CAD");
+    });
+  });
+
 
   $("#region").change(function() {
     getEvents();

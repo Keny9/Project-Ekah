@@ -1,0 +1,484 @@
+.content{
+  box-sizing: border-box;
+    width: auto;
+    margin: auto;
+    max-width: 1020px;
+    padding: 96px 32px;
+    color: #034e53;
+}
+
+#folderNav{
+  display:inline-block;
+  padding-right: 64px;
+  vertical-align:top;
+}
+
+.folder-nav{
+
+}
+
+.folder-nav ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.folder-nav ul li:first-of-type{
+  font-weight: 400;
+  font-style: normal;
+  font-size: 22px;
+  letter-spacing: 0px;
+  text-transform: none;
+  text-decoration: none;
+  line-height: 1.2em;
+  color: #00746b;
+  margin-bottom: .5em;
+}
+
+.folder-nav ul li a{
+  font-weight: 600;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(26,26,26,.4);
+  line-height: 1.25em;
+  display: block;
+  padding: 0 0 .75em;
+}
+
+.selected{
+  color: #1a1a1a !important;
+}
+
+.article{
+  display: inline-block;
+}
+
+.title{
+  display:flex;
+  justify-content:center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+  letter-spacing: .05em;
+  line-height: 1.2em;
+}
+
+.subtitle{
+  display:flex;
+  justify-content:center;
+}
+
+.subtitle p{
+  margin: 15px 0 0 0;
+  line-height: 1.4em;
+  font-size: 15px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.categorie-video{
+  margin: 20px 0 10px 0;
+}
+
+.group-video{
+  padding: 15px 0 15px 0;
+}
+
+.video-container{
+  margin-top: 40px;
+}
+
+.btn-video{
+  width: 185px;
+}
+
+.shade{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video-locked{
+  height: 100%;
+  text-align:center;
+  line-height:400px;
+}
+
+.txt-centered{
+  width: 100%;
+  position: absolute;
+  margin: 0;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  font-size: 40px;
+  transform: translate(-50%, -50%);
+}
+
+.btn-payer{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #f0592a;
+  border: none;
+  padding: 0;
+  border-radius: 70px;
+  color: #FFF;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 40px;
+}
+
+.btn-payer:hover{
+  opacity: 0.8;
+}
+
+#btn-video-1, #btn-video-2, #btn-video-3{
+  display: none;
+}
+
+#modal-complete-video{
+  display: block;
+}
+
+#modal-paiement-video{
+  display: none;
+}
+
+.modal-align-middle-mr{
+  width: 95%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*****STRIPE CSS*******/
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:stretch;
+  margin: 0 auto;
+  background-color: rgba(3, 77, 84);
+  width: 480px;
+  padding:10px;
+  margin-bottom: 10px;
+  height:100%;
+  border-radius: 5px;
+}
+
+.logo{
+  display: block;
+}
+.header .item{
+  padding-right:10px;
+  color: rgba(240,89,41, 0.75);
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
+}
+.header .item:last-of-type{
+  padding-right:0;
+  flex: 1;
+  justify-content:flex-end;
+  flex-direction:row;
+  color: rgba(255,255,255,.4);
+}
+.body{
+  background-color: rgb(3, 77, 84);
+  border-radius:5px;
+}
+.main{
+  width:480px;
+  display:flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.info-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  width: 460px;
+
+  border-radius: 4px;
+  box-shadow: 0px 0px 3px 3px rgba(240,89,41, 0.75);
+}
+.info-container .item{
+  display: flex;
+  flex-direction: row;
+  margin:0 10px 0 10px;
+  padding: 5px 0 5px 5px;
+}
+.info-container .item:nth-child(even){
+  background-color: rgba(3, 77, 84, 0.25);
+}
+
+.info-container .item label{
+  width: 100px;
+}
+
+
+
+form {
+  width: 460px;
+  padding-top: 20px;
+}
+
+.group {
+  background: white;
+  box-shadow: 0px 0px 3px 3px rgba(240,89,41, 0.75);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#payment-form label {
+  position: relative;
+  color: rgba(23, 41, 56, 0.8);
+  font-weight: 300;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.group label:not(:last-child) {
+  border-bottom: 1px solid #F0F5FA;
+}
+
+label > span {
+  width: 150px;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.field {
+  background: transparent;
+  font-weight: 300;
+  border: 0;
+  color: rgb(23, 41, 56);
+  outline: none;
+  flex: 1;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: text;
+
+  padding-top: 10px;
+}
+input.field{
+  padding-top:5px;
+}
+
+.field::-webkit-input-placeholder {
+  color: rgba(23, 41, 56, 0.4);
+}
+
+.field::-moz-placeholder {
+  color: rgba(23, 41, 56, 0.4);
+}
+
+.btn-stripe {
+  float: left;
+  display: block;
+  background: #F05929;
+  color: white;
+  box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  border: 0;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  height: 40px;
+  line-height: 38px;
+  outline: none;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.btn-stripe:focus {
+  background: #F05929;
+}
+
+.btn-stripe:active {
+  background-color :  rgba(240,89,41, 0.8);
+}
+
+.btn-stripe:hover {
+  box-shadow: 0px 0px 0px 3px rgb(240,89,41);
+}
+
+.outcome {
+  float: left;
+  width: 100%;
+  padding-top: 8px;
+  min-height: 24px;
+  text-align: center;
+}
+
+.success,
+.error {
+  display: none;
+  font-size: 13px;
+}
+
+.success.visible,
+.error.visible {
+  display: inline;
+}
+
+.error {
+  color: #E4584C;
+}
+
+.success {
+  color: #666EE8;
+}
+
+.success .token {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.bottom{
+  display:flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.top{
+  margin-bottom:5px;
+}
+
+/*
+  Player Skin Designer for Video.js
+  http://videojs.com
+
+  To customize the player skin edit
+  the CSS below. Click "details"
+  below to add comments or questions.
+  This file uses some SCSS. Learn more
+  at http://sass-lang.com/guide)
+
+  This designer can be linked to at:
+  https://codepen.io/heff/pen/EarCt/left/?editors=010
+*/
+.video-js {
+  /* The base font size controls the size of everything, not just text.
+     All dimensions use em-based sizes so that the scale along with the font size.
+     Try increasing it to 15px and see what happens. */
+  font-size: 10px;
+  /* The main font color changes the ICON COLORS as well as the text */
+  color: #f0592a;
+  margin: 0 auto;
+}
+
+/* The "Big Play Button" is the play button that shows before the video plays.
+   To center it set the align values to center and middle. The typical location
+   of the button is the center, but there is trend towards moving it to a corner
+   where it gets out of the way of valuable content in the poster image.*/
+.vjs-default-skin .vjs-big-play-button {
+  /* The font size is what makes the big play button...big.
+     All width/height values use ems, which are a multiple of the font size.
+     If the .video-js font-size is 10px, then 3em equals 30px.*/
+  font-size: 3em;
+  /* We're using SCSS vars here because the values are used in multiple places.
+     Now that font size is set, the following em values will be a multiple of the
+     new font size. If the font-size is 3em (30px), then setting any of
+     the following values to 3em would equal 30px. 3 * font-size. */
+  /* 1.5em = 45px default */
+  line-height: 1.5em;
+  height: 1.5em;
+  width: 3em;
+  /* 0.06666em = 2px default */
+  border: 0.06666em solid #f0592a;
+  /* 0.3em = 9px default */
+  border-radius: 0.3em;
+  /* Align center */
+  left: 50%;
+  top: 50%;
+  margin-left: -1.5em;
+  margin-top: -0.75em;
+}
+
+/* The default color of control backgrounds is mostly black but with a little
+   bit of blue so it can still be seen on all-black video frames, which are common. */
+.video-js .vjs-control-bar,
+.video-js .vjs-big-play-button,
+.video-js .vjs-menu-button .vjs-menu-content {
+  /* IE8 - has no alpha support */
+  background-color: #034e54;
+  /* Opacity: 1.0 = 100%, 0.0 = 0% */
+  background-color: rgba(3, 78, 84, 0.7);
+}
+
+/* Slider - used for Volume bar and Progress bar */
+.video-js .vjs-slider {
+  background-color: #09e5f6;
+  background-color: rgba(9, 229, 246, 0.5);
+}
+
+/* The slider bar color is used for the progress bar and the volume bar
+   (the first two can be removed after a fix that's coming) */
+.video-js .vjs-volume-level,
+.video-js .vjs-play-progress,
+.video-js .vjs-slider-bar {
+  background: #f0592a;
+}
+
+/* The main progress bar also has a bar that shows how much has been loaded. */
+.video-js .vjs-load-progress {
+  /* For IE8 we'll lighten the color */
+  background: #84f2fb;
+  /* Otherwise we'll rely on stacked opacities */
+  background: rgba(9, 229, 246, 0.5);
+}
+
+/* The load progress bar also has internal divs that represent
+   smaller disconnected loaded time ranges */
+.video-js .vjs-load-progress div {
+  /* For IE8 we'll lighten the color */
+  background: white;
+  /* Otherwise we'll rely on stacked opacities */
+  background: rgba(9, 229, 246, 0.75);
+}
+
+
+.block-video{
+  margin-top: 50px;
+}
+
+@media only screen and (max-width: 768px) { /*Cellulaire*/
+  .video-js{
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .content{
+    padding: 5px;
+  }
+
+}
