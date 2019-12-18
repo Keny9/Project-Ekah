@@ -55,8 +55,4 @@ header('Location: /videos?vComplete=1&recu_url='.$recu_url);
 
 
 
-
-
-
-
 ?>
