@@ -105,6 +105,12 @@ class GestionVideo{
       }
       return $videosTable;
     }
+    catch (Exception $e) {
+      // Rollback la transaction
+      $conn->do()->rollback();
+      echo "Erreur try-catch : ".$e."<br>";
+      return false;
+    }
     }
       public function consulterVideos_clientTable(){
         $conn = new Connexion();
@@ -130,6 +136,12 @@ class GestionVideo{
 
           return $videos_clientTable;
         }
-
+        catch (Exception $e) {
+          // Rollback la transaction
+          $conn->do()->rollback();
+          echo "Erreur try-catch : ".$e."<br>";
+          return false;
+        }
+      }
 }
 ?>

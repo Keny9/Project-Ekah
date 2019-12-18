@@ -21,5 +21,5 @@ if($stmt) {
 return $videos_clientTable;
 */
 $gVideo = new GestionVideo();
-print_r(json_encode($gVideo->consulterVideos_clientTable()));
+return $gVideo->consulterVideos_clientTable();
 ?>

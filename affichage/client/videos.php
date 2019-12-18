@@ -53,18 +53,8 @@ try{
 
 
     <script>
-      const VIDEOS = JSON.parse('<?php
-      require_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Video/GestionVideo.php";
-      $gv = new GestionVideo();
-      echo json_encode($gv->consulterVideosTable());
-       //echo json_encode($videosTable);
-       ?>');
-      const VIDEOS_CLIENT = JSON.parse('<?php
-      require_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Video/GestionVideo.php";
-      $gv = new GestionVideo();
-      echo json_encode($gv->consulterVideos_clientTable());
-       //echo json_encode($videos_client);
-       ?>');
+      const VIDEOS = JSON.parse('<?php echo json_encode($videosTable); ?>');
+      const VIDEOS_CLIENT = JSON.parse('<?php echo json_encode($videos_client); ?>');
       const PRIX = JSON.parse('<?php echo json_encode($prix_format); ?>');
     </script>
     <script src="/video.min.js"></script>
