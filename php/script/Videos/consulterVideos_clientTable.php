@@ -1,19 +1,7 @@
 <?php
-/*
-  Retourne un array:
-  Array
-  (
-      [0] => Array
-          (
-              [utilisateur_id] => 4
-              [videos_id] => 1
-          )
-
-  )
-*/
-
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
-
+include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/gestionnaire/Video/GestionVideo.php";
+/*
 $videos_clientTable = null;
 
 $conn = ($temp = new Connexion())->do();
@@ -28,11 +16,10 @@ if($stmt) {
     $videos_clientTable[] = $row;
   }
 
-  // echo "<pre>";
-  // print_r($videos_clientTable);
 }
 
-//echo "$conn->error;"; Afficher les erreurs mysql
-
 return $videos_clientTable;
+*/
+$gVideo = new GestionVideo();
+print_r(json_encode($gVideo->consulterVideos_clientTable()));
 ?>
