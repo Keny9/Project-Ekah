@@ -63,7 +63,7 @@ try{
     <script src='/video-brand.js'></script>
     <script src="/global.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
-    <script type="text/javascript" src="/paiement.js"></script>
+    <script src="/paiement.js"></script>
   </head>
   <body>
     <?php include $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/affichage/global/header.php" ?>
