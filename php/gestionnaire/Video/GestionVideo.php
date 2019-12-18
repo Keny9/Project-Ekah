@@ -82,6 +82,54 @@ class GestionVideo{
       return false;
     }
   }
+  public function consulterVideosTable(){
+      $conn = new Connexion();
+
+      try {
+        $conn = ($connexion = new Connexion())->do();
+
+      $videosTable = null;
+
+      $conn = ($temp = new Connexion())->do();
+      $req = "SELECT * FROM videos";
+      $stmt = $conn->prepare($req);
+
+      if($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while($row = $result->fetch_assoc()){
+          $videosTable[] = $row;
+        }
+
+      }
+      return $videosTable;
+    }
+    }
+      public function consulterVideos_clientTable(){
+        $conn = new Connexion();
+
+        try {
+          $conn = ($connexion = new Connexion())->do();
+
+          $videos_clientTable = null;
+
+          $conn = ($temp = new Connexion())->do();
+          $req = "SELECT * FROM videos_client";
+          $stmt = $conn->prepare($req);
+
+          if($stmt) {
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while($row = $result->fetch_assoc()){
+              $videos_clientTable[] = $row;
+            }
+
+          }
+
+          return $videos_clientTable;
+        }
 
 }
 ?>
