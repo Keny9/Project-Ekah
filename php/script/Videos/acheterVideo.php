@@ -3,8 +3,9 @@ session_start();
 require $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/utils/stripe-php-7.13.0/vendor/autoload.php';
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
 \Stripe\Stripe::setApiKey('sk_test_NZqmLN0M3rIysRWEpo5xza8J00PZodFzrb');
+include_once $_SERVER['DOCUMENT_ROOT'].'/Project-Ekah/php/gestionnaire/Video/GestionVideo.php';
 
-$conn;
+$gVideo = new GestionVideo();
 $utilisateur_id = $_SESSION['logged_in_user_id'];
 $videos_id = $_POST['videos_id'];
 
@@ -28,11 +29,8 @@ $videos_id = $_POST['videos_id'];
 //   exit();
 // }
 
-$conn = ($temp = new Connexion())->do();
-$req = "INSERT INTO videos_client (utilisateur_id, videos_id) VALUES (?, ?);";
-$stmt = $conn->prepare($req);
-$stmt->bind_param('ii', $utilisateur_id, $videos_id);
-$stmt->execute();
+
+$gVideo->acheterVideo($videos_id, $utilisateur_id);
 
 echo "<br><br>done<br><br>";
 
