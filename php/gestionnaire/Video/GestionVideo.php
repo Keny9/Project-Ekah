@@ -57,5 +57,31 @@ class GestionVideo{
     }
   }
 
+  public function ajouterVideo($nom, $fichier, $poster, $prix){
+    $conn = new Connexion();
+
+    try {
+      $conn = ($connexion = new Connexion())->do();
+
+      $req = "INSERT INTO videos (nom, fichier, poster, prix) VALUES (?, ?, ?, ?);";
+      $stmt = $conn->prepare($req);
+      $stmt->bind_param('sssi', $nom, $fichier, $poster, $prix);
+      $stmt->execute();
+
+      if($status === false){
+        trigger_error($stmt->error, E_USER_ERROR);
+      }
+
+      // Commit la transaction
+      $conn->commit();
+      return true;
+    } catch (Exception $e) {
+      // Rollback la transaction
+      $conn->do()->rollback();
+      echo "Erreur try-catch : ".$e."<br>";
+      return false;
+    }
+  }
+
 }
 ?>
