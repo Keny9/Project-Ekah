@@ -1,0 +1,110 @@
+/**
+ * CSS pour la page reservation_questionnaire
+ *
+ * Nom :         reservation_questionnaire.css
+ * Catégorie :   Style
+ * Auteur :      Karl Boutin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-10-11
+ */
+
+.txt-question{
+  width: 100%;
+  text-align: left;
+}
+
+.reservation{
+  width: 900px;
+}
+
+.txt-explication{
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  color: #034e54;
+  margin-bottom: 50px;
+}
+
+.label-question{
+  width: 100%;
+  font-size: 15px;
+  color: #034E53;
+}
+
+.label-dec{
+  display: inline-block;
+  width: 100px;
+  font-size: 15px;
+  color: #034E53;
+}
+
+.input-question{
+  width: 100%;
+  margin-top: 5px;
+}
+
+#signature{
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+#date{
+  display: inline-block;
+}
+
+.bouton-re-que{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 152px;
+  height: 42px;
+  background-color: #000;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-size: 14px;
+  text-align: center;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.bouton-re-que:hover{
+  opacity: 0.8;
+}
+
+#confirmerQuestion{
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
+}
+
+.btn-ques{
+  margin-top: 50px;
+}
+
+.information{
+  margin-top: 10px;
+}
+
+.information p{
+  font-size: 13px;
+  color: #034E53;
+}
+
+@media only screen and (min-width: 910px){
+  .input-question{
+    width: 900px;
+  }
+}
+
+@media only screen and (max-width: 910px){
+  .reservation{
+    width: 100%;
+  }
+
+  #confirmerQuestion{
+    margin-right: 5px;
+  }
+}

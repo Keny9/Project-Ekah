@@ -84,7 +84,7 @@ if(!String.prototype.formatNum) {
 		// /component/bootstrap-calendar/tmpls/
 		// or absolute
 		// http://localhost/component/bootstrap-calendar/tmpls/
-		tmpl_path: 'tmpls/',
+		tmpl_path: '/Project-Ekah/utils/bootstrap-calendar/tmpls/',
 		tmpl_cache: true,
 		classes: {
 			months: {
@@ -126,10 +126,10 @@ if(!String.prototype.formatNum) {
 			}
 		},
 		merge_holidays: false,
-		display_week_numbers: true,
-		weekbox: true,
+		display_week_numbers: false,
+		weekbox: false,
 		//shows events which fits between time_start and time_end
-		show_events_which_fits_time: false,
+		show_events_which_fits_time: true,
 		// Headers defined for ajax call
 		headers: {},
 
@@ -173,21 +173,21 @@ if(!String.prototype.formatNum) {
 			// January 1
 			'01-01': "New Year's Day",
 			// Third (+3*) Monday (1) in January (01)
-			'01+3*1': "Birthday of Dr. Martin Luther King, Jr.",
+			// '01+3*1': "Birthday of Dr. Martin Luther King, Jr.",
 			// Third (+3*) Monday (1) in February (02)
-			'02+3*1': "Washington's Birthday",
+			// '02+3*1': "Washington's Birthday",
 			// Last (-1*) Monday (1) in May (05)
-			'05-1*1': "Memorial Day",
+			// '05-1*1': "Memorial Day",
 			// July 4
-			'04-07': "Independence Day",
+			// '04-07': "Independence Day",
 			// First (+1*) Monday (1) in September (09)
-			'09+1*1': "Labor Day",
+			// '09+1*1': "Labor Day",
 			// Second (+2*) Monday (1) in October (10)
-			'10+2*1': "Columbus Day",
+			// '10+2*1': "Columbus Day",
 			// November 11
-			'11-11': "Veterans Day",
+			// '11-11': "Veterans Day",
 			// Fourth (+4*) Thursday (4) in November (11)
-			'11+4*4': "Thanksgiving Day",
+			// '11+4*4': "Thanksgiving Day",
 			// December 25
 			'25-12': "Christmas"
 		}
@@ -456,11 +456,128 @@ if(!String.prototype.formatNum) {
 		}
 
 		data.start = new Date(this.options.position.start.getTime());
+
 		data.lang = this.locale;
 
 		this.context.append(this.options.templates[this.options.view](data));
+
+//Tentative
+    //Mettre les horaires en vert
+    $.each($('.cal-day-hour-part'), function(index, $event){
+      var $this = $(this);
+
+      var date = $(".h3").text();
+      var heure = $this.find("b").text();
+
+      var dates = date.split(" ");
+      var jour = dates[1];
+      var annee = dates[3];
+      var mois = convertirMois(dates[2]);
+
+      //Pour avoir l'heure + 30 minutes
+      var heures = heure.split(":");
+      var moment = new Date(data.start.getYear(), data.start.getMonth(), data.start.getDay(), heures[0], heures[1]);
+      moment = new Date(moment.getTime() + 30*60000);
+
+      // console.log(moment);
+
+      var heure_debut = heure;
+
+      var momentMinute = moment.getMinutes();
+      momentMinute = momentMinute + "";
+      var splitMinute = momentMinute.split("");
+
+      if(splitMinute.length == 1){
+        momentMinute = moment.getMinutes() + "0";
+      }
+
+      var heure_fin = "" + moment.getHours() + ":" + momentMinute;
+
+      // console.log("fin :" + heure_fin)
+
+
+      // console.log(data.events);
+
+      data.events.forEach(function(entry){
+
+        // console.log(entry.end_hour + "  :  " + heure_fin);
+
+        //Split les heures (12:00) en deux variable (une pour minute et l'Autre pour heure)
+        //Split début
+        let entry_date_debut = entry.start_hour.split(":");
+        let date_debut = heure_debut.split(":");
+        //Split fin
+        let entry_date_fin = entry.end_hour.split(":");
+        let date_fin = heure_fin.split(":");
+
+
+        //Additionne les heures et minutes(string) (7 + 30 = 730 = 7h30)
+        let entry_heure_debut = entry_date_debut[0] + entry_date_debut[1];
+        let heure_debut_split = date_debut[0] + date_debut[1];
+
+        let entry_heure_fin = entry_date_fin[0] + entry_date_fin[1];
+        let heure_fin_split = date_fin[0] + date_fin[1];
+
+        //Heures converties en INT pour les comparer
+        let entry_heure_debut_int = parseInt(entry_heure_debut, 10);
+        let heure_debut_int = parseInt(heure_debut_split, 10);
+
+        let entry_heure_fin_int = parseInt(entry_heure_fin, 10);
+        let heure_fin_int = parseInt(heure_fin_split, 10);
+
+
+        // console.log(entry_heure_debut_int + " " + heure_debut_int);
+
+        if(entry_heure_debut_int <= heure_debut_int && entry_heure_fin_int >= heure_fin_int){
+          // console.log("debut : " + heure_debut_int + " fin : " + heure_fin_int);
+
+          // console.log(entry.etat);
+          if(entry.etat == 1){
+            $this.css("background-color", "rgba(3, 78, 84, 0.52)");
+            $this.find('.span11').text(entry.region);
+          }else if(entry.etat == 2){
+            $this.css("background-color", "RGBA(240,89,41,0.26)");
+            $this.find('.span11').text(entry.region);
+          }
+        }
+
+      });
+
+    });
+
 		this._update();
 	};
+
+
+  function convertirMois(mois){
+    switch(mois) {
+    case "January,":
+      return "01";
+    case "February,":
+      return "02";
+    case "March,":
+      return "03";
+    case "April,":
+      return "04";
+    case "May,":
+      return "05";
+    case "June,":
+      return "06";
+    case "July,":
+      return "07";
+    case "August,":
+      return "08";
+    case "September,":
+      return "09";
+    case "October,":
+      return "10";
+    case "November,":
+      return "11";
+    case "December,":
+      return "12";
+    }
+  }
+
 
 	Calendar.prototype._format_hour = function(str_hour, leadingZero) {
 		var hour_split = str_hour.split(":");
@@ -1038,11 +1155,17 @@ if(!String.prototype.formatNum) {
 			self.options.day = $(this).data('cal-date');
 			self.view(view);
 		});
-		$('.cal-cell').dblclick(function() {
-			var view = $('[data-cal-date]', this).data('cal-view');
-			self.options.day = $('[data-cal-date]', this).data('cal-date');
-			self.view(view);
-		});
+    //Double click pour afficher view du jour
+		// $('.cal-cell').dblclick(function() {
+		// 	var view = $('[data-cal-date]', this).data('cal-view');
+		// 	self.options.day = $('[data-cal-date]', this).data('cal-date');
+		// 	self.view(view);
+		// });
+    $('.cal-cell').click(function() {
+      var view = $('[data-cal-date]', this).data('cal-view');
+      self.options.day = $('[data-cal-date]', this).data('cal-date');
+      self.view(view);
+    });
 
 		this['_update_' + this.options.view]();
 
@@ -1073,6 +1196,8 @@ if(!String.prototype.formatNum) {
 					frameborder: "0"
 				});
 		}
+
+    //Coucou
 
 		$('a[data-event-id]', this.context).on('click', function(event) {
 			event.preventDefault();
@@ -1198,6 +1323,7 @@ if(!String.prototype.formatNum) {
 					return;
 				}
 				downbox.show().appendTo(this);
+        downbox.hide();
 			})
 			.on('mouseleave', function() {
 				downbox.hide();
@@ -1209,20 +1335,21 @@ if(!String.prototype.formatNum) {
 				if($(this).children('[data-cal-date]').text() == self.activecell) {
 					return;
 				}
-				showEventsList(event, downbox, slider, self);
+				// showEventsList(event, downbox, slider, self);
+        // downbox.hide();
 			})
 		;
 
-		var slider = $(document.createElement('div')).attr('id', 'cal-slide-box');
-		slider.hide().click(function(event) {
-			event.stopPropagation();
-		});
+		// var slider = $(document.createElement('div')).attr('id', 'cal-slide-box');
+		// slider.hide().click(function(event) {
+		// 	event.stopPropagation();
+		// });
 
 		this._loadTemplate('events-list');
 
-		downbox.click(function(event) {
-			showEventsList(event, $(this), slider, self);
-		});
+		// downbox.click(function(event) {
+		// 	showEventsList(event, $(this), slider, self);
+		// });
 	};
 
 	Calendar.prototype.getEventsBetween = function(start, end) {
@@ -1252,6 +1379,7 @@ if(!String.prototype.formatNum) {
 
 		slider.slideUp('fast', function() {
 			var event_list = $('.events-list', cell);
+
 			slider.html(self.options.templates['events-list']({
 				cal: self,
 				events: self.getEventsBetween(parseInt(event_list.data('cal-start')), parseInt(event_list.data('cal-end')))

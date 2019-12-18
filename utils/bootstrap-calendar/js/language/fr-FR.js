@@ -54,7 +54,7 @@ window.calendar_languages['fr-FR'] = {
 	d5: 'Vendredi',
 	d6: 'Samedi',
 
-	first_day: 1,
+	first_day: 2,
 	week_numbers_iso_8601: true,
 
 	holidays: {

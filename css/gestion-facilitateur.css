@@ -1,0 +1,158 @@
+main{
+  display: inline-block;
+}
+
+.txt-consulter{
+  margin-top: 30px;
+  color: #034e54;
+  text-align: center;
+  font-size: 25px;
+}
+
+.block-tbl{
+  margin-top: 50px;
+}
+
+th,td{
+  color: #034e54;
+  font-size: 12px;
+}
+
+th{
+  border-right: 1px solid #f0592a;
+}
+
+#th-1{
+  border-left: 1px solid #f0592a;
+}
+
+.profil{
+  display: none;
+}
+
+.calendar{
+  color: #66a1ff;
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  width: 35px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.calendar:before{
+  font-size: 21px;
+  cursor: pointer;
+  content: '\f073';
+}
+
+.cog{
+  color: #000000;
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  width: 35px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.cog:before{
+  font-size: 21px;
+  cursor: pointer;
+  content: '\f013';
+}
+
+.link-facilitateur{
+  color: #f0592a;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link-facilitateur:hover {
+  color: #d44b22;
+}
+
+.modal-modif-reservation{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-align-middle-mr{
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.btn-modal-insc{
+  margin-bottom: 30px;
+}
+
+.txt-bienv{
+  margin-bottom: 15px;
+}
+
+@media only screen and (min-width: 768px){
+
+  .reservation {
+    width: 700px;
+  }
+
+  .box-select{
+    display: block;
+  }
+  
+  .input-inscr{
+    display: inline-block;
+  }
+
+  .profil{
+    width: 510px;
+    margin: 0 auto;
+  }
+
+  .label-consulter{
+    width: 100%;
+    vertical-align: middle;
+  }
+
+  .top-img{
+    font-size: 64px;
+  }
+
+  .btn-confirmer{
+    display: block;
+    margin: 0 auto;
+  }
+
+  .btn-coller{
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 1560px){
+  .btn-coller{
+    margin-top: 10px;
+  }
+
+}
+
+@media only screen and (max-width: 768px){
+  .dataTables_scroll{
+    overflow-x:auto;
+  }
+
+  .link-facilitateur{
+    margin-top: 20px;
+  }
+
+}

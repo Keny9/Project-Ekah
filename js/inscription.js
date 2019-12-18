@@ -8,8 +8,19 @@
  * Date de la dernière modification : 2019-09-30
  */
 
-//Lorsque le document est prêt
 
+ // Appuie sur la touche ..
+ $(window).keydown(function(event){
+   // .. Enter
+   if(event.keyCode == 13) {
+     event.preventDefault();
+     // Fait l'action d'un clique sur le bouton 'Créer un compte'
+     $('#btnInscription').click();
+     return false;
+   }
+ });
+
+//Lorsque le document est prêt
 window.onload = function(){
   listInput = document.querySelectorAll("input");
 
@@ -25,6 +36,7 @@ window.onload = function(){
       e.style.borderBottomColor = "#9E9E9E";
     });
   });
+
 
   prenom = document.getElementById("prenom");
   nom = document.getElementById("nom");
@@ -107,7 +119,7 @@ window.onload = function(){
 
   ville.addEventListener("focusout", function(){
     if(verifieNomPrenom(ville)){
-      inputUnrequired(ville, "Code postal");
+      inputUnrequired(ville, "Ville");
     }
   });
 };
@@ -115,14 +127,14 @@ window.onload = function(){
 //Fonction si input vide qui montre que le champ est requis
  function inputRequired(e){
     e.style.borderBottomColor = "#ff0000";
-    e.style.setProperty("--color", "#ff0000");
+    e.classList.add('redPlaceholder');
  }
 
 //Fonction qui remet les couleurs par défauts
  function inputUnrequired(e, placeholder){
    e.style.borderBottomColor = "#9E9E9E";
-   e.style.setProperty("--borderBottomColor", "#f0592a");
-   e.style.setProperty("--color", "#C8C8C8");
+   e.classList.add('borderBottomColor');
+   e.classList.add('defaultPlaceholder');
    e.placeholder = placeholder;
  }
 
@@ -222,13 +234,14 @@ window.onload = function(){
 
    // Si le courriel existe déjà dans la BD
    if(courrielExiste()){
-     alert("le courriel existe déjà");
-     // TODO: gérer ce cas
+     inputRequired(courriel);
+     document.getElementById("error-courriel").style.display = "block";
      return false;
    }
 
    // Change l'attribut Action du Formulaire
-   $('#mickeymouse').attr('action', '../../php/script/Client/ajouterClient.php');
+   $("#modal-inscription").css("display", "block");
+   $('#mickeymouse').attr('action', '/Project-Ekah/php/script/Client/ajouterClient.php');
    return true;
  }
 
@@ -414,7 +427,7 @@ window.onload = function(){
    if(!verifieNomPrenom(ville)){
      inputRequired(ville);
      ville.value = null;
-     ville.placeholder = "Rue invalide *";
+     ville.placeholder = "Ville invalide *";
    }
  }
 
@@ -442,11 +455,10 @@ window.onload = function(){
  // Retourne si le courriel entré existe déjà dans la BD
  function courrielExiste(){
    var bool = true;
-   alert($('#courriel').val());
    $.ajax({
      type: "POST",
      async: false,
-     url: "../../php/script/Client/siCourrielExiste.php",
+     url: "/Project-Ekah/php/script/Client/siCourrielExiste.php",
      data: {"courriel": $('#courriel').val()},
      success: function(result){
        if(result == 'false'){

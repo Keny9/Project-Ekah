@@ -1,0 +1,57 @@
+.modal-content{
+  border: none;
+  width: 100%;
+}
+.modal-inscription{
+  padding-top:0;
+}
+.modal-header{
+  background-color: #034D54;
+  color: #F05929;
+}
+.modal-body{
+  background-color: #E5DED4;
+  color: #172938;
+}
+.modal-footer{
+  background-color: #034D54;
+  color: #F05929;
+}
+.close{
+  text-shadow: none;
+}
+
+.modal-footer .btn{
+  color: inherit;
+}
+
+.modal-body span{
+  display: block;
+  margin: auto;
+  padding-top: 8px;
+  padding-bottom: 3px;
+}
+
+.list-menu{
+  margin-bottom: 0;
+}
+
+#modifier-mon-mot-de-passe-toggle, #ajouter-fichier-perso-toggle{
+  color: #F05929;
+  padding: 0;
+}
+
+.custom-file-label::after{
+  content:"Parcourir";
+}
+
+
+@media only screen and (min-width: 768px) {
+    .modal-content{
+      width: 100%;
+    }
+}
+
+p{
+  margin-bottom:0;
+}

@@ -1,0 +1,96 @@
+body{
+  line-height: normal;
+}
+
+label{
+  cursor: auto !important;
+}
+
+option:disabled{
+  color: #000 !important;
+}
+
+select{
+  border-radius: 0 !important;
+  cursor: default !important;
+  margin: 0 !important;
+  height: auto !important;
+  line-height: inherit !important;
+}
+
+.input-inscr{
+  border: 0;
+  border-bottom: 2px solid #9E9E9E;
+  padding: 5px !important;
+  padding-bottom: 2px !important;
+  font-size: 14px !important;
+}
+
+.contact-link a {
+    opacity: 1 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.contact-link a:hover{
+  opacity: 0.8 !important;
+}
+
+html,body{
+  font-family: 'Montserrat', sans-serif !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+button,textarea,input{
+  font-weight: 400 !important;
+  box-shadow: none !important;
+}
+
+.list-menu{
+  margin: 0;
+}
+
+
+.input-date{
+  width: 32%;
+}
+
+.input-inscr{
+  border: 0;
+  border-bottom: 2px solid #9E9E9E;
+  padding: 5px !important;
+  padding-bottom: 2px !important;
+  font-size: 14px !important;
+  background-color: #FFFFFF !important;
+}
+
+.input-inscr:focus{
+  outline: initial !important;
+  border-bottom-color: #f0592a !important;
+  -webkit-transition: border-bottom-color 0.4s !important;
+  -moz-transition: border-bottom-color 0.4s !important;
+  -o-transition: border-bottom-color 0.4s !important;
+  transition: border-bottom-color 0.4s !important;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+li{
+  line-height: 20px;
+}
+
+input[type="text"]{
+  margin-bottom: 0;
+}
+
+[class^="icon-"], [class*=" icon-"]{
+  background-image: none;
+}
+
+p{
+  margin: 0;
+}

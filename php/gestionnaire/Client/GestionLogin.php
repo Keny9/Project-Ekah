@@ -2,15 +2,14 @@
 /**
 * Gestionnaire du login
 *
-* Nom :         Login
+* Nom :         GestionLogin
 * Catégorie :   Classe
 * Auteur :      Maxime Lussier
-* Version :     1.1
-* Date de la dernière modification : 2019-10-06
+* Version :     1.2
+* Date de la dernière modification : 2019-10-07
 */
 
 include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
-//include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Individu/Utilisateur/Client/Client.php";
 
 class GestionLogin{
 
@@ -35,23 +34,25 @@ class GestionLogin{
 
     // Sinon (courriel n'existe pas)
     else{
-      return "Courriel n'existe pas";
+      return "Courriel existe pas";
     }
   }
 
-  //retourne l'id du user
-  public function getUserId($courriel){
+  //retourne un array {'l'id de l'utilisateur', 'l'id du type d'utilisateur'}
+  public function getUserIdAndUserTypeId($courriel){
     $connexion = new Connexion();
     $conn = $connexion->do();
-    
-    $stmt = $conn->prepare("SELECT fk_utilisateur
-    FROM compte_utilisateur
-    WHERE courriel = ?");
+
+    $stmt = $conn->prepare("SELECT c.fk_utilisateur, u.id_type_utilisateur
+    FROM compte_utilisateur as c
+    INNER JOIN utilisateur as u ON u.id = c.fk_utilisateur
+    WHERE c.courriel = ?");
     $stmt->bind_param('s', $courriel);
     $stmt->execute();
     $result = $stmt->get_result();
     if($row = $result->fetch_assoc()){
-      return $row['fk_utilisateur'];
+      $array = array($row['fk_utilisateur'], $row['id_type_utilisateur']);
+      return $array; // Retourne l'array contenant l'id du user et l'id de son Type
     }
     return null;
   }
@@ -76,5 +77,41 @@ class GestionLogin{
     return password_verify($motDePasseEntree, $motDePasseBd);
   }
 
+  // Retourne le user_type_id
+  public function getTypeId($user_id){
+    $connexion = new Connexion();
+    $conn = $connexion->do();
+
+    $stmt = $conn->prepare("SELECT id_type_utilisateur
+                            FROM utilisateur
+                            WHERE id = ?");
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $user_type_id = null;
+    if($row = $result->fetch_assoc()){
+      $user_type_id = $row['id_type_utilisateur'];
+    }
+    return $user_type_id;
+  }
+
+  // Si le courriel existe, retourne qu'il existe (true).
+  // Sinon, retourne false
+  public function compteExiste($courriel){
+    $conn = ($connexion = new Connexion())->do();
+
+    $stmt = $conn->prepare("SELECT fk_utilisateur
+    FROM compte_utilisateur
+    WHERE courriel = ?");
+
+    $stmt->bind_param('s', $courriel);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($row = $result->fetch_assoc()){
+      return true;
+    }
+    return false;
+  }
 }
  ?>

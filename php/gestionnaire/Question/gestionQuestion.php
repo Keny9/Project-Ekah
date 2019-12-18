@@ -10,62 +10,19 @@
  * Date de la dernière modification : 2019-10-03
  */
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/utils/connexion.php";
- include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/question.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/Question.php";
  include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/type_question.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/Question/Ta_questionnaire_reservation_question.php";
+ include_once $_SERVER['DOCUMENT_ROOT']."/Project-Ekah/php/class/QuestionnaireReservation/Questionnaire.php";
+
 class GestionQuestion{
 
-/*
-  Retourne un tableau contenant tous les employés contenus dans la BD
-  Prend des critères de recherche en paramètres.
-  Le paramètre doit être 'null' s'il ne contient pas de critère de recherche
-*/
-  /*public function getAllEmploye( $column, $critere){
-    $tempconn = new Connexion();
-    $conn = $tempconn->getConnexion();
-    $employe = null;
-
-    $requete= "SELECT * FROM employe";
-
-    if($critere != ""){
-      $requete .= " WHERE ".$column." LIKE '%{$critere}%';";
-    }
-
-    $result = $conn->query($requete);
-    if(!$result){
-      trigger_error($conn->error);
-    }
-
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $employe[] = new Employe( $row['identifiant'],
-                                  $row['nom'],
-                                  $row['prenom'],
-                                  $row['courriel'],
-                                  $row['date_naissance'],
-                                  $row['date_embauche'],
-                                  $row['telephone'],
-                                  $row['nas'],
-                                  $row['mot_passe'],
-                                  $row['ville'],
-                                  $row['nom_rue'],
-                                  $row['no_porte'],
-                                  $row['id_poste'],
-                                  $row['id_etat']);
-      }
-    }
-
-    return $employe;
-  }*/
-
-/*
-Ajoute un employe à la BD ainsi que son adresse
-*/
   public function ajouterQuestion($question){
       $tempconn = new Connexion();
       $conn = $tempconn->getConnexion();
-      $requete1="SET FOREIGN_KEY_CHECKS=0";
-      $result1 = $conn->query($requete1);
-      //Crée l'employé
+      /*$requete1="SET FOREIGN_KEY_CHECKS=0";
+      $result1 = $conn->query($requete1);*/
+
       $requete= "INSERT INTO question VALUES(
                   '".$question->getIdentifiant()."',
                   '".$question->getId_type()."',
@@ -73,51 +30,50 @@ Ajoute un employe à la BD ainsi que son adresse
                   '".$question->getNb_ligne()."');";
       $result = $conn->query($requete);
 
-      $requete2="SET FOREIGN_KEY_CHECKS=1";
+      /*$requete2="SET FOREIGN_KEY_CHECKS=1";
       $result2 = $conn->query($requete2);
-      if(!$result){
-        trigger_error($conn->error);
+      */
+    }
+    public function ajouterQuestionnaire($questionnaire){
+        $tempconn = new Connexion();
+        $conn = $tempconn->getConnexion();
+
+        $requete= "INSERT INTO questionnaire_reservation VALUES(
+                    '".$questionnaire->getIdentifiant()."',
+                    '".$questionnaire->getNomQuestionnaire()."');";
+        $result = $conn->query($requete);
       }
-    }
 
+      public function ajouterActiviteQuestionnaire($ta_activite_questionnaire_reservation){
+          $tempconn = new Connexion();
+          $conn = $tempconn->getConnexion();
 
-  /*
-      Modifie un employe dans la BD
-      Le paramètre oldId contient l'identifiant de l'employe avant la modification,
-      puisque l'identifiant peut être modifié et qu'il est la clé primaire
-  */
-  /*public function modifierEmploye($employe, $oldId){
-    if (!is_a($employe, 'Employe')){
-      echo "L'objet en paramètre doit être un employé";
-      return;
-    }
-    else{
-      $tempconn = new Connexion();
-      $conn = $tempconn->getConnexion();
-
-      $requete= "UPDATE employe
-                SET identifiant = '".$employe->getIdentifiant()."',
-                nom = '".$employe->getNom()."',
-                prenom = '".$employe->getPrenom()."',
-                courriel = '".$employe->getCourriel()."',
-                date_naissance = '".$employe->getDateNaissance()."',
-                date_embauche = '".$employe->getDateEmbauche()."',
-                telephone = '".$employe->getTelephone()."',
-                nas = '".$employe->getNas()."',
-                mot_passe = '".$employe->getMotDePasse()."',
-                ville = '".$employe->getVille()."',
-                nom_rue = '".$employe->getRue()."',
-                no_porte = '".$employe->getNo()."',
-                id_poste = '".$employe->getPoste()."',
-                id_etat = '".$employe->getEtat()."'
-                WHERE identifiant = '$oldId';";
-      $result = $conn->query($requete);
-      if(!$result){
-        trigger_error($conn->error);
+          //Crée l'employé
+          $requete= "INSERT INTO ta_activite_questionnaire_reservation VALUES(
+                      '".$ta_activite_questionnaire_reservation->getIdActivite()."',
+                      '".$ta_activite_questionnaire_reservation->getIdQuestionnaire()."');";
+          $result = $conn->query($requete);
+          if(!$result){
+            trigger_error($conn->error);
+        }
       }
-    }
-  }*/
 
+      public function ajouterQuestionQuestionnaire($ta_questionnaire_reservation_question){
+          $tempconn = new Connexion();
+          $conn = $tempconn->getConnexion();
+
+          echo $ta_questionnaire_reservation_question->getIdQuestion();
+
+          //Crée l'employé
+          $requete= "INSERT INTO ta_questionnaire_reservation_question VALUES(
+                      '".$ta_questionnaire_reservation_question->getIdQuestionnaire()."',
+                      '".$ta_questionnaire_reservation_question->getIdQuestion()."',
+                    '".$ta_questionnaire_reservation_question->getIdQuestion()."');";
+          $result = $conn->query($requete);
+          if(!$result){
+            trigger_error($conn->error);
+        }
+      }
 /*
   Supprime une question dans la BD en prenant son identifiant en paramètre
 */
@@ -133,27 +89,77 @@ Ajoute un employe à la BD ainsi que son adresse
     }
   }
 
-/*
-  Retourne un tableau de tous les postes d'employé
-*/
-  /*public function getAllPoste(){
+  public function supprimerQuestionQuestionnaire($idQuestionnaire,$idQuestion){
     $tempconn = new Connexion();
     $conn = $tempconn->getConnexion();
-    $poste = null;
 
-    $requete= "SELECT * FROM poste_employe;";
+    $requete= "DELETE FROM ta_questionnaire_reservation_question
+              WHERE id_questionnaire_res = '$idQuestionnaire' AND id_question = '$idQuestion';";
     $result = $conn->query($requete);
     if(!$result){
       trigger_error($conn->error);
     }
-    else{
+  }
+
+  public function getQuestionsOfActivite($idActivite){
+    $tempconn = new Connexion();
+    $conn = $tempconn->getConnexion();
+
+      $requete = "SELECT taqr.id_activite, q.id, q.nom_questionnaire FROM ta_activite_questionnaire_reservation AS taqr
+                INNER JOIN activite AS a ON taqr.id_activite = a.id
+                INNER JOIN questionnaire_reservation AS q ON taqr.id_questionnaire_res = q.id
+                WHERE taqr.id_activite = $idActivite;";
+
+      $result = $conn->query($requete);
+
+      if(!$result){
+          trigger_error($conn->error);
+      }
+
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-          $poste[] = new Poste($row['id'], $row['nom'], $row['description']);
+          $questionnaire[] = new Questionnaire( $row['id'],$row['nom_questionnaire']);
+
+          $requete1 = "SELECT tqrq.id_questionnaire_res, q.id, q.id_type_question, q.question, q.nb_ligne FROM ta_questionnaire_reservation_question AS tqrq
+                    INNER JOIN question AS q ON tqrq.id_question = q.id
+                    INNER JOIN questionnaire_reservation AS qr ON tqrq.id_questionnaire_res = qr.id
+                    WHERE tqrq.id_questionnaire_res = '".$row['id']."';";
+
+          $result1 = $conn->query($requete1);
+          if(!$result1){
+              trigger_error($conn->error);
+          }
+
+          if ($result1->num_rows > 0) {
+            while($row = $result1->fetch_assoc()) {
+              $question[] = new Question( $row['id'],$row['id_type_question'],$row['question'],$row['nb_ligne']);
+              //echo $row['id'];
+            }
         }
       }
+
+      return $question;
     }
-    return $poste;
-  }*/
 }
+public function getAllQuestion(){
+  $tempconn = new Connexion();
+  $conn = $tempconn->getConnexion();
+  $question = null;
+
+  $requete= "SELECT * FROM question";
+
+  $result = $conn->query($requete);
+  if(!$result){
+    trigger_error($conn->error);
+  }
+
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $question[] = new Question( $row['id'],$row['id_type_question'],$row['question'],$row['nb_ligne']);
+    }
+  }
+  return $question;
+}
+}
+
 ?>

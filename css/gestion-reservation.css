@@ -1,0 +1,527 @@
+/**
+ * CSS pour la page d'inscription
+ *
+ * Nom :         gestionReservation.css
+ * Catégorie :   Style
+ * Auteur :      William Gonin
+ * Version :     1.0
+ * Date de la dernière modification : 2019-09-30
+ */
+ .texteEkha{
+   color:#034E53;
+ }
+ .boxService{
+   width:250px;
+   height:18px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   resize:none;
+ }
+ .boxDuree{
+   width:250px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
+ .boxQuestion{
+   width:510px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
+ .inputQuestion{
+   width:250px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
+ .inputNb{
+   width:250px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
+ .inputType{
+   width:120px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
+ .inputId{
+   width:40px;
+   height:18px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   margin-left:5px;
+   float:left;
+ }
+ .boxType{
+   width:250px;
+   height:18px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+ }
+ .boxDescription{
+   width:250px;
+   height:100px;
+   margin-top:10px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   resize:none;
+ }
+ .reservez{
+   margin-top:80px;
+ }
+ .submitAjout{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#FF697E;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:20px;
+  margin-top:5px;
+}
+.submitAjoutQuestion{
+ font-size: 15px;
+ width:70px;
+ height:40px;
+ color:#FFF;
+ background-color:#FF697E;
+ background-size: 90px 35px;
+ border:none;
+ border-radius: 20px;
+ margin-right:45px;
+ float:right;
+}
+.submitSupprimerQuestion{
+ font-size: 15px;
+ width:90px;
+ height:40px;
+ color:#FFF;
+ background-color:#EC592A;
+ background-size: 90px 35px;
+ border:none;
+ border-radius: 20px;
+ margin-right:45px;
+ float:right;
+}
+.btn-confirmer{
+  display: block;
+  margin: 0 auto;
+}
+.mainReservation{
+  width:100%;
+  overflow: hidden;
+}
+.submitRetour{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#034E54;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:300px;
+  margin-top:80px;
+}
+.question{
+
+}
+.submitSupprimer{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#EC592A;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:10px;
+  margin-top:5px;
+}
+.submitModifier{
+  font-size: 15px;
+  width:120px;
+  height:35px;
+  color:#FFF;
+  background-color:#034E54;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  float:left;
+  margin-left:80px;
+  margin-top:10px;
+}
+ .prix{
+   margin-top:30px;
+ }
+ .descriptionC{
+   margin-top:30px;
+ }
+ .choisirServ{
+   margin-top:10px;
+   float:left;
+ }
+ .choisirDuree{
+   margin-top:10px;
+   margin-right:200px;
+   float:right;
+ }
+ .choisirType{
+   margin-top:30px;
+ }
+ .reservationMain{
+   width:800px;
+   height:950px;
+   margin-left:500px;
+   margin-bottom:1200px;
+   border:1px solid gray;
+   border-style: ridge;
+   padding: 8px;
+ }
+ .reservationHeader{
+   background-color:#034E54;
+ }
+ .imgHeader{
+   width:100px;
+   height:40px;
+ }
+ .reservationImg{
+   height:200px;
+ }
+ .imgPrincipal{
+   width:782px;
+   height:250px;
+   float:left
+ }
+ .cacher{
+   display:none;
+ }
+ .titreImg{
+   margin-left:420px;
+   font-size:40px;
+   color:#fff;
+   transform: translate(-50%, -50%);
+ }
+ .titreReservation{
+   margin-left:15px;
+   margin-top:15px;
+   color:#034E54;
+ }
+ .duree{
+   margin-top:30px;
+ }
+ .tableauActivite{
+   margin-left:60px;
+   margin-top:20px;
+   float:left;
+ }
+ .tableauDuree{
+   margin-right:140px;
+   margin-top:20px;
+   float:right;
+ }
+ .sectionActivite{
+  width:auto;
+  height:45px;
+  border:1px solid;
+  border-color:#808080;
+  background-color:#fff;
+ }
+ .sectionDuree{
+  width:220px;
+  height:45px;
+  border:1px solid;
+  border-color:#808080;
+  background-color:#fff;
+ }
+ .titreActivite{
+   margin-left:3px;
+   margin-top: 12px;
+   float:left;
+   font-size: 15px;
+ }
+ .boiteSelection{
+   transition: background-color 2s ease;
+   width:20px;
+   height:20px;
+   border:1px solid;
+   border-color:#000;
+   background-color:#D3D3D3;
+   float: right;
+   margin-right:25px;
+   margin-top:10px;
+   margin-left: 10px;
+ }
+ .boiteSelection:hover {
+  background-color: #034E54;
+}
+.ouverture{
+  transition: background-color 0.1s ease;
+  background-color:#adff2f;
+}
+.selectionne{
+  transition: background-color 2s ease;
+  background-color:#008000;
+}
+.desactive{
+  transition: background-color 2s ease;
+  background-color:#FF0000;
+}
+
+.img-modal{
+  /* margin-bottom: 15px; */
+  width: 100%;
+}
+
+.input-atelier{
+  width: 100%;
+}
+
+.modal-titre{
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.modal-description{
+  width: 100%;
+  background-color: white !important;
+  resize: none;
+  overflow: hidden;
+}
+
+/******Fenetre modale dans inscription*****/
+.modal-inscription{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Ajouter l'animation
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+} */
+
+.modal-align-middle-insc{
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.img-conf-insc{
+  margin-top: 50px;
+}
+
+.img-conf-insc img{
+  width: 200px;
+}
+
+.txt-bravo-insc{
+  font-size: 26px;
+  text-align: center;
+  margin-top: 30px;
+  color: #034e54;
+}
+
+.txt-modal-bienv-insc{
+  width: 300px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 15px;
+  color: #f0592a;
+}
+.bouton-re-que{
+  width: 120px;
+  height: 35px;
+  font-size: 15px;
+  color:#FFF;
+  background-color:#614051;
+  background-size: 90px 35px;
+  border:none;
+  border-radius: 20px;
+  margin-left:80px;
+  margin-top:15px;
+}
+
+.btn-modal-insc{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.btn-modal-insc button{
+  width: 200px;
+}
+
+/******Fenetre modale dans inscription*****/
+.modal-inscription{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 95%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Ajouter l'animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.modal-align-middle{
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.img-conf-insc{
+  margin-top: 50px;
+}
+
+.img-conf-insc img{
+  width: 200px;
+}
+
+.txt-bravo{
+  font-size: 26px;
+  text-align: center;
+  margin-top: 30px;
+  color: #034e54;
+}
+
+.txt-modal-bienv{
+  width: 300px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 15px;
+  color: #f0592a;
+}
+
+.btn-modal-insc{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.btn-modal-insc button{
+  width: 200px;
+}
+
+
+.modal-modif-reservation{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-align-middle-mr{
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.btn-modal-insc{
+  margin-bottom: 30px;
+}
+
+.btn-confirmer{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #f0592a;
+  border: none;
+  padding: 0;
+  border-radius: 70px;
+  color: #FFF;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 5px;
+}
+.btn-confirmer:hover{
+  opacity: 0.8;
+}
+.btn-compte-existant{
+  background-color: #034e54;
+}
+
+/*****************Pour le responsive de la page*********************/
+
+@media only screen and (min-width: 768px) {
+    .modal-content{
+      width: 35%;
+    }
+  }

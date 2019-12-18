@@ -1,0 +1,183 @@
+.txt-consulter{
+  margin-top: 110px;
+  color: #034e54;
+  text-align: center;
+  font-size: 25px;
+}
+
+.txt-trier{
+  margin-top: 30px;
+  color: #f0592a;
+}
+
+.txt-trier p{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.block-tbl{
+  margin-top: 50px;
+}
+
+th,td{
+  color: #034e54;
+  font-size: 12px;
+}
+
+th{
+  border-right: 1px solid #f0592a;
+}
+
+#th-1{
+  border-left: 1px solid #f0592a;
+}
+
+.top-img{
+  font-size: 26px;
+}
+
+.label-consulter{
+  display: inline-block;
+  font-size: 15px;
+  color: #034E53;
+  margin-left: 5px;
+}
+
+.suivi{
+  display: none;
+}
+
+.link-client{
+  color: #034e54;
+}
+
+.cog{
+  color: #000000;
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  width: 35px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.cog:before{
+  font-size: 21px;
+  cursor: pointer;
+  content: '\f013';
+}
+
+.cancel{
+  color: #f03e3e;
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  width: 35px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.cancel:before{
+  font-size: 21px;
+  cursor: pointer;
+  content: '\f057';
+}
+
+.modal-modif-reservation{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-align-middle-mr{
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.box-select{
+  width: 100%;
+}
+
+.select-inscr{
+  width: 100%;
+}
+
+.btn-modal-insc{
+  margin-bottom: 30px;
+}
+
+.commentaire{
+  height: 350px;
+}
+
+.legende{
+  display: inline-block;
+  margin-top: 30px;
+}
+
+.legende-carr{
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.carre{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #000000;
+}
+
+#carre1{
+  background-color: #ffc2b3;
+}
+
+#carre2{
+  background-color: #cefdce;
+}
+
+#carre3{
+  background-color: #b0bed9;
+}
+
+#carre4{
+  background-color: #FFFFFF;
+}
+
+.txt-legende{
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+@media only screen and (min-width: 768px){
+  .reservation {
+      width: 866px;
+  }
+
+  .top-img{
+    font-size: 64px;
+  }
+
+  .btn-confirmer{
+    display: block;
+    margin: 0 auto;
+  }
+
+  .btn-coller{
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .dataTables_scroll{
+    overflow-x:auto;
+  }
+}
